@@ -1,0 +1,240 @@
+/*
+ * Tetris easter egg styling. Retro, monochrome neon on the site palette:
+ * one accent (var(--neon)) for every filled block, a faint hairline grid, mono
+ * type. Everything derives from the site tokens, so blue mode reskins it too.
+ */
+
+/* Full-screen backdrop the game opens into, from the green nav dot. */
+.tetris-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: rgba(0, 0, 0, 0.985);
+  backdrop-filter: blur(4px);
+  overflow: auto;
+  animation: tetris-overlay-in 0.18s var(--ease-out, ease-out);
+}
+@keyframes tetris-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.t-root {
+  --t-cell: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px 18px;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--foreground);
+  outline: none;
+}
+
+.t-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--hairline);
+}
+.t-title {
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--neon);
+}
+.t-hint {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--dim);
+}
+
+.t-stage {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+/* ── Board ───────────────────────────────────────────────── */
+.t-board {
+  position: relative;
+  display: grid;
+  gap: 1px;
+  padding: 1px;
+  background: var(--hairline); /* shows through the 1px gaps as grid lines */
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+}
+.t-cell {
+  width: var(--t-cell);
+  height: var(--t-cell);
+  background: rgba(255, 255, 255, 0.025);
+}
+.t-cell.on {
+  background: var(--neon);
+  /* beveled pixel-block look */
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.35),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.16),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.18);
+}
+.t-cell.active {
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.3),
+    inset 0 0 7px rgba(255, 255, 255, 0.28);
+}
+
+/* pause / game-over card over the board */
+.t-over {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(1px);
+  border-radius: 2px;
+}
+.t-over-title {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--neon);
+}
+.t-over-score {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+/* ── Side panel ──────────────────────────────────────────── */
+.t-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 128px;
+  font-size: 12px;
+}
+.t-stat {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.t-stat span {
+  color: var(--dim);
+  letter-spacing: 0.08em;
+}
+.t-stat b {
+  font-weight: 600;
+  color: var(--foreground);
+}
+.t-stat b.neon {
+  color: var(--neon);
+}
+
+.t-next {
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.t-next > span {
+  color: var(--dim);
+  letter-spacing: 0.08em;
+}
+.t-next-grid {
+  display: grid;
+  gap: 1px;
+}
+.t-mini {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+.t-mini.on {
+  background: var(--neon);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+.t-btn {
+  margin-top: 2px;
+  padding: 5px 10px;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--foreground);
+  background: transparent;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+.t-btn:hover {
+  color: var(--neon);
+  border-color: color-mix(in srgb, var(--neon) 55%, transparent);
+}
+.t-btn:active {
+  transform: scale(0.97);
+}
+
+.t-keys {
+  margin-top: 6px;
+  font-size: 10.5px;
+  line-height: 1.7;
+  color: var(--dim);
+}
+
+/* ── Touch controls ──────────────────────────────────────── */
+.t-touch {
+  display: none;
+  gap: 8px;
+}
+.t-touch button {
+  width: 44px;
+  height: 34px;
+  font-size: 15px;
+  color: var(--foreground);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.t-touch button:active {
+  border-color: var(--neon);
+  transform: scale(0.94);
+}
+
+/* show the touch row on coarse pointers (phones/tablets) */
+@media (pointer: coarse) {
+  .t-touch {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .t-root {
+    --t-cell: 15px;
+  }
+  .t-stage {
+    gap: 12px;
+  }
+  .t-side {
+    min-width: 96px;
+  }
+}

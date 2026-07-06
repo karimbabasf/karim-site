@@ -5,10 +5,9 @@ import { motion, useReducedMotion } from "framer-motion";
 import dynamic from "next/dynamic";
 import WindowDots from "@/components/karim-os/window-dots";
 
-// The Remotion boot sequence loads only after the easter egg is first opened.
-const BootOverlay = dynamic(() => import("@/components/karim-os/boot-overlay"), {
-  ssr: false,
-});
+// The Tetris easter egg (green dot) loads only after it is first opened.
+// KARIM_OS is kept in the repo (components/karim-os/*), just no longer wired in.
+const Tetris = dynamic(() => import("@/components/tetris"), { ssr: false });
 
 const INTRO_KEY = "karim-intro-seen";
 
@@ -142,13 +141,9 @@ export default function SiteShell({
 
   const revealed = docked || effectiveMode === "static"; // chrome + content fade in as the name flies home
 
-  // Easter egg: the green traffic-light dot boots KARIM_OS (a Remotion overlay).
-  const [bootOpen, setBootOpen] = useState(false);
-  const [bootMounted, setBootMounted] = useState(false);
-  const openBoot = useCallback(() => {
-    setBootMounted(true);
-    setBootOpen(true);
-  }, []);
+  // Easter egg: the green traffic-light dot opens Tetris.
+  const [gameOpen, setGameOpen] = useState(false);
+  const openGame = useCallback(() => setGameOpen(true), []);
 
   return (
     <div className="relative min-h-svh">
@@ -187,7 +182,7 @@ export default function SiteShell({
             transition={{ duration: 1.0, ease: REVEAL_EASE, delay: reduce ? 0 : 0.15 }}
             className="hidden sm:block"
           >
-            <WindowDots onBoot={openBoot} />
+            <WindowDots onGreen={openGame} />
           </motion.div>
 
           {/* Terminal-style links */}
@@ -354,8 +349,17 @@ export default function SiteShell({
         {children}
       </motion.main>
 
-      {/* Easter egg overlay — mounts (and pulls the Remotion bundle) only once opened. */}
-      {bootMounted && <BootOverlay open={bootOpen} onClose={() => setBootOpen(false)} />}
+      {/* Easter egg — the green nav dot opens Tetris. Loads only once opened. */}
+      {gameOpen && (
+        <div
+          className="tetris-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setGameOpen(false);
+          }}
+        >
+          <Tetris onClose={() => setGameOpen(false)} />
+        </div>
+      )}
     </div>
   );
 }

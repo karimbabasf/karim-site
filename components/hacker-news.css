@@ -1,0 +1,272 @@
+/*
+ * Hacker News, reskinned to the site's dark palette. Structure and class names
+ * are the real thing (Y mark, nav row, points/hide/comments subtext, threaded
+ * [-] collapse, footer links), but every color pulls from the site tokens in
+ * globals.css, so this reads as HN wearing our theme and follows blue mode for
+ * free. The neon appears only on the Y mark and on title hover, kept sparing.
+ */
+
+.hn {
+  --hn-indent: 30px;
+  font-family: Verdana, Geneva, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.hn a {
+  color: inherit;
+  text-decoration: none;
+}
+.hn a:hover {
+  text-decoration: underline;
+}
+/* Tactile press on any dead link, so the click always registers */
+.hn a:active {
+  opacity: 0.55;
+}
+
+/* ── Top bar ─────────────────────────────────────────────── */
+.hn-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--background);
+  border-bottom: 1px solid var(--hairline);
+  padding: 5px 8px;
+}
+.hn-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: var(--neon);
+  color: #000000;
+  box-shadow: 0 0 8px var(--neon-soft);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+}
+.hn-top-title {
+  font-weight: 700;
+  color: var(--foreground);
+  margin-right: 4px;
+}
+.hn-top-nav {
+  color: var(--dim);
+}
+.hn-top-nav .sep {
+  color: var(--dim);
+  opacity: 0.6;
+}
+.hn-top-login {
+  margin-left: auto;
+  color: var(--dim);
+}
+
+/* ── Story ───────────────────────────────────────────────── */
+.hn-body {
+  padding: 10px 12px 12px;
+}
+.hn-story {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.hn-rank {
+  color: var(--dim);
+  min-width: 1.4em;
+  text-align: right;
+}
+.hn-arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid var(--dim);
+  transform: translateY(-1px);
+  flex: none;
+}
+
+/* The one control that works: a real upvote. Neon +1 floats off on each click. */
+.hn-vote {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  margin: 0;
+  padding: 2px 3px;
+  background: none;
+  border: none;
+  line-height: 0;
+  cursor: pointer;
+}
+.hn-vote:active {
+  transform: scale(0.88);
+}
+.hn-vote:active .hn-arrow,
+.hn-vote:focus-visible .hn-arrow {
+  border-bottom-color: var(--neon);
+}
+.hn-plus {
+  position: absolute;
+  left: 50%;
+  top: -1px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  line-height: 1;
+  color: var(--neon);
+  pointer-events: none;
+  animation: hn-plus-float 0.65s var(--ease-out, ease-out) forwards;
+}
+@keyframes hn-plus-float {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 2px);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -15px);
+  }
+}
+.hn-title {
+  color: var(--foreground);
+  font-size: 13.5px;
+}
+.hn-title:hover {
+  color: var(--neon);
+}
+.hn-title:visited {
+  color: var(--dim);
+}
+.hn-domain {
+  color: var(--dim);
+  font-size: 11px;
+}
+.hn-subtext {
+  color: var(--dim);
+  font-size: 11px;
+  /* line up under the title, past the rank + arrow gutter */
+  margin: 2px 0 0 calc(1.4em + 18px);
+}
+.hn-subtext a {
+  color: var(--dim);
+}
+
+/* ── Comments ────────────────────────────────────────────── */
+.hn-comments {
+  margin-top: 14px;
+}
+.hn-comment {
+  padding-top: 10px;
+}
+.hn-comhead {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--dim);
+  font-size: 11px;
+}
+.hn-comhead .hn-arrow {
+  border-bottom-width: 6px;
+  border-left-width: 4px;
+  border-right-width: 4px;
+}
+.hn-user {
+  color: var(--dim);
+}
+.hn-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 2px;
+  font: inherit;
+  color: var(--dim);
+  cursor: pointer;
+}
+.hn-toggle:hover {
+  text-decoration: underline;
+}
+.hn-comment-text {
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 62ch;
+  /* align the body under the comment head, past the arrow */
+  margin: 3px 0 0 12px;
+}
+.hn-comment-text p {
+  margin: 0 0 8px;
+}
+.hn-reply {
+  margin: 4px 0 0 12px;
+  font-size: 11px;
+  color: var(--dim);
+}
+.hn-kids {
+  margin-left: var(--hn-indent);
+  /* faint rail so deep replies stay legible on the dark ground */
+  border-left: 1px solid var(--hairline);
+  padding-left: calc(var(--hn-indent) - 12px);
+}
+.hn-collapsed .hn-comment-text,
+.hn-collapsed .hn-reply,
+.hn-collapsed .hn-kids {
+  display: none;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.hn-foot {
+  margin: 18px 0 4px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 10px;
+  text-align: center;
+  color: var(--dim);
+  font-size: 11px;
+}
+.hn-foot-links a {
+  color: var(--dim);
+}
+
+/* ── Matrix decode easter egg ────────────────────────────── */
+/* Every clickable label decodes on click: a burst of green katakana that
+   resolves left-to-right back into the word (see useScramble in the component).
+   The wrapper is a bare inline span at rest. While a run is active the real word
+   stays in flow but invisible so it reserves its exact box and baseline, and the
+   cycling glyphs paint on top in an absolute overlay that is out of flow: the row
+   never reflows and the text never drops. The run is driven by rAF and skipped
+   under prefers-reduced-motion in JS, so no reduced-motion rule here. */
+.hn-scramble.is-active {
+  position: relative;
+}
+.hn-scramble-base {
+  opacity: 0;
+}
+.hn-scramble-fx {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.hn-scr {
+  color: var(--neon);
+  text-shadow: 0 0 6px var(--neon-soft);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.9em;
+}
+
+@media (max-width: 640px) {
+  .hn {
+    --hn-indent: 22px;
+    font-size: 12.5px;
+  }
+}

@@ -2,7 +2,7 @@
 
 /*
  * The corner macOS traffic-lights, turned into a hidden easter egg. Hovering
- * reveals the window glyphs (× – +); the green "maximize" dot boots KARIM_OS,
+ * reveals the window glyphs (× – +); the green "maximize" dot opens Tetris,
  * while red / yellow give a playful nudge. Matches house style (framer-motion,
  * custom ease, reduced-motion aware). Interactive elements get the site's neon
  * hand cursor automatically via globals.css.
@@ -17,10 +17,10 @@ type DotKey = "red" | "yellow" | "green";
 const DOTS: { key: DotKey; color: string; glyph: string; label: string }[] = [
   { key: "red", color: "#ff5f57", glyph: "×", label: "Close" },
   { key: "yellow", color: "#febc2e", glyph: "–", label: "Minimize" },
-  { key: "green", color: "#28c840", glyph: "+", label: "Boot KARIM_OS (easter egg)" },
+  { key: "green", color: "#28c840", glyph: "+", label: "Play Tetris (easter egg)" },
 ];
 
-export default function WindowDots({ onBoot }: { onBoot: () => void }) {
+export default function WindowDots({ onGreen }: { onGreen: () => void }) {
   const reduce = useReducedMotion();
   const [gag, setGag] = useState<{ id: number; text: string; shake: DotKey } | null>(null);
   const idRef = useRef(0);
@@ -35,7 +35,7 @@ export default function WindowDots({ onBoot }: { onBoot: () => void }) {
   useEffect(() => () => { if (timer.current) window.clearTimeout(timer.current); }, []);
 
   const handle = (key: DotKey) => {
-    if (key === "green") onBoot();
+    if (key === "green") onGreen();
     else if (key === "red") flash("can't close the grind", "red");
     else flash("not today ↓", "yellow");
   };

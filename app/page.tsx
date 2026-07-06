@@ -3,6 +3,7 @@ import SiteShell from "@/components/site-shell";
 import { Prompt } from "@/components/terminal";
 import { MobiusViewport, MobiusManualMobile } from "@/components/mobius";
 import ProjectsAccordion from "@/components/projects-accordion";
+import HackerNews from "@/components/hacker-news";
 import Socials from "@/components/socials";
 import { profile } from "@/lib/site";
 import { projects } from "@/lib/projects";
@@ -96,6 +97,14 @@ export default function Home() {
       <section id="projects" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16">
         <Prompt command="ls ~/projects" comment={`${projects.length} entries`} />
         <ProjectsAccordion projects={projects} />
+      </section>
+
+      {/* ── Hacker News ─────────────────────────────────────── */}
+      <section id="hn" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16">
+        <Prompt command="open news.ycombinator.com/front" comment="front page today" />
+        <div className="mt-8">
+          <HackerNews />
+        </div>
       </section>
 
       {/* ── Footer ──────────────────────────────────────────── */}
