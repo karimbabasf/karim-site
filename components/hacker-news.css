@@ -264,9 +264,41 @@
   font-size: 0.9em;
 }
 
+/* ── Phones ──────────────────────────────────────────────── */
+/* HN's real desktop layout piles up on a narrow screen: the top nav wraps into
+   three lines, the story title gets crushed into a thin column beside the
+   domain, and deep replies indent themselves off the edge. These overrides
+   reflow the same structure to read cleanly on a phone. Desktop is untouched. */
 @media (max-width: 640px) {
   .hn {
-    --hn-indent: 22px;
+    /* tighter thread indent so nested replies keep a usable text width */
+    --hn-indent: 16px;
     font-size: 12.5px;
+  }
+
+  /* Drop the decorative nav row (all dead links) so the bar stays a clean
+     single line (Y, Hacker News, login) instead of a 3-line pile-up. The decode
+     easter egg still lives on the title, users, and footer links. */
+  .hn-top-nav {
+    display: none;
+  }
+  .hn-top-title {
+    white-space: nowrap;
+  }
+
+  /* Story: give the title the full width and drop the domain onto its own line
+     beneath it, aligned under the title. Top-align the rank plus upvote so they
+     sit on the first line rather than floating in the middle of a tall title. */
+  .hn-story {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .hn-title {
+    flex: 1;
+  }
+  .hn-domain {
+    flex-basis: 100%;
+    /* match .hn-subtext so the domain and the points line share a left edge */
+    margin-left: calc(1.4em + 18px);
   }
 }
