@@ -2,6 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import dynamic from "next/dynamic";
+import WindowDots from "@/components/karim-os/window-dots";
+
+// The Remotion boot sequence loads only after the easter egg is first opened.
+const BootOverlay = dynamic(() => import("@/components/karim-os/boot-overlay"), {
+  ssr: false,
+});
 
 const INTRO_KEY = "karim-intro-seen";
 
@@ -135,6 +142,14 @@ export default function SiteShell({
 
   const revealed = docked || effectiveMode === "static"; // chrome + content fade in as the name flies home
 
+  // Easter egg: the green traffic-light dot boots KARIM_OS (a Remotion overlay).
+  const [bootOpen, setBootOpen] = useState(false);
+  const [bootMounted, setBootMounted] = useState(false);
+  const openBoot = useCallback(() => {
+    setBootMounted(true);
+    setBootOpen(true);
+  }, []);
+
   return (
     <div className="relative min-h-svh">
       {/* ── Nav ─────────────────────────────────────────────── */}
@@ -170,12 +185,9 @@ export default function SiteShell({
             initial={false}
             animate={{ opacity: revealed ? 1 : 0 }}
             transition={{ duration: 1.0, ease: REVEAL_EASE, delay: reduce ? 0 : 0.15 }}
-            className="hidden items-center gap-2 sm:flex"
-            aria-hidden
+            className="hidden sm:block"
           >
-            <span className="h-[11px] w-[11px] rounded-full bg-[#ff5f57]" />
-            <span className="h-[11px] w-[11px] rounded-full bg-[#febc2e]" />
-            <span className="h-[11px] w-[11px] rounded-full bg-[#28c840]" />
+            <WindowDots onBoot={openBoot} />
           </motion.div>
 
           {/* Terminal-style links */}
@@ -341,6 +353,9 @@ export default function SiteShell({
       >
         {children}
       </motion.main>
+
+      {/* Easter egg overlay — mounts (and pulls the Remotion bundle) only once opened. */}
+      {bootMounted && <BootOverlay open={bootOpen} onClose={() => setBootOpen(false)} />}
     </div>
   );
 }

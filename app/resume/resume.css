@@ -1,19 +1,25 @@
 /*
- * Résumé document styles — scoped under `.resumeDoc` so they never touch the
- * app's dark/neon globals. This is the light "paper" sheet that floats on the
- * site's dark canvas; it mirrors the downloadable PDF 1:1 (what you preview is
- * what you download). Fonts come from next/font via CSS variables set in page.tsx.
+ * Résumé document styles — scoped under `.resumeDoc`. The on-screen preview is a
+ * DARK document tuned to the site's black + neon terminal vibe (it borrows the
+ * site tokens --foreground / --dim / --neon so it feels native, not bolted-on).
+ * The downloadable PDF is a static file in /public and is NOT affected by this
+ * file. The @media print block at the bottom resets the palette back to a clean
+ * LIGHT sheet, so Cmd+P still prints well on paper. Fonts come from next/font via
+ * CSS variables set in page.tsx.
  */
 
 .resumeDoc {
-  --paper: #f5f4f1;
-  --ink: #15171c;
-  --slate: #565b66;
-  --faint: #8b909a;
-  --line: #e7e6e0;
-  --line-2: #d7d6ce;
-  --accent: #2540d6;
-  --accent-ink: #1c33ad;
+  /* Dark on-screen theme — mapped onto the site's black/neon palette. Accents
+     read from the global --neon, so the résumé follows the green/blue theme too.
+     (The @media print block below overrides all of these back to light.) */
+  --paper: #0d0e11;
+  --ink: #ededed;
+  --slate: #a2a8b2;
+  --faint: #787d86;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.16);
+  --accent: var(--neon);
+  --accent-ink: var(--neon);
 
   --mono: var(--font-ibm-plex-mono), ui-monospace, "SF Mono", Menlo, monospace;
   --sans: var(--font-ibm-plex-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -30,7 +36,7 @@
 .resumeDoc *::before,
 .resumeDoc *::after { box-sizing: border-box; }
 
-/* ---------- Sheet (the paper) ---------- */
+/* ---------- Sheet (the document surface) ---------- */
 .resumeDoc .sheet {
   width: 100%;
   max-width: 780px;
@@ -39,10 +45,12 @@
   padding: 44px 48px 40px;
   border-radius: 8px;
   border: 1px solid var(--line);
+  /* Raised dark panel on the pure-black canvas: hairline edge, soft depth, and a
+     faint neon halo that ties it to the rest of the site. */
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    0 24px 70px -34px rgba(0, 0, 0, 0.5),
-    0 8px 22px -16px rgba(0, 0, 0, 0.38);
+    0 0 0 1px var(--line),
+    0 24px 80px -40px rgba(0, 0, 0, 0.85),
+    0 0 50px -18px color-mix(in srgb, var(--neon) 11%, transparent);
 }
 
 /* ---------- Header ---------- */
@@ -109,10 +117,10 @@
 .resumeDoc .btn:focus-visible {
   border-color: var(--accent);
   color: var(--accent-ink);
-  background: #f4f6ff;
+  background: color-mix(in srgb, var(--neon) 10%, transparent);
   outline: none;
 }
-.resumeDoc .btn:focus-visible { box-shadow: 0 0 0 3px rgba(37, 64, 214, 0.22); }
+.resumeDoc .btn:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--neon) 28%, transparent); }
 
 .resumeDoc .rule { height: 1px; background: var(--line); border: 0; margin: 20px 0 16px; }
 
@@ -120,7 +128,7 @@
 .resumeDoc .summary {
   font-size: 12.6px;
   line-height: 1.55;
-  color: #2b2e35;
+  color: #d4d7dd;
   margin: 0;
 }
 
@@ -168,7 +176,7 @@
   padding-left: 15px;
   font-size: 12px;
   line-height: 1.45;
-  color: #23262d;
+  color: #dce0e5;
   margin-bottom: 4px;
 }
 .resumeDoc ul.bullets li:last-child { margin-bottom: 0; }
@@ -204,7 +212,7 @@
 .resumeDoc .repo svg { width: 11px; height: 11px; }
 .resumeDoc .repo:hover,
 .resumeDoc .repo:focus-visible { border-bottom-color: var(--accent); outline: none; }
-.resumeDoc .proj-desc { font-size: 11.6px; line-height: 1.42; color: #33363d; margin: 3px 0 4px; }
+.resumeDoc .proj-desc { font-size: 11.6px; line-height: 1.42; color: #c6cad1; margin: 3px 0 4px; }
 .resumeDoc .stack {
   font-family: var(--mono);
   font-size: 9.5px;
@@ -241,12 +249,19 @@
   .resumeDoc * { transition: none !important; }
 }
 
-/* ---------- Print (if someone Cmd+P's the preview page) ---------- */
+/* ---------- Print (if someone Cmd+P's the preview page) ----------
+   The on-screen preview is dark, but printing resets to a clean LIGHT sheet so it
+   prints well on paper and matches the look of the downloadable PDF. */
 @media print {
   .resumeDoc {
-    /* Print / Cmd+P stays pure white to match the downloadable PDF exactly —
-       the softer on-screen preview paper is a screen-only comfort tweak. */
     --paper: #ffffff;
+    --ink: #15171c;
+    --slate: #565b66;
+    --faint: #8b909a;
+    --line: #e7e6e0;
+    --line-2: #d7d6ce;
+    --accent: #2540d6;
+    --accent-ink: #1c33ad;
   }
   .resumeDoc .sheet {
     box-shadow: none;
@@ -256,6 +271,11 @@
     padding: 0;
     background: #ffffff;
   }
+  /* Body-text colors are hardcoded light for the dark screen theme — force them
+     back to dark ink for print so they're legible on white. */
+  .resumeDoc .summary { color: #2b2e35 !important; }
+  .resumeDoc ul.bullets li { color: #23262d !important; }
+  .resumeDoc .proj-desc { color: #33363d !important; }
   .resumeDoc a { color: var(--ink) !important; }
   .resumeDoc .repo,
   .resumeDoc .eyebrow,

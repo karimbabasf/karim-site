@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <div className="flex min-h-dvh flex-col bg-[#1c1c1f] print:bg-white">
+    <div className="flex min-h-dvh flex-col bg-background print:bg-white">
       <ResumeToolbar />
 
       <div className="flex-1 px-4 py-8 sm:px-6 sm:py-12 print:p-0">
