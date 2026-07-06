@@ -1,0 +1,270 @@
+/*
+ * Résumé document styles — scoped under `.resumeDoc` so they never touch the
+ * app's dark/neon globals. This is the light "paper" sheet that floats on the
+ * site's dark canvas; it mirrors the downloadable PDF 1:1 (what you preview is
+ * what you download). Fonts come from next/font via CSS variables set in page.tsx.
+ */
+
+.resumeDoc {
+  --paper: #f5f4f1;
+  --ink: #15171c;
+  --slate: #565b66;
+  --faint: #8b909a;
+  --line: #e7e6e0;
+  --line-2: #d7d6ce;
+  --accent: #2540d6;
+  --accent-ink: #1c33ad;
+
+  --mono: var(--font-ibm-plex-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  --sans: var(--font-ibm-plex-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --display: var(--font-space-grotesk), var(--font-ibm-plex-sans), sans-serif;
+
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.46;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.resumeDoc *,
+.resumeDoc *::before,
+.resumeDoc *::after { box-sizing: border-box; }
+
+/* ---------- Sheet (the paper) ---------- */
+.resumeDoc .sheet {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  background: var(--paper);
+  padding: 44px 48px 40px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 24px 70px -34px rgba(0, 0, 0, 0.5),
+    0 8px 22px -16px rgba(0, 0, 0, 0.38);
+}
+
+/* ---------- Header ---------- */
+.resumeDoc .eyebrow {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 8px;
+}
+.resumeDoc .eyebrow .dot {
+  display: inline-block;
+  width: 1px;
+  height: 9px;
+  background: var(--line-2);
+  margin: 0 0.75em;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+.resumeDoc .wordmark {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: var(--ink);
+}
+.resumeDoc .wordmark .period { color: var(--accent); }
+
+.resumeDoc .contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+}
+.resumeDoc .loc {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--slate);
+  margin-right: 3px;
+  white-space: nowrap;
+}
+.resumeDoc .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.resumeDoc .btn svg { width: 12px; height: 12px; display: block; }
+.resumeDoc .btn:hover,
+.resumeDoc .btn:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  background: #f4f6ff;
+  outline: none;
+}
+.resumeDoc .btn:focus-visible { box-shadow: 0 0 0 3px rgba(37, 64, 214, 0.22); }
+
+.resumeDoc .rule { height: 1px; background: var(--line); border: 0; margin: 20px 0 16px; }
+
+/* ---------- Summary ---------- */
+.resumeDoc .summary {
+  font-size: 12.6px;
+  line-height: 1.55;
+  color: #2b2e35;
+  margin: 0;
+}
+
+/* ---------- Sections ---------- */
+.resumeDoc section { margin-top: 18px; }
+.resumeDoc .sec-head { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; }
+.resumeDoc .sec-head .sq { width: 7px; height: 7px; background: var(--accent); display: inline-block; flex: none; }
+.resumeDoc .sec-head h2 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+.resumeDoc .sec-head .line { flex: 1; height: 1px; background: var(--line); }
+
+/* ---------- Experience ---------- */
+.resumeDoc .role { margin-bottom: 13px; }
+.resumeDoc .role:last-child { margin-bottom: 0; }
+.resumeDoc .role-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.resumeDoc .role-title {
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0;
+}
+.resumeDoc .role-title .org { color: var(--accent-ink); }
+.resumeDoc .role-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: var(--faint);
+  white-space: nowrap;
+  flex: none;
+}
+.resumeDoc .role-note { font-size: 11.6px; color: var(--slate); margin: 4px 0 6px; line-height: 1.45; }
+
+.resumeDoc ul.bullets { list-style: none; margin: 0; padding: 0; }
+.resumeDoc ul.bullets li {
+  position: relative;
+  padding-left: 15px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #23262d;
+  margin-bottom: 4px;
+}
+.resumeDoc ul.bullets li:last-child { margin-bottom: 0; }
+.resumeDoc ul.bullets li::before {
+  content: "\203A";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.resumeDoc ul.bullets li .lead { color: var(--ink); font-weight: 600; }
+.resumeDoc ul.cols li { break-inside: avoid; }
+
+/* ---------- Projects ---------- */
+.resumeDoc .proj { margin-bottom: 11px; }
+.resumeDoc .proj:last-child { margin-bottom: 0; }
+.resumeDoc .proj-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.resumeDoc .proj-name { font-family: var(--display); font-size: 13px; font-weight: 600; color: var(--ink); margin: 0; }
+.resumeDoc .proj-name .desc { color: var(--slate); font-weight: 500; }
+.resumeDoc .proj-tag { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.04em; color: var(--faint); }
+.resumeDoc .repo {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1px solid transparent;
+}
+.resumeDoc .repo svg { width: 11px; height: 11px; }
+.resumeDoc .repo:hover,
+.resumeDoc .repo:focus-visible { border-bottom-color: var(--accent); outline: none; }
+.resumeDoc .proj-desc { font-size: 11.6px; line-height: 1.42; color: #33363d; margin: 3px 0 4px; }
+.resumeDoc .stack {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 0;
+}
+
+/* ---------- Mobile: keep everything comfortably readable, no zoom needed ---------- */
+@media (max-width: 640px) {
+  .resumeDoc { font-size: 13px; }
+  .resumeDoc .sheet { padding: 28px 22px 26px; border-radius: 8px; }
+  .resumeDoc .wordmark { font-size: 40px; }
+  .resumeDoc ul.cols { column-count: 1; }
+  .resumeDoc .role-top { flex-direction: column; }
+  .resumeDoc .role-meta { margin-top: 2px; }
+
+  /* Nudge the dense text up so it reads cleanly on a phone. */
+  .resumeDoc .summary { font-size: 13.5px; line-height: 1.55; }
+  .resumeDoc ul.bullets li { font-size: 13px; line-height: 1.5; margin-bottom: 5px; }
+  .resumeDoc .role-title { font-size: 14.5px; }
+  .resumeDoc .role-note { font-size: 12.5px; line-height: 1.5; }
+  .resumeDoc .proj-name { font-size: 13.5px; }
+  .resumeDoc .proj-desc { font-size: 12.5px; line-height: 1.5; }
+  .resumeDoc .sec-head h2 { font-size: 11.5px; }
+  .resumeDoc .btn { font-size: 11.5px; padding: 6px 11px; }
+  .resumeDoc .loc { font-size: 11.5px; }
+  .resumeDoc .stack, .resumeDoc .proj-tag { font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resumeDoc * { transition: none !important; }
+}
+
+/* ---------- Print (if someone Cmd+P's the preview page) ---------- */
+@media print {
+  .resumeDoc {
+    /* Print / Cmd+P stays pure white to match the downloadable PDF exactly —
+       the softer on-screen preview paper is a screen-only comfort tweak. */
+    --paper: #ffffff;
+  }
+  .resumeDoc .sheet {
+    box-shadow: none;
+    border: 0;
+    border-radius: 0;
+    max-width: none;
+    padding: 0;
+    background: #ffffff;
+  }
+  .resumeDoc a { color: var(--ink) !important; }
+  .resumeDoc .repo,
+  .resumeDoc .eyebrow,
+  .resumeDoc .sec-head .sq,
+  .resumeDoc ul.bullets li::before {
+    color: var(--accent) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .resumeDoc .sec-head .sq { background: var(--accent) !important; }
+  .resumeDoc section, .resumeDoc .role, .resumeDoc .proj { break-inside: avoid; }
+}

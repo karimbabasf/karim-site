@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+:root {
+  /* Terminal ground */
+  --background: #000000;
+  --foreground: #ededed;
+  --dim: #6b6b6b;
+
+  /* Neon accent — sampled from the "Karim" mark. Everything neon derives from
+     --neon, so the single override in [data-theme="blue"] reskins the whole site. */
+  --neon: #a3f04b;
+  --neon-soft: color-mix(in srgb, var(--neon) 16%, transparent);
+  --hairline: rgba(255, 255, 255, 0.08);
+
+  /* Raised surfaces (panes, cards) sit just above the pure-black ground */
+  --surface: rgba(255, 255, 255, 0.02);
+
+  /* Motion — strong custom curves (built-in easings are too weak) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-neon: var(--neon);
+  --color-dim: var(--dim);
+  --color-hairline: var(--hairline);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Blue accent mode — the exact hue-shift of the lime (same saturation/lightness,
+   rotated to the blue hue). One variable swaps; --neon-soft, the caret, the
+   focus ring and every `*-neon` utility follow it. */
+[data-theme="blue"] {
+  --neon: #4c9ef0;
+}
+
+/* Neon *media* (the green Möbius clips + the "Karim" mark) can't read a CSS
+   variable, so blue mode rotates their hue to land on the same blue accent —
+   one source file serves both palettes. */
+[data-theme="blue"] .neon-media {
+  /* Tuned against the sampled lime (#a3f04b): lands the strip on ~#4b9bf1,
+     the sRGB match of the --neon blue accent (hue-rotate preserves luminance,
+     so the saturate + brightness deepen it off the pale cyan it would land on). */
+  filter: hue-rotate(125deg) saturate(1.2) brightness(0.68);
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Intro first-paint state ──────────────────────────────────────────────
+   SiteShell renders "loading" identically on server and first client paint
+   (no hydration flash). Which of the two branches shows is decided before
+   paint by the <html data-intro> script in app/layout.tsx:
+     • data-intro="play" (first visit) — leave the black cover up; the
+       cinematic reveal takes over after hydration. This is the default.
+     • data-intro="seen" (return visit / reduced motion) — drop the cover and
+       show the content immediately, so black never flashes for them. */
+html[data-intro="seen"] .intro-cover {
+  opacity: 0 !important;
+}
+html[data-intro="seen"] #top {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Terminal caret — blinks unless the user prefers reduced motion */
+.caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.05em;
+  translate: 0 0.16em;
+  background: var(--neon);
+  box-shadow: 0 0 8px var(--neon-soft);
+  animation: caret-blink 1.05s steps(1, end) infinite;
+}
+
+@keyframes caret-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Custom pointer — mac-style arrow, black fill, neon-green outline.
+   Interactive elements swap to a matching pointing-hand in the same style. */
+html {
+  cursor: url("/cursor-arrow.svg") 1 1, auto;
+  /* Smooth in-page scroll for the nav anchors (#summary / #projects / #top).
+     Overridden to `auto` under prefers-reduced-motion below. */
+  scroll-behavior: smooth;
+  /* Pitch-black top guarantee: the root element paints pure #000 so the
+     browser's overscroll / rubber-band gutter and the notch / safe-area strip
+     above the nav read black in EVERY browser and theme. `--background` is
+     themeable; this is hard-locked. `body` keeps var(--background). */
+  background-color: #000;
+}
+
+/* Backstop for the "browser paints a transparent input above the nav" case:
+   force any form control inside the top nav to opaque black so a translucent
+   or white field can never flash above the bar. No such fields exist today —
+   this is a defensive guarantee for any browser. */
+header input,
+header textarea,
+header select {
+  background-color: #000;
+  color: var(--foreground);
+}
+
+a,
+button,
+label,
+select,
+summary,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="checkbox"],
+input[type="radio"],
+.cursor-pointer {
+  cursor: url("/cursor-hand.svg") 6 2, pointer;
+}
+
+/* Cursor follows the active accent — swap to the blue outline in blue mode.
+   External SVGs can't read var(--neon), so we point at matching blue files. */
+[data-theme="blue"] {
+  cursor: url("/cursor-arrow-blue.svg") 1 1, auto;
+}
+
+[data-theme="blue"] a,
+[data-theme="blue"] button,
+[data-theme="blue"] label,
+[data-theme="blue"] select,
+[data-theme="blue"] summary,
+[data-theme="blue"] [role="button"],
+[data-theme="blue"] input[type="button"],
+[data-theme="blue"] input[type="submit"],
+[data-theme="blue"] input[type="checkbox"],
+[data-theme="blue"] input[type="radio"],
+[data-theme="blue"] .cursor-pointer {
+  cursor: url("/cursor-hand-blue.svg") 6 2, pointer;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--neon);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+    opacity: 1;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

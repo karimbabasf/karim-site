@@ -1,0 +1,124 @@
+- generic [active] [ref=f7e1]:
+  - generic [ref=f7e2]:
+    - banner [ref=f7e3]:
+      - navigation [ref=f7e9]:
+        - link "summary" [ref=f7e10]:
+          - /url: "#summary"
+        - link "projects" [ref=f7e11]:
+          - /url: "#projects"
+      - link "Karim — home" [ref=f7e12]:
+        - /url: "#top"
+        - img "Karim" [ref=f7e13]
+    - main [ref=f7e15]:
+      - generic [ref=f7e16]:
+        - generic [ref=f7e17]:
+          - paragraph [ref=f7e18]: karim@portfolio ~ % whoami
+          - heading "Karim Baba" [level=1] [ref=f7e19]: Karim Baba
+          - paragraph [ref=f7e21]:
+            - text: AI-native builder
+            - generic [ref=f7e22]: · BD @ 1Claw
+          - paragraph [ref=f7e23]: The right hand man you need.
+          - generic [ref=f7e24]:
+            - link "X" [ref=f7e25]:
+              - /url: https://x.com/karimbabasf
+              - img [ref=f7e26]
+            - link "LinkedIn" [ref=f7e28]:
+              - /url: https://www.linkedin.com/in/karim-baba-130547289/
+              - img [ref=f7e29]
+            - link "GitHub" [ref=f7e31]:
+              - /url: https://github.com/karimbabasf
+              - img [ref=f7e32]
+            - link "Email" [ref=f7e34]:
+              - /url: mailto:karim.sf09@gmail.com
+              - img [ref=f7e35]
+        - generic [ref=f7e37]:
+          - button "click to decode" [ref=f7e39]: click to decode
+          - button [ref=f7e43]
+      - generic [ref=f7e44]:
+        - paragraph [ref=f7e45]: karim@portfolio ~ % cat about.md
+        - generic [ref=f7e46]:
+          - generic [ref=f7e47]:
+            - paragraph [ref=f7e48]: I'm a self-taught builder who works at the intersection of agentic infrastructure and DeFi, and I've been in the space since 2021. I build full-stack products on my own, everything from Rust and Tauri desktop tools to on-chain trading systems, and I also handle business development in person across the San Francisco tech scene.
+            - paragraph [ref=f7e49]: I pick up new technology and architectures quickly, and tend to see the patterns underneath them, so I can read a protocol by its actual design rather than taking its pitch at face value.
+            - paragraph [ref=f7e50]: Everything I've worked on has been something I started and drove myself, and that's really the throughline. I'm ambitious and I move on my own initiative, and even when I'm walking into something I don't fully understand yet, I figure it out and come back with results that hold up.
+          - generic [ref=f7e51]:
+            - img "Karim Baba" [ref=f7e54]
+            - generic [ref=f7e55]:
+              - generic [ref=f7e56]:
+                - term [ref=f7e57]: based
+                - definition [ref=f7e58]: San Francisco
+              - generic [ref=f7e59]:
+                - term [ref=f7e60]: focus
+                - definition [ref=f7e61]: Agentic development
+      - generic [ref=f7e62]:
+        - paragraph [ref=f7e63]:
+          - text: karim@portfolio ~ % ls ~/projects
+          - generic [ref=f7e64]: "# 6 entries"
+        - list [ref=f7e65]:
+          - listitem [ref=f7e66]:
+            - heading "JB Hunting Agentic pipeline · 2026 An autonomous job-application pipeline." [level=3] [ref=f7e67]:
+              - button "JB Hunting Agentic pipeline · 2026 An autonomous job-application pipeline." [expanded] [ref=f7e68]:
+                - generic [ref=f7e69]:
+                  - generic [ref=f7e70]:
+                    - generic [ref=f7e71]: JB Hunting
+                    - generic [ref=f7e72]: Agentic pipeline · 2026
+                  - generic [ref=f7e73]: An autonomous job-application pipeline.
+                - img [ref=f7e75]
+            - generic [ref=f7e78]:
+              - paragraph [ref=f7e79]: Discovery, AI scoring, then resume and cover-letter tailoring, then autonomous apply on Greenhouse, Ashby and Lever via Playwright, with email-confirmation monitoring. Orchestrated end to end with Trigger.dev. A dedicated humanizer layer strips AI tells and guards against fabrication. My closest-to-revenue project.
+              - list [ref=f7e81]:
+                - listitem [ref=f7e82]: "#agents"
+                - listitem [ref=f7e83]: "#playwright"
+                - listitem [ref=f7e84]: "#trigger.dev"
+                - listitem [ref=f7e85]: "#llm"
+          - listitem [ref=f7e86]:
+            - heading "Teleprompt Web app · 2026 A browser video recorder with a built-in teleprompter." [level=3] [ref=f7e87]:
+              - button "Teleprompt Web app · 2026 A browser video recorder with a built-in teleprompter." [ref=f7e88]:
+                - generic [ref=f7e89]:
+                  - generic [ref=f7e90]:
+                    - generic [ref=f7e91]: Teleprompt
+                    - generic [ref=f7e92]: Web app · 2026
+                  - generic [ref=f7e93]: A browser video recorder with a built-in teleprompter.
+                - img [ref=f7e95]
+          - listitem [ref=f7e97]:
+            - heading "rtk Open source · 2026 A Rust CLI that shrinks agent output before it hits an LLM." [level=3] [ref=f7e98]:
+              - button "rtk Open source · 2026 A Rust CLI that shrinks agent output before it hits an LLM." [ref=f7e99]:
+                - generic [ref=f7e100]:
+                  - generic [ref=f7e101]:
+                    - generic [ref=f7e102]: rtk
+                    - generic [ref=f7e103]: Open source · 2026
+                  - generic [ref=f7e104]: A Rust CLI that shrinks agent output before it hits an LLM.
+                - img [ref=f7e106]
+          - listitem [ref=f7e108]:
+            - heading "direct-terminal Desktop app · 2026 A liquid-glass desktop crypto trading terminal." [level=3] [ref=f7e109]:
+              - button "direct-terminal Desktop app · 2026 A liquid-glass desktop crypto trading terminal." [ref=f7e110]:
+                - generic [ref=f7e111]:
+                  - generic [ref=f7e112]:
+                    - generic [ref=f7e113]: direct-terminal
+                    - generic [ref=f7e114]: Desktop app · 2026
+                  - generic [ref=f7e115]: A liquid-glass desktop crypto trading terminal.
+                - img [ref=f7e117]
+          - listitem [ref=f7e119]:
+            - heading "scope Desktop app · 2026 A live dashboard for watching AI coding agents." [level=3] [ref=f7e120]:
+              - button "scope Desktop app · 2026 A live dashboard for watching AI coding agents." [ref=f7e121]:
+                - generic [ref=f7e122]:
+                  - generic [ref=f7e123]:
+                    - generic [ref=f7e124]: scope
+                    - generic [ref=f7e125]: Desktop app · 2026
+                  - generic [ref=f7e126]: A live dashboard for watching AI coding agents.
+                - img [ref=f7e128]
+          - listitem [ref=f7e130]:
+            - heading "This site Design + build · 2026 The terminal-flavored card you're reading now." [level=3] [ref=f7e131]:
+              - button "This site Design + build · 2026 The terminal-flavored card you're reading now." [ref=f7e132]:
+                - generic [ref=f7e133]:
+                  - generic [ref=f7e134]:
+                    - generic [ref=f7e135]: This site
+                    - generic [ref=f7e136]: Design + build · 2026
+                  - generic [ref=f7e137]: The terminal-flavored card you're reading now.
+                - img [ref=f7e139]
+      - generic [ref=f7e142]:
+        - generic [ref=f7e143]: © 2026 Karim Baba
+        - generic [ref=f7e144]: built in the terminal
+  - button "Open Next.js Dev Tools" [ref=f7e151] [cursor=pointer]:
+    - img [ref=f7e152]
+  - alert [ref=f7e155]

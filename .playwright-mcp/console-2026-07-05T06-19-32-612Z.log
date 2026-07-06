@@ -1,0 +1,31 @@
+[      17ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[     141ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[     270ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[     281ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  477900ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  477931ms] [LOG] [Fast Refresh] done in 26ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  484915ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  484943ms] [LOG] [Fast Refresh] done in 19ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  492284ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  492310ms] [LOG] [Fast Refresh] done in 21ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  514942ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  514990ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3318
+[  515013ms] [LOG] [Fast Refresh] done in 60ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  525866ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  525896ms] [LOG] [Fast Refresh] done in 33ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  560690ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ct2MDV9FpmBGOrmldRZ-F' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[  561692ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ct2MDV9FpmBGOrmldRZ-F' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[  562694ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ct2MDV9FpmBGOrmldRZ-F' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[  563946ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ct2MDV9FpmBGOrmldRZ-F' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[  565347ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ct2MDV9FpmBGOrmldRZ-F' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[  570361ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ct2MDV9FpmBGOrmldRZ-F' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[  575375ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ct2MDV9FpmBGOrmldRZ-F' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[  580398ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ct2MDV9FpmBGOrmldRZ-F' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[  585411ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ct2MDV9FpmBGOrmldRZ-F' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[  590444ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ct2MDV9FpmBGOrmldRZ-F' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[  595559ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ct2MDV9FpmBGOrmldRZ-F' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[  600647ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  600745ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  600757ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[ 1645294ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[ 1645319ms] [LOG] [Fast Refresh] done in 106ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477

@@ -1,0 +1,114 @@
+- generic [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - banner [ref=f1e3]:
+      - navigation [ref=f1e5]:
+        - link "summary" [ref=f1e6] [cursor=pointer]:
+          - /url: "#summary"
+        - link "projects" [ref=f1e7] [cursor=pointer]:
+          - /url: "#projects"
+      - link "Karim — home" [ref=f1e8] [cursor=pointer]:
+        - /url: "#top"
+        - img "Karim" [ref=f1e9]
+    - main [ref=f1e11]:
+      - generic [ref=f1e16]:
+        - paragraph [ref=f1e17]: karim@portfolio ~ % whoami
+        - heading "Karim Baba" [level=1] [ref=f1e18]: Karim Baba
+        - paragraph [ref=f1e20]:
+          - text: AI-native builder
+          - generic [ref=f1e21]: · BD @ 1Claw
+        - paragraph [ref=f1e22]: I came up in crypto. Now I build with AI.
+        - generic [ref=f1e23]:
+          - link "X" [ref=f1e24] [cursor=pointer]:
+            - /url: https://x.com/karimbabasf
+            - img [ref=f1e25]
+          - link "LinkedIn" [ref=f1e27] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/karim-baba-130547289/
+            - img [ref=f1e28]
+          - link "GitHub" [ref=f1e30] [cursor=pointer]:
+            - /url: https://github.com/karimbabasf
+            - img [ref=f1e31]
+          - link "Email" [ref=f1e33] [cursor=pointer]:
+            - /url: mailto:karim.sf09@gmail.com
+            - img [ref=f1e34]
+      - generic [ref=f1e36]:
+        - paragraph [ref=f1e37]: karim@portfolio ~ % cat about.md
+        - generic [ref=f1e38]:
+          - paragraph [ref=f1e39]: I build products in San Francisco. I came up doing BD in the crypto and agent scene (currently at 1Claw), and now I ship real things by directing AI agents through a tight spec, build and review loop. Not a classically-trained engineer; my edge is taste, product judgment, and shipping fast. I care how it all looks.
+          - generic [ref=f1e40]:
+            - generic [ref=f1e41]:
+              - term [ref=f1e42]: based
+              - definition [ref=f1e43]: San Francisco
+            - generic [ref=f1e44]:
+              - term [ref=f1e45]: focus
+              - definition [ref=f1e46]: Agentic development
+      - generic [ref=f1e47]:
+        - paragraph [ref=f1e48]:
+          - text: karim@portfolio ~ % ls ~/projects
+          - generic [ref=f1e49]: "# 6 entries"
+        - list [ref=f1e51]:
+          - listitem [ref=f1e52]:
+            - heading "JB Hunting Agentic pipeline · 2026 An autonomous job-application pipeline." [level=3] [ref=f1e53]:
+              - button "JB Hunting Agentic pipeline · 2026 An autonomous job-application pipeline." [ref=f1e54]:
+                - generic [ref=f1e55]:
+                  - generic [ref=f1e56]:
+                    - generic [ref=f1e57]: JB Hunting
+                    - generic [ref=f1e58]: Agentic pipeline · 2026
+                  - generic [ref=f1e59]: An autonomous job-application pipeline.
+                - img [ref=f1e61]
+          - listitem [ref=f1e72]:
+            - heading "Teleprompt Web app · 2026 A browser video recorder with a built-in teleprompter." [level=3] [ref=f1e73]:
+              - button "Teleprompt Web app · 2026 A browser video recorder with a built-in teleprompter." [expanded] [active] [ref=f1e74]:
+                - generic [ref=f1e75]:
+                  - generic [ref=f1e76]:
+                    - generic [ref=f1e77]: Teleprompt
+                    - generic [ref=f1e78]: Web app · 2026
+                  - generic [ref=f1e79]: A browser video recorder with a built-in teleprompter.
+                - img [ref=f1e81]
+            - generic [ref=f1e143]:
+              - paragraph [ref=f1e144]: An iPhone-first video recorder with a private teleprompter overlay that follows your speaking pace. Everything runs locally in the browser, so nothing leaves the device. Built with Vite and React, deployed on Vercel.
+              - list [ref=f1e146]:
+                - listitem [ref=f1e147]: "#react"
+                - listitem [ref=f1e148]: "#vite"
+                - listitem [ref=f1e149]: "#video"
+          - listitem [ref=f1e83]:
+            - heading "rtk Open source · 2026 A Rust CLI that shrinks agent output before it hits an LLM." [level=3] [ref=f1e84]:
+              - button "rtk Open source · 2026 A Rust CLI that shrinks agent output before it hits an LLM." [ref=f1e85]:
+                - generic [ref=f1e86]:
+                  - generic [ref=f1e87]:
+                    - generic [ref=f1e88]: rtk
+                    - generic [ref=f1e89]: Open source · 2026
+                  - generic [ref=f1e90]: A Rust CLI that shrinks agent output before it hits an LLM.
+                - img [ref=f1e92]
+          - listitem [ref=f1e94]:
+            - heading "direct-terminal Desktop app · 2026 A liquid-glass desktop crypto trading terminal." [level=3] [ref=f1e95]:
+              - button "direct-terminal Desktop app · 2026 A liquid-glass desktop crypto trading terminal." [ref=f1e96]:
+                - generic [ref=f1e97]:
+                  - generic [ref=f1e98]:
+                    - generic [ref=f1e99]: direct-terminal
+                    - generic [ref=f1e100]: Desktop app · 2026
+                  - generic [ref=f1e101]: A liquid-glass desktop crypto trading terminal.
+                - img [ref=f1e103]
+          - listitem [ref=f1e105]:
+            - heading "scope Desktop app · 2026 A live dashboard for watching AI coding agents." [level=3] [ref=f1e106]:
+              - button "scope Desktop app · 2026 A live dashboard for watching AI coding agents." [ref=f1e107]:
+                - generic [ref=f1e108]:
+                  - generic [ref=f1e109]:
+                    - generic [ref=f1e110]: scope
+                    - generic [ref=f1e111]: Desktop app · 2026
+                  - generic [ref=f1e112]: A live dashboard for watching AI coding agents.
+                - img [ref=f1e114]
+          - listitem [ref=f1e116]:
+            - heading "This site Design + build · 2026 The terminal-flavored card you're reading now." [level=3] [ref=f1e117]:
+              - button "This site Design + build · 2026 The terminal-flavored card you're reading now." [ref=f1e118]:
+                - generic [ref=f1e119]:
+                  - generic [ref=f1e120]:
+                    - generic [ref=f1e121]: This site
+                    - generic [ref=f1e122]: Design + build · 2026
+                  - generic [ref=f1e123]: The terminal-flavored card you're reading now.
+                - img [ref=f1e125]
+      - generic [ref=f1e128]:
+        - generic [ref=f1e129]: © 2026 Karim Baba
+        - generic [ref=f1e130]: built in the terminal
+  - button "Open Next.js Dev Tools" [ref=f1e137] [cursor=pointer]:
+    - img [ref=f1e138]
+  - alert [ref=f1e141]

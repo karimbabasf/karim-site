@@ -1,0 +1,152 @@
+- generic [active] [ref=f6e1]:
+  - generic [ref=f6e2]:
+    - banner [ref=f6e3]:
+      - navigation [ref=f6e9]:
+        - link "summary" [ref=f6e10]:
+          - /url: "#summary"
+        - link "projects" [ref=f6e11]:
+          - /url: "#projects"
+    - button "Skip intro" [ref=f6e13]
+    - link "Karim — home" [ref=f6e14]:
+      - /url: "#top"
+    - main [ref=f6e16]:
+      - generic [ref=f6e17]:
+        - generic [ref=f6e18]:
+          - paragraph [ref=f6e19]: karim@portfolio ~ % whoami
+          - heading "Karim Baba" [level=1] [ref=f6e20]: Karim Baba
+          - paragraph [ref=f6e22]:
+            - text: AI-native builder
+            - generic [ref=f6e23]:
+              - text: · BD @
+              - link "1Claw" [ref=f6e24]:
+                - /url: https://1claw.xyz
+          - paragraph [ref=f6e25]: Nobody told me to. I just did it.
+          - generic [ref=f6e26]:
+            - link "X" [ref=f6e27]:
+              - /url: https://x.com/karimbabasf
+              - img [ref=f6e28]
+            - link "LinkedIn" [ref=f6e30]:
+              - /url: https://www.linkedin.com/in/karim-baba-130547289/
+              - img [ref=f6e31]
+            - link "GitHub" [ref=f6e33]:
+              - /url: https://github.com/karimbabasf
+              - img [ref=f6e34]
+            - link "Email" [ref=f6e36]:
+              - /url: mailto:karim.sf09@gmail.com
+              - img [ref=f6e37]
+            - link "Resume" [ref=f6e39]:
+              - /url: /resume
+              - img [ref=f6e40]
+        - generic [ref=f6e42]:
+          - button "click to decode" [ref=f6e44]: click to decode
+          - button [ref=f6e48]
+      - generic [ref=f6e49]:
+        - paragraph [ref=f6e50]: karim@portfolio ~ % cat about.md
+        - generic [ref=f6e51]:
+          - generic [ref=f6e52]:
+            - paragraph [ref=f6e53]: I'm a self-taught builder who works at the edge of agentic infrastructure and DeFi, and I've been in the space since 2021. I build full-stack products solo, everything from Rust and Tauri desktop tools to on-chain trading systems, and I also handle business development in person across the San Francisco tech scene.
+            - paragraph [ref=f6e54]: I pick up new technology and architectures quickly, and am able to see the patterns underneath them, so I can read a protocol by its actual design rather than taking its pitch at face value.
+            - paragraph [ref=f6e55]: Everything I've worked on has been something I started and drove myself. I'm ambitious and I move on my own initiative. Even when I'm walking into something I don't fully understand yet, I figure it out and come back with results that hold up. That's how I believe true success is achieved — through consistent and efficient iteration.
+          - generic [ref=f6e56]:
+            - img "Karim Baba" [ref=f6e59]
+            - generic [ref=f6e60]:
+              - generic [ref=f6e61]:
+                - term [ref=f6e62]: based
+                - definition [ref=f6e63]: San Francisco
+              - generic [ref=f6e64]:
+                - term [ref=f6e65]: focus
+                - definition [ref=f6e66]: Agentic development
+      - generic [ref=f6e67]:
+        - paragraph [ref=f6e68]:
+          - text: karim@portfolio ~ % ls ~/projects
+          - generic [ref=f6e69]: "# 7 entries"
+        - list [ref=f6e70]:
+          - listitem [ref=f6e71]:
+            - heading "Warden Desktop app · 2026 The agent that watches your agents." [level=3] [ref=f6e72]:
+              - button "Warden Desktop app · 2026 The agent that watches your agents." [expanded] [ref=f6e73]:
+                - generic [ref=f6e74]:
+                  - generic [ref=f6e75]:
+                    - generic [ref=f6e76]: Warden
+                    - generic [ref=f6e77]: Desktop app · 2026
+                  - generic [ref=f6e78]: The agent that watches your agents.
+                - img [ref=f6e80]
+            - generic [ref=f6e83]:
+              - paragraph [ref=f6e84]: "A macOS daemon that tails the transcripts your AI coding agents already write (Claude Code, Codex) and diagnoses where your workflow leaks: token loops, blind edits, quiet stalls. A global hotkey summons a cinematic war-room overlay with a ranked, evidence-cited diagnosis. It only ever reads; it never writes to your projects. Tauri v2 with a Rust core."
+              - generic [ref=f6e85]:
+                - list [ref=f6e86]:
+                  - listitem [ref=f6e87]: "#rust"
+                  - listitem [ref=f6e88]: "#tauri"
+                  - listitem [ref=f6e89]: "#observability"
+                - link "visit" [ref=f6e90]:
+                  - /url: https://github.com/karimbabasf/WARDEN
+                  - text: visit
+                  - img [ref=f6e91]
+          - listitem [ref=f6e93]:
+            - heading "dev signal Web app · 2026 A self-hosted AI filter for the news that's actually worth your time." [level=3] [ref=f6e94]:
+              - button "dev signal Web app · 2026 A self-hosted AI filter for the news that's actually worth your time." [ref=f6e95]:
+                - generic [ref=f6e96]:
+                  - generic [ref=f6e97]:
+                    - generic [ref=f6e98]: dev signal
+                    - generic [ref=f6e99]: Web app · 2026
+                  - generic [ref=f6e100]: A self-hosted AI filter for the news that's actually worth your time.
+                - img [ref=f6e102]
+          - listitem [ref=f6e104]:
+            - heading "lensprompt recorder Web app · 2026 A mobile HD video recorder with a speech-following teleprompter." [level=3] [ref=f6e105]:
+              - button "lensprompt recorder Web app · 2026 A mobile HD video recorder with a speech-following teleprompter." [ref=f6e106]:
+                - generic [ref=f6e107]:
+                  - generic [ref=f6e108]:
+                    - generic [ref=f6e109]: lensprompt recorder
+                    - generic [ref=f6e110]: Web app · 2026
+                  - generic [ref=f6e111]: A mobile HD video recorder with a speech-following teleprompter.
+                - img [ref=f6e113]
+          - listitem [ref=f6e115]:
+            - heading "direct terminal Desktop app · 2026 A liquid-glass desktop crypto terminal." [level=3] [ref=f6e116]:
+              - button "direct terminal Desktop app · 2026 A liquid-glass desktop crypto terminal." [ref=f6e117]:
+                - generic [ref=f6e118]:
+                  - generic [ref=f6e119]:
+                    - generic [ref=f6e120]: direct terminal
+                    - generic [ref=f6e121]: Desktop app · 2026
+                  - generic [ref=f6e122]: A liquid-glass desktop crypto terminal.
+                - img [ref=f6e124]
+          - listitem [ref=f6e126]:
+            - heading "MOBI board Desktop app · 2026 A macOS dashboard for watching local AI coding agents." [level=3] [ref=f6e127]:
+              - button "MOBI board Desktop app · 2026 A macOS dashboard for watching local AI coding agents." [ref=f6e128]:
+                - generic [ref=f6e129]:
+                  - generic [ref=f6e130]:
+                    - generic [ref=f6e131]: MOBI board
+                    - generic [ref=f6e132]: Desktop app · 2026
+                  - generic [ref=f6e133]: A macOS dashboard for watching local AI coding agents.
+                - img [ref=f6e135]
+          - listitem [ref=f6e137]:
+            - heading "camera tools Web experiments · 2026 Browser-based camera tools and experiments." [level=3] [ref=f6e138]:
+              - button "camera tools Web experiments · 2026 Browser-based camera tools and experiments." [ref=f6e139]:
+                - generic [ref=f6e140]:
+                  - generic [ref=f6e141]:
+                    - generic [ref=f6e142]: camera tools
+                    - generic [ref=f6e143]: Web experiments · 2026
+                  - generic [ref=f6e144]: Browser-based camera tools and experiments.
+                - img [ref=f6e146]
+          - listitem [ref=f6e148]:
+            - heading "cliptic Desktop app · 2026 A caption-first vertical video editor that runs entirely on-device." [level=3] [ref=f6e149]:
+              - button "cliptic Desktop app · 2026 A caption-first vertical video editor that runs entirely on-device." [ref=f6e150]:
+                - generic [ref=f6e151]:
+                  - generic [ref=f6e152]:
+                    - generic [ref=f6e153]: cliptic
+                    - generic [ref=f6e154]: Desktop app · 2026
+                  - generic [ref=f6e155]: A caption-first vertical video editor that runs entirely on-device.
+                - img [ref=f6e157]
+      - generic [ref=f6e160]:
+        - generic [ref=f6e161]: © 2026 Karim Baba
+        - generic [ref=f6e162]: built in the terminal
+  - generic [ref=f6e168] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f6e169]:
+      - img [ref=f6e170]
+    - generic [ref=f6e173]:
+      - button "Open issues overlay" [ref=f6e174]:
+        - generic [ref=f6e175]:
+          - generic [ref=f6e176]: "0"
+          - generic [ref=f6e177]: "1"
+        - generic [ref=f6e178]: Issue
+      - button "Collapse issues badge" [ref=f6e179]:
+        - img [ref=f6e180]
+  - alert [ref=f6e182]

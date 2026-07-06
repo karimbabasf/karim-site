@@ -1,0 +1,23 @@
+[     128ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[     161ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[     242ms] NotSupportedError: Failed to set the 'playbackRate' property on 'HTMLMediaElement': The provided playback rate (0.05) is not in the supported playback range.
+    at executeDispatch (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at processDispatchQueue (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10355:41)
+    at http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10633:13
+    at batchedUpdates$1 (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10431:9)
+    at dispatchEvent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:13002:37)
+[    2071ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[    3076ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[    4080ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[    5084ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[    5738ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/karim-logo.png:0
+[    6087ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[   11090ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[   16092ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[   21095ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[   26100ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[   31105ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[   36113ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[   41120ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=111u5RF2vlqZXQC7Nt7nD' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422

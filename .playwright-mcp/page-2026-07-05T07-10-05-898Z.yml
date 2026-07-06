@@ -1,0 +1,104 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Back to home" [ref=e5]:
+          - /url: /
+          - img [ref=e6]
+          - text: Back
+        - generic: Résumé
+        - link "Download résumé as PDF" [ref=e8]:
+          - /url: /Karim-Baba-Resume.pdf
+          - img [ref=e9]
+          - generic [ref=e11]: Download PDF
+    - article [ref=e14]:
+      - generic [ref=e15]:
+        - paragraph [ref=e16]:
+          - text: Applied AI
+          - text: Crypto
+          - text: Business Dev
+        - heading "Karim Baba." [level=1] [ref=e19]
+        - generic [ref=e20]:
+          - generic [ref=e21]: San Francisco, CA
+          - link "Email" [ref=e22]:
+            - /url: mailto:karim.sf09@gmail.com
+            - img [ref=e23]
+            - text: Email
+          - link "LinkedIn" [ref=e26]:
+            - /url: https://www.linkedin.com/in/karim-baba-130547289/
+            - img [ref=e27]
+            - text: LinkedIn
+          - link "X / @karimbabasf" [ref=e29]:
+            - /url: https://x.com/karimbabasf
+            - img [ref=e30]
+            - text: X / @karimbabasf
+          - link "GitHub" [ref=e32]:
+            - /url: https://github.com/karimbabasf
+            - img [ref=e33]
+            - text: GitHub
+      - separator [ref=e35]
+      - paragraph [ref=e36]: Self-taught, crypto-native builder now focused on building with AI agents. I ship full-stack products end to end, from Rust and Tauri desktop tools to on-chain trading systems, and run boots-on-the-ground business development across the San Francisco crypto scene. In the Ethereum ecosystem since 2021, I began in DeFi and have since pivoted into agentic development. I'm an ambitious quick learner, always looking for the opportunity to absorb knowledge.
+      - generic [ref=e37]:
+        - heading "Experience" [level=2] [ref=e40]
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - paragraph [ref=e44]: Business Development & SF Liaison, Contributor · 1Claw
+            - generic [ref=e45]: San Francisco · Since 2026
+          - paragraph [ref=e46]: "1Claw builds security and custody infrastructure for AI agents: key custody, an LLM firewall, and cross-chain transaction signing."
+          - list [ref=e47]:
+            - listitem [ref=e48]: › Run boots-on-the-ground BD, education, and advocacy for 1Claw across the SF crypto and AI ecosystem, sourcing partnerships and relationships at conferences, meetups, and within founder and investor circles.
+            - listitem [ref=e49]: › Produce content and community programming to grow the protocol's awareness and credibility.
+            - listitem [ref=e50]: › Contribute to the product codebase, bridging BD insight with hands-on engineering.
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - paragraph [ref=e53]: Founder / Developer · Independent Builder
+            - generic [ref=e54]: San Francisco · Since 2025
+          - list [ref=e55]:
+            - listitem [ref=e56]: › Built and shipped a portfolio of working products from zero across AI infrastructure, crypto tooling, and creator tools, with a strong grasp of system architecture and protocol design.
+            - listitem [ref=e57]: › Currently building Warden, an orchestration and simplification layer that brings multiple AI coding agents into one coordinated workspace.
+      - generic [ref=e58]:
+        - heading "Selected Projects" [level=2] [ref=e61]
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: Warden · multi-agent orchestration for AI coding
+            - link "GitHub" [ref=e66]:
+              - /url: https://github.com/karimbabasf
+              - img [ref=e67]
+              - text: GitHub
+          - paragraph [ref=e69]: "macOS desktop app that brings your local AI coding agents into one live view: active sessions, process state, token spend, context window usage, and file activity."
+          - paragraph [ref=e70]: Tauri · Rust · React / TS
+        - generic [ref=e71]:
+          - paragraph [ref=e73]: Direct Terminal · crypto trading terminal and on-chain execution
+          - paragraph [ref=e74]: "Multi-exchange desktop terminal streaming live market data (Binance, Coinbase, Kraken) with a Rust trading-agent backend for Hyperliquid perpetuals: key custody, session management, and risk guardrails."
+          - paragraph [ref=e75]: Tauri · Rust · React · Hyperliquid
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - paragraph [ref=e78]: DevSignal · autonomous developer-news publisher
+            - generic [ref=e79]: first shipped product, 2026
+          - paragraph [ref=e80]: Personalized developer-news scraper that turns a feed into an autonomous AI publisher. Built end to end at an AWS hackathon.
+          - paragraph [ref=e81]: Next.js · Supabase
+        - generic [ref=e82]:
+          - paragraph [ref=e84]: Cliptic & Teleprompt · creator tooling
+          - paragraph [ref=e85]: On-device vertical-video caption editor with a deterministic caption engine, plus a shipped iPhone teleprompter-recorder.
+          - paragraph [ref=e86]: TypeScript · React · Vercel
+      - generic [ref=e87]:
+        - heading "Crypto" [level=2] [ref=e90]
+        - list [ref=e92]:
+          - listitem [ref=e93]: › In crypto since 2021, with deep, hands-on DeFi and Ethereum familiarity.
+          - listitem [ref=e94]: › Early to the L2 wave, among early users of Arbitrum, Optimism, and zkSync.
+          - listitem [ref=e95]: › Active trader since 2021, with significant personal volume across cycles.
+          - listitem [ref=e96]: "› Regular at SF events: Solana Summer Series, Cursor Compile, Founders Inc, and more."
+      - generic [ref=e97]:
+        - heading "Strengths" [level=2] [ref=e100]
+        - list [ref=e102]:
+          - listitem [ref=e103]: › Sourcing and network. At ease in rooms with founders and high-status operators.
+          - listitem [ref=e104]: › Fast conceptual learner. New tech and architectures quickly, with strong pattern recognition.
+          - listitem [ref=e105]: › Builder's eye for diligence. I read a protocol's architecture and on-chain activity, not just its deck.
+          - listitem [ref=e106]: › Self-accountable. Every project above was self-initiated and self-driven.
+      - generic [ref=e107]:
+        - heading "Education & Learning" [level=2] [ref=e110]
+        - list [ref=e112]:
+          - listitem [ref=e113]: › Self-directed study in software engineering, smart-contract architecture, and DeFi mechanics.
+          - listitem [ref=e114]: › Acellus Academy, high school (Grade 10).
+  - button "Open Next.js Dev Tools" [ref=e120] [cursor=pointer]:
+    - img [ref=e121]

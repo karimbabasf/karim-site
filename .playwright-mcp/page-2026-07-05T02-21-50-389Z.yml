@@ -1,0 +1,111 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - navigation [ref=e5]:
+        - link "summary" [ref=e6] [cursor=pointer]:
+          - /url: "#summary"
+        - link "projects" [ref=e7] [cursor=pointer]:
+          - /url: "#projects"
+    - main [ref=e9]:
+      - generic [ref=e14]:
+        - paragraph [ref=e15]: karim@portfolio ~ % whoami
+        - heading "Karim Baba" [level=1] [ref=e16]: Karim Baba
+        - paragraph [ref=e18]:
+          - text: AI-native builder
+          - generic [ref=e19]: · BD @ 1Claw
+        - paragraph [ref=e20]: I came up in crypto. Now I build with AI.
+        - generic [ref=e21]:
+          - link "X" [ref=e22] [cursor=pointer]:
+            - /url: https://x.com/karimbabasf
+            - img [ref=e23]
+          - link "LinkedIn" [ref=e25] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/karim-baba-130547289/
+            - img [ref=e26]
+          - link "GitHub" [ref=e28] [cursor=pointer]:
+            - /url: https://github.com/karimbabasf
+            - img [ref=e29]
+          - link "Email" [ref=e31] [cursor=pointer]:
+            - /url: mailto:karim.sf09@gmail.com
+            - img [ref=e32]
+      - generic [ref=e34]:
+        - paragraph [ref=e35]: karim@portfolio ~ % cat about.md
+        - generic [ref=e36]:
+          - paragraph [ref=e37]: I build products in San Francisco. I came up doing BD in the crypto and agent scene (currently at 1Claw), and now I ship real things by directing AI agents through a tight spec, build and review loop. Not a classically-trained engineer; my edge is taste, product judgment, and shipping fast. I care how it all looks.
+          - generic [ref=e38]:
+            - generic [ref=e39]:
+              - term [ref=e40]: based
+              - definition [ref=e41]: San Francisco
+            - generic [ref=e42]:
+              - term [ref=e43]: focus
+              - definition [ref=e44]: Agentic development
+      - generic [ref=e45]:
+        - paragraph [ref=e46]:
+          - text: karim@portfolio ~ % ls ~/projects
+          - generic [ref=e47]: "# 6 entries"
+        - list [ref=e49]:
+          - listitem [ref=e50]:
+            - heading "JB Hunting Agentic pipeline · 2026 An autonomous job-application pipeline." [level=3] [ref=e51]:
+              - button "JB Hunting Agentic pipeline · 2026 An autonomous job-application pipeline." [expanded] [ref=e52]:
+                - generic [ref=e53]:
+                  - generic [ref=e54]:
+                    - generic [ref=e55]: JB Hunting
+                    - generic [ref=e56]: Agentic pipeline · 2026
+                  - generic [ref=e57]: An autonomous job-application pipeline.
+                - img [ref=e59]
+            - generic [ref=e62]:
+              - paragraph [ref=e63]: Discovery, AI scoring, then resume and cover-letter tailoring, then autonomous apply on Greenhouse, Ashby and Lever via Playwright, with email-confirmation monitoring. Orchestrated end to end with Trigger.dev. A dedicated humanizer layer strips AI tells and guards against fabrication. My closest-to-revenue project.
+              - list [ref=e65]:
+                - listitem [ref=e66]: "#agents"
+                - listitem [ref=e67]: "#playwright"
+                - listitem [ref=e68]: "#trigger.dev"
+                - listitem [ref=e69]: "#llm"
+          - listitem [ref=e70]:
+            - heading "Teleprompt Web app · 2026 A browser video recorder with a built-in teleprompter." [level=3] [ref=e71]:
+              - button "Teleprompt Web app · 2026 A browser video recorder with a built-in teleprompter." [ref=e72]:
+                - generic [ref=e73]:
+                  - generic [ref=e74]:
+                    - generic [ref=e75]: Teleprompt
+                    - generic [ref=e76]: Web app · 2026
+                  - generic [ref=e77]: A browser video recorder with a built-in teleprompter.
+                - img [ref=e79]
+          - listitem [ref=e81]:
+            - heading "rtk Open source · 2026 A Rust CLI that shrinks agent output before it hits an LLM." [level=3] [ref=e82]:
+              - button "rtk Open source · 2026 A Rust CLI that shrinks agent output before it hits an LLM." [ref=e83]:
+                - generic [ref=e84]:
+                  - generic [ref=e85]:
+                    - generic [ref=e86]: rtk
+                    - generic [ref=e87]: Open source · 2026
+                  - generic [ref=e88]: A Rust CLI that shrinks agent output before it hits an LLM.
+                - img [ref=e90]
+          - listitem [ref=e92]:
+            - heading "direct-terminal Desktop app · 2026 A liquid-glass desktop crypto trading terminal." [level=3] [ref=e93]:
+              - button "direct-terminal Desktop app · 2026 A liquid-glass desktop crypto trading terminal." [ref=e94]:
+                - generic [ref=e95]:
+                  - generic [ref=e96]:
+                    - generic [ref=e97]: direct-terminal
+                    - generic [ref=e98]: Desktop app · 2026
+                  - generic [ref=e99]: A liquid-glass desktop crypto trading terminal.
+                - img [ref=e101]
+          - listitem [ref=e103]:
+            - heading "scope Desktop app · 2026 A live dashboard for watching AI coding agents." [level=3] [ref=e104]:
+              - button "scope Desktop app · 2026 A live dashboard for watching AI coding agents." [ref=e105]:
+                - generic [ref=e106]:
+                  - generic [ref=e107]:
+                    - generic [ref=e108]: scope
+                    - generic [ref=e109]: Desktop app · 2026
+                  - generic [ref=e110]: A live dashboard for watching AI coding agents.
+                - img [ref=e112]
+          - listitem [ref=e114]:
+            - heading "This site Design + build · 2026 The terminal-flavored card you're reading now." [level=3] [ref=e115]:
+              - button "This site Design + build · 2026 The terminal-flavored card you're reading now." [ref=e116]:
+                - generic [ref=e117]:
+                  - generic [ref=e118]:
+                    - generic [ref=e119]: This site
+                    - generic [ref=e120]: Design + build · 2026
+                  - generic [ref=e121]: The terminal-flavored card you're reading now.
+                - img [ref=e123]
+      - generic [ref=e126]:
+        - generic [ref=e127]: © 2026 Karim Baba
+        - generic [ref=e128]: built in the terminal
+  - button "Open Next.js Dev Tools" [ref=e135] [cursor=pointer]:
+    - img [ref=e136]
