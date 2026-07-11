@@ -46,7 +46,7 @@ export const hnComments: HNComment[] = [
     user: "mkozlowski",
     age: "5 hours ago",
     text: [
-      "Hang on, this is one person? The Rust daemon, the overlay, the transcript parser, the ranked diagnosis, and not one of them feels phoned in. This does not read like a first project.",
+      "Hang on, this is one person? The Rust daemon, the transcript parser, the live subagent tree, the R3F radar, and not one of them feels phoned in. This does not read like a first project.",
     ],
     children: [
       {
@@ -108,7 +108,7 @@ export const hnComments: HNComment[] = [
     user: "d_orlov",
     age: "4 hours ago",
     text: [
-      "Ran this next to a Claude Code session while I worked on something else. It flagged the agent stuck re-reading the same three files in a loop about ten minutes before I would have caught it myself. Would not leave a tool that can write running unattended on a client repo, so the read-only stance sold me by itself.",
+      "Ran this next to a Claude Code session while I worked on something else. Glanced over and the agent's globe was stuck pulsing in place, re-reading the same three files in a loop, a good ten minutes before I would have caught it myself. Would not leave a tool that can write running unattended on a client repo, so the read-only stance sold me by itself.",
     ],
     children: [
       {
@@ -160,7 +160,7 @@ export const hnComments: HNComment[] = [
     user: "pmarais",
     age: "2 hours ago",
     text: [
-      "Went in skeptical, most agent observability is dashboards you open once and forget. This one lives in the menu bar and earns a glance instead of demanding one. I have watched funded teams ship a worse read on this exact problem.",
+      "Went in skeptical, most agent observability is dashboards you open once and forget. A live radar you actually glance at is a different thing, it earns the look instead of demanding it. I have watched funded teams ship a worse read on this exact problem.",
     ],
   },
   {
@@ -168,7 +168,7 @@ export const hnComments: HNComment[] = [
     user: "bkaminski",
     age: "2 hours ago",
     text: [
-      "Slightly off topic, but Warden plus a war-room overlay is very ops-bunker as a vibe. Is the full cinematic thing always in your face, or can you keep it low key? At 2am I am not sure my eyes want the command center animation.",
+      "Slightly off topic, but a live 3D radar of your agents is very mission-control as a vibe. Is the full constellation always spinning in your face, or can you keep it low key? At 2am I am not sure my eyes want the whole animated starfield.",
     ],
     children: [
       {
@@ -176,7 +176,7 @@ export const hnComments: HNComment[] = [
         user: "karimbabasf",
         age: "2 hours ago",
         text: [
-          "Not forced on you at all. Day to day it is just a menu bar dropdown, the full command center only shows up if you open the app for it.",
+          "It calms down on its own. Motion is status, so idle agents just breathe slow and dim and a quiet night is a quiet radar. Only a live run lights the thing up.",
         ],
       },
     ],
@@ -186,7 +186,7 @@ export const hnComments: HNComment[] = [
     user: "throwaway_hn23",
     age: "1 hour ago",
     text: [
-      "Does the diagnosis run local or phone home? I want to point this at work repos and cannot have transcripts leaving the machine.",
+      "Does any of this leave the machine? I want to point this at work repos and cannot have transcripts phoning home.",
     ],
     children: [
       {
@@ -194,7 +194,7 @@ export const hnComments: HNComment[] = [
         user: "karimbabasf",
         age: "58 minutes ago",
         text: [
-          "Runs against whatever model key you configure, nothing else leaves the box. Fully local diagnosis is next. The read-only design already assumes it should not be trusted with your network.",
+          "Nothing leaves the box. No network calls, no API keys, it only reads the logs your agents already write to disk. The read-only, offline design already assumes it should not be trusted with your network.",
         ],
       },
     ],
