@@ -104,14 +104,14 @@ export default function ResumePage() {
             <hr className="rule" />
 
             <p className="summary">
-              Self-taught, crypto-native builder now focused on building with AI
-              agents. I ship full-stack products end to end, from Rust and Tauri
-              desktop tools to on-chain trading systems, and run
-              boots-on-the-ground business development across the San Francisco
-              crypto scene. In the Ethereum ecosystem since 2021, I began in DeFi
-              and have since pivoted into agentic development. I'm an ambitious
-              quick learner, always looking for the opportunity to absorb
-              knowledge.
+              Self-taught, crypto-native builder now focused on building
+              infrastructure for agents. I ship full-stack products end to end,
+              from Rust and Tauri desktop tools to on-chain trading systems, and
+              run boots-on-the-ground business development across the San
+              Francisco startup scene. In the Ethereum ecosystem since 2021, I
+              began in DeFi and have since pivoted into agentic development. I've
+              reached the point where I can take almost any recurring problem or
+              inefficiency and build the automation that eliminates it.
             </p>
 
             <section>
