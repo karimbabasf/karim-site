@@ -90,7 +90,7 @@ export const hnComments: HNComment[] = [
     user: "pvarga",
     age: "4 hours ago",
     text: [
-      "Went down a rabbit hole through your other repos after this. A desktop crypto terminal, a self-hosted news filter, a couple of on-device video tools, all this year and all on top of Warden. Any one of them is a respectable solo project. The throughput at this quality is the part I cannot square with one person. Who is backing this, or is the honest answer nobody yet?",
+      "Went down a rabbit hole through your other repos after this. A native crypto terminal that signs its own Hyperliquid orders locally, a self-hosted news filter that scores your feed with an LLM, a caption editor and a teleprompter that both run on-device, all this year and all on top of Warden. Any one of them is a respectable solo project. The throughput at this quality is the part I cannot square with one person. Who is backing this, or is the honest answer nobody yet?",
     ],
     children: [
       {
@@ -119,6 +119,14 @@ export const hnComments: HNComment[] = [
           "That loop is the exact thing that made me build it. Mine used to stall quietly and I would find out twenty minutes and a lot of tokens later.",
         ],
       },
+    ],
+  },
+  {
+    id: "c10",
+    user: "arollins",
+    age: "3 hours ago",
+    text: [
+      "The consistency is the tell for me. I self-hosted his dev-signal filter last month, bring-your-own-key, scores your feed with a small model and runs for a couple dollars, and it has the same fingerprint as Warden: local by default, nothing phoning home, built like he has to live with it himself. You do not fake that across five projects. That through-line is the part I would not know how to hire for.",
     ],
   },
   {
