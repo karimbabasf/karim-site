@@ -45,6 +45,17 @@ export const projects: Project[] = [
     href: "https://github.com/karimbabasf/dev_signal",
   },
   {
+    id: "glide",
+    title: "glide",
+    role: "Web app",
+    year: "2026",
+    blurb: "Turn your phone into a precision trackpad and keyboard for your Mac.",
+    detail:
+      "Open a page on your phone, scan a QR code, and it becomes a precision trackpad and keyboard for your Mac. Input travels over a direct WebRTC data channel to a local agent on the machine, so cursor moves and keystrokes land with near-wired latency and never route through a server. Multi-finger gestures, tap-and-drag, scroll, and full keyboard input map to native macOS events, injected by a small Node/Swift agent that runs locally and holds the only trusted connection. The controller is a Next.js PWA on Vercel; the agent stays on your Mac.",
+    tags: ["next.js", "webrtc", "macos"],
+    href: "https://github.com/karimbabasf/glide",
+  },
+  {
     id: "lensprompt-recorder",
     title: "lensprompt recorder",
     role: "Web app",
