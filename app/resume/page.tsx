@@ -109,9 +109,9 @@ export default function ResumePage() {
               from Rust and Tauri desktop tools to on-chain trading systems, and
               run boots-on-the-ground business development across the San
               Francisco startup scene. In the Ethereum ecosystem since 2021, I
-              began in DeFi and have since pivoted into agentic development. I've
-              reached the point where I can take almost any recurring problem or
-              inefficiency and build the automation that eliminates it.
+              began in DeFi and have since pivoted into agentic development. I'm
+              now at the point where I'm confident that whatever recurring problem
+              or inefficiency you put in front of me, I can automate it away.
             </p>
 
             <section>
@@ -170,7 +170,7 @@ export default function ResumePage() {
                   <li>
                     Currently building Warden, an orchestration and
                     simplification layer that brings multiple AI coding agents
-                    into one coordinated workspace.
+                    into one coordinated and visually stunning workspace.
                   </li>
                 </ul>
               </div>
@@ -205,7 +205,7 @@ export default function ResumePage() {
                 </div>
                 <p className="proj-desc">
                   macOS desktop app that brings your local AI coding agents into
-                  one live view: active sessions, process state, token spend,
+                  one unique live view: active sessions, process state, token spend,
                   context window usage, and file activity.
                 </p>
                 <p className="stack">Tauri · Rust · React / TS</p>
