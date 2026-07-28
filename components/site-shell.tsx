@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import dynamic from "next/dynamic";
 import WindowDots from "@/components/karim-os/window-dots";
+import { bookCall } from "@/lib/site";
 
 // The Tetris easter egg (green dot) loads only after it is first opened.
 // KARIM_OS is kept in the repo (components/karim-os/*), just no longer wired in.
@@ -208,6 +209,18 @@ export default function SiteShell({
               className="rounded-md border border-white/10 px-2.5 py-1 leading-none transition-colors duration-200 hover:border-neon hover:text-neon"
             >
               CV
+            </a>
+            {/* Booking CTA. Neon at rest so it outranks the CV pill, but only
+                tinted: the hero button stays the loud one. Desktop-only, since a
+                fourth nav item at 390px runs the links into the docked mark.
+                Mobile is covered by the hero button and the footer link. */}
+            <a
+              href={bookCall.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="hidden rounded-md border border-neon/60 bg-neon/10 px-2.5 py-1 leading-none text-neon transition-colors duration-200 hover:border-neon hover:bg-neon hover:text-black sm:inline-block"
+            >
+              book a call
             </a>
           </motion.nav>
         </div>
