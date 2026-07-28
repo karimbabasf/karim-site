@@ -29,18 +29,6 @@ export const profile = {
   ],
 } as const;
 
-/**
- * The one real call-to-action on the site: Calendly.
- * `/30min` is the slug of the "Intro call" event type (Calendly keeps the
- * default slug even after the duration changes), so link the slug and do not
- * claim a duration in the copy. `meta` is the dim line under the button.
- */
-export const bookCall = {
-  href: "https://calendly.com/karim-sf09/30min",
-  label: "book an intro call",
-  meta: "Mon to Fri, Pacific",
-} as const;
-
 export type Social = {
   /** Which icon to render. `resume` is an internal page; the rest are brand marks. */
   id: "resume" | "x" | "linkedin" | "github" | "email";

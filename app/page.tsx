@@ -5,8 +5,7 @@ import { MobiusViewport, MobiusManualMobile } from "@/components/mobius";
 import ProjectsAccordion from "@/components/projects-accordion";
 import HackerNews from "@/components/hacker-news";
 import Socials from "@/components/socials";
-import BookCall from "@/components/book-call";
-import { profile, bookCall } from "@/lib/site";
+import { profile } from "@/lib/site";
 import { projects } from "@/lib/projects";
 
 export default function Home() {
@@ -43,8 +42,7 @@ export default function Home() {
             <span className="font-medium text-neon">{profile.taglineAccent}</span>
           </p>
 
-          <BookCall className="mt-8" />
-          <Socials className="mt-6" />
+          <Socials className="mt-8" />
 
           {/* Mobile: the Möbius in its true shape + the manual, right under the contacts */}
           <MobiusManualMobile className="mt-12 mx-auto w-full max-w-sm lg:hidden" />
@@ -111,27 +109,14 @@ export default function Home() {
 
       {/* ── Footer ──────────────────────────────────────────── */}
       <footer className="mx-auto max-w-6xl px-6 pb-12 pt-8">
-        <div className="border-t border-hairline pt-6">
-          {/* End-of-page booking link. Carries the CTA on mobile, where the nav
-              pill is hidden and the hero button is far above. */}
-          <a
-            href={bookCall.href}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="inline-flex items-center gap-2 font-mono text-sm text-neon transition-opacity duration-200 hover:opacity-70"
-          >
-            {bookCall.label}
-            <span aria-hidden>↗</span>
-          </a>
-          <div className="mt-5 flex items-center justify-between font-mono text-xs text-dim">
-            <span>
-              © {new Date().getFullYear()} {profile.name}
-            </span>
-            <span className="flex items-center gap-2">
-              built in the terminal
-              <span className="caret" aria-hidden style={{ height: "0.9em" }} />
-            </span>
-          </div>
+        <div className="flex items-center justify-between border-t border-hairline pt-6 font-mono text-xs text-dim">
+          <span>
+            © {new Date().getFullYear()} {profile.name}
+          </span>
+          <span className="flex items-center gap-2">
+            built in the terminal
+            <span className="caret" aria-hidden style={{ height: "0.9em" }} />
+          </span>
         </div>
       </footer>
     </SiteShell>
