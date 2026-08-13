@@ -8,13 +8,33 @@ import Socials from "@/components/socials";
 import { profile } from "@/lib/site";
 import { projects } from "@/lib/projects";
 
+/** Framed portrait: padded neon trace, soft rounded corners. */
+function Portrait({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`rounded-2xl border border-neon/45 bg-white/[0.02] p-2 shadow-[0_0_35px_color-mix(in_srgb,var(--neon)_13%,transparent)] ${className}`}
+    >
+      <div className="relative aspect-square w-full overflow-hidden rounded-xl">
+        <Image
+          src="/karim.jpg"
+          alt="Karim Baba"
+          fill
+          priority
+          sizes="(min-width: 1024px) 416px, (min-width: 640px) 384px, 92vw"
+          quality={90}
+          className="object-cover"
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <SiteShell>
       {/* ── Hero ─────────────────────────────────────────────
-          Desktop: intro on the left, Möbius viewport to the side (right column).
-          Mobile: a compact Möbius (true 3:4 shape) + manual sits right under
-          the contact buttons. */}
+          Desktop: intro on the left, the portrait to the side (right column).
+          Mobile: the portrait sits right under the contact buttons. */}
       <section className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pb-6 pt-28 sm:pb-24 sm:pt-32 lg:grid-cols-[1.1fr_0.9fr] lg:pt-36">
         <div>
           <Prompt command="whoami" />
@@ -44,18 +64,18 @@ export default function Home() {
 
           <Socials className="mt-8" />
 
-          {/* Mobile: the Möbius in its true shape + the manual, right under the contacts */}
-          <MobiusManualMobile className="mt-12 mx-auto w-full max-w-sm lg:hidden" />
+          {/* Mobile: the portrait right under the contacts */}
+          <Portrait className="mt-12 mx-auto w-full max-w-sm lg:hidden" />
         </div>
 
-        {/* Desktop: the Möbius viewport sits to the side (right column) */}
-        <MobiusViewport className="hidden w-full lg:block" />
+        {/* Desktop: the portrait sits to the side (right column) */}
+        <Portrait className="mx-auto hidden w-full max-w-[26rem] lg:block" />
       </section>
 
       {/* ── About ───────────────────────────────────────────── */}
       <section id="summary" className="mx-auto max-w-6xl scroll-mt-24 px-6 pb-16 pt-6 sm:pt-16">
         <Prompt command="cat about.md" />
-        <div className="mt-8 grid gap-14 md:grid-cols-[1fr_15rem] md:gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+        <div className="mt-8 grid items-start gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
           <div className="flex max-w-[60ch] flex-col gap-5">
             {profile.summary.map((para, i) => (
               <p
@@ -65,23 +85,7 @@ export default function Home() {
                 {para}
               </p>
             ))}
-          </div>
-          <div className="flex w-full flex-col gap-6 sm:max-w-[20rem] md:max-w-[15rem] lg:mx-auto lg:max-w-[17rem]">
-            {/* framed portrait: padded neon trace, soft rounded corners */}
-            <div className="rounded-2xl border border-neon/45 bg-white/[0.02] p-2 shadow-[0_0_35px_color-mix(in_srgb,var(--neon)_13%,transparent)]">
-              <div className="relative aspect-square w-full overflow-hidden rounded-xl">
-                <Image
-                  src="/karim.jpg"
-                  alt="Karim Baba"
-                  fill
-                  priority
-                  sizes="(min-width: 768px) 240px, (min-width: 640px) 320px, 92vw"
-                  quality={90}
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-4 font-mono text-sm md:grid-cols-1">
+            <dl className="mt-2 grid max-w-md grid-cols-2 gap-x-6 gap-y-4 font-mono text-sm">
               {profile.facts.map((f) => (
                 <div key={f.key} className="flex flex-col gap-1">
                   <dt className="text-dim">{f.key}</dt>
@@ -90,6 +94,10 @@ export default function Home() {
               ))}
             </dl>
           </div>
+
+          {/* the Möbius: compact box + manual below lg, framed viewport at lg and up */}
+          <MobiusManualMobile className="mx-auto w-full max-w-sm lg:hidden" />
+          <MobiusViewport className="hidden w-full lg:block" />
         </div>
       </section>
 

@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   FileText,
   XLogo,
+  InstagramLogo,
   LinkedinLogo,
   GithubLogo,
   EnvelopeSimple,
@@ -15,6 +16,7 @@ import { socials, type Social } from "@/lib/site";
 const ICONS = {
   resume: FileText,
   x: XLogo,
+  instagram: InstagramLogo,
   linkedin: LinkedinLogo,
   github: GithubLogo,
   email: EnvelopeSimple,

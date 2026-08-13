@@ -34,6 +34,17 @@ export const projects: Project[] = [
     href: "https://github.com/karimbabasf/WARDEN",
   },
   {
+    id: "phosphor",
+    title: "phosphor",
+    role: "Local app",
+    year: "2026",
+    blurb: "A local crypto wallet app agents can drive but never approve.",
+    detail:
+      "A local app that holds your wallet state, chain connections and policy, and contains no AI of its own. It exposes an MCP server, so an agent you already pay for (Claude Code, Codex, anything speaking MCP) connects and drives it: you say \"swap 20 USDC into WETH\", the agent writes a proposal, and the app prices it, runs it through your policy, then either executes it or waits for your click. The agent can read everything and propose anything, but approval is a physical click in the app window, a surface it cannot reach, so an injected instruction in a token description can never move money. Swap, provide and withdraw liquidity, and deposit to Hyperliquid have all run end to end on Arbitrum Sepolia. Node and TypeScript with viem, no build step and no bundler.",
+    tags: ["mcp", "viem", "defi"],
+    href: "https://github.com/karimbabasf/phosphor",
+  },
+  {
     id: "dev-signal",
     title: "dev signal",
     role: "Web app",

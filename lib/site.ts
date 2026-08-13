@@ -31,7 +31,7 @@ export const profile = {
 
 export type Social = {
   /** Which icon to render. `resume` is an internal page; the rest are brand marks. */
-  id: "resume" | "x" | "linkedin" | "github" | "email";
+  id: "resume" | "x" | "instagram" | "linkedin" | "github" | "email";
   /** Accessible label. */
   label: string;
   href: string;
@@ -40,6 +40,11 @@ export type Social = {
 /** Shown as icon buttons in the hero. Resume sits last, after the contacts. */
 export const socials: Social[] = [
   { id: "x", label: "X", href: "https://x.com/karimbabasf" },
+  {
+    id: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/karimbabasf",
+  },
   {
     id: "linkedin",
     label: "LinkedIn",

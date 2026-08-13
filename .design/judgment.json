@@ -1,0 +1,39 @@
+{
+  "stamp": "95ef5c2daace0562",
+  "iteration": 3,
+  "firstFive": {
+    "what": "A personal site for one person: a terminal-styled portfolio, black with a green neon accent, headed by a name, a role line and a face.",
+    "who": "Someone deciding whether to work with Karim. They arrived from a conversation or a link and want to know what he has actually shipped.",
+    "action": "Reach him. Six contact tiles sit under the tagline, above the fold, before any scrolling."
+  },
+  "asked": [
+    {
+      "requirement": "chnage the mobius thing places with my picture",
+      "met": true,
+      "ref": "hero right column img[alt=\"Karim Baba\"] 398x398 at y=163; #summary right column .group video[src=\"/mobius.mp4\"] 475x650 at y=785. Hero holds no mobius, about holds no portrait."
+    },
+    {
+      "requirement": "upadte the projects thing to showcase phosphor as well",
+      "met": true,
+      "ref": "#projects reads \"9 entries\"; row 2 is \"phosphor / Local app / 2026\", between Warden and dev signal, linking github.com/karimbabasf/phosphor."
+    },
+    {
+      "requirement": "add my instagram on the contact thing",
+      "met": true,
+      "ref": "hero socials row, tile 2 of 6: a[aria-label=\"Instagram\"] -> https://www.instagram.com/karimbabasf, Phosphor InstagramLogo glyph matching the other five."
+    }
+  ],
+  "goal": {
+    "outcome": "A visitor sees Karim's face first instead of an abstract loop, reads the about copy with the Mobius beside it, and leaves with one more way to reach him.",
+    "path": "Land, read the name and the one-line tagline, look at the face, click a contact tile. Everything below that is proof for someone who wants more.",
+    "holds": true,
+    "why": "On shot-1440 the face is the only photographic element on a black page and sits directly opposite the name, so the eye goes there second. The contact row is between the tagline and the fold, so the action is reachable without scrolling. The Mobius kept its meaning: it now sits next to the paragraphs that explain it, which is where the explanation was always written."
+  },
+  "states": {
+    "default": "1440x900. Hero: text left, portrait right at 398x398 in the neon frame, 656px tall section. About: prose plus the facts list left, Mobius terminal right at 475x650, which is 2x the width it would have had in the old 15rem column. Nine project rows collapsed. Verified on the production build at :3101, zero console errors. At 768 the about grid drops to one column on purpose: the old md column was 15rem, which would have squeezed the Mobius terminal to 240px and cropped the clip hard. Read shot-768: prose, facts, then the compact Mobius centered at max-w-sm, nothing crushed.",
+    "mobile": "390x844. Single column throughout, no horizontal overflow (scrollWidth equals 390). Order: name, role, tagline, six contact tiles, portrait at 324x324, about copy, facts, Mobius compact box at 342x558, projects, HN. Contact tiles are 48px, above the fold.",
+    "reduced-motion": "prefers-reduced-motion: reduce, at 1440 and 390. The intro cover resolves to opacity 0 rather than holding black, full text renders (7846 chars), portrait and Mobius land at the same boxes as the default state. Socials drop their hover lift and the Mobius manual drops its slide, both already handled by useReducedMotion in the existing components."
+  },
+  "findings": [],
+  "verdict": "pass"
+}
