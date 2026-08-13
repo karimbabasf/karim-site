@@ -5,26 +5,17 @@ Keep it literal. Paraphrasing here is how a build drifts from what was asked.
 
 ## Asked for
 One bullet per thing the request actually named. Quote his words where you can.
-- "the mobius and my face are wayyy too big, make it smaler": both the Möbius
-  viewport and the framed portrait shrink. Nothing else on the page changes.
-- "reset to how it was before when the mobius was first and then my piucture ...
-  dont chaneg any other chanegs you made": the Möbius goes back to the hero and
-  the portrait back to the About right column, the placement it had before
-  commit c32d9b2. Every other change stays, the new smaller sizes included.
-- "make sure my website actually takes us to the most up to date socials and
-  contacts ... and make sure my resume is up to date with it too": every contact
-  link points at a live karimbabasf handle, Telegram joins the contact row and
-  the resume, and the downloadable PDF matches the resume page. LinkedIn stays
-  on /in/karim-baba-130547289/, his answer when asked.
-
-## Note
-The manual auto-scales to its box, so a smaller box must not make the man page
-unreadable. That is why manual-open is one of the states below.
+- "I just want it to look exactly how it did before ... the layout i want it to
+  be how it was like yesterday": the layout goes back to the pre-2026-08-13
+  arrangement and the pre-2026-08-13 sizes. Möbius viewport in the hero right
+  column at full size, portrait in the About right column above the facts.
+- "the contacts and info and everything you added leave": the content additions
+  stay. Telegram and Instagram in the contact row, phosphor in the projects
+  list, Telegram on the resume, and the reprinted PDF.
 
 ## Goal behind the ask
-Someone landing on karimbabasf.com meets a face and a name in proportion to the
-copy, not a portrait and a video that dominate their screen. The Möbius stays
-readable and still opens its manual; the face stays clearly a face.
+Someone landing on karimbabasf.com sees the site he already signed off on, with
+more ways to reach him than it had.
 
 ## Who is looking
 Recruiters, founders and people he met in the SF scene, on a phone as often as a

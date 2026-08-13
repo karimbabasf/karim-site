@@ -8,27 +8,6 @@ import Socials from "@/components/socials";
 import { profile } from "@/lib/site";
 import { projects } from "@/lib/projects";
 
-/** Framed portrait: padded neon trace, soft rounded corners. */
-function Portrait({ className = "" }: { className?: string }) {
-  return (
-    <div
-      className={`rounded-2xl border border-neon/45 bg-white/[0.02] p-2 shadow-[0_0_35px_color-mix(in_srgb,var(--neon)_13%,transparent)] ${className}`}
-    >
-      <div className="relative aspect-square w-full overflow-hidden rounded-xl">
-        <Image
-          src="/karim.jpg"
-          alt="Karim Baba"
-          fill
-          priority
-          sizes="(min-width: 1024px) 272px, (min-width: 768px) 240px, 272px"
-          quality={90}
-          className="object-cover"
-        />
-      </div>
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <SiteShell>
@@ -36,9 +15,7 @@ export default function Home() {
           Desktop: intro on the left, Möbius viewport to the side (right column).
           Mobile: a compact Möbius (true 3:4 shape) + manual sits right under
           the contact buttons. */}
-      {/* items-start, not items-center: the Möbius frame grows when its manual
-          opens, and centering would drag the name and the contacts with it. */}
-      <section className="relative mx-auto grid max-w-6xl items-start gap-12 px-6 pb-6 pt-28 sm:pb-24 sm:pt-32 lg:grid-cols-[1.1fr_0.9fr] lg:pt-36">
+      <section className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pb-6 pt-28 sm:pb-24 sm:pt-32 lg:grid-cols-[1.1fr_0.9fr] lg:pt-36">
         <div>
           <Prompt command="whoami" />
           <h1 className="mt-6 text-4xl leading-[1.05] tracking-tight text-balance sm:text-5xl">
@@ -68,11 +45,11 @@ export default function Home() {
           <Socials className="mt-8" />
 
           {/* Mobile: the Möbius in its true shape + the manual, right under the contacts */}
-          <MobiusManualMobile className="mt-12 mx-auto w-full lg:hidden" />
+          <MobiusManualMobile className="mt-12 mx-auto w-full max-w-sm lg:hidden" />
         </div>
 
         {/* Desktop: the Möbius viewport sits to the side (right column) */}
-        <MobiusViewport className="mx-auto hidden w-full lg:block" />
+        <MobiusViewport className="hidden w-full lg:block" />
       </section>
 
       {/* ── About ───────────────────────────────────────────── */}
@@ -89,8 +66,21 @@ export default function Home() {
               </p>
             ))}
           </div>
-          <div className="mx-auto flex w-full max-w-[16rem] flex-col gap-6 sm:max-w-[17rem] md:max-w-[15rem] lg:max-w-[17rem]">
-            <Portrait />
+          <div className="flex w-full flex-col gap-6 sm:max-w-[20rem] md:max-w-[15rem] lg:mx-auto lg:max-w-[17rem]">
+            {/* framed portrait: padded neon trace, soft rounded corners */}
+            <div className="rounded-2xl border border-neon/45 bg-white/[0.02] p-2 shadow-[0_0_35px_color-mix(in_srgb,var(--neon)_13%,transparent)]">
+              <div className="relative aspect-square w-full overflow-hidden rounded-xl">
+                <Image
+                  src="/karim.jpg"
+                  alt="Karim Baba"
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 240px, (min-width: 640px) 320px, 92vw"
+                  quality={90}
+                  className="object-cover"
+                />
+              </div>
+            </div>
             <dl className="grid grid-cols-2 gap-x-6 gap-y-4 font-mono text-sm md:grid-cols-1">
               {profile.facts.map((f) => (
                 <div key={f.key} className="flex flex-col gap-1">
