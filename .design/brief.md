@@ -7,6 +7,10 @@ Keep it literal. Paraphrasing here is how a build drifts from what was asked.
 One bullet per thing the request actually named. Quote his words where you can.
 - "the mobius and my face are wayyy too big, make it smaler": both the Möbius
   viewport and the framed portrait shrink. Nothing else on the page changes.
+- "reset to how it was before when the mobius was first and then my piucture ...
+  dont chaneg any other chanegs you made": the Möbius goes back to the hero and
+  the portrait back to the About right column, the placement it had before
+  commit c32d9b2. Every other change stays, the new smaller sizes included.
 - "make sure my website actually takes us to the most up to date socials and
   contacts ... and make sure my resume is up to date with it too": every contact
   link points at a live karimbabasf handle, Telegram joins the contact row and

@@ -1,6 +1,6 @@
 {
-  "stamp": "e381f6f118d208fe",
-  "iteration": 5,
+  "stamp": "3a7982c97ae9992e",
+  "iteration": 6,
   "firstFive": {
     "what": "A personal site for one person: a terminal-styled portfolio, black with a green neon accent, headed by a name, a role line and a face.",
     "who": "Someone deciding whether to work with Karim. They arrived from a conversation or a link and want to know what he has actually shipped.",
@@ -8,9 +8,15 @@
   },
   "asked": [
     {
+      "requirement": "reset to how it was before when the mobius was first and then my piucture ... dont chaneg any other chanegs you made",
+      "met": true,
+      "ref": "1440: hero right column holds video[src=\"/mobius.mp4\"] and no portrait; #summary right column holds img[alt=\"Karim Baba\"] above the facts dl, in the md:grid-cols-[1fr_15rem] column the page had before c32d9b2. 390: DOM order is VIDEO at y=458 then IMG at y=1697. The 7 contact tiles, the Telegram link, phosphor in projects and the reprinted PDF are all untouched.",
+      "note": "Hero is items-start, not items-center. The frame grows when its manual opens, and centering dragged the name and the contact row down 99px on click; measured 0px shift after the change."
+    },
+    {
       "requirement": "the mobius and my face are wayyy too big, make it smaler",
       "met": true,
-      "ref": "1440: portrait img[alt=\"Karim Baba\"] 286x286, was 398x398. Mobius clip 318x414 at rest, was 475x650. 390: portrait 254x254, was 324x324; Mobius clip 286x380, was 342x558."
+      "ref": "1440: Mobius clip 318x414 at rest, was 475x650; portrait 254x254 in the About column, was 398x398 in the hero. 390: Mobius clip 286x380, was 342x558; portrait 238x238, was 324x324."
     },
     {
       "requirement": "make sure my website actually takes us to the most up to date socials and contacts ... and make sure my resume is up to date with it too",
@@ -22,11 +28,11 @@
     "outcome": "The face and the loop sit in proportion to the copy instead of dominating the screen, and the man page is still readable when it opens.",
     "path": "Land, read the name and the tagline, look at the face, click a contact tile. Scroll to the about copy with a small Mobius beside it, click to decode when curious.",
     "holds": true,
-    "why": "On shot-1440 the portrait is now about the height of the name and role block rather than twice it, so the eye reads the name first and the face second. The Mobius at rest is 318 wide against a 473 column, which reads as a panel beside the prose rather than a second hero. The manual auto-scales to its frame, so a fixed small frame would have rendered the man page at 6.6px: the frame now returns to its readable size only while the manual is open (473x612 desktop at 13.8px body, 340x512 mobile at 12.4px body), and drops back to the small clip on close."
+    "why": "On shot-1440 the Mobius is back in the hero at 318 wide against a 473 column, a panel beside the name rather than a wall opposite it, and the face is back in the About column at 254 where it reads as a portrait next to the copy instead of half the hero. The manual auto-scales to its frame, so a fixed small frame would have rendered the man page at 6.6px: the frame returns to its readable size only while the manual is open (473x612 desktop at 13.8px body, 340x512 mobile at 12.4px body) and drops back to the small clip on close, and the hero is items-start so that growth never moves the name."
   },
   "states": {
-    "default": "1440x900. Hero 544 tall (was 656): text left, portrait right at 286x286 in the neon frame. About: prose plus facts left, Mobius terminal right at 318x414 at rest, expanding to 473x612 while the manual is open. No horizontal overflow, zero console errors on the production build at :3101.",
-    "mobile": "390x844. Single column, scrollWidth 390, no overflow. Seven contact tiles hold one row at 44px each with a 5px gap, measured from the DOM: 7 tiles, 1 row. Portrait 254x254 under them; Mobius clip 286x380 at rest, panel 340x512 while open with the man page at 12.4px.",
+    "default": "1440x900. Hero: text left, Mobius terminal right at 318x414 at rest, expanding to 473x612 while the manual is open, with the name pinned (0px shift). About: prose left, portrait 254x254 above the facts in the right column. No horizontal overflow, zero console errors on the production build at :3101.",
+    "mobile": "390x844. Single column, scrollWidth 390, no overflow. Seven contact tiles hold one row at 44px each with a 5px gap, measured from the DOM: 7 tiles, 1 row. Mobius clip 286x380 under them at y=458, panel 340x512 while open with the man page at 12.4px. Portrait 238x238 further down in About at y=1697.",
     "reduced-motion": "The two new size transitions carry motion-reduce:transition-none, compiled in the build CSS as @media (prefers-reduced-motion:reduce){.motion-reduce\\:transition-none{transition-property:none}}, so the frame snaps between the two sizes instead of animating. The boxes land at the same measurements because the sizing is state-driven, not animation-driven.",
     "manual-open": "Verified at both widths by clicking the decode button and reading the FitToBox scale: 0.923 desktop, 0.994 mobile. Both above the 0.80 point where the man page starts to look shrunk."
   },

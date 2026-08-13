@@ -20,7 +20,7 @@ function Portrait({ className = "" }: { className?: string }) {
           alt="Karim Baba"
           fill
           priority
-          sizes="(min-width: 1024px) 304px, 272px"
+          sizes="(min-width: 1024px) 272px, (min-width: 768px) 240px, 272px"
           quality={90}
           className="object-cover"
         />
@@ -33,9 +33,12 @@ export default function Home() {
   return (
     <SiteShell>
       {/* ── Hero ─────────────────────────────────────────────
-          Desktop: intro on the left, the portrait to the side (right column).
-          Mobile: the portrait sits right under the contact buttons. */}
-      <section className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pb-6 pt-28 sm:pb-24 sm:pt-32 lg:grid-cols-[1.1fr_0.9fr] lg:pt-36">
+          Desktop: intro on the left, Möbius viewport to the side (right column).
+          Mobile: a compact Möbius (true 3:4 shape) + manual sits right under
+          the contact buttons. */}
+      {/* items-start, not items-center: the Möbius frame grows when its manual
+          opens, and centering would drag the name and the contacts with it. */}
+      <section className="relative mx-auto grid max-w-6xl items-start gap-12 px-6 pb-6 pt-28 sm:pb-24 sm:pt-32 lg:grid-cols-[1.1fr_0.9fr] lg:pt-36">
         <div>
           <Prompt command="whoami" />
           <h1 className="mt-6 text-4xl leading-[1.05] tracking-tight text-balance sm:text-5xl">
@@ -64,18 +67,18 @@ export default function Home() {
 
           <Socials className="mt-8" />
 
-          {/* Mobile: the portrait right under the contacts */}
-          <Portrait className="mt-12 mx-auto w-full max-w-[17rem] lg:hidden" />
+          {/* Mobile: the Möbius in its true shape + the manual, right under the contacts */}
+          <MobiusManualMobile className="mt-12 mx-auto w-full lg:hidden" />
         </div>
 
-        {/* Desktop: the portrait sits to the side (right column) */}
-        <Portrait className="mx-auto hidden w-full max-w-[19rem] lg:block" />
+        {/* Desktop: the Möbius viewport sits to the side (right column) */}
+        <MobiusViewport className="mx-auto hidden w-full lg:block" />
       </section>
 
       {/* ── About ───────────────────────────────────────────── */}
       <section id="summary" className="mx-auto max-w-6xl scroll-mt-24 px-6 pb-16 pt-6 sm:pt-16">
         <Prompt command="cat about.md" />
-        <div className="mt-8 grid items-start gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+        <div className="mt-8 grid gap-14 md:grid-cols-[1fr_15rem] md:gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
           <div className="flex max-w-[60ch] flex-col gap-5">
             {profile.summary.map((para, i) => (
               <p
@@ -85,7 +88,10 @@ export default function Home() {
                 {para}
               </p>
             ))}
-            <dl className="mt-2 grid max-w-md grid-cols-2 gap-x-6 gap-y-4 font-mono text-sm">
+          </div>
+          <div className="mx-auto flex w-full max-w-[16rem] flex-col gap-6 sm:max-w-[17rem] md:max-w-[15rem] lg:max-w-[17rem]">
+            <Portrait />
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-4 font-mono text-sm md:grid-cols-1">
               {profile.facts.map((f) => (
                 <div key={f.key} className="flex flex-col gap-1">
                   <dt className="text-dim">{f.key}</dt>
@@ -94,10 +100,6 @@ export default function Home() {
               ))}
             </dl>
           </div>
-
-          {/* the Möbius: compact box + manual below lg, framed viewport at lg and up */}
-          <MobiusManualMobile className="mx-auto w-full lg:hidden" />
-          <MobiusViewport className="mx-auto hidden w-full lg:block" />
         </div>
       </section>
 
