@@ -31,7 +31,7 @@ export const profile = {
 
 export type Social = {
   /** Which icon to render. `resume` is an internal page; the rest are brand marks. */
-  id: "resume" | "x" | "instagram" | "linkedin" | "github" | "email";
+  id: "resume" | "x" | "instagram" | "linkedin" | "github" | "telegram" | "email";
   /** Accessible label. */
   label: string;
   href: string;
@@ -51,6 +51,7 @@ export const socials: Social[] = [
     href: "https://www.linkedin.com/in/karim-baba-130547289/",
   },
   { id: "github", label: "GitHub", href: "https://github.com/karimbabasf" },
+  { id: "telegram", label: "Telegram", href: "https://t.me/karimbabasf" },
   { id: "email", label: "Email", href: "mailto:karim.sf09@gmail.com" },
   { id: "resume", label: "Resume", href: "/resume" },
 ];

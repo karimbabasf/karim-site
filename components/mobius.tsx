@@ -199,7 +199,9 @@ export function MobiusViewport({ className = "" }: { className?: string }) {
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-xl border border-hairline bg-black shadow-[0_0_50px_color-mix(in_srgb,var(--neon)_5.5%,transparent)] ${className}`}
+      className={`group relative overflow-hidden rounded-xl border border-hairline bg-black shadow-[0_0_50px_color-mix(in_srgb,var(--neon)_5.5%,transparent)] transition-[max-width] duration-300 ease-out motion-reduce:transition-none ${
+        open ? "max-w-none" : "max-w-[20rem]"
+      } ${className}`}
     >
       {/* title bar — terminal style, no window chrome; the decode cue lives here, centered */}
       <div className="relative z-30 flex h-9 items-center justify-center border-b border-hairline bg-white/[0.02] px-4">
@@ -232,7 +234,13 @@ export function MobiusViewport({ className = "" }: { className?: string }) {
       </div>
 
       {/* stage */}
-      <div className="relative h-[min(68vh,43rem)] min-h-[31rem]">
+      {/* stage: small at rest. The manual auto-scales to this box, so the frame
+          grows while it is open rather than rendering the man page at 7px. */}
+      <div
+        className={`relative transition-[height] duration-300 ease-out motion-reduce:transition-none ${
+          open ? "h-[min(68vh,43rem)] min-h-[31rem]" : "h-[min(46vh,26.5rem)] min-h-[22rem]"
+        }`}
+      >
         <video
           src="/mobius.mp4"
           poster="/mobius-poster.jpg"
@@ -314,7 +322,11 @@ export function MobiusManualMobile({ className = "" }: { className?: string }) {
 
   return (
     <div className={className}>
-      <div className="group relative overflow-hidden rounded-xl border border-hairline bg-black shadow-[0_0_40px_color-mix(in_srgb,var(--neon)_4%,transparent)]">
+      <div
+        className={`group relative mx-auto overflow-hidden rounded-xl border border-hairline bg-black shadow-[0_0_40px_color-mix(in_srgb,var(--neon)_4%,transparent)] transition-[max-width] duration-300 ease-out motion-reduce:transition-none ${
+          open ? "max-w-sm" : "max-w-[18rem]"
+        }`}
+      >
         {/* title bar — same decode cue as desktop, terminal style */}
         <button
           type="button"
@@ -340,7 +352,11 @@ export function MobiusManualMobile({ className = "" }: { className?: string }) {
 
         {/* stage — the clip fills the frame; the manual overlays on top of it
             (matching desktop) rather than expanding the page underneath */}
-        <div className="relative h-[min(62vh,32rem)] min-h-[29rem]">
+        <div
+          className={`relative transition-[height] duration-300 ease-out motion-reduce:transition-none ${
+            open ? "h-[min(62vh,32rem)] min-h-[29rem]" : "h-[min(45vh,24rem)] min-h-[20rem]"
+          }`}
+        >
           <video
             src="/mobius.mp4"
             poster="/mobius-poster.jpg"

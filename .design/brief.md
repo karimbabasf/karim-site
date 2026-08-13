@@ -5,17 +5,22 @@ Keep it literal. Paraphrasing here is how a build drifts from what was asked.
 
 ## Asked for
 One bullet per thing the request actually named. Quote his words where you can.
-- "chnage the mobius thing places with my picture": the Möbius viewport and the
-  framed portrait trade places. Portrait into the hero, Möbius into the About section.
-- "upadte the projects thing to showcase phosphor as well": phosphor joins the
-  `ls ~/projects` list.
-- "add my instagram on the contact thing": Instagram joins the hero contact icons,
-  https://www.instagram.com/karimbabasf
+- "the mobius and my face are wayyy too big, make it smaler": both the Möbius
+  viewport and the framed portrait shrink. Nothing else on the page changes.
+- "make sure my website actually takes us to the most up to date socials and
+  contacts ... and make sure my resume is up to date with it too": every contact
+  link points at a live karimbabasf handle, Telegram joins the contact row and
+  the resume, and the downloadable PDF matches the resume page. LinkedIn stays
+  on /in/karim-baba-130547289/, his answer when asked.
+
+## Note
+The manual auto-scales to its box, so a smaller box must not make the man page
+unreadable. That is why manual-open is one of the states below.
 
 ## Goal behind the ask
-Someone landing on karimbabasf.com sees Karim's face first, not an abstract loop,
-then reads the about copy with the Möbius next to it, and leaves able to reach him
-on one more channel.
+Someone landing on karimbabasf.com meets a face and a name in proportion to the
+copy, not a portrait and a video that dominate their screen. The Möbius stays
+readable and still opens its manual; the face stays clearly a face.
 
 ## Who is looking
 Recruiters, founders and people he met in the SF scene, on a phone as often as a
@@ -24,4 +29,4 @@ suspicious of a portfolio that claims more than it shows, so the projects list a
 the live repos carry the proof.
 
 ## States that must work
-default, mobile, reduced-motion
+default, mobile, reduced-motion, manual-open

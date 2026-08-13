@@ -98,6 +98,17 @@ export default function ResumePage() {
                   </svg>
                   GitHub
                 </a>
+                <a
+                  className="btn"
+                  href="https://t.me/karimbabasf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21.94 4.6 18.6 20.35c-.25 1.11-.91 1.38-1.84.86l-5.09-3.75-2.45 2.36c-.27.27-.5.5-1.02.5l.36-5.18 9.43-8.52c.41-.36-.09-.57-.64-.21L5.7 13.75.68 12.18c-1.09-.34-1.11-1.09.23-1.61l19.65-7.57c.91-.33 1.7.21 1.38 1.6z" />
+                  </svg>
+                  Telegram
+                </a>
               </div>
             </header>
 

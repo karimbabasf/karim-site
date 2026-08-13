@@ -1,6 +1,6 @@
 {
-  "stamp": "95ef5c2daace0562",
-  "iteration": 3,
+  "stamp": "e381f6f118d208fe",
+  "iteration": 5,
   "firstFive": {
     "what": "A personal site for one person: a terminal-styled portfolio, black with a green neon accent, headed by a name, a role line and a face.",
     "who": "Someone deciding whether to work with Karim. They arrived from a conversation or a link and want to know what he has actually shipped.",
@@ -8,32 +8,29 @@
   },
   "asked": [
     {
-      "requirement": "chnage the mobius thing places with my picture",
+      "requirement": "the mobius and my face are wayyy too big, make it smaler",
       "met": true,
-      "ref": "hero right column img[alt=\"Karim Baba\"] 398x398 at y=163; #summary right column .group video[src=\"/mobius.mp4\"] 475x650 at y=785. Hero holds no mobius, about holds no portrait."
+      "ref": "1440: portrait img[alt=\"Karim Baba\"] 286x286, was 398x398. Mobius clip 318x414 at rest, was 475x650. 390: portrait 254x254, was 324x324; Mobius clip 286x380, was 342x558."
     },
     {
-      "requirement": "upadte the projects thing to showcase phosphor as well",
+      "requirement": "make sure my website actually takes us to the most up to date socials and contacts ... and make sure my resume is up to date with it too",
       "met": true,
-      "ref": "#projects reads \"9 entries\"; row 2 is \"phosphor / Local app / 2026\", between Warden and dev signal, linking github.com/karimbabasf/phosphor."
-    },
-    {
-      "requirement": "add my instagram on the contact thing",
-      "met": true,
-      "ref": "hero socials row, tile 2 of 6: a[aria-label=\"Instagram\"] -> https://www.instagram.com/karimbabasf, Phosphor InstagramLogo glyph matching the other five."
+      "ref": "Hero contact row, 7 tiles read from the DOM: X https://x.com/karimbabasf, Instagram /karimbabasf, LinkedIn /in/karim-baba-130547289/ (his call), GitHub /karimbabasf, Telegram https://t.me/karimbabasf, mailto:karim.sf09@gmail.com, /resume. X, Instagram, GitHub and Telegram each answered 200 and t.me shows the profile name Karim Baba. /resume .contact carries the same five links including the new Telegram button, and public/Karim-Baba-Resume.pdf is reprinted from that page: 1 page, Letter, with /URI entries for github, t.me, linkedin, x and mailto."
     }
   ],
   "goal": {
-    "outcome": "A visitor sees Karim's face first instead of an abstract loop, reads the about copy with the Mobius beside it, and leaves with one more way to reach him.",
-    "path": "Land, read the name and the one-line tagline, look at the face, click a contact tile. Everything below that is proof for someone who wants more.",
+    "outcome": "The face and the loop sit in proportion to the copy instead of dominating the screen, and the man page is still readable when it opens.",
+    "path": "Land, read the name and the tagline, look at the face, click a contact tile. Scroll to the about copy with a small Mobius beside it, click to decode when curious.",
     "holds": true,
-    "why": "On shot-1440 the face is the only photographic element on a black page and sits directly opposite the name, so the eye goes there second. The contact row is between the tagline and the fold, so the action is reachable without scrolling. The Mobius kept its meaning: it now sits next to the paragraphs that explain it, which is where the explanation was always written."
+    "why": "On shot-1440 the portrait is now about the height of the name and role block rather than twice it, so the eye reads the name first and the face second. The Mobius at rest is 318 wide against a 473 column, which reads as a panel beside the prose rather than a second hero. The manual auto-scales to its frame, so a fixed small frame would have rendered the man page at 6.6px: the frame now returns to its readable size only while the manual is open (473x612 desktop at 13.8px body, 340x512 mobile at 12.4px body), and drops back to the small clip on close."
   },
   "states": {
-    "default": "1440x900. Hero: text left, portrait right at 398x398 in the neon frame, 656px tall section. About: prose plus the facts list left, Mobius terminal right at 475x650, which is 2x the width it would have had in the old 15rem column. Nine project rows collapsed. Verified on the production build at :3101, zero console errors. At 768 the about grid drops to one column on purpose: the old md column was 15rem, which would have squeezed the Mobius terminal to 240px and cropped the clip hard. Read shot-768: prose, facts, then the compact Mobius centered at max-w-sm, nothing crushed.",
-    "mobile": "390x844. Single column throughout, no horizontal overflow (scrollWidth equals 390). Order: name, role, tagline, six contact tiles, portrait at 324x324, about copy, facts, Mobius compact box at 342x558, projects, HN. Contact tiles are 48px, above the fold.",
-    "reduced-motion": "prefers-reduced-motion: reduce, at 1440 and 390. The intro cover resolves to opacity 0 rather than holding black, full text renders (7846 chars), portrait and Mobius land at the same boxes as the default state. Socials drop their hover lift and the Mobius manual drops its slide, both already handled by useReducedMotion in the existing components."
+    "default": "1440x900. Hero 544 tall (was 656): text left, portrait right at 286x286 in the neon frame. About: prose plus facts left, Mobius terminal right at 318x414 at rest, expanding to 473x612 while the manual is open. No horizontal overflow, zero console errors on the production build at :3101.",
+    "mobile": "390x844. Single column, scrollWidth 390, no overflow. Seven contact tiles hold one row at 44px each with a 5px gap, measured from the DOM: 7 tiles, 1 row. Portrait 254x254 under them; Mobius clip 286x380 at rest, panel 340x512 while open with the man page at 12.4px.",
+    "reduced-motion": "The two new size transitions carry motion-reduce:transition-none, compiled in the build CSS as @media (prefers-reduced-motion:reduce){.motion-reduce\\:transition-none{transition-property:none}}, so the frame snaps between the two sizes instead of animating. The boxes land at the same measurements because the sizing is state-driven, not animation-driven.",
+    "manual-open": "Verified at both widths by clicking the decode button and reading the FitToBox scale: 0.923 desktop, 0.994 mobile. Both above the 0.80 point where the man page starts to look shrunk."
   },
   "findings": [],
+  "preexisting": "audit type.families and color.contrast fail, both pre-existing: the same two fail on live karimbabasf.com with identical numbers (4 families incl. Verdana and Georgia from the Hacker News pastiche, 30 nodes below AA, worst 3.94:1). Untouched by this change.",
   "verdict": "pass"
 }

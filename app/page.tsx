@@ -20,7 +20,7 @@ function Portrait({ className = "" }: { className?: string }) {
           alt="Karim Baba"
           fill
           priority
-          sizes="(min-width: 1024px) 416px, (min-width: 640px) 384px, 92vw"
+          sizes="(min-width: 1024px) 304px, 272px"
           quality={90}
           className="object-cover"
         />
@@ -65,11 +65,11 @@ export default function Home() {
           <Socials className="mt-8" />
 
           {/* Mobile: the portrait right under the contacts */}
-          <Portrait className="mt-12 mx-auto w-full max-w-sm lg:hidden" />
+          <Portrait className="mt-12 mx-auto w-full max-w-[17rem] lg:hidden" />
         </div>
 
         {/* Desktop: the portrait sits to the side (right column) */}
-        <Portrait className="mx-auto hidden w-full max-w-[26rem] lg:block" />
+        <Portrait className="mx-auto hidden w-full max-w-[19rem] lg:block" />
       </section>
 
       {/* ── About ───────────────────────────────────────────── */}
@@ -96,8 +96,8 @@ export default function Home() {
           </div>
 
           {/* the Möbius: compact box + manual below lg, framed viewport at lg and up */}
-          <MobiusManualMobile className="mx-auto w-full max-w-sm lg:hidden" />
-          <MobiusViewport className="hidden w-full lg:block" />
+          <MobiusManualMobile className="mx-auto w-full lg:hidden" />
+          <MobiusViewport className="mx-auto hidden w-full lg:block" />
         </div>
       </section>
 
