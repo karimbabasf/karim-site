@@ -1,6 +1,6 @@
 {
-  "stamp": "24dd412d0f0708d5",
-  "iteration": 7,
+  "stamp": "f28043b1899fa3e1",
+  "iteration": 8,
   "firstFive": {
     "what": "A personal site for one person: a terminal-styled portfolio, black with a green neon accent, headed by a name, a role line and a Möbius clip that opens its own man page.",
     "who": "Someone deciding whether to work with Karim. They arrived from a conversation or a link and want to know what he has actually shipped.",
@@ -15,18 +15,23 @@
     {
       "requirement": "the contacts and info and everything you added leave",
       "met": true,
-      "ref": "Contact row still reads 7 tiles: X https://x.com/karimbabasf, Instagram /karimbabasf, LinkedIn /in/karim-baba-130547289/, GitHub /karimbabasf, Telegram https://t.me/karimbabasf, mailto:karim.sf09@gmail.com, /resume. phosphor is still projects row 2, /resume still carries the Telegram button, and public/Karim-Baba-Resume.pdf is still the reprint (1 page, Letter, /URI entries for github, t.me, linkedin, x, mailto)."
+      "ref": "Contact row still reads 7 tiles: X https://x.com/karimbabasf, Instagram /karimbabasf, LinkedIn /in/karim-baba-130547289/, GitHub /karimbabasf, Telegram https://t.me/karimbabasf, mailto:founder@karimbabasf.com, /resume. phosphor is still projects row 2, /resume still carries the Telegram button, and public/Karim-Baba-Resume.pdf is still the reprint (1 page, Letter, /URI entries for github, t.me, linkedin, x, mailto)."
+    },
+    {
+      "requirement": "\"I now have business email ... wherever you see karim.sf09@gmail.com put my business one\": every contact point on the site and on the resume uses founder@karimbabasf.com, and the resume shows the address itself instead of the word \"Email\".",
+      "met": true,
+      "ref": "Served HTML from the production build at :3111 returns zero 'sf09' hits on / and on /resume, and both carry mailto:founder@karimbabasf.com (hero email tile from lib/site.ts, resume contact chip in app/resume/page.tsx). resume-look shot-1440 and shot-390 read the first chip as 'founder@karimbabasf.com' with no overflow: 1440 keeps Telegram on its own second row, 390 wraps the chips into four rows as before. public/Karim-Baba-Resume.pdf and the repo-root copy are reprinted from /resume at 0.86 scale: 1 page, 612x792 Letter, /URI (mailto:founder@karimbabasf.com) plus the same github, t.me, linkedin and x links, and pdftotext output identical to the previous PDF except the email line. karim-baba-resume.html and chalk-cover-letter.html carry the same address."
     }
   ],
   "goal": {
     "outcome": "The page he already signed off on, with more ways to reach him than it had.",
     "path": "Land, read the name and the tagline, click a contact tile, or click the Möbius to decode it. Scroll for the about copy, the face and the projects.",
     "holds": true,
-    "why": "shot-1440 is the layout he approved: the Möbius is the hero's right column at full height and the face sits beside the about copy where it was. Nothing from the size experiment survives in the render. The only difference from that approved page is the contact row, which is one tile longer and still one row."
+    "why": "shot-1440 is the layout he approved: the Möbius is the hero's right column at full height and the face sits beside the about copy where it was. Nothing from the size experiment survives in the render. The only difference from that approved page is the contact row, which is one tile longer and still one row. This iteration only changes the address in the email tile and the resume chip, so the approved layout is untouched; the resume chip is wider and the print sheet still fits one page."
   },
   "states": {
-    "default": "1440x900. Hero: text left, Möbius viewport right at 473x612. About: prose left, portrait 254x254 above the facts in a 15rem/17rem right column. No horizontal overflow, zero console errors on the production build at :3101.",
-    "mobile": "390x844. Single column, scrollWidth 390, no overflow. Seven contact tiles hold one row at 44px each with a 5px gap. Möbius 340x512 under them at y=458, portrait 324x324 in About at y=1829.",
+    "default": "1440x900. Hero: text left, Möbius viewport right at 473x612. About: prose left, portrait 254x254 above the facts in a 15rem/17rem right column. No horizontal overflow, zero console errors on the production build at :3101. Re-checked this iteration on /resume at 1440: contact row reads location, founder@karimbabasf.com, LinkedIn, X, GitHub, then Telegram on the second row.",
+    "mobile": "390x844. Single column, scrollWidth 390, no overflow. Seven contact tiles hold one row at 44px each with a 5px gap. Möbius 340x512 under them at y=458, portrait 324x324 in About at y=1829. Re-checked this iteration on /resume at 390: chips wrap to four rows, no horizontal overflow.",
     "reduced-motion": "The size transitions that needed a motion-reduce guard are gone with the revert. What remains is the pre-existing behaviour: the intro cover resolves to opacity 0, the socials drop their hover lift and the Möbius manual drops its slide, all already handled by useReducedMotion in the components.",
     "manual-open": "Captured with --state clicking the visible decode button. The frame does not resize any more, so the man page renders at its natural size in a 473x612 box, the same as before this session."
   },

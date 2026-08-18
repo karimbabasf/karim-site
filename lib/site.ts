@@ -52,6 +52,6 @@ export const socials: Social[] = [
   },
   { id: "github", label: "GitHub", href: "https://github.com/karimbabasf" },
   { id: "telegram", label: "Telegram", href: "https://t.me/karimbabasf" },
-  { id: "email", label: "Email", href: "mailto:karim.sf09@gmail.com" },
+  { id: "email", label: "Email", href: "mailto:founder@karimbabasf.com" },
   { id: "resume", label: "Resume", href: "/resume" },
 ];

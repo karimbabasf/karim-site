@@ -12,6 +12,7 @@ One bullet per thing the request actually named. Quote his words where you can.
 - "the contacts and info and everything you added leave": the content additions
   stay. Telegram and Instagram in the contact row, phosphor in the projects
   list, Telegram on the resume, and the reprinted PDF.
+- "I now have business email ... wherever you see karim.sf09@gmail.com put my business one": every contact point on the site and on the resume uses founder@karimbabasf.com, and the resume shows the address itself instead of the word "Email".
 
 ## Goal behind the ask
 Someone landing on karimbabasf.com sees the site he already signed off on, with

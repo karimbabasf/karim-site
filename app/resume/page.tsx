@@ -51,7 +51,7 @@ export default function ResumePage() {
               <div className="contact">
                 <span className="loc">San Francisco, CA</span>
 
-                <a className="btn" href="mailto:karim.sf09@gmail.com">
+                <a className="btn" href="mailto:founder@karimbabasf.com">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -63,7 +63,7 @@ export default function ResumePage() {
                     <rect x="3" y="5" width="18" height="14" rx="2" />
                     <path d="m3 7 9 6 9-6" />
                   </svg>
-                  Email
+                  founder@karimbabasf.com
                 </a>
                 <a
                   className="btn"
