@@ -12,17 +12,17 @@ const Tetris = dynamic(() => import("@/components/tetris"), { ssr: false });
 const INTRO_KEY = "karim-intro-seen";
 
 /* Write-out video */
-const VIDEO_RATE = 1.4; // >1 = quicker writing
-const DOCK_AT = 0.9; // begin docking at this fraction — the last strokes finish mid-flight
+const VIDEO_RATE = 1.8; // >1 = quicker writing
+const DOCK_AT = 0.85; // begin docking at this fraction — the last strokes finish mid-flight
 
 /* Zoom-out (the dock). A refined ease-in-out: quick to leave, soft to land. */
-const ZOOM_DURATION = 1.3;
+const ZOOM_DURATION = 1.05;
 const ZOOM_EASE = [0.7, 0, 0.2, 1] as const;
 
 /* Reveal — the rest of the site fades in *across the whole zoom* so it reads as
    one continuous motion (not a pop). Even, gentle curve; near-zero delay. */
 const REVEAL_EASE = [0.4, 0, 0.2, 1] as const;
-const REVEAL_DURATION = 1.15;
+const REVEAL_DURATION = 0.95;
 
 /* Geometry */
 const ASPECT = 360 / 920; // the cropped mark's height / width
