@@ -2,10 +2,11 @@
  * Résumé document styles — scoped under `.resumeDoc`. The on-screen preview is a
  * DARK document tuned to the site's black + neon terminal vibe (it borrows the
  * site tokens --foreground / --dim / --neon so it feels native, not bolted-on).
- * The downloadable PDF is a static file in /public and is NOT affected by this
- * file. The @media print block at the bottom resets the palette back to a clean
- * LIGHT sheet, so Cmd+P still prints well on paper. Fonts come from next/font via
- * CSS variables set in page.tsx.
+ * `public/Karim-Baba-Resume.pdf` is printed straight off this route, so the
+ * @media print block at the bottom is not a courtesy for Cmd+P: it IS the PDF's
+ * design. Changing it changes the file people download, and the file has to be
+ * re-rendered afterwards. Fonts come from next/font via CSS variables set in
+ * page.tsx.
  */
 
 .resumeDoc {
@@ -113,6 +114,9 @@
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 .resumeDoc .btn svg { width: 12px; height: 12px; display: block; }
+/* Each contact carries two labels: a short one for the screen and the bare URL
+   for print, since a printed sheet has no hyperlink to click. Print swaps them. */
+.resumeDoc .btn-url { display: none; }
 .resumeDoc .btn:hover,
 .resumeDoc .btn:focus-visible {
   border-color: var(--accent);
@@ -249,42 +253,181 @@
   .resumeDoc * { transition: none !important; }
 }
 
-/* ---------- Print (if someone Cmd+P's the preview page) ----------
-   The on-screen preview is dark, but printing resets to a clean LIGHT sheet so it
-   prints well on paper and matches the look of the downloadable PDF. */
+/* ---------- Print / PDF ----------
+   This block IS the PDF: `Karim-Baba-Resume.pdf` is printed straight off this
+   route, so anything that reads as screen furniture (pill borders, icons,
+   chevron bullets, pale greys) has to be undone here or it lands on the
+   document. The @page rule is what keeps text off the paper edge; without it the
+   renderer's zero margins bleed every line into the trim. Sizes are in pt so the
+   sheet is specified the way a document is, not the way a viewport is, and the
+   whole thing is tuned to fit one Letter page at full size, never shrunk to fit. */
 @media print {
+  @page {
+    size: Letter;
+    margin: 0.45in 0.5in;
+  }
+
+  /* The layout declares `colorScheme: "dark"` for the whole site, and that is
+     what paints the print canvas (the paper outside the @page content box) in
+     the UA's dark ground, so the sheet came out framed in near-black. No
+     background property reaches that canvas; only color-scheme does. The
+     document has to declare itself light for the length of the print. */
+  :root { color-scheme: light; }
+  html,
+  body { background: #ffffff !important; }
+
   .resumeDoc {
     --paper: #ffffff;
-    --ink: #15171c;
-    --slate: #565b66;
-    --faint: #8b909a;
-    --line: #e7e6e0;
-    --line-2: #d7d6ce;
-    --accent: #2540d6;
-    --accent-ink: #1c33ad;
+    --ink: #101317;
+    --slate: #3f444c;
+    --faint: #5c626b;
+    --line: #d8dade;
+    --line-2: #c3c7cd;
+    --accent: #1c3faa;
+    --accent-ink: #1c3faa;
+
+    font-size: 9.2pt;
+    line-height: 1.38;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
+
   .resumeDoc .sheet {
     box-shadow: none;
     border: 0;
     border-radius: 0;
     max-width: none;
+    width: 100%;
     padding: 0;
     background: #ffffff;
   }
-  /* Body-text colors are hardcoded light for the dark screen theme — force them
-     back to dark ink for print so they're legible on white. */
-  .resumeDoc .summary { color: #2b2e35 !important; }
-  .resumeDoc ul.bullets li { color: #23262d !important; }
-  .resumeDoc .proj-desc { color: #33363d !important; }
-  .resumeDoc a { color: var(--ink) !important; }
-  .resumeDoc .repo,
-  .resumeDoc .eyebrow,
-  .resumeDoc .sec-head .sq,
-  .resumeDoc ul.bullets li::before {
-    color: var(--accent) !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+
+  /* ---- Masthead, not a hero ---- */
+  .resumeDoc .eyebrow {
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 6px;
   }
-  .resumeDoc .sec-head .sq { background: var(--accent) !important; }
-  .resumeDoc section, .resumeDoc .role, .resumeDoc .proj { break-inside: avoid; }
+  .resumeDoc .eyebrow .dot { background: var(--line-2); height: 7px; margin: 0 0.6em; }
+
+  .resumeDoc .wordmark { font-size: 23pt; line-height: 1; letter-spacing: -0.02em; }
+
+  /* Contacts become one typographic line. Paper carries no hyperlink, so print
+     shows the URL and hides the label; the dividers are drawn by CSS so the last
+     item never trails a stray dot. */
+  .resumeDoc .contact {
+    display: block;
+    margin-top: 9px;
+    font-family: var(--mono);
+    font-size: 8.2pt;
+    line-height: 1.5;
+    color: var(--slate);
+  }
+  .resumeDoc .loc,
+  .resumeDoc .btn { display: inline; }
+  .resumeDoc .loc { font-size: 8.2pt; color: var(--slate); margin-right: 0; }
+  .resumeDoc .btn {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    font-size: 8.2pt;
+    font-weight: 400;
+    color: var(--slate);
+    background: none;
+  }
+  .resumeDoc .btn svg { display: none; }
+  .resumeDoc .btn-label { display: none; }
+  /* nowrap keeps a URL whole; the line breaks between contacts instead. */
+  .resumeDoc .btn-url { display: inline; white-space: nowrap; }
+  /* Divider trails its own item, so a wrapped contact line starts on a URL and
+     not on a stray dot. The gap on the left is a margin; the gap on the right is
+     the real space in the markup, which is also the only break opportunity. */
+  .resumeDoc .contact > *:not(:last-child)::after {
+    content: "\00B7";
+    margin-left: 0.4em;
+    color: var(--line-2);
+  }
+
+  .resumeDoc .rule { background: var(--ink); height: 1.4px; margin: 7px 0 6px; }
+
+  /* ---- Summary ---- */
+  .resumeDoc .summary {
+    font-size: 9.1pt;
+    line-height: 1.42;
+    color: #23262c !important;
+  }
+
+  /* ---- Sections ---- */
+  .resumeDoc section { margin-top: 8px; }
+  .resumeDoc .sec-head {
+    gap: 0;
+    margin-bottom: 4px;
+    padding-bottom: 3px;
+    border-bottom: 0.8px solid var(--line);
+  }
+  .resumeDoc .sec-head .sq,
+  .resumeDoc .sec-head .line { display: none; }
+  .resumeDoc .sec-head h2 { font-size: 8.6pt; letter-spacing: 0.16em; color: var(--ink); }
+
+  /* ---- Experience ---- */
+  .resumeDoc .role { margin-bottom: 6px; }
+  .resumeDoc .role-title { font-size: 10.2pt; }
+  .resumeDoc .role-title .org { color: var(--accent-ink); }
+  .resumeDoc .role-meta { font-size: 8.2pt; color: var(--faint); }
+  .resumeDoc .role-note {
+    font-size: 8.6pt;
+    line-height: 1.34;
+    color: var(--slate);
+    margin: 2px 0 4px;
+  }
+
+  .resumeDoc ul.bullets li {
+    font-size: 8.8pt;
+    line-height: 1.34;
+    padding-left: 12px;
+    margin-bottom: 2px;
+    color: #23262c !important;
+  }
+  /* A round bullet reads as a document; the chevron read as a web list. */
+  .resumeDoc ul.bullets li::before {
+    content: "\2022";
+    top: -0.5px;
+    font-weight: 400;
+    color: var(--faint) !important;
+  }
+  .resumeDoc ul.bullets li .lead { color: var(--ink); }
+
+  /* Two columns on the short list sections buy the vertical room that keeps the
+     whole résumé on one sheet at full size, instead of shrinking it to fit. */
+  .resumeDoc ul.cols { column-count: 2; column-gap: 28px; }
+
+  /* ---- Projects ---- */
+  .resumeDoc .proj { margin-bottom: 4px; }
+  .resumeDoc .proj-name { font-size: 9.8pt; }
+  .resumeDoc .proj-name .desc { color: var(--slate); }
+  .resumeDoc .proj-tag { font-size: 7.8pt; color: var(--faint); }
+  .resumeDoc .proj-desc {
+    font-size: 8.6pt;
+    line-height: 1.34;
+    margin: 2px 0;
+    color: #2b2e35 !important;
+  }
+  .resumeDoc .stack { font-size: 7.8pt; letter-spacing: 0.08em; color: var(--faint); }
+  .resumeDoc .repo { font-size: 8pt; border-bottom: 0; color: var(--accent) !important; }
+  .resumeDoc .repo svg { display: none; }
+
+  /* Every link still carries a live /URI in the PDF, so they do not also need to
+     be blue and underlined on the page. */
+  .resumeDoc a { color: var(--ink); text-decoration: none; }
+  .resumeDoc .btn { color: var(--slate); }
+
+  /* Nothing splits across a break, nothing trails past the last line. */
+  .resumeDoc section,
+  .resumeDoc .role,
+  .resumeDoc .proj { break-inside: avoid; }
+  .resumeDoc section:last-child,
+  .resumeDoc .role:last-child,
+  .resumeDoc .proj:last-child { margin-bottom: 0; }
 }
