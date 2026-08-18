@@ -119,14 +119,16 @@ export default function ResumePage() {
             <hr className="rule" />
 
             <p className="summary">
-              Self-taught, crypto-native builder now focused on building
-              payment infrastructure for agents. I ship full-stack products end to end,
-              from Rust and Tauri desktop tools to on-chain trading systems, and
-              run boots-on-the-ground business development across the San
-              Francisco startup scene. In the Ethereum ecosystem since 2021, I
-              began in DeFi and have since pivoted into agentic development. I'm
-              now at the point where I'm confident that whatever recurring problem
-              or inefficiency you put in front of me, I can automate it away.
+              Self-taught, crypto-native full-stack builder focused on payment
+              infrastructure for AI agents. In the Ethereum ecosystem since 2021,
+              starting in DeFi and now working in agentic systems. Build and ship
+              end to end: a multi-agent orchestration desktop app in Rust and
+              Tauri, on-chain trading systems, and the operating stack for a
+              supplies business I co-founded, including automated quoting, an
+              order pipeline, and an automated phone line that executes workflows,
+              transcribes, and summarizes every call. I publish open-source agent
+              tooling and run in-person business development across the San
+              Francisco startup scene.
             </p>
 
             <section>
@@ -151,18 +153,20 @@ export default function ResumePage() {
                 </p>
                 <ul className="bullets">
                   <li>
-                    Run boots-on-the-ground BD, education, and advocacy for 1Claw
-                    across the SF crypto and AI ecosystem, sourcing partnerships
-                    and relationships at conferences, meetups, and within founder
-                    and investor circles.
+                    Owned 1Claw's San Francisco presence, sourcing partnerships,
+                    design partners, and investor relationships in person across
+                    crypto and AI conferences, hackathons, meetups, and founder
+                    circles.
                   </li>
                   <li>
-                    Produce content and community programming to grow the
+                    Produced content and community programming to grow the
                     protocol's awareness and credibility.
                   </li>
                   <li>
-                    Contribute to the product codebase, bridging BD insight with
-                    hands-on engineering.
+                    Lead technical education for 1Claw, building the material
+                    that explains key custody, LLM firewall behavior, and
+                    cross-chain signing to founders and developers evaluating
+                    agent infrastructure.
                   </li>
                 </ul>
               </div>
@@ -170,22 +174,25 @@ export default function ResumePage() {
               <div className="role">
                 <div className="role-top">
                   <p className="role-title">
-                    Founder / Developer{" "}
-                    <span className="org">· Independent Builder</span>
+                    SMM / BDR <span className="org">· Multisender.app</span>
                   </p>
-                  <span className="role-meta">San Francisco · Since 2025</span>
+                  <span className="role-meta">San Francisco · Since 2021</span>
                 </div>
                 <ul className="bullets">
                   <li>
-                    Built and shipped a portfolio of working products from zero
-                    across AI infrastructure, crypto tooling, and creator tools,
-                    with a strong grasp of system architecture and protocol
-                    design.
+                    Built a signal-gated lead generation engine that ranks
+                    organizations on likelihood to buy a batch-transfer product,
+                    scoring recurring payout mechanisms such as payroll, grants,
+                    and points above one-time events, using structural quotas
+                    rather than score weights so a single news cycle cannot
+                    dominate the pool.
                   </li>
                   <li>
-                    Currently building Warden, an orchestration and
-                    simplification layer that brings multiple AI coding agents
-                    into one coordinated and visually stunning workspace.
+                    Ran daily content production for a verified brand account,
+                    meticulously selecting the surface before the topic: a
+                    standalone post caps near 850 views, while a well-placed
+                    reply under an active thread can exceed the entire follower
+                    count.
                   </li>
                 </ul>
               </div>
@@ -219,9 +226,10 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p className="proj-desc">
-                  macOS desktop app that brings your local AI coding agents into
-                  one unique live view: active sessions, process state, token spend,
-                  context window usage, and file activity.
+                  A desktop app that runs several AI coding agents against one
+                  codebase at once, handling coordination, isolation, and review
+                  so parallel work does not collide. 80,000 lines of Rust and
+                  TypeScript across 220 source files.
                 </p>
                 <p className="stack">Tauri · Rust · React / TS</p>
               </div>
@@ -229,19 +237,21 @@ export default function ResumePage() {
               <div className="proj">
                 <div className="proj-top">
                   <p className="proj-name">
-                    Direct Terminal{" "}
-                    <span className="desc">
-                      · crypto trading terminal and on-chain execution
-                    </span>
+                    Phosphor{" "}
+                    <span className="desc">· agent infrastructure for DeFi</span>
                   </p>
                 </div>
                 <p className="proj-desc">
-                  Multi-exchange desktop terminal streaming live market data
-                  (Binance, Coinbase, Kraken) with a Rust trading-agent backend
-                  for Hyperliquid perpetuals: key custody, session management,
-                  and risk guardrails.
+                  DeFi through Agent subscriptions users already pay for. NEAR
+                  intents for chain-abstracted execution, 38 MCP tools spanning
+                  liquidity provision and Hyperliquid perpetuals, every write
+                  simulated and gated behind desired policies the agent cannot
+                  issue without human approval. 50,000 lines of TypeScript, 993
+                  tests, open source and proven to work.
                 </p>
-                <p className="stack">Tauri · Rust · React · Hyperliquid</p>
+                <p className="stack">
+                  TypeScript · MCP · NEAR Intents · Hyperliquid
+                </p>
               </div>
 
               <div className="proj">
@@ -255,7 +265,7 @@ export default function ResumePage() {
                   <span className="proj-tag">first shipped product, 2026</span>
                 </div>
                 <p className="proj-desc">
-                  Personalized developer-news scraper that turns a feed into an
+                  Personalized developer-news scraper that turns noise into an
                   autonomous AI publisher. Built end to end at an AWS hackathon.
                 </p>
                 <p className="stack">Next.js · Supabase</p>
@@ -285,7 +295,7 @@ export default function ResumePage() {
               <ul className="bullets cols">
                 <li>
                   In crypto since 2021, with deep, hands-on DeFi and Ethereum
-                  familiarity.
+                  experience.
                 </li>
                 <li>
                   Early to the L2 wave, among early users of Arbitrum, Optimism,
@@ -296,8 +306,8 @@ export default function ResumePage() {
                   across cycles.
                 </li>
                 <li>
-                  Regular at SF events: Solana Summer Series, Cursor Compile,
-                  Founders Inc, and more.
+                  Regular at SF events: NEARCON, Cursor Compile, Founders Inc,
+                  and more.
                 </li>
               </ul>
             </section>
@@ -310,21 +320,31 @@ export default function ResumePage() {
               </div>
               <ul className="bullets cols">
                 <li>
-                  <span className="lead">Sourcing and network.</span> At ease in
-                  rooms with founders and high-status operators.
+                  <span className="lead">Tooling as leverage.</span> I build the
+                  systems that accelerate my own delivery, then apply them:
+                  Warden coordinates several coding agents against a single
+                  codebase, which produced 50,000 lines of Phosphor and a mainnet
+                  deployment within three days.
                 </li>
                 <li>
-                  <span className="lead">Fast conceptual learner.</span> New tech
-                  and architectures quickly, with strong pattern recognition.
+                  <span className="lead">Security-first system design.</span> I
+                  established that an autonomous agent must never approve its own
+                  actions, and implemented the enforcement layer: transaction
+                  simulation, per-session budgets, destination allowlists, and
+                  human approval outside the agent's control.
                 </li>
                 <li>
-                  <span className="lead">Builder's eye for diligence.</span> I
-                  read a protocol's architecture and on-chain activity, not just
-                  its deck.
+                  <span className="lead">
+                    Commercial judgment in architecture.
+                  </span>{" "}
+                  I designed Phosphor to run on inference the user already pays
+                  for, reducing the marginal cost per user to zero.
                 </li>
                 <li>
-                  <span className="lead">Self-accountable.</span> Every project
-                  above was self-initiated and self-driven.
+                  <span className="lead">Full business ownership.</span> I
+                  delivered the operating stack for a supplies company, covering
+                  quote generation, order pipeline, invoicing, telephony, and
+                  carrier compliance.
                 </li>
               </ul>
             </section>
