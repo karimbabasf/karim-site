@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Karim Baba, Cover Letter, Tailscale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #ffffff;
+    --ink: #15171c;
+    --slate: #565b66;
+    --faint: #8b909a;
+    --line: #e7e6e0;
+    --line-2: #d7d6ce;
+    --accent: #2540d6;
+    --accent-ink: #1c33ad;
+
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --display: "Space Grotesk", "IBM Plex Sans", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: #e9e9e4;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.46;
+    -webkit-font-smoothing: antialiased;
+    padding: 30px 16px;
+  }
+
+  .sheet {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--paper);
+    padding: 40px 46px 36px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 24px 60px -28px rgba(20,22,28,.35);
+    border: 1px solid var(--line);
+  }
+
+  /* ---------- Header ---------- */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 8px;
+  }
+  .eyebrow .dot {
+    display: inline-block;
+    width: 1px;
+    height: 9px;
+    background: var(--line-2);
+    margin: 0 .75em;
+    vertical-align: middle;
+    transform: translateY(-1px);
+  }
+
+  .wordmark {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 46px;
+    line-height: .92;
+    letter-spacing: -.03em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .wordmark .period { color: var(--accent); }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    margin-top: 14px;
+  }
+  .loc {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .02em;
+    color: var(--slate);
+    margin-right: 3px;
+    white-space: nowrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid var(--line-2);
+    border-radius: 999px;
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .btn svg { width: 12px; height: 12px; display: block; }
+  .btn:hover, .btn:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent-ink);
+    background: #f4f6ff;
+    outline: none;
+  }
+  .btn:focus-visible { box-shadow: 0 0 0 3px rgba(37,64,214,.22); }
+
+  .rule { height: 1px; background: var(--line); border: 0; margin: 20px 0 16px; }
+
+  /* ---------- Letter meta ---------- */
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 14px;
+  }
+  .meta .to { color: var(--slate); }
+
+  /* ---------- Body ---------- */
+  .lede {
+    font-size: 12.6px;
+    line-height: 1.55;
+    color: #2b2e35;
+    margin: 0 0 10px;
+  }
+  p.para {
+    font-size: 12.2px;
+    line-height: 1.52;
+    color: #2b2e35;
+    margin: 0 0 9px;
+  }
+  p.para:last-child { margin-bottom: 0; }
+
+  /* ---------- Sections ---------- */
+  section { margin-top: 18px; }
+
+  .sec-head { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; }
+  .sec-head .sq { width: 7px; height: 7px; background: var(--accent); display: inline-block; flex: none; }
+  .sec-head h2 {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0;
+  }
+  .sec-head .line { flex: 1; height: 1px; background: var(--line); }
+
+  ul.bullets { list-style: none; margin: 0; padding: 0; }
+  ul.bullets li {
+    position: relative;
+    padding-left: 15px;
+    font-size: 12px;
+    line-height: 1.45;
+    color: #23262d;
+    margin-bottom: 7px;
+  }
+  ul.bullets li:last-child { margin-bottom: 0; }
+  ul.bullets li::before { content: "›"; position: absolute; left: 0; top: -1px; color: var(--accent); font-weight: 600; }
+  ul.bullets li .lead { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Sign-off ---------- */
+  .signoff { margin-top: 20px; }
+  .signoff .word {
+    font-family: var(--display);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    color: var(--ink);
+    margin: 4px 0 0;
+  }
+  .signoff .word .period { color: var(--accent); }
+  .signoff .close {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 12px 8px; }
+    .sheet { padding: 28px 22px 26px; }
+    .wordmark { font-size: 38px; }
+    .meta { flex-direction: column; gap: 3px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  /* ---------- Print (one page, Letter) ---------- */
+  @page { size: Letter; margin: 0.45in; }
+  @media print {
+    body { background: #fff; padding: 0; font-size: 10.4px; line-height: 1.42; }
+    .sheet { max-width: none; width: 100%; border: 0; box-shadow: none; padding: 0; }
+    .eyebrow { font-size: 10px; margin-bottom: 8px; }
+    .wordmark { font-size: 41px; }
+    .contact { margin-top: 13px; gap: 6px; }
+    .btn { font-size: 10.5px; padding: 4px 10px; gap: 5px; }
+    .btn svg { width: 12px; height: 12px; }
+    .loc { font-size: 10.5px; }
+    .rule { margin: 12px 0 10px; }
+    .meta { font-size: 9.5px; margin-bottom: 11px; }
+    .lede { font-size: 10.6px; line-height: 1.48; margin-bottom: 8px; }
+    p.para { font-size: 10.4px; line-height: 1.46; margin-bottom: 7px; }
+    section { margin-top: 11px; }
+    .sec-head { margin-bottom: 7px; }
+    .sec-head h2 { font-size: 10.5px; }
+    ul.bullets li { font-size: 10.3px; line-height: 1.42; margin-bottom: 5px; padding-left: 15px; }
+    .signoff { margin-top: 14px; }
+    .signoff .word { font-size: 15px; }
+    .signoff .close { font-size: 9.5px; }
+    a { color: var(--ink) !important; }
+    .eyebrow, .sec-head .sq, ul.bullets li::before {
+      color: var(--accent) !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .sec-head .sq { background: var(--accent) !important; }
+    section, ul.bullets li { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <main class="sheet">
+
+    <header>
+      <p class="eyebrow">Cover Letter<span class="dot"></span>Strategic Projects<span class="dot"></span>Tailscale</p>
+      <h1 class="wordmark">Karim Baba<span class="period">.</span></h1>
+
+      <div class="contact">
+        <span class="loc">San Francisco, CA</span>
+
+        <a class="btn" href="mailto:founder@karimbabasf.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          founder@karimbabasf.com
+        </a>
+        <a class="btn" href="https://www.linkedin.com/in/karim-baba-130547289/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.76-2.05C21.4 8.65 22 11 22 14.1V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21h-4z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn" href="https://x.com/karimbabasf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.966 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X / @karimbabasf
+        </a>
+        <a class="btn" href="https://github.com/karimbabasf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.7a10.3 10.3 0 0 0-3.26 20.07c.52.1.7-.22.7-.5v-1.75c-2.86.62-3.47-1.38-3.47-1.38-.47-1.19-1.15-1.5-1.15-1.5-.94-.64.07-.63.07-.63 1.04.07 1.58 1.07 1.58 1.07.92 1.58 2.42 1.12 3.01.86.1-.67.36-1.12.65-1.38-2.28-.26-4.68-1.14-4.68-5.07 0-1.12.4-2.03 1.06-2.75-.1-.26-.46-1.3.1-2.71 0 0 .87-.28 2.85 1.05a9.9 9.9 0 0 1 5.19 0c1.98-1.33 2.85-1.05 2.85-1.05.56 1.41.2 2.45.1 2.71.66.72 1.06 1.63 1.06 2.75 0 3.94-2.4 4.8-4.69 5.06.37.32.7.94.7 1.9v2.82c0 .28.19.6.71.5A10.3 10.3 0 0 0 12 1.7z"/></svg>
+          GitHub
+        </a>
+        <a class="btn" href="https://t.me/karimbabasf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 4.6 18.6 20.35c-.25 1.11-.91 1.38-1.84.86l-5.09-3.75-2.45 2.36c-.27.27-.5.5-1.02.5l.36-5.18 9.43-8.52c.41-.36-.09-.57-.64-.21L5.7 13.75.68 12.18c-1.09-.34-1.11-1.09.23-1.61l19.65-7.57c.91-.33 1.7.21 1.38 1.6z"/></svg>
+          Telegram
+        </a>
+      </div>
+    </header>
+
+    <hr class="rule" />
+
+    <p class="meta"><span class="to">To the Strategic Projects team, Tailscale</span><span>18 August 2026</span></p>
+
+    <p class="lede">
+      Hello,
+    </p>
+
+    <p class="para">
+      Your posting asks candidates to say where they are strongest and where they want to develop, so I will do exactly that.
+      I am strongest at the half of the work most people find tedious: taking something that already demos well and closing the
+      long tail behind it. I direct coding agents all day, which means I spend most of my time verifying rather than typing, and
+      I have opinions about that earned from being wrong in production.
+    </p>
+
+    <section>
+      <div class="sec-head"><span class="sq"></span><h2>Where I am strongest</h2><span class="line"></span></div>
+      <ul class="bullets">
+        <li><span class="lead">Prototype to production is the part I stay for.</span> I built a voice agent that answers the
+        phone for a business I co-run. It handled a real call within a day, and the two weeks after that were the whole job:
+        an outbox table because the messaging API caps a group at roughly 20 messages a minute shared across every thread, so
+        direct sends pass in testing and fail in a burst; a detect-and-recreate path because any admin can permanently delete a
+        thread with no recovery; dual-channel recording, chosen at the start because it cannot be fixed later; 476 tests and a
+        22-check preflight before deploy.</li>
+
+        <li><span class="lead">I have already shipped a gateway that decides what an agent may do.</span> Phosphor, my own
+        MCP server, exposes 38 tools behind a permission gate, runs on mainnet against real balances, and carries 993 tests.
+        What leaves the process is built by an allowlist projection rather than scrubbed on the way out, so a field added next
+        quarter is invisible by default instead of shipping until somebody remembers it. Reading Aperture's description was the
+        first time a job posting described the thing already on my disk.</li>
+
+        <li><span class="lead">I know where a green test suite lies.</span> A control that asks the backend before it renders
+        draws nothing in a browser harness, so 392 passing tests once proved nothing about the change I had just made. Making
+        that state reachable in the harness exposed two real defects in a single look. In the same spirit, I accepted a 13 times
+        faster indexing path only after replaying old and new code against a copy of the real store and diffing all 4,019 rows
+        for zero differences.</li>
+
+        <li><span class="lead">I ship in public and I read other people's code closely.</span> Warden and my agent skill
+        library are public MIT repositories. I also found and fixed a secret-exfiltration flaw in an open-source MCP server,
+        where the guard matched tracked secrets as a literal substring, so any encoding defeated it while still round-tripping
+        to the exact secret. That work is with the maintainer under coordinated disclosure.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sq"></span><h2>How I work with agents</h2><span class="line"></span></div>
+      <p class="para">
+        Agents made the cheap half of engineering free and moved the entire cost to verification, so the review practice is the
+        product now. In my own repositories that means invariants enforced by a test over the generated output rather than by a
+        comment somebody can ignore, canary tests over the exact strings that must never leave the process, harnesses that score
+        the real prompt against the real model instead of a paraphrase of it, and a standing rule that a passing suite is not
+        evidence when the new state is unreachable inside the harness. I also verify what is actually running before I read a
+        line of code, because a feature reported broken the morning after I shipped it turned out to be a two-week-old binary.
+      </p>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sq"></span><h2>Where I want to develop, and why here</h2><span class="line"></span></div>
+      <p class="para">
+        Straight answer on the must-have: I have not shipped production Go. I write Rust, TypeScript and Python daily, and I
+        picked up Rust because Warden needed it, then shipped that app publicly five days after the first commit. Go is the next
+        one, and I would rather tell you that now than have it surface in week two. Networking depth is the other place I want a
+        stronger team around me.
+      </p>
+      <p class="para">
+        I want this role because MCP gateways, LLM proxies and sandboxes are what I already build on my own time, and because I
+        would rather be held to somebody else's production bar than to my own. If a different team, level or scope inside
+        Tailscale is the better place to start that, I would welcome that conversation just as much.
+      </p>
+    </section>
+
+    <div class="signoff">
+      <p class="close">Thank you for your time,</p>
+      <p class="word">Karim Baba<span class="period">.</span></p>
+    </div>
+
+  </main>
+</body>
+</html>
