@@ -262,7 +262,7 @@ export default function ResumePage() {
                   AI agent subscription can operate DeFi positions: key custody, a
                   policy engine that simulates and budget-checks every write, and
                   in-app human approval. Chain-abstracted through NEAR Intents
-                  across 25+ chains, plus Hyperliquid perpetuals. 50,000 lines of TypeScript and
+                  across 30+ chains, plus Hyperliquid perpetuals. 50,000 lines of TypeScript and
                   1,200+ tests, open source and running on mainnet.
                 </p>
                 <p className="stack">
@@ -338,8 +338,7 @@ export default function ResumePage() {
                 </li>
                 <li>
                   Merged agent infrastructure with on-chain systems to build
-                  agent-driven DeFi harnesses, where the agent proposes and a
-                  human approves before anything moves.
+                  agent-driven DeFi harnesses.
                 </li>
               </ul>
             </section>
@@ -372,9 +371,9 @@ export default function ResumePage() {
                   at production.
                 </li>
                 <li>
-                  <span className="lead">Delivery under pressure.</span> I ship
-                  finished products against a clock, from hackathon builds to live
-                  launch dates, and the work holds up after the deadline passes.
+                  <span className="lead">Delivery under pressure.</span> I work best
+                  shipping against a clock, from hackathon builds to live launch
+                  dates, and the work holds up after the deadline passes.
                 </li>
               </ul>
             </section>
