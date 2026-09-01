@@ -274,20 +274,26 @@ export default function ResumePage() {
                   <p className="proj-name">
                     Frontier{" "}
                     <span className="desc">
-                      · AI newspaper with a self-improving memory layer
+                      · self-improving multi-agent pipeline, output as a
+                      newspaper
                     </span>
                   </p>
                   <span className="proj-tag">24 editions, 2026</span>
                 </div>
                 <p className="proj-desc">
-                  Multi-agent newspaper built over three months. Five research
-                  agents report in parallel, an editor writes the front page, and
-                  a designer lays out a dated broadsheet. Every correction I gave
-                  an edition was written back into a persistent memory layer the
-                  next run reads, so repeat mistakes became hard gates that fail
-                  the build rather than advice nobody follows.
+                  Built as a self-improvement loop: each edition&rsquo;s failure
+                  becomes a persistent rule the next run loads, and any rule that
+                  recurred is promoted from advisory prose into a build gate that
+                  exits non-zero. Lead-story dedupe moved from string matching on
+                  headlines to subject comparison across recent editions; missing
+                  art moved from a suggestion to a required pipeline slot. Runs as
+                  role-based agent dispatch, five researchers in parallel plus an
+                  editor and a designer, with the model assigned per role and
+                  swappable.
                 </p>
-                <p className="stack">Claude agents · Node.js · HTML</p>
+                <p className="stack">
+                  Multi-agent orchestration · Node.js · HTML
+                </p>
               </div>
 
               <div className="proj">
