@@ -228,10 +228,11 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p className="proj-desc">
-                  A desktop app that runs several AI coding agents against one
-                  codebase at once, handling coordination, isolation, and review
-                  so parallel work does not collide. 80,000 lines of Rust and
-                  TypeScript across 220 source files.
+                  Parallel AI coding agents collide on a shared codebase. Warden
+                  gives each one isolation, coordinates their work, and puts
+                  sessions, process state, token spend and file activity in a
+                  single live view. 80,000 lines of Rust and TypeScript across 220
+                  source files.
                 </p>
                 <p className="stack">Tauri · Rust · React / TS</p>
               </div>
@@ -281,15 +282,10 @@ export default function ResumePage() {
                   <span className="proj-tag">24 editions, 2026</span>
                 </div>
                 <p className="proj-desc">
-                  Built as a self-improvement loop: each edition&rsquo;s failure
-                  becomes a persistent rule the next run loads, and any rule that
-                  recurred is promoted from advisory prose into a build gate that
-                  exits non-zero. Lead-story dedupe moved from string matching on
-                  headlines to subject comparison across recent editions; missing
-                  art moved from a suggestion to a required pipeline slot. Runs as
-                  role-based agent dispatch, five researchers in parallel plus an
-                  editor and a designer, with the model assigned per role and
-                  swappable.
+                  A newspaper that fixes itself. Every correction I made became a
+                  rule the next run loads, and the rules that kept getting ignored
+                  became build gates that fail the run. Five researchers work in
+                  parallel, then an editor and a designer.
                 </p>
                 <p className="stack">
                   Multi-agent orchestration · Node.js · HTML
@@ -309,15 +305,16 @@ export default function ResumePage() {
                   </span>
                 </div>
                 <p className="proj-desc">
-                  Operations automation for a supplies business I co-founded. A
-                  voice agent answers the phone line, and calls, email and text
-                  resolve to one contact record, so every channel reads and writes
-                  the same history. Approved quotes become QuickBooks invoices
-                  automatically, and each conversation is recorded, transcribed
-                  and summarised into its own thread for a human to pick up.
+                  Operations automation for a supplies business I co-founded.
+                  Calls, email and text resolve to one contact record, so every
+                  channel reads and writes the same history, and a voice agent
+                  fields the phone line. Intuit ships no MCP server, so I built
+                  one: ten annotated tools over the live books, serving both MCP
+                  protocol revisions from a single factory. Approved quotes become
+                  QuickBooks invoices through it.
                 </p>
                 <p className="stack">
-                  TypeScript · Next.js · Telnyx · Supabase · QuickBooks
+                  TypeScript · Node.js · Telnyx · Supabase · MCP · QuickBooks
                 </p>
               </div>
             </section>
