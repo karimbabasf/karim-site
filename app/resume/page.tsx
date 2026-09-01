@@ -41,8 +41,9 @@ export default function ResumePage() {
           <article className="sheet">
             <header>
               <p className="eyebrow">
-                Applied AI<span className="dot" />Crypto<span className="dot" />
-                Business Dev
+                Software Engineer<span className="dot" />Agent Infrastructure
+                <span className="dot" />
+                Crypto
               </p>
               <h1 className="wordmark">
                 Karim Baba<span className="period">.</span>
@@ -119,16 +120,17 @@ export default function ResumePage() {
             <hr className="rule" />
 
             <p className="summary">
-              Self-taught, crypto-native full-stack builder focused on payment
-              infrastructure for AI agents. In the Ethereum ecosystem since 2021,
-              starting in DeFi and now working in agentic systems. Build and ship
-              end to end: a multi-agent orchestration desktop app in Rust and
-              Tauri, on-chain trading systems, and the operating stack for a
-              supplies business I co-founded, including automated quoting, an
-              order pipeline, and an automated phone line that executes workflows,
-              transcribes, and summarizes every call. I publish open-source agent
-              tooling and run in-person business development across the San
-              Francisco startup scene.
+              Software engineer with three years of development experience across
+              agent infrastructure, developer tooling and Blockchain systems. I
+              have designed and shipped the operational layer autonomous agents
+              depend on: orchestration harnesses, key custody and transaction
+              signing, and the policy controls that require human authorization
+              before an agent executes irreversible actions. Five years of
+              on-chain experience since 2021 informs the smart-contract and DeFi
+              side of that work. Since relocating to San Francisco I have become a
+              fixture in the city&rsquo;s crypto and AI ecosystem, at ease in rooms
+              with founders, operators and investors, and I represent 1Claw on the
+              ground as its San Francisco liaison.
             </p>
 
             <section>
@@ -238,16 +240,29 @@ export default function ResumePage() {
                 <div className="proj-top">
                   <p className="proj-name">
                     Phosphor{" "}
-                    <span className="desc">· agent infrastructure for DeFi</span>
+                    <span className="desc">
+                      · agent-driven DeFi with a human approval gate
+                    </span>
                   </p>
+                  <a
+                    className="repo"
+                    href="https://github.com/karimbabasf/phosphor"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 1.7a10.3 10.3 0 0 0-3.26 20.07c.52.1.7-.22.7-.5v-1.75c-2.86.62-3.47-1.38-3.47-1.38-.47-1.19-1.15-1.5-1.15-1.5-.94-.64.07-.63.07-.63 1.04.07 1.58 1.07 1.58 1.07.92 1.58 2.42 1.12 3.01.86.1-.67.36-1.12.65-1.38-2.28-.26-4.68-1.14-4.68-5.07 0-1.12.4-2.03 1.06-2.75-.1-.26-.46-1.3.1-2.71 0 0 .87-.28 2.85 1.05a9.9 9.9 0 0 1 5.19 0c1.98-1.33 2.85-1.05 2.85-1.05.56 1.41.2 2.45.1 2.71.66.72 1.06 1.63 1.06 2.75 0 3.94-2.4 4.8-4.69 5.06.37.32.7.94.7 1.9v2.82c0 .28.19.6.71.5A10.3 10.3 0 0 0 12 1.7z" />
+                    </svg>
+                    GitHub
+                  </a>
                 </div>
                 <p className="proj-desc">
-                  DeFi through Agent subscriptions users already pay for. NEAR
-                  intents for chain-abstracted execution, 38 MCP tools spanning
-                  liquidity provision and Hyperliquid perpetuals, every write
-                  simulated and gated behind desired policies the agent cannot
-                  issue without human approval. 50,000 lines of TypeScript, 993
-                  tests, open source and proven to work.
+                  Local desktop application exposing 52 MCP tools, so an existing
+                  AI agent subscription can operate DeFi positions: key custody, a
+                  policy engine that simulates and budget-checks every write, and
+                  in-app human approval. Chain-abstracted across five mainnets,
+                  plus Hyperliquid perpetuals. 50,000 lines of TypeScript, open
+                  source and running on mainnet.
                 </p>
                 <p className="stack">
                   TypeScript · MCP · NEAR Intents · Hyperliquid
