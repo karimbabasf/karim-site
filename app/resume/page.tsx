@@ -272,32 +272,43 @@ export default function ResumePage() {
               <div className="proj">
                 <div className="proj-top">
                   <p className="proj-name">
-                    DevSignal{" "}
+                    Frontier{" "}
                     <span className="desc">
-                      · autonomous developer-news publisher
+                      · paid daily paper with a server-side paywall
                     </span>
                   </p>
-                  <span className="proj-tag">first shipped product, 2026</span>
+                  <span className="proj-tag">pre-launch, 2026</span>
                 </div>
                 <p className="proj-desc">
-                  Personalized developer-news scraper that turns noise into an
-                  autonomous AI publisher. Built end to end at an AWS hackathon.
+                  Subscription publication at $2.50 an edition or $20 a month.
+                  Editions are structured JSON rather than rendered HTML, so the
+                  free cut is computed on the server and withheld prose never
+                  reaches the client. Stripe Checkout with guest purchase, and
+                  entitlement resolved in one module behind row-level security.
                 </p>
-                <p className="stack">Next.js · Supabase</p>
+                <p className="stack">Next.js · TypeScript · Supabase · Stripe</p>
               </div>
 
               <div className="proj">
                 <div className="proj-top">
                   <p className="proj-name">
-                    Cliptic &amp; Teleprompt{" "}
-                    <span className="desc">· creator tooling</span>
+                    Switchboard{" "}
+                    <span className="desc">· AI phone line for a live business</span>
                   </p>
+                  <span className="proj-tag">answering real calls since 2026</span>
                 </div>
                 <p className="proj-desc">
-                  On-device vertical-video caption editor with a deterministic
-                  caption engine, plus a shipped iPhone teleprompter-recorder.
+                  Telnyx voice agent answering the phone line of a supplies
+                  business I co-founded: recording disclosure first for two-party
+                  consent, answers from the product catalogue, then routes the
+                  caller to a quote, a text, or a human. Calls are recorded,
+                  transcribed and summarised into a Telegram thread per contact,
+                  with the webhook only enqueueing so slow work never blocks a
+                  call.
                 </p>
-                <p className="stack">TypeScript · React · Vercel</p>
+                <p className="stack">
+                  TypeScript · Next.js · Telnyx · Supabase · AssemblyAI
+                </p>
               </div>
             </section>
 
