@@ -261,9 +261,9 @@ export default function ResumePage() {
                   Local desktop application exposing 52 MCP tools, so an existing
                   AI agent subscription can operate DeFi positions: key custody, a
                   policy engine that simulates and budget-checks every write, and
-                  in-app human approval. Chain-abstracted across five mainnets,
-                  plus Hyperliquid perpetuals. 50,000 lines of TypeScript, open
-                  source and running on mainnet.
+                  in-app human approval. Chain-abstracted through NEAR Intents
+                  across 25+ chains, plus Hyperliquid perpetuals. 50,000 lines of TypeScript and
+                  1,200+ tests, open source and running on mainnet.
                 </p>
                 <p className="stack">
                   TypeScript · MCP · NEAR Intents · Hyperliquid
@@ -282,7 +282,8 @@ export default function ResumePage() {
                   <span className="proj-tag">24 editions, 2026</span>
                 </div>
                 <p className="proj-desc">
-                  A newspaper that fixes itself. Every correction I made became a
+                  A newspaper that fixes itself, across 24 editions. Every
+                  correction I made became a
                   rule the next run loads, and the rules that kept getting ignored
                   became build gates that fail the run. Five researchers work in
                   parallel, then an editor and a designer.
@@ -309,8 +310,9 @@ export default function ResumePage() {
                   Calls, email and text resolve to one contact record, so every
                   channel reads and writes the same history, and a voice agent
                   fields the phone line. Intuit ships no MCP server, so I built
-                  one: ten annotated tools over the live books, serving both MCP
-                  protocol revisions from a single factory. Approved quotes become
+                  one: ten annotated tools over the live books, six read-only and
+                  four writes, serving both MCP protocol revisions from a single
+                  factory. Approved quotes become
                   QuickBooks invoices through it.
                 </p>
                 <p className="stack">
