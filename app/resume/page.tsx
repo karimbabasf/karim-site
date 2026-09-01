@@ -274,40 +274,44 @@ export default function ResumePage() {
                   <p className="proj-name">
                     Frontier{" "}
                     <span className="desc">
-                      · paid daily paper with a server-side paywall
+                      · AI newspaper with a self-improving memory layer
                     </span>
                   </p>
-                  <span className="proj-tag">pre-launch, 2026</span>
+                  <span className="proj-tag">24 editions, 2026</span>
                 </div>
                 <p className="proj-desc">
-                  Subscription publication at $2.50 an edition or $20 a month.
-                  Editions are structured JSON rather than rendered HTML, so the
-                  free cut is computed on the server and withheld prose never
-                  reaches the client. Stripe Checkout with guest purchase, and
-                  entitlement resolved in one module behind row-level security.
+                  Multi-agent newspaper built over three months. Five research
+                  agents report in parallel, an editor writes the front page, and
+                  a designer lays out a dated broadsheet. Every correction I gave
+                  an edition was written back into a persistent memory layer the
+                  next run reads, so repeat mistakes became hard gates that fail
+                  the build rather than advice nobody follows.
                 </p>
-                <p className="stack">Next.js · TypeScript · Supabase · Stripe</p>
+                <p className="stack">Claude agents · Node.js · HTML</p>
               </div>
 
               <div className="proj">
                 <div className="proj-top">
                   <p className="proj-name">
                     Switchboard{" "}
-                    <span className="desc">· AI phone line for a live business</span>
+                    <span className="desc">
+                      · business automation across phone, email and messaging
+                    </span>
                   </p>
-                  <span className="proj-tag">answering real calls since 2026</span>
+                  <span className="proj-tag">
+                    handling real customers since 2026
+                  </span>
                 </div>
                 <p className="proj-desc">
-                  Telnyx voice agent answering the phone line of a supplies
-                  business I co-founded: recording disclosure first for two-party
-                  consent, answers from the product catalogue, then routes the
-                  caller to a quote, a text, or a human. Calls are recorded,
-                  transcribed and summarised into a Telegram thread per contact,
-                  with the webhook only enqueueing so slow work never blocks a
-                  call.
+                  Operations automation for a supplies business I co-founded. A
+                  voice agent answers the phone line, and calls, email and text
+                  resolve to one contact record, so every channel reads and writes
+                  the same history. Approved quotes become QuickBooks invoices
+                  automatically, and each conversation is recorded, transcribed
+                  and summarised into its own thread for a human to pick up.
                 </p>
                 <p className="stack">
-                  TypeScript · Next.js · Telnyx · Supabase · AssemblyAI
+                  TypeScript · Next.js · Telnyx · Supabase · QuickBooks
                 </p>
               </div>
             </section>
