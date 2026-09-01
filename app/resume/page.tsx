@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { IBM_Plex_Mono } from "next/font/google";
 import ResumeToolbar from "@/components/resume-toolbar";
 import "./resume.css";
 
-// The résumé document has its own type system (IBM Plex + Space Grotesk),
+// The résumé document has its own type system (General Sans + IBM Plex Mono),
 // self-hosted via next/font so there's no layout shift and no external request.
-const display = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-});
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-ibm-plex-sans",
+// General Sans is not on Google Fonts, so the woff2 files live in public/fonts.
+const generalSans = localFont({
+  src: [
+    { path: "../../public/fonts/GeneralSans-400.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/GeneralSans-500.woff2", weight: "500", style: "normal" },
+    { path: "../../public/fonts/GeneralSans-600.woff2", weight: "600", style: "normal" },
+    { path: "../../public/fonts/GeneralSans-700.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-general-sans",
   display: "swap",
 });
 const plexMono = IBM_Plex_Mono({
@@ -36,7 +36,7 @@ export default function ResumePage() {
 
       <div className="flex-1 px-4 py-8 sm:px-6 sm:py-12 print:p-0">
         <div
-          className={`resumeDoc ${display.variable} ${plexSans.variable} ${plexMono.variable}`}
+          className={`resumeDoc ${generalSans.variable} ${plexMono.variable}`}
         >
           <article className="sheet">
             <header>

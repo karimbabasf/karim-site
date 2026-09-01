@@ -23,8 +23,8 @@
   --accent-ink: var(--neon);
 
   --mono: var(--font-ibm-plex-mono), ui-monospace, "SF Mono", Menlo, monospace;
-  --sans: var(--font-ibm-plex-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --display: var(--font-space-grotesk), var(--font-ibm-plex-sans), sans-serif;
+  --sans: var(--font-general-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --display: var(--font-general-sans), -apple-system, sans-serif;
 
   color: var(--ink);
   font-family: var(--sans);
@@ -431,3 +431,11 @@
   .resumeDoc .role:last-child,
   .resumeDoc .proj:last-child { margin-bottom: 0; }
 }
+
+/* General Sans tuning, matched to the print master. */
+.resumeDoc .wordmark { font-weight: 700; letter-spacing: -0.04em; }
+.resumeDoc .eyebrow { letter-spacing: 0.21em; font-weight: 600; }
+.resumeDoc .sec-head h2 { font-weight: 600; letter-spacing: 0.16em; }
+.resumeDoc .role-title,
+.resumeDoc .proj-name { font-weight: 600; letter-spacing: -0.017em; }
+.resumeDoc .summary { line-height: 1.58; }
