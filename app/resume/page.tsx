@@ -335,12 +335,9 @@ export default function ResumePage() {
                   and zkSync.
                 </li>
                 <li>
-                  Active trader since 2021, with significant personal volume
-                  across cycles.
-                </li>
-                <li>
-                  Regular at SF events: NEARCON, Cursor Compile, Founders Inc,
-                  and more.
+                  Merged agent infrastructure with on-chain systems to build
+                  agent-driven DeFi harnesses, where the agent proposes and a
+                  human approves before anything moves.
                 </li>
               </ul>
             </section>
@@ -360,24 +357,22 @@ export default function ResumePage() {
                   deployment within three days.
                 </li>
                 <li>
-                  <span className="lead">Security-first system design.</span> I
-                  established that an autonomous agent must never approve its own
-                  actions, and implemented the enforcement layer: transaction
+                  <span className="lead">System design.</span> I settle the rule
+                  before the code. An autonomous agent must never approve its own
+                  actions, so I built the enforcement layer around it: transaction
                   simulation, per-session budgets, destination allowlists, and
-                  human approval outside the agent's control.
+                  human approval outside the agent's reach.
                 </li>
                 <li>
-                  <span className="lead">
-                    Commercial judgment in architecture.
-                  </span>{" "}
-                  I designed Phosphor to run on inference the user already pays
-                  for, reducing the marginal cost per user to zero.
+                  <span className="lead">Agent-driven development.</span> I build
+                  with agents and for them: orchestration harnesses, MCP servers,
+                  and the guardrails that make an autonomous system safe to point
+                  at production.
                 </li>
                 <li>
-                  <span className="lead">Full business ownership.</span> I
-                  delivered the operating stack for a supplies company, covering
-                  quote generation, order pipeline, invoicing, telephony, and
-                  carrier compliance.
+                  <span className="lead">Delivery under pressure.</span> I ship
+                  finished products against a clock, from hackathon builds to live
+                  launch dates, and the work holds up after the deadline passes.
                 </li>
               </ul>
             </section>
