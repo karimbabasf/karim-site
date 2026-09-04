@@ -121,4 +121,15 @@ export const projects: Project[] = [
     tags: ["tauri", "whisper", "video"],
     href: "https://github.com/karimbabasf/cliptic",
   },
+  {
+    id: "karim-skills",
+    title: "karim skills",
+    role: "Open source",
+    year: "2026",
+    blurb: "Six working Claude Code skills, packaged so anyone can install them.",
+    detail:
+      "A public monorepo of six Claude Code skills built for daily use, then rewritten to drop the personal wiring so they install into any setup: a morning brief, a focus-session timer, a calendar secretary, a second-brain note system, a Notion architect, and an end-of-day wind-down. Each one is a folder of Markdown and a few scripts, so a skill installs by copying it into ~/.claude/skills or running install.sh. No dependencies, no account, no API key. MIT licensed.",
+    tags: ["claude-code", "skills", "open-source"],
+    href: "https://github.com/karimbabasf/karim-skills",
+  },
 ];
