@@ -34,6 +34,17 @@ export const projects: Project[] = [
     href: "https://github.com/karimbabasf/WARDEN",
   },
   {
+    id: "primer",
+    title: "Primer",
+    role: "Design + build",
+    year: "2026",
+    blurb: "A menu bar scratchpad for the things you do not understand yet.",
+    detail:
+      "You hit a word you cannot define, write it down, and never look it up. Primer takes that note from the menu bar in one keystroke, files it under a topic on its own with a batched Haiku pass, and turns any selection of terms into an illustrated study guide: plain English, hover definitions, real source pulled at real line numbers, and a map of how terms you wrote down on separate days actually connect. The guide is built by a headless Claude Code run on Opus at max effort, working in its own sandbox and reporting its progress line by line, with the finished HTML and PDF copied out only once they exist. Four prompt presets set the shape and a written contract sets a hard floor on the diagrams. Tauri 2, a Rust core, React, and no API key anywhere in the app.",
+    tags: ["rust", "tauri", "claude-code"],
+    href: "https://github.com/karimbabasf/primer",
+  },
+  {
     id: "phosphor",
     title: "phosphor",
     role: "Local app",
