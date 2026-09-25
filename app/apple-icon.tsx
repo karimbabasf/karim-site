@@ -1,12 +1,11 @@
 import { ImageResponse } from "next/og";
 import { loadFont } from "../lib/og-font";
 
-export const size = { width: 64, height: 64 };
+export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-// Generated favicon: a paper "K" on an ink tile, the homepage's two colors.
-// Ink reads on both light and dark tab bars, down to 16px.
-export default async function Icon() {
+// Home screen icon. iOS rounds the corners itself, so the tile is square.
+export default async function AppleIcon() {
   const font = await loadFont("Inter Tight", 600, "K");
 
   return new ImageResponse(
@@ -19,13 +18,12 @@ export default async function Icon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#16150f",
-          borderRadius: 14,
           color: "#f3f1ec",
           fontFamily: font ? "Inter Tight" : "sans-serif",
-          fontSize: 44,
+          fontSize: 116,
           fontWeight: 600,
           lineHeight: 1,
-          letterSpacing: -1,
+          letterSpacing: -3,
         }}
       >
         K

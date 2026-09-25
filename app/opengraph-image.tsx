@@ -1,28 +1,32 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { loadFont } from "../lib/og-font";
+import { intro } from "../lib/content";
 
-// Route segment config — rendered once at build, served as a static PNG.
-export const alt = "Karim Baba — AI-native builder, BD @ 1Claw. San Francisco.";
+// Route segment config: rendered once at build, served as a static PNG.
+export const alt = "Karim Baba, software engineer in San Francisco building agent infrastructure for blockchains.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const INK = "#ededed";
-const DIM = "#6b6b6b";
-const NEON = "#a3f04b";
-const HAIRLINE = "rgba(255,255,255,0.10)";
+// The homepage's palette: warm paper, ink type.
+const PAPER = "#f3f1ec";
+const INK = "#16150f";
+const INK_3 = "#6f6b62";
+const LINE = "#dcd8ce";
 
 export default async function OpengraphImage() {
-  const text =
-    "Karim Baba AI-native builder · BD @ 1Claw Nobody told me to. I just did it. San Francisco > agentic development";
-  const [regular, semibold] = await Promise.all([
-    loadFont("Geist Mono", 400, text),
-    loadFont("Geist Mono", 600, text),
+  const domain = "karimbabasf.com";
+  const [semibold, medium, portrait] = await Promise.all([
+    loadFont("Inter Tight", 600, intro.name),
+    loadFont("Inter Tight", 500, intro.lede + domain),
+    readFile(join(process.cwd(), "public/work/portrait-tall.jpg")),
   ]);
 
   const fonts = [
-    regular && { name: "Geist Mono", data: regular, weight: 400 as const, style: "normal" as const },
-    semibold && { name: "Geist Mono", data: semibold, weight: 600 as const, style: "normal" as const },
-  ].filter(Boolean) as { name: string; data: ArrayBuffer; weight: 400 | 600; style: "normal" }[];
+    semibold && { name: "Inter Tight", data: semibold, weight: 600 as const, style: "normal" as const },
+    medium && { name: "Inter Tight", data: medium, weight: 500 as const, style: "normal" as const },
+  ].filter(Boolean) as { name: string; data: ArrayBuffer; weight: 500 | 600; style: "normal" }[];
 
   return new ImageResponse(
     (
@@ -31,64 +35,59 @@ export default async function OpengraphImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          background: "#000000",
+          background: PAPER,
           color: INK,
-          padding: 72,
-          border: `1px solid ${HAIRLINE}`,
-          fontFamily: fonts.length ? "Geist Mono" : "monospace",
+          padding: 64,
+          fontFamily: fonts.length ? "Inter Tight" : "sans-serif",
         }}
       >
-        {/* Top meta — macOS terminal lights (the site's signature) + location */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <div style={{ width: 20, height: 20, borderRadius: 20, background: "#ff5f57" }} />
-            <div style={{ width: 20, height: 20, borderRadius: 20, background: "#febc2e" }} />
-            <div style={{ width: 20, height: 20, borderRadius: 20, background: "#28c840" }} />
+        <div style={{ display: "flex", flexDirection: "column", flex: 1, paddingRight: 56 }}>
+          <div
+            style={{
+              display: "flex",
+              fontSize: 118,
+              fontWeight: 600,
+              letterSpacing: -4.7,
+              lineHeight: 0.9,
+              marginLeft: -6,
+              marginTop: 6,
+            }}
+          >
+            {intro.name}
           </div>
-          <div style={{ display: "flex", fontSize: 26, color: DIM }}>San Francisco</div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 44,
+              fontSize: 34,
+              fontWeight: 500,
+              lineHeight: 1.28,
+              letterSpacing: -0.5,
+            }}
+          >
+            {intro.lede}
+          </div>
+          <div style={{ display: "flex", flex: 1 }} />
+          <div
+            style={{
+              display: "flex",
+              paddingTop: 20,
+              borderTop: `1px solid ${INK}`,
+              fontSize: 24,
+              fontWeight: 500,
+              color: INK_3,
+            }}
+          >
+            {domain}
+          </div>
         </div>
-
-        {/* Spacer — anchors the name block to the lower-left */}
-        <div style={{ display: "flex", flex: 1 }} />
-
-        {/* Name */}
-        <div
-          style={{
-            display: "flex",
-            fontSize: 132,
-            fontWeight: 600,
-            letterSpacing: -4,
-            lineHeight: 1,
-          }}
-        >
-          Karim Baba
-        </div>
-
-        {/* Title + org */}
-        <div style={{ display: "flex", alignItems: "baseline", marginTop: 24, fontSize: 38 }}>
-          <span style={{ color: INK }}>AI-native builder</span>
-          <span style={{ color: DIM, marginLeft: 16 }}>· BD @ 1Claw</span>
-        </div>
-
-        {/* Tagline — dim setup, neon punch */}
-        <div style={{ display: "flex", alignItems: "baseline", marginTop: 22, fontSize: 32 }}>
-          <span style={{ color: DIM }}>Nobody told me to.&nbsp;</span>
-          <span style={{ color: NEON, fontWeight: 600 }}>I just did it.</span>
-        </div>
-
-        {/* Bottom terminal line */}
-        <div style={{ display: "flex", alignItems: "center", marginTop: 56, fontSize: 26, color: DIM }}>
-          <span style={{ color: NEON, marginRight: 14 }}>&gt;</span>
-          <span>agentic development</span>
-          <div style={{ width: 14, height: 26, background: NEON, marginLeft: 14 }} />
-        </div>
+        <img
+          src={`data:image/jpeg;base64,${portrait.toString("base64")}`}
+          width={402}
+          height={502}
+          alt=""
+          style={{ borderRadius: 6, objectFit: "cover", border: `1px solid ${LINE}` }}
+        />
       </div>
     ),
     { ...size, fonts: fonts.length ? fonts : undefined },
