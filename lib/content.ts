@@ -11,8 +11,6 @@ export const intro = {
   location: "San Francisco",
 };
 
-export type Shot = { src: string; alt: string; w: number; h: number };
-
 export type Feature = {
   id: string;
   name: string;
@@ -20,7 +18,6 @@ export type Feature = {
   body: string;
   facts: { label: string; value: string }[];
   links: { label: string; href: string }[];
-  shots: Shot[];
 };
 
 export const features: Feature[] = [
@@ -40,11 +37,6 @@ export const features: Feature[] = [
       { label: "phosphor.money", href: "https://phosphor.money" },
       { label: "Source", href: "https://github.com/karimbabasf/phosphor" },
     ],
-    shots: [
-      { src: "/work/phosphor-hero.webp", alt: "Phosphor trade screen with a swap waiting for approval", w: 2000, h: 1125 },
-      { src: "/work/phosphor-approve.webp", alt: "A swap card that waits for the user's approval", w: 1800, h: 1013 },
-      { src: "/work/phosphor-networks.webp", alt: "One balance across 35 networks", w: 1800, h: 1013 },
-    ],
   },
   {
     id: "warden",
@@ -58,10 +50,6 @@ export const features: Feature[] = [
       { label: "Scene", value: "React Three Fiber" },
     ],
     links: [{ label: "Source", href: "https://github.com/karimbabasf/WARDEN" }],
-    shots: [
-      { src: "/work/warden-radar.webp", alt: "Warden radar with Claude and Codex sessions", w: 1200, h: 859 },
-      { src: "/work/warden-warroom.webp", alt: "Warden war room view with habit clusters", w: 1512, h: 945 },
-    ],
   },
   {
     id: "primer",
@@ -75,7 +63,6 @@ export const features: Feature[] = [
       { label: "API keys", value: "None" },
     ],
     links: [{ label: "Source", href: "https://github.com/karimbabasf/primer" }],
-    shots: [{ src: "/work/primer-guide.webp", alt: "A generated Primer study guide", w: 1400, h: 940 }],
   },
 ];
 

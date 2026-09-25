@@ -3,8 +3,9 @@ import { Inter_Tight } from "next/font/google";
 import Nav from "@/components/v3/nav";
 import Reveal from "@/components/v3/reveal";
 import WorkIndex from "@/components/v3/work-index";
+import FeatureList from "@/components/v3/feature-list";
 import CopyEmail from "@/components/v3/copy-email";
-import { about, contact, experience, features } from "@/lib/content";
+import { about, contact, experience } from "@/lib/content";
 import "./home.css";
 
 const sans = Inter_Tight({
@@ -56,51 +57,9 @@ export default function Home() {
         <section id="work" className="wrap section">
           <div className="section-head">
             <h2>Selected work</h2>
-            <span className="num">2025 to 2026</span>
+            <span>Select a project for details</span>
           </div>
-          {features.map((f, i) => {
-            const s = f.shots[0];
-            return (
-              <article key={f.id} className="project" id={f.id}>
-                <Reveal>
-                  <div className="shot">
-                    <Image
-                      src={s.src}
-                      alt={s.alt}
-                      width={s.w}
-                      height={s.h}
-                      priority={i === 0}
-                      sizes="(min-width: 1280px) 1168px, 100vw"
-                    />
-                  </div>
-                  <div className="project-text">
-                    <div>
-                      <h3 className="project-name">{f.name}</h3>
-                      <p className="project-line">{f.line}</p>
-                    </div>
-                    <p className="project-body">{f.body}</p>
-                    <div>
-                      <dl className="facts">
-                        {f.facts.map((x) => (
-                          <div key={x.label}>
-                            <dt>{x.label}</dt>
-                            <dd className="num">{x.value}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                      <div className="project-links">
-                        {f.links.map((l) => (
-                          <a key={l.href} className="ul" href={l.href} target="_blank" rel="noreferrer noopener">
-                            {l.label}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </Reveal>
-              </article>
-            );
-          })}
+          <FeatureList />
         </section>
 
         <section className="wrap section">
