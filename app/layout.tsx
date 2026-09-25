@@ -2,14 +2,18 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+// Not preloaded: the homepage never draws Geist, so a preload there is wasted
+// bytes. Pages that use it still fetch it as soon as their text needs it.
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  preload: false,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 // Absolute base for OG/Twitter image URLs. On Vercel this resolves to the
@@ -23,17 +27,17 @@ const metadataBase = new URL(
 export const metadata: Metadata = {
   metadataBase,
   title: "Karim Baba",
-  description: "Karim Baba, software engineer in San Francisco building AI agent infrastructure.",
+  description: "Karim Baba, software engineer in San Francisco building agent infrastructure for blockchains.",
   openGraph: {
     type: "website",
     title: "Karim Baba",
-    description: "Software engineer building AI agent infrastructure. Based in San Francisco.",
+    description: "Software engineer in San Francisco, building agent infrastructure for blockchains.",
     siteName: "Karim Baba",
   },
   twitter: {
     card: "summary_large_image",
     title: "Karim Baba",
-    description: "Software engineer building AI agent infrastructure. Based in San Francisco.",
+    description: "Software engineer in San Francisco, building agent infrastructure for blockchains.",
     creator: "@karimbabasf",
   },
 };

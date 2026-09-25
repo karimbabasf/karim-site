@@ -1,13 +1,20 @@
+import type { Viewport } from "next";
 import Image from "next/image";
 import { Inter_Tight } from "next/font/google";
 import localFont from "next/font/local";
 import Nav from "@/components/v3/nav";
-import Reveal from "@/components/v3/reveal";
 import WorkIndex from "@/components/v3/work-index";
 import FeatureList from "@/components/v3/feature-list";
 import CopyEmail from "@/components/v3/copy-email";
-import { about, contact, experience } from "@/lib/content";
+import { ArrowDown, ArrowUpRight } from "@/components/v3/icons";
+import { about, contact, experience, intro } from "@/lib/content";
 import "./home.css";
+
+// The root layout is dark for the older pages; this one is paper.
+export const viewport: Viewport = {
+  themeColor: "#f3f1ec",
+  colorScheme: "light",
+};
 
 const sans = Inter_Tight({
   subsets: ["latin"],
@@ -15,7 +22,10 @@ const sans = Inter_Tight({
   display: "swap",
 });
 
-// Each featured title is set in its own product's wordmark face.
+// Each featured title is set in its own product's wordmark face. Sora and Commit Mono
+// are subset to the letters of their one word (about 1 KB each). New Title is kept whole,
+// since its license does not clearly allow editing the file, so it skips the preload
+// and loads after first paint: it only draws a title below the fold.
 const phosphorFace = localFont({
   src: "./fonts-brand/Sora-SemiBold.woff2",
   weight: "600",
@@ -33,50 +43,58 @@ const frontierFace = localFont({
   weight: "200 700",
   variable: "--face-frontier",
   display: "swap",
+  preload: false,
 });
 
 export default function Home() {
   return (
     <div className={`v3 ${sans.variable} ${phosphorFace.variable} ${wardenFace.variable} ${frontierFace.variable}`}>
       <div className="backdrop" aria-hidden />
+      <div className="glow" aria-hidden />
       <Nav />
       <main>
         <section className="wrap hero" id="top">
           <div className="hero-grid">
-            <div className="hero-text">
-              <h1>Karim Baba</h1>
-              <p className="hero-lede">
-                Software engineer in San Francisco, building infrastructure for AI agents.{" "}
-                <span>
-                  Systems that act on their own and stop for a person before anything irreversible.
-                </span>
-              </p>
-              <div className="hero-meta">
-                <span>
-                  Business development at{" "}
-                  <a className="ul" href="https://1claw.xyz" target="_blank" rel="noreferrer noopener">
-                    1Claw
-                  </a>
-                </span>
-                <span>On-chain since 2021</span>
-                <a className="ul" href={`mailto:${contact.email}`}>
-                  {contact.email}
-                </a>
-              </div>
-            </div>
+            <h1 className="hero-name">
+              <span className="word">
+                <span>Karim</span>
+              </span>{" "}
+              <span className="word">
+                <span>Baba</span>
+              </span>
+            </h1>
+            <p className="hero-lede">
+              {intro.lede} <span>{intro.ledeMore}</span>
+            </p>
             <div className="portrait">
               <Image
                 src="/work/portrait-tall.jpg"
-                alt="Karim Baba"
+                alt="Portrait of Karim Baba"
                 fill
-                priority
-                sizes="(min-width: 960px) 320px, 60vw"
+                loading="eager"
+                fetchPriority="high"
+                sizes="(min-width: 960px) 300px, (min-width: 650px) 260px, 40vw"
               />
             </div>
           </div>
+          <div className="hero-bar">
+            <span>
+              Business development at{" "}
+              <a className="ul" href="https://1claw.xyz" target="_blank" rel="noreferrer noopener">
+                1Claw
+              </a>
+            </span>
+            <a className="ul" href={`mailto:${contact.email}`}>
+              {contact.email}
+            </a>
+            <a className="hero-next" href="#work">
+              Selected work
+              <ArrowDown />
+            </a>
+          </div>
         </section>
 
-        <section id="work" className="wrap section">
+        <section id="work" className="wrap screen">
           <div className="section-head">
             <h2>Selected work</h2>
             <span>Select a project for details</span>
@@ -84,93 +102,84 @@ export default function Home() {
           <FeatureList />
         </section>
 
-        <section className="wrap section">
+        <section id="projects" className="wrap screen">
           <div className="section-head">
             <h2>More projects</h2>
-            <span>{"Tools, experiments and open source"}</span>
+            <span>Tools and experiments</span>
           </div>
           <WorkIndex />
         </section>
 
-        <section id="experience" className="wrap section">
-          <div className="section-head">
-            <h2>Experience</h2>
-          </div>
-          {experience.map((e) => (
-            <div key={e.org} className="exp-item">
-              <div className="exp-org">
-                {e.href ? (
-                  <a className="ul" href={e.href} target="_blank" rel="noreferrer noopener">
-                    {e.org}
-                  </a>
-                ) : (
-                  e.org
-                )}
-              </div>
-              <div>
-                <p className="exp-role">{e.role}</p>
-                <p className="exp-body">{e.body}</p>
-              </div>
-              <div className="exp-when num">{e.when}</div>
-            </div>
-          ))}
-        </section>
-
-        <section id="about" className="wrap section">
+        <section id="about" className="wrap screen">
           <div className="section-head">
             <h2>About</h2>
           </div>
           <div className="about">
-            <div className="about-side">
-              <dl className="about-facts">
-                {about.facts.map((f) => (
-                  <div key={f.label}>
-                    <dt>{f.label}</dt>
-                    <dd>{f.value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <div className="project-links">
-                <a className="pill" href="/resume">
-                  Read the résumé
-                </a>
-                <a className="pill" href="/Karim-Baba-Resume.pdf">
-                  Download PDF
-                </a>
-              </div>
+            <p className="about-statement">
+              {about.statement} <span>{about.statementMore}</span>
+            </p>
+            <ul className="exp">
+              {experience.map((e) => (
+                <li key={e.org} className="exp-item">
+                  <span className="exp-org">
+                    {e.href ? (
+                      <a className="ul" href={e.href} target="_blank" rel="noreferrer noopener">
+                        {e.org}
+                      </a>
+                    ) : (
+                      e.org
+                    )}
+                  </span>
+                  <span className="exp-role">{e.role}</span>
+                  <span className="exp-when num">{e.when}</span>
+                  <span className="exp-line">{e.line}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="about-actions">
+              <a className="pill" href="/resume">
+                Read the résumé
+              </a>
+              <a className="pill" href="/Karim-Baba-Resume.pdf">
+                Download PDF
+              </a>
             </div>
-            <Reveal>
-              <p className="about-lead">{about.lead}</p>
-              <div className="about-cols">
-                {about.body.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
-              </div>
-            </Reveal>
           </div>
         </section>
 
-        <section id="contact" className="wrap section">
-          <div className="section-head">
-            <h2>Contact</h2>
-            <span>Open to engineering work on agent infrastructure</span>
-          </div>
-          <div className="contact">
-            <a className="contact-mail" href={`mailto:${contact.email}`}>
-              {contact.email}
-            </a>
-            <div className="contact-row">
-              <CopyEmail email={contact.email} />
-              {contact.links.map((l) => (
-                <a key={l.href} className="ul" href={l.href} target="_blank" rel="noreferrer noopener">
-                  {l.label}
-                </a>
-              ))}
+        <section id="contact" className="wrap screen contact">
+          <div className="contact-body">
+            <div className="section-head">
+              <h2>Contact</h2>
+            </div>
+            <div className="contact-grid">
+              <div>
+                <p className="contact-lead">{contact.lead}</p>
+                <div className="contact-mail-row">
+                  <a className="contact-mail" href={`mailto:${contact.email}`}>
+                    {contact.email}
+                  </a>
+                  <CopyEmail email={contact.email} />
+                </div>
+              </div>
+              <ul className="socials">
+                {contact.links.map((l) => (
+                  <li key={l.href}>
+                    <a className="social" href={l.href} target="_blank" rel="noreferrer noopener">
+                      <span className="social-name">{l.label}</span>
+                      <span className="social-handle">{l.handle}</span>
+                      <ArrowUpRight className="social-arrow" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
           <footer className="foot">
             <span>© 2026 Karim Baba</span>
-            <span className="num">San Francisco</span>
+            <a className="ul" href="#top">
+              Back to top
+            </a>
           </footer>
         </section>
       </main>
