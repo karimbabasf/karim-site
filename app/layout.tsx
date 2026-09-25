@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 // Telegram). Without this, mobile in-app browsers tint the area above the page
 // with a default color instead of matching the black background.
 export const viewport: Viewport = {
-  themeColor: "#0e0f13",
+  themeColor: "#f3f1ec",
   colorScheme: "dark",
   // Extend the layout into the safe area so the nav's black background can fill
   // the notch / in-app-browser toolbar strip (see the safe-area padding on the

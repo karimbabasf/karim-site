@@ -1,131 +1,179 @@
-import localFont from "next/font/local";
-import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
+import { Inter_Tight } from "next/font/google";
 import Nav from "@/components/v3/nav";
-import Hero from "@/components/v3/hero";
-import Feature from "@/components/v3/feature";
+import Reveal from "@/components/v3/reveal";
 import WorkIndex from "@/components/v3/work-index";
-import GlobeLazy from "@/components/v3/globe-lazy";
 import CopyEmail from "@/components/v3/copy-email";
 import { about, contact, experience, features } from "@/lib/content";
 import "./home.css";
 
-const manrope = localFont({
-  src: "./fonts-v3/Manrope-Variable.woff2",
-  variable: "--font-manrope",
-  weight: "200 800",
-  display: "swap",
-});
-
-const geistMono = localFont({
-  src: "./fonts-v3/GeistMono-Variable.woff2",
-  variable: "--font-geist-mono-v3",
-  weight: "100 900",
+const sans = Inter_Tight({
+  subsets: ["latin"],
+  variable: "--font-sans",
   display: "swap",
 });
 
 export default function Home() {
   return (
-    <div className={`v3 ${manrope.variable} ${geistMono.variable}`}>
+    <div className={`v3 ${sans.variable}`}>
       <Nav />
       <main>
-        <Hero />
-
-        <section id="work" className="v3-section" style={{ scrollMarginTop: 40 }}>
-          <div className="v3-wrap">
-            <h2 className="v3-h2">
-              Selected work. <span>Built alone, end to end, and in use.</span>
-            </h2>
-            {features.map((f, i) => (
-              <Feature key={f.id} f={f} priority={i === 0} />
-            ))}
-          </div>
-        </section>
-
-        <section className="v3-section">
-          <div className="v3-wrap">
-            <h2 className="v3-h2">
-              More projects. <span>Tools, experiments and open source.</span>
-            </h2>
-            <WorkIndex />
-          </div>
-        </section>
-
-        <section id="experience" className="v3-section" style={{ scrollMarginTop: 40 }}>
-          <div className="v3-wrap">
-            <h2 className="v3-h2">Experience</h2>
-            <div className="v3-exp">
-              {experience.map((e) => (
-                <div key={e.org} className="v3-exp-item">
-                  <div className="v3-exp-org">
-                    {e.href ? (
-                      <a href={e.href} target="_blank" rel="noreferrer noopener" className="v3-link">
-                        {e.org}
-                        <ArrowUpRight weight="bold" />
-                      </a>
-                    ) : (
-                      e.org
-                    )}
-                  </div>
-                  <div>
-                    <p className="v3-exp-role">{e.role}</p>
-                    <p className="v3-exp-body">{e.body}</p>
-                  </div>
-                  <div className="v3-exp-when mono">{e.when}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="about" className="v3-section" style={{ scrollMarginTop: 40 }}>
-          <div className="v3-wrap">
-            <h2 className="v3-h2">About</h2>
-            <div className="v3-about">
-              <p className="v3-about-lead">
-                Five years on-chain, one year of agent-driven engineering.{" "}
-                <span>The two meet wherever software is trusted to act on its own.</span>
+        <section className="wrap hero" id="top">
+          <h1>Karim Baba</h1>
+          <div className="hero-row">
+            <div>
+              <p className="hero-lede">
+                Software engineer in San Francisco, building infrastructure for AI agents.{" "}
+                <span>
+                  Systems that act on their own and stop for a person before anything irreversible.
+                </span>
               </p>
-              <div className="v3-about-body">
-                {about.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
-                <a className="v3-link" href="/resume">
-                  Read the résumé
-                  <ArrowUpRight weight="bold" />
+              <div className="hero-meta">
+                <span>
+                  Business development at{" "}
+                  <a className="ul" href="https://1claw.xyz" target="_blank" rel="noreferrer noopener">
+                    1Claw
+                  </a>
+                </span>
+                <span>On-chain since 2021</span>
+                <a className="ul" href={`mailto:${contact.email}`}>
+                  {contact.email}
                 </a>
               </div>
             </div>
+            <figure className="portrait">
+              <div className="portrait-img">
+                <Image src="/work/portrait.jpg" alt="Karim Baba" fill priority sizes="240px" />
+              </div>
+              <figcaption>
+                <span>Karim Baba</span>
+                <span>San Francisco</span>
+              </figcaption>
+            </figure>
           </div>
         </section>
 
-        <section id="contact" className="v3-contact">
-          <div className="v3-wrap">
-            <div className="v3-contact-grid">
-              <div>
-                <h2 className="v3-h2">
-                  Based in San Francisco. <span>Open to engineering work on agent infrastructure.</span>
-                </h2>
-                <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
-                  <a className="v3-email" href={`mailto:${contact.email}`}>
-                    {contact.email}
-                  </a>
-                  <CopyEmail email={contact.email} />
-                </div>
-                <div className="v3-socials">
-                  {contact.links.map((l) => (
-                    <a key={l.href} href={l.href} target="_blank" rel="noreferrer noopener">
-                      {l.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-              <GlobeLazy />
-            </div>
-            <footer className="v3-foot">
-              <span>© 2026 Karim Baba</span>
-              <span className="mono">37.77° N, 122.42° W</span>
-            </footer>
+        <section id="work" className="wrap section">
+          <div className="section-head">
+            <h2>Selected work</h2>
+            <span className="num">2025 to 2026</span>
           </div>
+          {features.map((f, i) => {
+            const s = f.shots[0];
+            return (
+              <article key={f.id} className="project" id={f.id}>
+                <Reveal>
+                  <div className="shot">
+                    <Image
+                      src={s.src}
+                      alt={s.alt}
+                      width={s.w}
+                      height={s.h}
+                      priority={i === 0}
+                      sizes="(min-width: 1280px) 1168px, 100vw"
+                    />
+                  </div>
+                  <div className="project-text">
+                    <div>
+                      <h3 className="project-name">{f.name}</h3>
+                      <p className="project-line">{f.line}</p>
+                    </div>
+                    <p className="project-body">{f.body}</p>
+                    <div>
+                      <dl className="facts">
+                        {f.facts.map((x) => (
+                          <div key={x.label}>
+                            <dt>{x.label}</dt>
+                            <dd className="num">{x.value}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                      <div className="project-links">
+                        {f.links.map((l) => (
+                          <a key={l.href} className="ul" href={l.href} target="_blank" rel="noreferrer noopener">
+                            {l.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              </article>
+            );
+          })}
+        </section>
+
+        <section className="wrap section">
+          <div className="section-head">
+            <h2>More projects</h2>
+            <span>{"Tools, experiments and open source"}</span>
+          </div>
+          <WorkIndex />
+        </section>
+
+        <section id="experience" className="wrap section">
+          <div className="section-head">
+            <h2>Experience</h2>
+          </div>
+          {experience.map((e) => (
+            <div key={e.org} className="exp-item">
+              <div className="exp-org">
+                {e.href ? (
+                  <a className="ul" href={e.href} target="_blank" rel="noreferrer noopener">
+                    {e.org}
+                  </a>
+                ) : (
+                  e.org
+                )}
+              </div>
+              <div>
+                <p className="exp-role">{e.role}</p>
+                <p className="exp-body">{e.body}</p>
+              </div>
+              <div className="exp-when num">{e.when}</div>
+            </div>
+          ))}
+        </section>
+
+        <section id="about" className="wrap section">
+          <div className="section-head">
+            <h2>About</h2>
+          </div>
+          <div className="about">
+            <div />
+            <Reveal className="about-body">
+              {about.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+              <a className="ul" href="/resume" style={{ fontSize: 16, fontWeight: 500 }}>
+                Read the résumé
+              </a>
+            </Reveal>
+          </div>
+        </section>
+
+        <section id="contact" className="wrap section">
+          <div className="section-head">
+            <h2>Contact</h2>
+            <span>Open to engineering work on agent infrastructure</span>
+          </div>
+          <div className="contact">
+            <a className="contact-mail" href={`mailto:${contact.email}`}>
+              {contact.email}
+            </a>
+            <div className="contact-row">
+              <CopyEmail email={contact.email} />
+              {contact.links.map((l) => (
+                <a key={l.href} className="ul" href={l.href} target="_blank" rel="noreferrer noopener">
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </div>
+          <footer className="foot">
+            <span>© 2026 Karim Baba</span>
+            <span className="num">San Francisco</span>
+          </footer>
         </section>
       </main>
     </div>

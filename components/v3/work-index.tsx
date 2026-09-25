@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Plus } from "@phosphor-icons/react/dist/ssr";
+import { Plus } from "@phosphor-icons/react/dist/ssr";
 import { index } from "@/lib/content";
 
 const ease = [0.23, 1, 0.32, 1] as const;
@@ -26,10 +26,10 @@ export default function WorkIndex() {
               <span className="v3-row-mobile">
                 <span className="v3-row-name">{p.name}</span>
                 <span className="v3-row-line">{p.line}</span>
-                <span className="v3-row-kind mono">{p.kind}</span>
+                <span className="v3-row-kind">{p.kind}</span>
               </span>
               <span className="v3-row-meta">
-                <span className="v3-row-kind mono">{p.kind}</span>
+                <span className="v3-row-kind">{p.kind}</span>
               </span>
               <Plus className="v3-plus" weight="light" aria-hidden />
             </button>
@@ -41,16 +41,15 @@ export default function WorkIndex() {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease }}
+                  transition={{ duration: 0.45, ease }}
                 >
                   <div className="v3-row-detail-inner">
-                    <span className="v3-row-kind mono">{p.stack}</span>
+                    <span className="v3-row-kind">{p.stack}</span>
                     <p>{p.detail}</p>
                     <span className="v3-link-cell">
                       {p.href && (
-                        <a className="v3-link" href={p.href} target="_blank" rel="noreferrer noopener">
-                          Source
-                          <ArrowUpRight weight="bold" />
+                        <a className="ul" href={p.href} target="_blank" rel="noreferrer noopener">
+                          View source
                         </a>
                       )}
                     </span>
