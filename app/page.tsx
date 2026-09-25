@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Inter_Tight } from "next/font/google";
+import localFont from "next/font/local";
 import Nav from "@/components/v3/nav";
 import Reveal from "@/components/v3/reveal";
 import WorkIndex from "@/components/v3/work-index";
@@ -14,15 +15,36 @@ const sans = Inter_Tight({
   display: "swap",
 });
 
+// Each featured title is set in its own product's wordmark face.
+const phosphorFace = localFont({
+  src: "./fonts-brand/Sora-SemiBold.woff2",
+  weight: "600",
+  variable: "--face-phosphor",
+  display: "swap",
+});
+const wardenFace = localFont({
+  src: "./fonts-brand/commit-mono-700.woff2",
+  weight: "700",
+  variable: "--face-warden",
+  display: "swap",
+});
+const frontierFace = localFont({
+  src: "./fonts-brand/new-title-variable.woff2",
+  weight: "200 700",
+  variable: "--face-frontier",
+  display: "swap",
+});
+
 export default function Home() {
   return (
-    <div className={`v3 ${sans.variable}`}>
+    <div className={`v3 ${sans.variable} ${phosphorFace.variable} ${wardenFace.variable} ${frontierFace.variable}`}>
+      <div className="backdrop" aria-hidden />
       <Nav />
       <main>
         <section className="wrap hero" id="top">
-          <h1>Karim Baba</h1>
-          <div className="hero-row">
-            <div>
+          <div className="hero-grid">
+            <div className="hero-text">
+              <h1>Karim Baba</h1>
               <p className="hero-lede">
                 Software engineer in San Francisco, building infrastructure for AI agents.{" "}
                 <span>
@@ -42,15 +64,15 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <figure className="portrait">
-              <div className="portrait-img">
-                <Image src="/work/portrait.jpg" alt="Karim Baba" fill priority sizes="240px" />
-              </div>
-              <figcaption>
-                <span>Karim Baba</span>
-                <span>San Francisco</span>
-              </figcaption>
-            </figure>
+            <div className="portrait">
+              <Image
+                src="/work/portrait-tall.jpg"
+                alt="Karim Baba"
+                fill
+                priority
+                sizes="(min-width: 960px) 320px, 60vw"
+              />
+            </div>
           </div>
         </section>
 
@@ -99,14 +121,31 @@ export default function Home() {
             <h2>About</h2>
           </div>
           <div className="about">
-            <div />
-            <Reveal className="about-body">
-              {about.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-              <a className="ul" href="/resume" style={{ fontSize: 16, fontWeight: 500 }}>
-                Read the résumé
-              </a>
+            <div className="about-side">
+              <dl className="about-facts">
+                {about.facts.map((f) => (
+                  <div key={f.label}>
+                    <dt>{f.label}</dt>
+                    <dd>{f.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="project-links">
+                <a className="pill" href="/resume">
+                  Read the résumé
+                </a>
+                <a className="pill" href="/Karim-Baba-Resume.pdf">
+                  Download PDF
+                </a>
+              </div>
+            </div>
+            <Reveal>
+              <p className="about-lead">{about.lead}</p>
+              <div className="about-cols">
+                {about.body.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
             </Reveal>
           </div>
         </section>

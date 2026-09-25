@@ -52,18 +52,19 @@ export const features: Feature[] = [
     links: [{ label: "Source", href: "https://github.com/karimbabasf/WARDEN" }],
   },
   {
-    id: "primer",
-    name: "Primer",
-    line: "A study guide for anything you wrote down and did not understand.",
+    id: "frontier",
+    name: "Frontier",
+    line: "A daily paper written by five research agents, an editor and a designer.",
     body:
-      "A menu bar application that captures an unfamiliar term in one keystroke and files it under a topic automatically. Any selection of terms becomes an illustrated study guide in plain English, with hover definitions, real source quoted at real line numbers, and a map of how terms noted on different days connect. Guides are produced by a sandboxed Claude Code run and delivered as HTML and PDF.",
+      "A self-correcting publication pipeline. Five research agents work in parallel, then an editor and a designer assemble the edition. Every correction made to an edition becomes a rule the next run loads, and rules that keep being ignored become build gates that fail the run.",
     facts: [
-      { label: "Stack", value: "Rust, React, Tauri 2" },
-      { label: "Engine", value: "Claude Code, headless" },
-      { label: "API keys", value: "None" },
+      { label: "Editions", value: "24" },
+      { label: "Agents", value: "7 per edition" },
+      { label: "Status", value: "Pre-launch" },
     ],
-    links: [{ label: "Source", href: "https://github.com/karimbabasf/primer" }],
+    links: [],
   },
+
 ];
 
 export type IndexItem = {
@@ -77,15 +78,7 @@ export type IndexItem = {
 };
 
 export const index: IndexItem[] = [
-  {
-    id: "frontier",
-    name: "Frontier",
-    kind: "Publication pipeline",
-    stack: "Multi-agent",
-    line: "A daily paper written by five research agents, an editor and a designer.",
-    detail:
-      "Every correction made to an edition becomes a rule the next run loads, and rules that keep being ignored become build gates that fail the run. Twenty-four editions produced to date. Pre-launch.",
-  },
+
   {
     id: "switchboard",
     name: "Switchboard",
@@ -189,11 +182,19 @@ export const experience = [
   },
 ];
 
-export const about = [
-  "I came to software through crypto. From 2021 I worked directly with DeFi protocols, and that experience shaped how I think about keys, signing and irreversible actions.",
-  "In 2025 I moved into agent-driven development, and it became the way I work. I design and ship complete products alone, from Rust desktop applications to trading systems, and I treat AI agents as an engineering team that needs isolation, review and clear limits.",
-  "Business development keeps me close to the people who adopt what gets built. Most of my week is spent between the code and the rooms where it gets used.",
-];
+export const about = {
+  lead: "I came to software through crypto, and to agents through software.",
+  body: [
+    "From 2021 I worked directly with DeFi protocols. That shaped how I think about keys, signing and irreversible actions, and it is why my agent work always keeps a person at the final step.",
+    "In 2025 I moved into agent-driven development and built my practice around it. I design and ship complete products alone, and I run AI agents as an engineering team with isolation, review and clear limits. Business development keeps me close to the people who adopt the work.",
+  ],
+  facts: [
+    { label: "Based", value: "San Francisco" },
+    { label: "Focus", value: "Agent infrastructure" },
+    { label: "On-chain", value: "Since 2021" },
+    { label: "Stack", value: "Rust, TypeScript" },
+  ],
+};
 
 export const contact = {
   email: "founder@karimbabasf.com",

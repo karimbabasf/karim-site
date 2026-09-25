@@ -96,29 +96,29 @@ html:has(.v3) {
 
 /* ── Hero ──────────────────────────────────────── */
 .hero {
-  padding-top: clamp(72px, 12vh, 150px);
+  position: relative;
+  padding-top: clamp(64px, 11vh, 140px);
+}
+.hero-grid {
+  display: grid;
+  gap: 48px;
+}
+@media (min-width: 960px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 64px;
+    align-items: start;
+  }
 }
 .hero h1 {
   margin: 0;
-  font-size: clamp(64px, 12.5vw, 184px);
+  font-size: clamp(64px, 11.5vw, 164px);
   line-height: 0.88;
   letter-spacing: -0.04em;
   font-weight: 600;
 }
-.hero-row {
-  margin-top: clamp(40px, 5vw, 72px);
-  display: grid;
-  gap: 40px;
-  align-items: end;
-}
-@media (min-width: 900px) {
-  .hero-row {
-    grid-template-columns: minmax(0, 1fr) 240px;
-    gap: 80px;
-  }
-}
 .hero-lede {
-  margin: 0;
+  margin: clamp(40px, 5vw, 64px) 0 0;
   max-width: 34ch;
   font-size: clamp(22px, 2.3vw, 30px);
   line-height: 1.3;
@@ -138,27 +138,72 @@ html:has(.v3) {
   color: var(--ink-2);
 }
 .portrait {
-  margin: 0;
-  width: 100%;
-  max-width: 240px;
-}
-.portrait-img {
   position: relative;
+  width: 100%;
+  max-width: 300px;
   aspect-ratio: 4 / 5;
-  border-radius: 6px;
+  border-radius: 4px;
   overflow: hidden;
   background: var(--paper-2);
-  box-shadow: 0 1px 2px rgba(22, 21, 15, 0.08), 0 18px 40px -18px rgba(22, 21, 15, 0.35);
 }
-.portrait-img img {
+.portrait img {
   object-fit: cover;
+  transition: transform 0.8s var(--ease);
 }
-.portrait figcaption {
-  margin-top: 12px;
-  font-size: 13px;
-  color: var(--ink-3);
-  display: flex;
-  justify-content: space-between;
+.portrait:hover img {
+  transform: scale(1.025);
+}
+@media (min-width: 960px) {
+  .portrait {
+    margin-top: 12px;
+  }
+}
+@media (max-width: 959px) {
+  .portrait {
+    max-width: 260px;
+  }
+}
+
+/* ── Backdrop: a faint dot grid, fading toward the edges, and one soft
+   warm light drifting on a slow loop. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(22, 21, 15, 0.13) 1px, transparent 1.2px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(120% 90% at 50% 20%, #000 10%, transparent 75%);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 20%, #000 10%, transparent 75%);
+}
+.backdrop::after {
+  content: "";
+  position: absolute;
+  width: 70vmax;
+  height: 70vmax;
+  left: 40%;
+  top: -20vmax;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 214, 170, 0.35), transparent);
+  animation: drift 48s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  from {
+    transform: translate(-10vw, 0);
+  }
+  to {
+    transform: translate(12vw, 14vh);
+  }
+}
+.v3 > header,
+.v3 > main {
+  position: relative;
+  z-index: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .backdrop::after {
+    animation: none;
+  }
 }
 
 /* ── Sections ──────────────────────────────────── */
@@ -215,8 +260,7 @@ html:has(.v3) {
 }
 @media (min-width: 900px) {
   .feat-btn {
-    grid-template-columns: 7fr 4fr 44px;
-    gap: 48px;
+    gap: 20px 48px;
   }
 }
 .feat-btn:focus-visible {
@@ -232,19 +276,38 @@ html:has(.v3) {
   transition: transform 0.45s var(--ease);
   transform-origin: left center;
 }
+/* Wordmark faces, taken from each product's own brand. */
+.face-phosphor {
+  font-family: var(--face-phosphor), sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: clamp(40px, 8.3vw, 120px);
+}
+.face-warden {
+  font-family: var(--face-warden), ui-monospace, monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: clamp(45px, 9.5vw, 137px);
+}
+.face-frontier {
+  font-family: var(--face-frontier), sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  line-height: 0.94;
+  font-size: clamp(46px, 9.4vw, 136px);
+}
 .feat-line {
   grid-column: 1;
-  font-size: clamp(16px, 1.4vw, 19px);
+  font-size: clamp(16px, 1.5vw, 20px);
   line-height: 1.4;
   color: var(--ink-2);
   max-width: 32ch;
   transition: color 0.3s;
 }
-@media (min-width: 900px) {
-  .feat-line {
-    grid-column: 2;
-  }
-}
+
 .feat-icon {
   grid-column: 2;
   grid-row: 1;
@@ -258,11 +321,7 @@ html:has(.v3) {
   color: var(--ink-2);
   transition: transform 0.45s var(--ease), background 0.25s, color 0.25s, border-color 0.25s;
 }
-@media (min-width: 900px) {
-  .feat-icon {
-    grid-column: 3;
-  }
-}
+
 .feat-icon svg {
   width: 20px;
   height: 20px;
@@ -518,25 +577,69 @@ html:has(.v3) {
 .about {
   padding-top: clamp(40px, 5vw, 64px);
   display: grid;
-  gap: 32px;
+  gap: 40px;
 }
 @media (min-width: 900px) {
   .about {
-    grid-template-columns: 4fr 8fr;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
     gap: 48px;
   }
 }
-.about-body {
-  max-width: 40ch;
+@media (max-width: 899px) {
+  .about-side {
+    order: 2;
+  }
 }
-.about-body p {
-  margin: 0 0 24px;
-  font-size: clamp(20px, 1.9vw, 25px);
-  line-height: 1.4;
-  letter-spacing: -0.015em;
+.about-facts {
+  margin: 0;
+  font-size: 15px;
+  align-self: start;
 }
-.about-body p + p {
+.about-facts div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.about-facts div:first-child {
+  padding-top: 0;
+}
+.about-facts dt {
+  color: var(--ink-3);
+}
+.about-facts dd {
+  margin: 0;
+  text-align: right;
+}
+.about-lead {
+  margin: 0;
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  max-width: 26ch;
+  text-wrap: balance;
+}
+.about-cols {
+  margin-top: 36px;
+  display: grid;
+  gap: 20px 40px;
+}
+@media (min-width: 700px) {
+  .about-cols {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.about-cols p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
   color: var(--ink-2);
+}
+.about-facts + .project-links,
+.about-side .project-links {
+  margin-top: 24px;
 }
 
 /* ── Contact ───────────────────────────────────── */
@@ -545,8 +648,9 @@ html:has(.v3) {
 }
 .v3 .contact-mail {
   display: inline-block;
-  font-size: clamp(32px, 6.4vw, 96px);
+  font-size: clamp(24px, 6.6vw, 96px);
   line-height: 1.05;
+  white-space: nowrap;
   letter-spacing: -0.04em;
   font-weight: 600;
   text-decoration: underline;
@@ -554,7 +658,6 @@ html:has(.v3) {
   text-decoration-thickness: 2px;
   text-underline-offset: 0.14em;
   transition: text-decoration-color 0.25s;
-  overflow-wrap: anywhere;
 }
 .v3 .contact-mail:hover {
   text-decoration-color: var(--ink);

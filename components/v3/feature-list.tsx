@@ -23,7 +23,7 @@ export default function FeatureList() {
               aria-controls={`feat-${f.id}`}
               onClick={() => setOpen(isOpen ? null : f.id)}
             >
-              <span className="feat-name">{f.name}</span>
+              <span className={`feat-name face-${f.id}`}>{f.name}</span>
               <span className="feat-line">{f.line}</span>
               <span className="feat-icon" aria-hidden>
                 <Plus weight="light" />
@@ -50,6 +50,7 @@ export default function FeatureList() {
                           </div>
                         ))}
                       </dl>
+                      {f.links.length > 0 && (
                       <div className="project-links">
                         {f.links.map((l) => (
                           <a key={l.href} className="pill" href={l.href} target="_blank" rel="noreferrer noopener">
@@ -58,6 +59,7 @@ export default function FeatureList() {
                           </a>
                         ))}
                       </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>
