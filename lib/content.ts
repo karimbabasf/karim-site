@@ -166,7 +166,6 @@ export const about = {
 
 export const contact = {
   email: "founder@karimbabasf.com",
-  lead: "Open to engineering work on agent infrastructure.",
   links: [
     { label: "X", handle: "@karimbabasf", href: "https://x.com/karimbabasf" },
     { label: "LinkedIn", handle: "Karim Baba", href: "https://www.linkedin.com/in/karim-baba-130547289/" },

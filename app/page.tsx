@@ -154,7 +154,6 @@ export default function Home() {
             </div>
             <div className="contact-grid">
               <div>
-                <p className="contact-lead">{contact.lead}</p>
                 <div className="contact-mail-row">
                   <a className="contact-mail" href={`mailto:${contact.email}`}>
                     {contact.email}
