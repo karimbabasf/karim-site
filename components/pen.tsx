@@ -2,8 +2,8 @@ import type { CSSProperties } from "react";
 import type { Ink } from "@/lib/handwriting";
 
 // Draws handwriting from lib/handwriting.ts. Each stroke is its own path so
-// CSS can write them in order: pathLength=1 lets one dash cover any stroke,
-// and --d / --t carry that stroke's start and length of time from the data.
+// CSS can write them in order: --len is the stroke's length (one dash covers
+// it), and --d / --t carry when it starts and how long the pen takes.
 export function Pen({
   ink,
   className,
@@ -31,8 +31,9 @@ export function Pen({
         <path
           key={i}
           d={s.d}
-          pathLength={1}
-          style={{ "--d": `${s.delay + delay}ms`, "--t": `${s.dur}ms` } as CSSProperties}
+          style={
+            { "--len": s.len, "--d": `${s.delay + delay}ms`, "--t": `${s.dur}ms` } as CSSProperties
+          }
         />
       ))}
     </svg>

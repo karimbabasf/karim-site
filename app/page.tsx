@@ -39,8 +39,8 @@ export default function Home() {
                 fetchPriority="high"
                 quality={90}
               />
+              <Paperclip className="clip" />
             </figure>
-            <Paperclip className="clip" />
           </header>
           <div className="card-body">
             <p>{intro.lede}</p>

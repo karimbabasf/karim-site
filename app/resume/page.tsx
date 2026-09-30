@@ -47,7 +47,7 @@ export default function ResumePage() {
             >
               <path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" />
             </svg>
-            Download PDF
+            <span>Download PDF</span>
           </a>
         </div>
       </header>
