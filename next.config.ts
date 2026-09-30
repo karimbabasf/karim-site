@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Dev only: lets the dev server hydrate pages opened on 127.0.0.1 as well
+  // as localhost. Production ignores it.
+  allowedDevOrigins: ["127.0.0.1"],
   images: {
     // Serve modern formats; AVIF first, WebP fallback.
     formats: ["image/avif", "image/webp"],

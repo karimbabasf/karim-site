@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { text } from "../fonts";
-import "../paper.css";
+import { typed } from "../fonts";
+import "./resume.css";
 
 export const metadata: Metadata = {
   title: "Resume, Karim Baba",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbfbf9",
+  themeColor: "#e9e8e4",
   colorScheme: "light",
 };
 
@@ -18,7 +18,7 @@ export const viewport: Viewport = {
 // read here is exactly what they download.
 export default function ResumePage() {
   return (
-    <div className={`k ${text.variable}`}>
+    <div className={`desk-resume ${typed.variable}`}>
       <header className="r-bar">
         <div className="r-bar-in">
           <Link className="r-back" href="/">
@@ -35,7 +35,7 @@ export default function ResumePage() {
             </svg>
             Karim Baba
           </Link>
-          <a className="k-btn k-btn-ink" href="/Karim-Baba-Resume.pdf" download>
+          <a className="r-download" href="/Karim-Baba-Resume.pdf" download>
             <svg
               viewBox="0 0 16 16"
               fill="none"
@@ -52,7 +52,7 @@ export default function ResumePage() {
         </div>
       </header>
       <main className="r-page">
-        <h1 className="k-hidden">Resume</h1>
+        <h1 className="r-hidden">Resume</h1>
         {/* On a phone the sheet is too small to read, so a tap opens it full
             size where pinch zoom works. */}
         <a

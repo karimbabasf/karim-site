@@ -1,6 +1,6 @@
 /**
  * Homepage content. Edit this file to change what the page says;
- * the components in components/v3 only render it.
+ * app/page.tsx and components/card-file.tsx only render it.
  */
 
 export const intro = {
@@ -176,6 +176,7 @@ export const contact = {
 };
 
 export type Project = {
+  id: string;
   name: string;
   /** What it is, in one plain sentence. */
   line: string;
@@ -186,27 +187,34 @@ export type Project = {
   /** Machine-readable date for hackathon builds. */
   date?: string;
   href: string;
+  /** Typed on the card when it is pulled open. */
+  links: { label: string; href: string }[];
 };
 
 /** The homepage list, in reading order. */
 export const projects: Project[] = [
   {
+    id: "phosphor",
     name: "Phosphor",
     line: features[0].line,
     detail:
       "A macOS wallet that agents operate over MCP. They research, quote and propose trades across 35 networks. The keys stay in the Secure Enclave, and anything above the owner's limit waits for a click.",
     meta: ["macOS app"],
     href: "https://phosphor.money",
+    links: features[0].links,
   },
   {
+    id: "warden",
     name: "Warden",
     line: features[1].line,
     detail:
       "A macOS app that follows every Claude Code and Codex session on the machine and draws each one on a live 3D radar. Sessions brighten as their context fills, and subagents orbit the session that started them.",
     meta: ["macOS app"],
     href: "https://github.com/karimbabasf/WARDEN",
+    links: features[1].links,
   },
   {
+    id: "solbid",
     name: "SolBid",
     line: "AI agents bid for you in a live auction.",
     detail:
@@ -214,8 +222,10 @@ export const projects: Project[] = [
     meta: ["Hackathon", "Sep 30, 2026"],
     date: "2026-09-30",
     href: "https://github.com/karimbabasf/solbid",
+    links: [{ label: "Source", href: "https://github.com/karimbabasf/solbid" }],
   },
   {
+    id: "vesper",
     name: "Vesper Wallet",
     line: "A chat wallet no message can talk into moving money.",
     detail:
@@ -223,5 +233,6 @@ export const projects: Project[] = [
     meta: ["Hackathon", "Sep 29, 2026"],
     date: "2026-09-29",
     href: "https://github.com/karimbabasf/vesper-wallet",
+    links: [{ label: "Source", href: "https://github.com/karimbabasf/vesper-wallet" }],
   },
 ];

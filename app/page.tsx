@@ -1,130 +1,85 @@
 import type { Viewport } from "next";
 import Image from "next/image";
-import { display, text } from "./fonts";
+import { typed } from "./fonts";
 import { about, contact, intro, projects } from "@/lib/content";
-import "./paper.css";
+import { inkName, inkSignature } from "@/lib/handwriting";
+import { CardFile } from "@/components/card-file";
+import { Paperclip } from "@/components/paperclip";
+import { Pen } from "@/components/pen";
+import { SignOff } from "@/components/sign-off";
+import "./cards.css";
 
 export const viewport: Viewport = {
-  themeColor: "#fbfbf9",
+  themeColor: "#e9e8e4",
   colorScheme: "light",
 };
 
-const socials = contact.links.filter((l) =>
-  ["X", "LinkedIn", "GitHub"].includes(l.label),
-);
+const socials = contact.links.filter((l) => ["X", "LinkedIn", "GitHub"].includes(l.label));
 
-function Arrow({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="square"
-      aria-hidden
-      focusable="false"
-    >
-      <path d="M5 11 11 5M6 5h5v5" />
-    </svg>
-  );
-}
-
-// A spec sheet read top to bottom: picture, name, about, projects, links.
-// The margin rail on the left holds the portrait and each project's facts, so
-// the main column stays one straight line for the eye.
+// Index cards on a desk, read top to bottom: the card with his name and photo,
+// the file of project cards, and the front card with the ways to reach him.
 export default function Home() {
   return (
-    <div className={`k ${text.variable} ${display.variable}`}>
-      <main className="k-sheet">
-        <header className="k-head">
-          <div className="k-rail">
-            <Image
-              className="k-face"
-              src="/karim-head.jpg"
-              alt="Karim Baba"
-              width={400}
-              height={500}
-              loading="eager"
-              quality={90}
-              sizes="(min-width: 48rem) 104px, 76px"
-            />
-          </div>
-          <div className="k-main">
-            <h1 className="k-name">{intro.name}</h1>
-            <p className="k-about">
-              <span className="k-lede">{intro.lede}</span> {about.statement}{" "}
-              {about.statementMore}
+    <div className={`desk ${typed.variable}`}>
+      <main className="stack">
+        <article className="card card--me">
+          <header className="card-head">
+            <h1 className="me-name">
+              <span className="sr-only">{intro.name}</span>
+              <Pen ink={inkName} className="ink ink--write" delay={200} />
+            </h1>
+            <figure className="print">
+              <Image
+                src="/karim-instax.jpg"
+                alt="Portrait of Karim Baba"
+                width={480}
+                height={647}
+                sizes="(min-width: 35rem) 88px, 64px"
+                loading="eager"
+                fetchPriority="high"
+                quality={90}
+              />
+            </figure>
+            <Paperclip className="clip" />
+          </header>
+          <div className="card-body">
+            <p>{intro.lede}</p>
+            <p>
+              {about.statement} {about.statementMore}
             </p>
           </div>
-        </header>
+        </article>
 
-        <section className="k-work" aria-labelledby="work">
-          <h2 id="work" className="k-hidden">
-            Projects
-          </h2>
-          <ol className="k-list">
-            {projects.map((p, i) => (
-              <li
-                key={p.name}
-                className="k-item"
-                style={{ "--i": i } as React.CSSProperties}
-              >
-                <a
-                  className="k-row"
-                  href={p.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <span className="k-meta">
-                    {p.meta.map((m, j) =>
-                      j === 1 && p.date ? (
-                        <time key={m} dateTime={p.date}>
-                          {m}
-                        </time>
-                      ) : (
-                        <span key={m}>{m}</span>
-                      ),
-                    )}
-                  </span>
-                  <span className="k-main k-body">
-                    <span className="k-pname">
-                      {p.name}
-                      <Arrow className="k-arrow" />
+        <CardFile
+          projects={projects}
+          front={
+            <article className="card card--front" aria-labelledby="contact">
+              <h2 className="card-head" id="contact">
+                Contact
+              </h2>
+              <div className="card-body">
+                <p>
+                  Read my <a href="/resume">resume</a>, or email{" "}
+                  <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+                </p>
+                <p>
+                  Find me on{" "}
+                  {socials.map((l, i) => (
+                    <span key={l.href}>
+                      <a href={l.href} target="_blank" rel="noreferrer noopener">
+                        {l.label}
+                      </a>
+                      {i < socials.length - 2 ? ", " : i === socials.length - 2 ? " and " : "."}
                     </span>
-                    <span className="k-line">{p.line}</span>
-                    <span className="k-detail">{p.detail}</span>
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <footer className="k-foot">
-          <div className="k-main">
-            <div className="k-buttons">
-              <a className="k-btn k-btn-ink" href="/resume">
-                Resume
-              </a>
-              <a className="k-btn" href={`mailto:${contact.email}`}>
-                Email
-              </a>
-            </div>
-            <nav className="k-links" aria-label="Elsewhere">
-              {socials.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  {l.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </footer>
+                  ))}
+                </p>
+              </div>
+              <SignOff>
+                <Pen ink={inkSignature} className="ink ink--sign" delay={350} />
+              </SignOff>
+            </article>
+          }
+        />
       </main>
     </div>
   );
