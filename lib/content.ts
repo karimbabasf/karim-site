@@ -175,20 +175,53 @@ export const contact = {
   ],
 };
 
-/** The homepage list: one line each, in reading order. */
-export const projects: { name: string; line: string; note?: string; href?: string }[] = [
-  { name: "Phosphor", line: features[0].line, href: "https://phosphor.money" },
-  { name: "Warden", line: features[1].line, href: "https://github.com/karimbabasf/WARDEN" },
+export type Project = {
+  name: string;
+  /** What it is, in one plain sentence. */
+  line: string;
+  /** How it works: the technical sentence under the line. */
+  detail: string;
+  /** Short facts for the margin: the kind of project, then a date if it has one. */
+  meta: string[];
+  /** Machine-readable date for hackathon builds. */
+  date?: string;
+  href: string;
+};
+
+/** The homepage list, in reading order. */
+export const projects: Project[] = [
+  {
+    name: "Phosphor",
+    line: features[0].line,
+    detail:
+      "A macOS wallet that agents operate over MCP. They research, quote and propose trades across 35 networks. The keys stay in the Secure Enclave, and anything above the owner's limit waits for a click.",
+    meta: ["macOS app"],
+    href: "https://phosphor.money",
+  },
+  {
+    name: "Warden",
+    line: features[1].line,
+    detail:
+      "A macOS app that follows every Claude Code and Codex session on the machine and draws each one on a live 3D radar. Sessions brighten as their context fills, and subagents orbit the session that started them.",
+    meta: ["macOS app"],
+    href: "https://github.com/karimbabasf/WARDEN",
+  },
   {
     name: "SolBid",
-    note: "Hackathon",
-    line: "AI agents bid for you in a live auction and pay each other on Solana.",
+    line: "AI agents bid for you in a live auction.",
+    detail:
+      "The agents pay each other on Solana with x402. Built at the Solana Agent Hackathon.",
+    meta: ["Hackathon", "Sep 30, 2026"],
+    date: "2026-09-30",
     href: "https://github.com/karimbabasf/solbid",
   },
   {
     name: "Vesper Wallet",
-    note: "Hackathon",
-    line: "A chat wallet that no message can talk into moving money.",
+    line: "A chat wallet no message can talk into moving money.",
+    detail:
+      "Two models from different labs read each request blind, policy rules in code decide what is allowed, and a person approves. Receipts are signed with EIP-712 and anchored on-chain. Built at the Stanford collaborative agent hackathon with Flower and Nebius.",
+    meta: ["Hackathon", "Sep 29, 2026"],
+    date: "2026-09-29",
     href: "https://github.com/karimbabasf/vesper-wallet",
   },
 ];

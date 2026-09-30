@@ -1,100 +1,117 @@
 import type { Viewport } from "next";
 import Image from "next/image";
-import { display, sans } from "./fonts";
-import { ArrowUpRight } from "@/components/v3/icons";
+import { display, text } from "./fonts";
 import { about, contact, intro, projects } from "@/lib/content";
-import "./simple.css";
+import "./paper.css";
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
-  colorScheme: "dark",
+  themeColor: "#fbfbf9",
+  colorScheme: "light",
 };
 
 const socials = contact.links.filter((l) =>
-  ["X", "GitHub", "LinkedIn"].includes(l.label),
+  ["X", "LinkedIn", "GitHub"].includes(l.label),
 );
 
-// One column, read top to bottom: picture, name, about, projects, buttons.
-// Each block rises in on that same order (the --i index sets its delay).
-// On desktop the picture takes the left half and the rest stacks on the right,
-// sized to the viewport so the whole page fits one screen.
+function Arrow({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="square"
+      aria-hidden
+      focusable="false"
+    >
+      <path d="M5 11 11 5M6 5h5v5" />
+    </svg>
+  );
+}
+
+// A spec sheet read top to bottom: picture, name, about, projects, links.
+// The margin rail on the left holds the portrait and each project's facts, so
+// the main column stays one straight line for the eye.
 export default function Home() {
   return (
-    <div className={`s ${sans.variable} ${display.variable}`}>
-      <main className="s-col">
-        <div className="s-portrait" style={{ "--i": 0 } as React.CSSProperties}>
-          <Image
-            src="/karim.jpg"
-            alt="Karim Baba"
-            fill
-            loading="eager"
-            fetchPriority="high"
-            sizes="(min-width: 960px) 45vw, 160px"
-          />
-        </div>
+    <div className={`k ${text.variable} ${display.variable}`}>
+      <main className="k-sheet">
+        <header className="k-head">
+          <div className="k-rail">
+            <Image
+              className="k-face"
+              src="/karim-head.jpg"
+              alt="Karim Baba"
+              width={400}
+              height={500}
+              loading="eager"
+              quality={90}
+              sizes="(min-width: 48rem) 104px, 76px"
+            />
+          </div>
+          <div className="k-main">
+            <h1 className="k-name">{intro.name}</h1>
+            <p className="k-about">
+              <span className="k-lede">{intro.lede}</span> {about.statement}{" "}
+              {about.statementMore}
+            </p>
+          </div>
+        </header>
 
-        <div className="s-info">
-          <h1 className="s-name" style={{ "--i": 1 } as React.CSSProperties}>
-            {intro.name}
-          </h1>
-
-          <p className="s-about" style={{ "--i": 2 } as React.CSSProperties}>
-            {intro.lede} {about.statement} {about.statementMore}
-          </p>
-
-          <section
-            className="s-projects"
-            aria-labelledby="projects"
-            style={{ "--i": 3 } as React.CSSProperties}
-          >
-            <h2 id="projects" className="s-label">
-              Projects
-            </h2>
-            <ul>
-              {projects.map((p) => {
-                const body = (
-                  <>
-                    <span className="s-pname">
-                      {p.name}
-                      {p.note && <span className="s-note">{p.note}</span>}
-                    </span>
-                    <span className="s-pline">{p.line}</span>
-                    {p.href && <ArrowUpRight className="s-arrow" />}
-                  </>
-                );
-                return (
-                  <li key={p.name}>
-                    {p.href ? (
-                      <a
-                        className="s-row"
-                        href={p.href}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                      >
-                        {body}
-                      </a>
-                    ) : (
-                      <div className="s-row">{body}</div>
+        <section className="k-work" aria-labelledby="work">
+          <h2 id="work" className="k-hidden">
+            Projects
+          </h2>
+          <ol className="k-list">
+            {projects.map((p, i) => (
+              <li
+                key={p.name}
+                className="k-item"
+                style={{ "--i": i } as React.CSSProperties}
+              >
+                <a
+                  className="k-row"
+                  href={p.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <span className="k-meta">
+                    {p.meta.map((m, j) =>
+                      j === 1 && p.date ? (
+                        <time key={m} dateTime={p.date}>
+                          {m}
+                        </time>
+                      ) : (
+                        <span key={m}>{m}</span>
+                      ),
                     )}
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
+                  </span>
+                  <span className="k-main k-body">
+                    <span className="k-pname">
+                      {p.name}
+                      <Arrow className="k-arrow" />
+                    </span>
+                    <span className="k-line">{p.line}</span>
+                    <span className="k-detail">{p.detail}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-          <div
-            className="s-actions"
-            style={{ "--i": 4 } as React.CSSProperties}
-          >
-            <div className="s-buttons">
-              <a className="s-btn s-btn-fill" href="/resume">
+        <footer className="k-foot">
+          <div className="k-main">
+            <div className="k-buttons">
+              <a className="k-btn k-btn-ink" href="/resume">
                 Resume
               </a>
-              <a className="s-btn" href={`mailto:${contact.email}`}>
-                Email me
+              <a className="k-btn" href={`mailto:${contact.email}`}>
+                Email
               </a>
             </div>
-            <nav className="s-socials" aria-label="Elsewhere">
+            <nav className="k-links" aria-label="Elsewhere">
               {socials.map((l) => (
                 <a
                   key={l.href}
@@ -107,7 +124,7 @@ export default function Home() {
               ))}
             </nav>
           </div>
-        </div>
+        </footer>
       </main>
     </div>
   );

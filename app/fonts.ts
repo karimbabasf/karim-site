@@ -1,20 +1,24 @@
-import { Kanit } from "next/font/google";
 import localFont from "next/font/local";
 
-export const sans = localFont({
-  src: [
-    { path: "../public/fonts/GeneralSans-400.woff2", weight: "400", style: "normal" },
-    { path: "../public/fonts/GeneralSans-500.woff2", weight: "500", style: "normal" },
-    { path: "../public/fonts/GeneralSans-600.woff2", weight: "600", style: "normal" },
-  ],
-  variable: "--font-sans",
+// Google Sans Flex (SIL OFL, see fonts-site/OFL.txt), self-hosted as two cuts
+// taken from its opsz axis so the page ships 38 KB of type instead of 117 KB.
+//
+// Text: opsz pinned at 16, weight kept variable from 400 to 600, latin only.
+// Display: opsz 96 at weight 600, cut down to the glyphs of "Karim Baba". If
+// the name ever changes, fetch it again from the Google Fonts css2 API with
+// family=Google+Sans+Flex:opsz,wght@96,600&text=<the new name>.
+export const text = localFont({
+  src: "./fonts-site/GoogleSansFlex-Text.woff2",
+  weight: "400 600",
+  variable: "--font-text",
   display: "swap",
+  fallback: ["Helvetica Neue", "Arial", "sans-serif"],
 });
 
-// The name is the one display moment, so it gets its own face.
-export const display = Kanit({
-  subsets: ["latin"],
+export const display = localFont({
+  src: "./fonts-site/GoogleSansFlex-Display.woff2",
   weight: "600",
   variable: "--font-display",
   display: "swap",
+  fallback: ["Helvetica Neue", "Arial", "sans-serif"],
 });
