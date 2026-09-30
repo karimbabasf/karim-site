@@ -1,186 +1,100 @@
 import type { Viewport } from "next";
 import Image from "next/image";
-import { Inter_Tight } from "next/font/google";
 import localFont from "next/font/local";
-import Nav from "@/components/v3/nav";
-import WorkIndex from "@/components/v3/work-index";
-import FeatureList from "@/components/v3/feature-list";
-import CopyEmail from "@/components/v3/copy-email";
-import { ArrowDown, ArrowUpRight } from "@/components/v3/icons";
-import { about, contact, experience, intro } from "@/lib/content";
-import "./home.css";
+import { ArrowUpRight } from "@/components/v3/icons";
+import { about, contact, intro, projects } from "@/lib/content";
+import "./simple.css";
 
-// The root layout is dark for the older pages; this one is paper.
 export const viewport: Viewport = {
-  themeColor: "#f3f1ec",
-  colorScheme: "light",
+  themeColor: "#000000",
+  colorScheme: "dark",
 };
 
-const sans = Inter_Tight({
-  subsets: ["latin"],
+const sans = localFont({
+  src: [
+    { path: "../public/fonts/GeneralSans-400.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/GeneralSans-500.woff2", weight: "500", style: "normal" },
+    { path: "../public/fonts/GeneralSans-600.woff2", weight: "600", style: "normal" },
+  ],
   variable: "--font-sans",
   display: "swap",
 });
 
-// Each featured title is set in its own product's wordmark face. Sora and Commit Mono
-// are subset to the letters of their one word (about 1 KB each). New Title is kept whole,
-// since its license does not clearly allow editing the file, so it skips the preload
-// and loads after first paint: it only draws a title below the fold.
-const phosphorFace = localFont({
-  src: "./fonts-brand/Sora-SemiBold.woff2",
-  weight: "600",
-  variable: "--face-phosphor",
-  display: "swap",
-});
-const wardenFace = localFont({
-  src: "./fonts-brand/commit-mono-700.woff2",
-  weight: "700",
-  variable: "--face-warden",
-  display: "swap",
-});
-const frontierFace = localFont({
-  src: "./fonts-brand/new-title-variable.woff2",
-  weight: "200 700",
-  variable: "--face-frontier",
-  display: "swap",
-  preload: false,
-});
+const socials = contact.links.filter((l) => ["X", "GitHub", "LinkedIn"].includes(l.label));
 
+// One column, read top to bottom: picture, name, about, projects, buttons.
+// Each block rises in on that same order (the --i index sets its delay).
 export default function Home() {
   return (
-    <div className={`v3 ${sans.variable} ${phosphorFace.variable} ${wardenFace.variable} ${frontierFace.variable}`}>
-      <div className="backdrop" aria-hidden />
-      <div className="glow" aria-hidden />
-      <Nav />
-      <main>
-        <section className="wrap hero" id="top">
-          <div className="hero-grid">
-            <h1 className="hero-name">
-              <span className="word">
-                <span>Karim</span>
-              </span>{" "}
-              <span className="word">
-                <span>Baba</span>
-              </span>
-            </h1>
-            <p className="hero-lede">
-              {intro.lede} <span>{intro.ledeMore}</span>
-            </p>
-            <div className="portrait">
-              <Image
-                src="/work/portrait-tall.jpg"
-                alt="Portrait of Karim Baba"
-                fill
-                loading="eager"
-                fetchPriority="high"
-                sizes="(min-width: 960px) 300px, (min-width: 650px) 260px, 40vw"
-              />
-            </div>
-          </div>
-          <div className="hero-bar">
-            <span>
-              Business development at{" "}
-              <a className="ul" href="https://1claw.xyz" target="_blank" rel="noreferrer noopener">
-                1Claw
-              </a>
-            </span>
-            <a className="ul" href={`mailto:${contact.email}`}>
-              {contact.email}
-            </a>
-            <a className="hero-next" href="#work">
-              Selected work
-              <ArrowDown />
-            </a>
-          </div>
-        </section>
+    <div className={`s ${sans.variable}`}>
+      <main className="s-col">
+        <div className="s-portrait" style={{ "--i": 0 } as React.CSSProperties}>
+          <Image
+            src="/work/portrait-tall.jpg"
+            alt="Karim Baba"
+            fill
+            loading="eager"
+            fetchPriority="high"
+            sizes="160px"
+          />
+        </div>
 
-        <section id="work" className="wrap screen">
-          <div className="section-head">
-            <h2>Selected work</h2>
-            <span>Select a project for details</span>
-          </div>
-          <FeatureList />
-        </section>
+        <h1 className="s-name" style={{ "--i": 1 } as React.CSSProperties}>
+          {intro.name}
+        </h1>
 
-        <section id="projects" className="wrap screen">
-          <div className="section-head">
-            <h2>More projects</h2>
-            <span>Tools and experiments</span>
-          </div>
-          <WorkIndex />
-        </section>
+        <p className="s-about" style={{ "--i": 2 } as React.CSSProperties}>
+          {intro.lede} {about.statement} {about.statementMore}
+        </p>
 
-        <section id="about" className="wrap screen">
-          <div className="section-head">
-            <h2>About</h2>
-          </div>
-          <div className="about">
-            <p className="about-statement">
-              {about.statement} <span>{about.statementMore}</span>
-            </p>
-            <ul className="exp">
-              {experience.map((e) => (
-                <li key={e.org} className="exp-item">
-                  <span className="exp-org">
-                    {e.href ? (
-                      <a className="ul" href={e.href} target="_blank" rel="noreferrer noopener">
-                        {e.org}
-                      </a>
-                    ) : (
-                      e.org
-                    )}
+        <section className="s-projects" aria-labelledby="projects" style={{ "--i": 3 } as React.CSSProperties}>
+          <h2 id="projects" className="s-label">
+            Projects
+          </h2>
+          <ul>
+            {projects.map((p) => {
+              const body = (
+                <>
+                  <span className="s-pname">
+                    {p.name}
+                    {p.note && <span className="s-note">{p.note}</span>}
                   </span>
-                  <span className="exp-role">{e.role}</span>
-                  <span className="exp-when num">{e.when}</span>
-                  <span className="exp-line">{e.line}</span>
+                  <span className="s-pline">{p.line}</span>
+                  {p.href && <ArrowUpRight className="s-arrow" />}
+                </>
+              );
+              return (
+                <li key={p.name}>
+                  {p.href ? (
+                    <a className="s-row" href={p.href} target="_blank" rel="noreferrer noopener">
+                      {body}
+                    </a>
+                  ) : (
+                    <div className="s-row">{body}</div>
+                  )}
                 </li>
-              ))}
-            </ul>
-            <div className="about-actions">
-              <a className="pill" href="/resume">
-                Read the résumé
-              </a>
-              <a className="pill" href="/Karim-Baba-Resume.pdf">
-                Download PDF
-              </a>
-            </div>
-          </div>
+              );
+            })}
+          </ul>
         </section>
 
-        <section id="contact" className="wrap screen contact">
-          <div className="contact-body">
-            <div className="section-head">
-              <h2>Contact</h2>
-            </div>
-            <div className="contact-grid">
-              <div>
-                <div className="contact-mail-row">
-                  <a className="contact-mail" href={`mailto:${contact.email}`}>
-                    {contact.email}
-                  </a>
-                  <CopyEmail email={contact.email} />
-                </div>
-              </div>
-              <ul className="socials">
-                {contact.links.map((l) => (
-                  <li key={l.href}>
-                    <a className="social" href={l.href} target="_blank" rel="noreferrer noopener">
-                      <span className="social-name">{l.label}</span>
-                      <span className="social-handle">{l.handle}</span>
-                      <ArrowUpRight className="social-arrow" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <footer className="foot">
-            <span>© 2026 Karim Baba</span>
-            <a className="ul" href="#top">
-              Back to top
+        <div className="s-actions" style={{ "--i": 4 } as React.CSSProperties}>
+          <div className="s-buttons">
+            <a className="s-btn s-btn-fill" href="/Karim-Baba-Resume.pdf">
+              Download CV
             </a>
-          </footer>
-        </section>
+            <a className="s-btn" href={`mailto:${contact.email}`}>
+              Email me
+            </a>
+          </div>
+          <nav className="s-socials" aria-label="Elsewhere">
+            {socials.map((l) => (
+              <a key={l.href} href={l.href} target="_blank" rel="noreferrer noopener">
+                {l.label}
+              </a>
+            ))}
+          </nav>
+        </div>
       </main>
     </div>
   );

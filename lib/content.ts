@@ -174,3 +174,21 @@ export const contact = {
     { label: "Instagram", handle: "@karimbabasf", href: "https://www.instagram.com/karimbabasf" },
   ],
 };
+
+/** The homepage list: one line each, in reading order. */
+export const projects: { name: string; line: string; note?: string; href?: string }[] = [
+  { name: "Phosphor", line: features[0].line, href: "https://phosphor.money" },
+  { name: "Warden", line: features[1].line, href: "https://github.com/karimbabasf/WARDEN" },
+  {
+    name: "SolBid",
+    note: "Hackathon",
+    line: "AI agents bid for you in a live auction and pay each other on Solana.",
+    href: "https://github.com/karimbabasf/solbid",
+  },
+  {
+    name: "Vesper Wallet",
+    note: "Hackathon",
+    line: "A chat wallet that no message can talk into moving money.",
+    href: "https://github.com/karimbabasf/vesper-wallet",
+  },
+];

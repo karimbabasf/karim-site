@@ -1,0 +1,227 @@
+/* Homepage. Black and white, one column, one entrance. */
+
+html:has(.s) {
+  /* The global sheet sets a neon cursor and a mono body for the older pages. */
+  cursor: auto;
+  background: #000;
+}
+html:has(.s) body {
+  background: #000;
+}
+html:has(.s) a {
+  cursor: pointer;
+}
+
+.s {
+  --ink: #fff;
+  --ink-2: rgb(255 255 255 / 0.62);
+  --ink-3: rgb(255 255 255 / 0.4);
+  --line: rgb(255 255 255 / 0.14);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  min-height: 100svh;
+  background: #000;
+  color: var(--ink);
+  font-family: var(--font-sans), ui-sans-serif, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+}
+
+.s ::selection {
+  background: #fff;
+  color: #000;
+}
+
+.s :focus-visible {
+  outline: 1.5px solid #fff;
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.s-col {
+  width: 100%;
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 12vh, 7.5rem) 1.25rem clamp(3rem, 8vh, 5rem);
+}
+
+/* Entrance: every block starts visible but soft, then settles, in reading order. */
+.s-col > * {
+  animation: s-in 1s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 60ms);
+}
+@keyframes s-in {
+  from {
+    opacity: 0.2;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+}
+
+.s-portrait {
+  position: relative;
+  width: 7.5rem;
+  aspect-ratio: 4 / 5;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111;
+}
+.s-portrait img {
+  object-fit: cover;
+  object-position: 50% 30%;
+  filter: grayscale(1) contrast(1.08);
+}
+
+.s-name {
+  margin-top: 2rem;
+  font-size: clamp(2.75rem, 11vw, 4.25rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.s-about {
+  margin-top: 1.25rem;
+  max-width: 32em;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.s-projects {
+  margin-top: 3.5rem;
+}
+.s-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.s-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.35s var(--ease);
+}
+.s-pname {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.s-note {
+  margin-left: 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink-3);
+}
+.s-pline {
+  grid-column: 1;
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+}
+.s-arrow {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  width: 1rem;
+  height: 1rem;
+  color: var(--ink-3);
+  transition: transform 0.4s var(--ease), color 0.3s var(--ease);
+}
+
+@media (hover: hover) {
+  /* Pointing at one row quiets the others, so the eye stays on it. */
+  .s-projects ul:has(.s-row:hover) .s-row:not(:hover) {
+    opacity: 0.38;
+  }
+  a.s-row:hover .s-arrow {
+    color: var(--ink);
+    transform: translate(3px, -3px);
+  }
+}
+
+.s-actions {
+  margin-top: 2.75rem;
+}
+.s-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.s-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 1.5rem;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 0.3);
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.2s var(--ease);
+}
+.s-btn-fill {
+  background: #fff;
+  border-color: #fff;
+  color: #000;
+}
+.s-btn:active {
+  transform: scale(0.97);
+}
+@media (hover: hover) {
+  .s-btn:hover {
+    border-color: #fff;
+  }
+  .s-btn-fill:hover {
+    background: rgb(255 255 255 / 0.86);
+  }
+}
+
+.s-socials {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+  font-size: 0.9375rem;
+}
+.s-socials a {
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-decoration-color: rgb(255 255 255 / 0.25);
+  text-underline-offset: 4px;
+  transition: color 0.3s var(--ease), text-decoration-color 0.3s var(--ease);
+}
+@media (hover: hover) {
+  .s-socials a:hover {
+    color: var(--ink);
+    text-decoration-color: currentColor;
+  }
+}
+
+@media (max-width: 480px) {
+  .s-btn {
+    flex: 1 1 0;
+    padding: 0 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s-col > * {
+    animation: none;
+  }
+  .s * {
+    transition: none !important;
+  }
+}
