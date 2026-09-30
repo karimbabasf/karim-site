@@ -309,14 +309,36 @@ html:has(.desk) :is(a, button) {
 
 /* A closed card shows its strip plus two rules of what hangs beneath, room
    for the parting hint; the rest is cut, so the front card need not be tall
-   enough to hide it. The cut comes back only after a close has slid shut. */
+   enough to hide it. The shape keeps the shadow round the strip but cuts the
+   hanging part flush with the card's edges, so no side shadow stops short
+   beside the card in front. The cut comes back only after a close has slid
+   shut. Both shapes have eight points so the change stays one step. */
 .slot:not(.slot--front) > .card {
-  clip-path: inset(-40px -40px calc(100% - var(--strip) - var(--pitch) * 2) -40px);
+  --hang: calc(var(--strip) + var(--pitch) * 2);
+  clip-path: polygon(
+    -40px -40px,
+    calc(100% + 40px) -40px,
+    calc(100% + 40px) var(--strip),
+    100% var(--strip),
+    100% var(--hang),
+    0 var(--hang),
+    0 var(--strip),
+    -40px var(--strip)
+  );
   transition: clip-path 0s linear 320ms;
 }
 
 .slot[data-open] > .card {
-  clip-path: inset(-40px);
+  clip-path: polygon(
+    -40px -40px,
+    calc(100% + 40px) -40px,
+    calc(100% + 40px) calc(100% + 40px),
+    calc(100% + 40px) calc(100% + 40px),
+    calc(100% + 40px) calc(100% + 40px),
+    -40px calc(100% + 40px),
+    -40px calc(100% + 40px),
+    -40px calc(100% + 40px)
+  );
   transition: clip-path 0s;
 }
 
@@ -382,12 +404,14 @@ html:has(.desk) :is(a, button) {
 
 /* The third pen mark: Karim underlines the card you pulled. It draws left to
    right when the card opens and lifts away when it closes. */
+/* The stroke runs 2px under the baseline, crossing the red rule below the
+   name, the way a pen underlines on a printed line. */
 .pull-name::before {
   content: "";
   position: absolute;
   left: -3px;
   right: -6px;
-  bottom: -7px;
+  top: calc(var(--base) - 2px);
   height: 8px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M2 5.4C21 3.6 43 4.8 65 4S103 2.9 118 4.7' fill='none' stroke='%23213a8f' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E")
     0 0 / 100% 100% no-repeat;
