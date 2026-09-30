@@ -125,7 +125,6 @@ html:has(.desk-resume) :is(a, button) {
 .r-hint {
   margin: 16px 0 0;
   color: var(--ink-3);
-  font-size: 13px;
   text-align: center;
 }
 

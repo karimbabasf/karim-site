@@ -15,7 +15,7 @@ Audience and job: founders, hiring teams and fellowship reviewers opening a link
 
 THESIS: The homepage is Karim's own card file: one ruled index card with his name written in pen and his colour photo clipped to it, and the project cards filed under it, each pulled open to be read. It refuses the dark portfolio of hero, project grid and stack pills, and it refuses the full-bleed notebook page.
 
-OWN-WORLD: White index card stock on a pale desk. Each card has one thin red header rule and pale blue rules on a fixed pitch that every typed baseline sits on. Typed ink is one sans at one size: black for facts, grey for kinds and dates. Blue ballpoint is Karim's hand only: the name and the signature, plotted from single-stroke paths. His photo is an instax print, the only full colour, held by a steel Gem clip. Soft offset paper shadows. No borders, pills, badges or icon tiles.
+OWN-WORLD: White index card stock on a pale desk. Each card has one thin red header rule and pale blue rules on a fixed pitch that every typed baseline sits on. Typed ink is one sans at one size: black for facts, grey for kinds and dates. Blue ballpoint is Karim's hand only: the name, the signature and the underline under a pulled card, plotted from single-stroke paths. His photo is an instax print, the only full colour, held by a Gem clip drawn as one grey wire. Soft offset paper shadows. No borders, pills, badges or icon tiles.
 
 STORY: The visitor meets a person first (face, handwritten name), reads two typed sentences about what he builds, scans four project cards like a list, pulls one to read how it works, and ends at the front card: resume, email, three profiles, signed.
 

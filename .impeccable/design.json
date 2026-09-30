@@ -1,0 +1,382 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-30T23:53:58.430Z",
+  "title": "Design System: Karim Baba",
+  "extensions": {
+    "colorMeta": {
+      "desk": {
+        "role": "neutral",
+        "displayName": "Desk Grey",
+        "canonical": "oklch(93.1% 0.005 95)",
+        "tonalRamp": [
+          "oklch(15% 0.005 95)",
+          "oklch(26% 0.005 95)",
+          "oklch(37% 0.005 95)",
+          "oklch(48% 0.005 95)",
+          "oklch(60% 0.005 95)",
+          "oklch(72% 0.005 95)",
+          "oklch(84% 0.005 95)",
+          "oklch(95% 0.005 95)"
+        ]
+      },
+      "card-stock": {
+        "role": "neutral",
+        "displayName": "Card Stock",
+        "canonical": "oklch(99.9% 0.004 106)",
+        "tonalRamp": [
+          "oklch(15% 0.004 106)",
+          "oklch(26% 0.004 106)",
+          "oklch(37% 0.004 106)",
+          "oklch(48% 0.004 106)",
+          "oklch(60% 0.004 106)",
+          "oklch(72% 0.004 106)",
+          "oklch(84% 0.004 106)",
+          "oklch(95% 0.004 106)"
+        ]
+      },
+      "print-white": {
+        "role": "neutral",
+        "displayName": "Print White",
+        "canonical": "oklch(98.7% 0.004 106)",
+        "tonalRamp": [
+          "oklch(15% 0.004 106)",
+          "oklch(26% 0.004 106)",
+          "oklch(37% 0.004 106)",
+          "oklch(48% 0.004 106)",
+          "oklch(60% 0.004 106)",
+          "oklch(72% 0.004 106)",
+          "oklch(84% 0.004 106)",
+          "oklch(95% 0.004 106)"
+        ]
+      },
+      "sheet-white": {
+        "role": "neutral",
+        "displayName": "Sheet White",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0.000 0)",
+          "oklch(26% 0.000 0)",
+          "oklch(37% 0.000 0)",
+          "oklch(48% 0.000 0)",
+          "oklch(60% 0.000 0)",
+          "oklch(72% 0.000 0)",
+          "oklch(84% 0.000 0)",
+          "oklch(95% 0.000 0)"
+        ]
+      },
+      "typed-black": {
+        "role": "neutral",
+        "displayName": "Typewriter Black",
+        "canonical": "oklch(20.5% 0.006 271)",
+        "tonalRamp": [
+          "oklch(15% 0.006 271)",
+          "oklch(26% 0.006 271)",
+          "oklch(37% 0.006 271)",
+          "oklch(48% 0.006 271)",
+          "oklch(60% 0.006 271)",
+          "oklch(72% 0.006 271)",
+          "oklch(84% 0.006 271)",
+          "oklch(95% 0.006 271)"
+        ]
+      },
+      "typed-grey": {
+        "role": "neutral",
+        "displayName": "Label Grey",
+        "canonical": "oklch(53.5% 0.010 271)",
+        "tonalRamp": [
+          "oklch(15% 0.010 271)",
+          "oklch(26% 0.010 271)",
+          "oklch(37% 0.010 271)",
+          "oklch(48% 0.010 271)",
+          "oklch(60% 0.010 271)",
+          "oklch(72% 0.010 271)",
+          "oklch(84% 0.010 271)",
+          "oklch(95% 0.010 271)"
+        ]
+      },
+      "pen-blue": {
+        "role": "primary",
+        "displayName": "Ballpoint Blue",
+        "canonical": "oklch(38.5% 0.144 267)",
+        "tonalRamp": [
+          "oklch(15% 0.036 267)",
+          "oklch(26% 0.062 267)",
+          "oklch(37% 0.089 267)",
+          "oklch(48% 0.115 267)",
+          "oklch(60% 0.096 267)",
+          "oklch(72% 0.067 267)",
+          "oklch(84% 0.038 267)",
+          "oklch(95% 0.012 267)"
+        ]
+      },
+      "head-rule-red": {
+        "role": "secondary",
+        "displayName": "Printed Head Red",
+        "canonical": "oklch(60.9% 0.186 22 / 0.72)",
+        "tonalRamp": [
+          "oklch(15% 0.036 22)",
+          "oklch(26% 0.062 22)",
+          "oklch(37% 0.089 22)",
+          "oklch(48% 0.115 22)",
+          "oklch(60% 0.096 22)",
+          "oklch(72% 0.067 22)",
+          "oklch(84% 0.038 22)",
+          "oklch(95% 0.012 22)"
+        ]
+      },
+      "line-rule-blue": {
+        "role": "secondary",
+        "displayName": "Faint Line Blue",
+        "canonical": "oklch(63.6% 0.114 253 / 0.32)",
+        "tonalRamp": [
+          "oklch(15% 0.036 253)",
+          "oklch(26% 0.062 253)",
+          "oklch(37% 0.089 253)",
+          "oklch(48% 0.114 253)",
+          "oklch(60% 0.096 253)",
+          "oklch(72% 0.067 253)",
+          "oklch(84% 0.038 253)",
+          "oklch(95% 0.012 253)"
+        ]
+      },
+      "clip-wire": {
+        "role": "neutral",
+        "displayName": "Wire Grey",
+        "canonical": "oklch(64.8% 0.012 257)",
+        "tonalRamp": [
+          "oklch(15% 0.012 257)",
+          "oklch(26% 0.012 257)",
+          "oklch(37% 0.012 257)",
+          "oklch(48% 0.012 257)",
+          "oklch(60% 0.012 257)",
+          "oklch(72% 0.012 257)",
+          "oklch(84% 0.012 257)",
+          "oklch(95% 0.012 257)"
+        ]
+      },
+      "highlighter": {
+        "role": "neutral",
+        "displayName": "Highlighter Yellow",
+        "canonical": "oklch(91.4% 0.145 96 / 0.7)",
+        "tonalRamp": [
+          "oklch(15% 0.036 96)",
+          "oklch(26% 0.062 96)",
+          "oklch(37% 0.089 96)",
+          "oklch(48% 0.115 96)",
+          "oklch(60% 0.096 96)",
+          "oklch(72% 0.067 96)",
+          "oklch(84% 0.038 96)",
+          "oklch(95% 0.012 96)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "typed": {
+        "displayName": "Typed",
+        "purpose": "Every typed line: sentences, one-liners, links, kinds and dates. One size on the 26px pitch."
+      },
+      "typed-head": {
+        "displayName": "Card Head",
+        "purpose": "Project names, the Contact head and the resume bar links, typed on the head rule."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-on-desk",
+        "value": "0 0 0 0.5px rgb(30 26 20 / 0.07), 0 1px 1px rgb(30 26 20 / 0.05), 0 10px 22px -12px rgb(30 26 20 / 0.32)",
+        "purpose": "The name card lying on the desk."
+      },
+      {
+        "name": "filed-card",
+        "value": "0 0 0 0.5px rgb(30 26 20 / 0.09), 0 -1px 5px -1px rgb(30 26 20 / 0.11), 0 1px 1px rgb(30 26 20 / 0.05), 0 10px 22px -12px rgb(30 26 20 / 0.32)",
+        "purpose": "A card in the file, throwing a little shade up onto the card behind it."
+      },
+      {
+        "name": "print",
+        "value": "0 0 0 0.5px rgb(30 26 20 / 0.1), 0 1px 2px rgb(30 26 20 / 0.12), 0 10px 18px -8px rgb(30 26 20 / 0.4)",
+        "purpose": "The instax print, lifted a little higher than a card."
+      },
+      {
+        "name": "clip",
+        "value": "drop-shadow(0.5px 1.5px 1px rgb(30 26 20 / 0.28))",
+        "purpose": "The paperclip wire (a filter, not a box-shadow)."
+      },
+      {
+        "name": "resume-sheet",
+        "value": "0 0 0 0.5px rgb(30 26 20 / 0.08), 0 1px 1px rgb(30 26 20 / 0.05), 0 22px 44px -22px rgb(30 26 20 / 0.4)",
+        "purpose": "The printed resume sheet on the desk."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "State changes: closing a card, link underlines, the chevron turn, the print developing."
+      },
+      {
+        "name": "pen-ease",
+        "value": "cubic-bezier(0.45, 0.05, 0.55, 0.95)",
+        "purpose": "Anything drawn by hand: name, signature, pulled-card underline."
+      },
+      {
+        "name": "spring",
+        "value": "linear(0, 0.0224, 0.0795, 0.1587, 0.2501, 0.3462, 0.4416, 0.5325, 0.6163, 0.6916, 0.7577, 0.8145, 0.8624, 0.902, 0.934, 0.9594, 0.979, 0.9937, 1.0043, 1.0116, 1.0163, 1.0188, 1.0199, 1.0198, 1.0189, 1.0174, 1.0157, 1.0138, 1.0118, 1.01, 1.0083, 1.0067, 1.0053, 1.0041, 1.0031, 1.0022, 1)",
+        "purpose": "Opening a filed card (590ms): stiffness 190, damping 21.5, settles about 2% past its mark."
+      },
+      {
+        "name": "card-close",
+        "value": "300ms ease-out",
+        "purpose": "Closing a filed card."
+      },
+      {
+        "name": "file-part",
+        "value": "260ms ease-out, 7px",
+        "purpose": "Cards in front of a hovered or focused closed card slide down."
+      },
+      {
+        "name": "pen-underline",
+        "value": "420ms pen-ease, 140ms delay",
+        "purpose": "Underline drawn under a pulled card's name."
+      },
+      {
+        "name": "develop",
+        "value": "2.4s ease-out, 150ms delay",
+        "purpose": "The instax photo warms from pale into colour on load."
+      },
+      {
+        "name": "link-underline",
+        "value": "150ms ease-out",
+        "purpose": "Link underline from 28% ink to full ink on hover."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "35rem",
+        "purpose": "Max-width: tighter pad and head, taller strips, smaller print."
+      },
+      {
+        "name": "resume-wide",
+        "value": "48rem",
+        "purpose": "Min-width: wider resume gutters."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Index Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Ruled card stock with a red head rule and blue line rules on the 26px pitch.",
+      "html": "<article class=\"ds-card\"><h2 class=\"ds-card-head\">Contact</h2><div class=\"ds-card-body\"><p>Read my <a class=\"ds-link\" href=\"#\">resume</a>, or email me.</p></div></article>",
+      "css": ".ds-card { position: relative; width: 600px; max-width: 100%; border-radius: 3px; background-color: #fffffc; background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='1'%3E%3Crect width='8' height='1' fill='rgb(220,70,76)' fill-opacity='.72'/%3E%3C/svg%3E\"), url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='2080'%3E%3Cdefs%3E%3Cpattern id='r' width='8' height='26' patternUnits='userSpaceOnUse'%3E%3Crect y='20' width='8' height='1' fill='rgb(86,142,206)' fill-opacity='.32'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='8' height='2080' fill='url(%23r)'/%3E%3C/svg%3E\"); background-size: 8px 1px, 8px 2080px; background-position: 0 42px, 0 48px; background-repeat: repeat-x; box-shadow: 0 0 0 0.5px rgb(30 26 20 / 0.07), 0 1px 1px rgb(30 26 20 / 0.05), 0 10px 22px -12px rgb(30 26 20 / 0.32); font: 400 15px/26px Geist, ui-sans-serif, system-ui, sans-serif; font-variant-numeric: tabular-nums; color: #16171a; } .ds-card-head { display: flex; align-items: baseline; gap: 16px; height: 42px; margin: 0; padding: 20px 28px 0; font: inherit; font-weight: 500; } .ds-card-body { padding: 6px 28px 52px; } .ds-card-body p { margin: 0; } .ds-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgb(22 23 26 / 0.28); transition: text-decoration-color 150ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-link:hover { text-decoration-color: currentColor; } .ds-link:focus-visible { outline: 2px solid #16171a; outline-offset: 3px; border-radius: 3px; }"
+    },
+    {
+      "name": "Filed Card Strip",
+      "kind": "custom",
+      "refersTo": "card-head",
+      "description": "A project card's strip: the whole head is the pull button, name left, grey kind right, a chevron that turns when open.",
+      "html": "<article class=\"ds-card\"><h2 class=\"ds-card-head\"><button class=\"ds-pull\" type=\"button\" aria-expanded=\"false\"><span class=\"ds-pull-name\">Phosphor</span><span class=\"ds-pull-kind\">macOS app</span><svg class=\"ds-pull-mark\" viewBox=\"0 0 12 12\" aria-hidden=\"true\"><path d=\"M3 4.5 6 7.5l3-3\"/></svg></button></h2><p class=\"ds-card-line\">A crypto wallet your AI agent can operate, but never approve.</p></article>",
+      "css": ".ds-card { position: relative; width: 600px; max-width: 100%; border-radius: 3px; background-color: #fffffc; background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='1'%3E%3Crect width='8' height='1' fill='rgb(220,70,76)' fill-opacity='.72'/%3E%3C/svg%3E\"), url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='2080'%3E%3Cdefs%3E%3Cpattern id='r' width='8' height='26' patternUnits='userSpaceOnUse'%3E%3Crect y='20' width='8' height='1' fill='rgb(86,142,206)' fill-opacity='.32'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='8' height='2080' fill='url(%23r)'/%3E%3C/svg%3E\"); background-size: 8px 1px, 8px 2080px; background-position: 0 42px, 0 48px; background-repeat: repeat-x; box-shadow: 0 0 0 0.5px rgb(30 26 20 / 0.09), 0 -1px 5px -1px rgb(30 26 20 / 0.11), 0 1px 1px rgb(30 26 20 / 0.05), 0 10px 22px -12px rgb(30 26 20 / 0.32); padding-bottom: 52px; font: 400 15px/26px Geist, ui-sans-serif, system-ui, sans-serif; font-variant-numeric: tabular-nums; color: #16171a; } .ds-card-head { display: flex; height: 42px; margin: 0; padding: 20px 28px 0; font: inherit; font-weight: 500; } .ds-pull { all: unset; display: flex; flex: 1; align-items: baseline; gap: 16px; cursor: pointer; } .ds-pull:focus-visible { outline: 2px solid #16171a; outline-offset: 3px; border-radius: 3px; } .ds-pull-kind { margin-left: auto; color: #6b6d73; font-weight: 400; } .ds-pull-mark { flex: none; align-self: center; width: 12px; height: 12px; fill: none; stroke: #6b6d73; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; transition: rotate 300ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-pull:hover .ds-pull-mark, .ds-pull[aria-expanded=\"true\"] .ds-pull-mark { rotate: 180deg; } .ds-card-line { margin: 0; padding: 6px 28px 0; }"
+    },
+    {
+      "name": "Typed Link",
+      "kind": "custom",
+      "refersTo": "link",
+      "description": "Links typed in the text's own ink with a faint underline that goes full ink on hover.",
+      "html": "<p class=\"ds-typed\">Find me on <a class=\"ds-link\" href=\"#\">GitHub</a>.</p>",
+      "css": ".ds-typed { margin: 0; font: 400 15px/26px Geist, ui-sans-serif, system-ui, sans-serif; font-variant-numeric: tabular-nums; color: #16171a; } .ds-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgb(22 23 26 / 0.28); transition: text-decoration-color 150ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-link:hover { text-decoration-color: currentColor; } .ds-link:focus-visible { outline: 2px solid #16171a; outline-offset: 3px; border-radius: 3px; }"
+    },
+    {
+      "name": "Instax Print",
+      "kind": "custom",
+      "refersTo": "print",
+      "description": "The one full-colour object: a turned instax print held by a flat drawn wire clip.",
+      "html": "<figure class=\"ds-print\"><div class=\"ds-photo\"></div><svg class=\"ds-clip\" viewBox=\"-2 0 16 58\" fill=\"none\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M12 14V50A6 6 0 0 1 0 50V6A4 4 0 0 1 8 6V44A2 2 0 0 1 4 44V16\" stroke=\"#8a8f96\" stroke-width=\"1.6\"/></svg></figure>",
+      "css": ".ds-print { position: relative; width: 104px; margin: 40px; padding: 8px 8px 30px; border-radius: 2px; background: #fbfbf8; rotate: 4deg; box-shadow: 0 0 0 0.5px rgb(30 26 20 / 0.1), 0 1px 2px rgb(30 26 20 / 0.12), 0 10px 18px -8px rgb(30 26 20 / 0.4); } .ds-photo { aspect-ratio: 480 / 647; background: #d9c2a0; } .ds-clip { position: absolute; top: 41px; left: -8px; width: 16px; height: 58px; rotate: -4deg; filter: drop-shadow(0.5px 1.5px 1px rgb(30 26 20 / 0.28)); }"
+    },
+    {
+      "name": "Pen Underline",
+      "kind": "custom",
+      "refersTo": "pen-blue",
+      "description": "The third pen mark: a ballpoint underline drawn under a pulled card's name.",
+      "html": "<span class=\"ds-pen-name\" tabindex=\"0\">Phosphor</span>",
+      "css": ".ds-pen-name { position: relative; font: 400 15px/26px Geist, ui-sans-serif, system-ui, sans-serif; font-variant-numeric: tabular-nums; color: #16171a; font-weight: 500; outline: none; } .ds-pen-name::before { content: \"\"; position: absolute; left: -3px; right: -6px; top: 16px; height: 8px; background: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M2 5.4C21 3.6 43 4.8 65 4S103 2.9 118 4.7' fill='none' stroke='%23213a8f' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E\") 0 0 / 100% 100% no-repeat; clip-path: inset(0 100% 0 0); opacity: 0; transition: opacity 160ms cubic-bezier(0.22, 1, 0.36, 1), clip-path 0s linear 170ms; } .ds-pen-name:hover::before, .ds-pen-name:focus-visible::before { clip-path: inset(0 0 0 0); opacity: 1; transition: opacity 0s, clip-path 420ms cubic-bezier(0.45, 0.05, 0.55, 0.95) 140ms; }"
+    },
+    {
+      "name": "Resume Bar Link",
+      "kind": "nav",
+      "refersTo": "resume-bar-link",
+      "description": "Plain typed nav link with a stroked line icon, 44px target.",
+      "html": "<a class=\"ds-back\" href=\"#\"><svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"square\" aria-hidden=\"true\"><path d=\"M13 8H3.5M7.5 4 3.5 8l4 4\"/></svg>Karim Baba</a>",
+      "css": ".ds-back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font: 400 15px/26px Geist, ui-sans-serif, system-ui, sans-serif; font-variant-numeric: tabular-nums; color: #16171a; font-weight: 500; text-decoration: none; } .ds-back svg { width: 15px; height: 15px; flex: none; transition: translate 300ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-back:hover svg { translate: -3px 0; } .ds-back:focus-visible { outline: 2px solid #16171a; outline-offset: 3px; border-radius: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Card File",
+    "overview": "The site is Karim's own card file on a desk. White index cards lie on a pale grey desk, lit softly from the top left. Each card has one red head rule and faint blue rules on a fixed pitch. Every typed line sits on a rule. Karim's name and his signature are written on the cards in blue ballpoint, stroke by stroke, from single-stroke plotter data. His photo is an instax print clipped to the top card. It is the only full colour on the page.\n\nThe density is low and calm: one 600px column, one type size, and blank space measured in whole ruled lines. Hierarchy comes from weight, ink colour, position on the card and the rules, never from size. The one scale jump on the page is the handwritten name. The resume page is the same desk with a printed sheet lying on it.\n\nThe world rejects the dark portfolio (hero, project grid, stack pills) and the full-bleed notebook page. Cards are objects with edges, shadows and a slight turn, not panels.",
+    "keyCharacteristics": [
+      "One typed face (Geist) at one size (15px) on one pitch (26px).",
+      "Printed rules drawn as SVG image tiles, one red head rule and pale blue line rules.",
+      "Four inks with one job each: black, grey, pen blue, printed red.",
+      "Handwriting plotted from stroke data and drawn on with a dash animation, never set in a script font.",
+      "Soft layered paper shadows and a fibre noise on the stock.",
+      "Filed cards overlap; pulling one parts the file on a spring."
+    ],
+    "rules": [
+      {
+        "name": "The Ink Law Rule",
+        "body": "Each ink has one job. Black types facts. Grey types kinds and dates. Pen blue is Karim's hand only (name, signature, the pulled card's underline). Red is the printed head rule only. A new element takes one of these jobs or it takes no colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Photo Rule",
+        "body": "The instax print is the only full-colour thing on the page. Nothing else carries a saturated fill.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Size Rule",
+        "body": "All typed text is 15px on a 26px pitch. Hierarchy comes from weight (400 or 500), ink and position. Never add a second typed size.",
+        "section": "typography"
+      },
+      {
+        "name": "The Plotted Hand Rule",
+        "body": "Handwriting is stroke data drawn with SVG paths and revealed by stroke dash, one stroke after another. Never a script or handwriting font.",
+        "section": "typography"
+      },
+      {
+        "name": "The Warm Shadow Rule",
+        "body": "Every shadow is the same warm brown-black (rgb 30 26 20) at low alpha, stacked as a hairline, a contact shadow and a long soft fall. Never a neutral black, never a hard offset.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Slight Turn Rule",
+        "body": "Loose objects are turned a little: the name card -0.5deg (-0.4deg on phones), the print +4deg, the clip -4deg, the signature -4deg. Filed cards stay square, as a pack does.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Image Rule Rule",
+        "body": "Printed rules are SVG image tiles (a 1px red tile, and one tall 26px-pitch blue pattern placed at the first rule). Never hard-stop gradients: under rotation they alias into steps. The tile's line position, the baseline and the pitch change together or not at all.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do type every line at 15px on the 26px pitch and keep blank space in whole lines.",
+      "Do give each ink one job: black facts, grey kinds and dates, blue for Karim's hand, red for the head rule.",
+      "Do draw printed rules as SVG image tiles, with the line, baseline and pitch changed together.",
+      "Do draw handwriting from stroke data and reveal it by stroke dash.",
+      "Do use the warm layered paper shadows (rgb 30 26 20) and a slight turn on loose objects.",
+      "Do keep the print the only full-colour element.",
+      "Do honour reduced motion by showing the finished state at once."
+    ],
+    "donts": [
+      "Don't add a second typed size or a display font; the handwritten name is the only scale jump.",
+      "Don't use pen blue for links, buttons or any typed text.",
+      "Don't build rules with hard-stop gradients.",
+      "Don't set handwriting in a script or handwriting font.",
+      "Don't add borders, pills, badges or icon tiles to cards.",
+      "Don't use more than three handwritten marks on a page (name, signature, pulled-card underline).",
+      "Don't shade the clip as steel or add hard offset shadows."
+    ]
+  }
+}
