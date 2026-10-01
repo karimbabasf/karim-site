@@ -2,18 +2,14 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-// Not preloaded: the homepage never draws Geist, so a preload there is wasted
-// bytes. Pages that use it still fetch it as soon as their text needs it.
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  preload: false,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-  preload: false,
 });
 
 // Absolute base for OG/Twitter image URLs. On Vercel this resolves to the
@@ -27,17 +23,17 @@ const metadataBase = new URL(
 export const metadata: Metadata = {
   metadataBase,
   title: "Karim Baba",
-  description: "Karim Baba, software engineer in San Francisco building agent infrastructure for blockchains.",
+  description: "Karim Baba, AI-native builder in San Francisco.",
   openGraph: {
     type: "website",
     title: "Karim Baba",
-    description: "Software engineer in San Francisco, building agent infrastructure for blockchains.",
+    description: "AI-native builder, BD @ 1Claw. Based in San Francisco.",
     siteName: "Karim Baba",
   },
   twitter: {
     card: "summary_large_image",
     title: "Karim Baba",
-    description: "Software engineer in San Francisco, building agent infrastructure for blockchains.",
+    description: "AI-native builder, BD @ 1Claw. Based in San Francisco.",
     creator: "@karimbabasf",
   },
 };
@@ -46,7 +42,7 @@ export const metadata: Metadata = {
 // Telegram). Without this, mobile in-app browsers tint the area above the page
 // with a default color instead of matching the black background.
 export const viewport: Viewport = {
-  themeColor: "#f3f1ec",
+  themeColor: "#000000",
   colorScheme: "dark",
   // Extend the layout into the safe area so the nav's black background can fill
   // the notch / in-app-browser toolbar strip (see the safe-area padding on the

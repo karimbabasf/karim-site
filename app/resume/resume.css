@@ -1,0 +1,441 @@
+/*
+ * Résumé document styles — scoped under `.resumeDoc`. The on-screen preview is a
+ * DARK document tuned to the site's black + neon terminal vibe (it borrows the
+ * site tokens --foreground / --dim / --neon so it feels native, not bolted-on).
+ * `public/Karim-Baba-Resume.pdf` is printed straight off this route, so the
+ * @media print block at the bottom is not a courtesy for Cmd+P: it IS the PDF's
+ * design. Changing it changes the file people download, and the file has to be
+ * re-rendered afterwards. Fonts come from next/font via CSS variables set in
+ * page.tsx.
+ */
+
+.resumeDoc {
+  /* Dark on-screen theme — mapped onto the site's black/neon palette. Accents
+     read from the global --neon, so the résumé follows the green/blue theme too.
+     (The @media print block below overrides all of these back to light.) */
+  --paper: #0d0e11;
+  --ink: #ededed;
+  --slate: #a2a8b2;
+  --faint: #787d86;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.16);
+  --accent: var(--neon);
+  --accent-ink: var(--neon);
+
+  --mono: var(--font-ibm-plex-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  --sans: var(--font-general-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --display: var(--font-general-sans), -apple-system, sans-serif;
+
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.46;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.resumeDoc *,
+.resumeDoc *::before,
+.resumeDoc *::after { box-sizing: border-box; }
+
+/* ---------- Sheet (the document surface) ---------- */
+.resumeDoc .sheet {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  background: var(--paper);
+  padding: 44px 48px 40px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  /* Raised dark panel on the pure-black canvas: hairline edge, soft depth, and a
+     faint neon halo that ties it to the rest of the site. */
+  box-shadow:
+    0 0 0 1px var(--line),
+    0 24px 80px -40px rgba(0, 0, 0, 0.85),
+    0 0 50px -18px color-mix(in srgb, var(--neon) 11%, transparent);
+}
+
+/* ---------- Header ---------- */
+.resumeDoc .eyebrow {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 8px;
+}
+.resumeDoc .eyebrow .dot {
+  display: inline-block;
+  width: 1px;
+  height: 9px;
+  background: var(--line-2);
+  margin: 0 0.75em;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+.resumeDoc .wordmark {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: var(--ink);
+}
+.resumeDoc .wordmark .period { color: var(--accent); }
+
+.resumeDoc .contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+}
+.resumeDoc .loc {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--slate);
+  margin-right: 3px;
+  white-space: nowrap;
+}
+.resumeDoc .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.resumeDoc .btn svg { width: 12px; height: 12px; display: block; }
+/* Each contact carries two labels: a short one for the screen and the bare URL
+   for print, since a printed sheet has no hyperlink to click. Print swaps them. */
+.resumeDoc .btn-url { display: none; }
+.resumeDoc .btn:hover,
+.resumeDoc .btn:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--neon) 10%, transparent);
+  outline: none;
+}
+.resumeDoc .btn:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--neon) 28%, transparent); }
+
+.resumeDoc .rule { height: 1px; background: var(--line); border: 0; margin: 20px 0 16px; }
+
+/* ---------- Summary ---------- */
+.resumeDoc .summary {
+  font-size: 12.6px;
+  line-height: 1.55;
+  color: #d4d7dd;
+  margin: 0;
+}
+
+/* ---------- Sections ---------- */
+.resumeDoc section { margin-top: 18px; }
+.resumeDoc .sec-head { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; }
+.resumeDoc .sec-head .sq { width: 7px; height: 7px; background: var(--accent); display: inline-block; flex: none; }
+.resumeDoc .sec-head h2 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+.resumeDoc .sec-head .line { flex: 1; height: 1px; background: var(--line); }
+
+/* ---------- Experience ---------- */
+.resumeDoc .role { margin-bottom: 13px; }
+.resumeDoc .role:last-child { margin-bottom: 0; }
+.resumeDoc .role-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.resumeDoc .role-title {
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0;
+}
+.resumeDoc .role-title .org { color: var(--accent-ink); }
+.resumeDoc .role-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: var(--faint);
+  white-space: nowrap;
+  flex: none;
+}
+.resumeDoc .role-note { font-size: 11.6px; color: var(--slate); margin: 4px 0 6px; line-height: 1.45; }
+
+.resumeDoc ul.bullets { list-style: none; margin: 0; padding: 0; }
+.resumeDoc ul.bullets li {
+  position: relative;
+  padding-left: 15px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #dce0e5;
+  margin-bottom: 4px;
+}
+.resumeDoc ul.bullets li:last-child { margin-bottom: 0; }
+.resumeDoc ul.bullets li::before {
+  content: "\203A";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.resumeDoc ul.bullets li .lead { color: var(--ink); font-weight: 600; }
+.resumeDoc ul.cols li { break-inside: avoid; }
+
+/* ---------- Projects ---------- */
+.resumeDoc .proj { margin-bottom: 11px; }
+.resumeDoc .proj:last-child { margin-bottom: 0; }
+.resumeDoc .proj-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.resumeDoc .proj-name { font-family: var(--display); font-size: 13px; font-weight: 600; color: var(--ink); margin: 0; }
+.resumeDoc .proj-name .desc { color: var(--slate); font-weight: 500; }
+.resumeDoc .proj-tag { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.04em; color: var(--faint); }
+.resumeDoc .repo {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1px solid transparent;
+}
+.resumeDoc .repo svg { width: 11px; height: 11px; }
+.resumeDoc .repo:hover,
+.resumeDoc .repo:focus-visible { border-bottom-color: var(--accent); outline: none; }
+.resumeDoc .proj-desc { font-size: 11.6px; line-height: 1.42; color: #c6cad1; margin: 3px 0 4px; }
+.resumeDoc .stack {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 0;
+}
+
+/* ---------- Mobile: keep everything comfortably readable, no zoom needed ---------- */
+@media (max-width: 640px) {
+  .resumeDoc { font-size: 13px; }
+  .resumeDoc .sheet { padding: 28px 22px 26px; border-radius: 8px; }
+  .resumeDoc .wordmark { font-size: 40px; }
+  .resumeDoc ul.cols { column-count: 1; }
+  .resumeDoc .role-top { flex-direction: column; }
+  .resumeDoc .role-meta { margin-top: 2px; }
+
+  /* Nudge the dense text up so it reads cleanly on a phone. */
+  .resumeDoc .summary { font-size: 13.5px; line-height: 1.55; }
+  .resumeDoc ul.bullets li { font-size: 13px; line-height: 1.5; margin-bottom: 5px; }
+  .resumeDoc .role-title { font-size: 14.5px; }
+  .resumeDoc .role-note { font-size: 12.5px; line-height: 1.5; }
+  .resumeDoc .proj-name { font-size: 13.5px; }
+  .resumeDoc .proj-desc { font-size: 12.5px; line-height: 1.5; }
+  .resumeDoc .sec-head h2 { font-size: 11.5px; }
+  .resumeDoc .btn { font-size: 11.5px; padding: 6px 11px; }
+  .resumeDoc .loc { font-size: 11.5px; }
+  .resumeDoc .stack, .resumeDoc .proj-tag { font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resumeDoc * { transition: none !important; }
+}
+
+/* ---------- Print / PDF ----------
+   This block IS the PDF: `Karim-Baba-Resume.pdf` is printed straight off this
+   route, so anything that reads as screen furniture (pill borders, icons,
+   chevron bullets, pale greys) has to be undone here or it lands on the
+   document. The @page rule is what keeps text off the paper edge; without it the
+   renderer's zero margins bleed every line into the trim. Sizes are in pt so the
+   sheet is specified the way a document is, not the way a viewport is, and the
+   whole thing is tuned to fit one Letter page at full size, never shrunk to fit. */
+@media print {
+  @page {
+    size: Letter;
+    margin: 0.45in 0.5in;
+  }
+
+  /* The layout declares `colorScheme: "dark"` for the whole site, and that is
+     what paints the print canvas (the paper outside the @page content box) in
+     the UA's dark ground, so the sheet came out framed in near-black. No
+     background property reaches that canvas; only color-scheme does. The
+     document has to declare itself light for the length of the print. */
+  :root { color-scheme: light; }
+  html,
+  body { background: #ffffff !important; }
+
+  .resumeDoc {
+    --paper: #ffffff;
+    --ink: #101317;
+    --slate: #3f444c;
+    --faint: #5c626b;
+    --line: #d8dade;
+    --line-2: #c3c7cd;
+    --accent: #1c3faa;
+    --accent-ink: #1c3faa;
+
+    font-size: 9.2pt;
+    line-height: 1.38;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .resumeDoc .sheet {
+    box-shadow: none;
+    border: 0;
+    border-radius: 0;
+    max-width: none;
+    width: 100%;
+    padding: 0;
+    background: #ffffff;
+  }
+
+  /* ---- Masthead, not a hero ---- */
+  .resumeDoc .eyebrow {
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .resumeDoc .eyebrow .dot { background: var(--line-2); height: 7px; margin: 0 0.6em; }
+
+  .resumeDoc .wordmark { font-size: 23pt; line-height: 1; letter-spacing: -0.02em; }
+
+  /* Contacts become one typographic line. Paper carries no hyperlink, so print
+     shows the URL and hides the label; the dividers are drawn by CSS so the last
+     item never trails a stray dot. */
+  .resumeDoc .contact {
+    display: block;
+    margin-top: 9px;
+    font-family: var(--mono);
+    font-size: 8.2pt;
+    line-height: 1.5;
+    color: var(--slate);
+  }
+  .resumeDoc .loc,
+  .resumeDoc .btn { display: inline; }
+  .resumeDoc .loc { font-size: 8.2pt; color: var(--slate); margin-right: 0; }
+  .resumeDoc .btn {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    font-size: 8.2pt;
+    font-weight: 400;
+    color: var(--slate);
+    background: none;
+  }
+  .resumeDoc .btn svg { display: none; }
+  .resumeDoc .btn-label { display: none; }
+  /* nowrap keeps a URL whole; the line breaks between contacts instead. */
+  .resumeDoc .btn-url { display: inline; white-space: nowrap; }
+  /* Divider trails its own item, so a wrapped contact line starts on a URL and
+     not on a stray dot. The gap on the left is a margin; the gap on the right is
+     the real space in the markup, which is also the only break opportunity. */
+  .resumeDoc .contact > *:not(:last-child)::after {
+    content: "\00B7";
+    margin-left: 0.4em;
+    color: var(--line-2);
+  }
+
+  .resumeDoc .rule { background: var(--ink); height: 1.4px; margin: 7px 0 6px; }
+
+  /* ---- Summary ---- */
+  .resumeDoc .summary {
+    font-size: 9.1pt;
+    line-height: 1.42;
+    color: #23262c !important;
+  }
+
+  /* ---- Sections ---- */
+  .resumeDoc section { margin-top: 8px; }
+  .resumeDoc .sec-head {
+    gap: 0;
+    margin-bottom: 4px;
+    padding-bottom: 3px;
+    border-bottom: 0.8px solid var(--line);
+  }
+  .resumeDoc .sec-head .sq,
+  .resumeDoc .sec-head .line { display: none; }
+  .resumeDoc .sec-head h2 { font-size: 8.6pt; letter-spacing: 0.16em; color: var(--ink); }
+
+  /* ---- Experience ---- */
+  .resumeDoc .role { margin-bottom: 6px; }
+  .resumeDoc .role-title { font-size: 10.2pt; }
+  .resumeDoc .role-title .org { color: var(--accent-ink); }
+  .resumeDoc .role-meta { font-size: 8.2pt; color: var(--faint); }
+  .resumeDoc .role-note {
+    font-size: 8.6pt;
+    line-height: 1.34;
+    color: var(--slate);
+    margin: 2px 0 4px;
+  }
+
+  .resumeDoc ul.bullets li {
+    font-size: 8.8pt;
+    line-height: 1.34;
+    padding-left: 12px;
+    margin-bottom: 2px;
+    color: #23262c !important;
+  }
+  /* A round bullet reads as a document; the chevron read as a web list. */
+  .resumeDoc ul.bullets li::before {
+    content: "\2022";
+    top: -0.5px;
+    font-weight: 400;
+    color: var(--faint) !important;
+  }
+  .resumeDoc ul.bullets li .lead { color: var(--ink); }
+
+  /* Two columns on the short list sections buy the vertical room that keeps the
+     whole résumé on one sheet at full size, instead of shrinking it to fit. */
+  .resumeDoc ul.cols { column-count: 2; column-gap: 28px; }
+
+  /* ---- Projects ---- */
+  .resumeDoc .proj { margin-bottom: 4px; }
+  .resumeDoc .proj-name { font-size: 9.8pt; }
+  .resumeDoc .proj-name .desc { color: var(--slate); }
+  .resumeDoc .proj-tag { font-size: 7.8pt; color: var(--faint); }
+  .resumeDoc .proj-desc {
+    font-size: 8.6pt;
+    line-height: 1.34;
+    margin: 2px 0;
+    color: #2b2e35 !important;
+  }
+  .resumeDoc .stack { font-size: 7.8pt; letter-spacing: 0.08em; color: var(--faint); }
+  .resumeDoc .repo { font-size: 8pt; border-bottom: 0; color: var(--accent) !important; }
+  .resumeDoc .repo svg { display: none; }
+
+  /* Every link still carries a live /URI in the PDF, so they do not also need to
+     be blue and underlined on the page. */
+  .resumeDoc a { color: var(--ink); text-decoration: none; }
+  .resumeDoc .btn { color: var(--slate); }
+
+  /* Nothing splits across a break, nothing trails past the last line. */
+  .resumeDoc section,
+  .resumeDoc .role,
+  .resumeDoc .proj { break-inside: avoid; }
+  .resumeDoc section:last-child,
+  .resumeDoc .role:last-child,
+  .resumeDoc .proj:last-child { margin-bottom: 0; }
+}
+
+/* General Sans tuning, matched to the print master. */
+.resumeDoc .wordmark { font-weight: 700; letter-spacing: -0.04em; }
+.resumeDoc .eyebrow { letter-spacing: 0.21em; font-weight: 600; }
+.resumeDoc .sec-head h2 { font-weight: 600; letter-spacing: 0.16em; }
+.resumeDoc .role-title,
+.resumeDoc .proj-name { font-weight: 600; letter-spacing: -0.017em; }
+.resumeDoc .summary { line-height: 1.58; }

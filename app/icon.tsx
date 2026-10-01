@@ -4,10 +4,10 @@ import { loadFont } from "../lib/og-font";
 export const size = { width: 64, height: 64 };
 export const contentType = "image/png";
 
-// Generated favicon: a paper "K" on an ink tile, the homepage's two colors.
-// Ink reads on both light and dark tab bars, down to 16px.
+// Generated favicon: the site's lime "K" mark on black. Reads cleanly down to the
+// 16px tab favicon while staying on-brand with the OG card.
 export default async function Icon() {
-  const font = await loadFont("Inter Tight", 600, "K");
+  const geist = await loadFont("Geist Mono", 700, "K");
 
   return new ImageResponse(
     (
@@ -18,14 +18,12 @@ export default async function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#16150f",
+          background: "#000000",
           borderRadius: 14,
-          color: "#f3f1ec",
-          fontFamily: font ? "Inter Tight" : "sans-serif",
-          fontSize: 44,
-          fontWeight: 600,
-          lineHeight: 1,
-          letterSpacing: -1,
+          color: "#a3f04b",
+          fontFamily: geist ? "Geist Mono" : "monospace",
+          fontSize: 46,
+          fontWeight: 700,
         }}
       >
         K
@@ -33,7 +31,9 @@ export default async function Icon() {
     ),
     {
       ...size,
-      fonts: font ? [{ name: "Inter Tight", data: font, weight: 600, style: "normal" }] : undefined,
+      fonts: geist
+        ? [{ name: "Geist Mono", data: geist, weight: 700, style: "normal" }]
+        : undefined,
     },
   );
 }
