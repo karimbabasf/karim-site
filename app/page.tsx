@@ -1,85 +1,98 @@
 import type { Viewport } from "next";
 import Image from "next/image";
-import { typed } from "./fonts";
+import { code, sans } from "./fonts";
 import { about, contact, intro, projects } from "@/lib/content";
-import { inkName, inkSignature } from "@/lib/handwriting";
-import { CardFile } from "@/components/card-file";
-import { Paperclip } from "@/components/paperclip";
-import { Pen } from "@/components/pen";
-import { SignOff } from "@/components/sign-off";
-import "./cards.css";
+import { Clock } from "@/components/instrument/clock";
+import { CopyEmail } from "@/components/instrument/copy-email";
+import { ArrowUpRight, Sheet } from "@/components/instrument/icons";
+import { Light } from "@/components/instrument/light";
+import { Rack } from "@/components/instrument/rack";
+import "./instrument.css";
 
 export const viewport: Viewport = {
-  themeColor: "#e9e8e4",
+  themeColor: "#dfe1e2",
   colorScheme: "light",
 };
 
 const socials = contact.links.filter((l) => ["X", "LinkedIn", "GitHub"].includes(l.label));
 
-// Index cards on a desk, read top to bottom: the card with his name and photo,
-// the file of project cards, and the front card with the ways to reach him.
+// One instrument, read top to bottom: his photo behind glass and his name
+// engraved beside it, what he builds, the four project modules, and the panel
+// with the ways to reach him.
 export default function Home() {
   return (
-    <div className={`desk ${typed.variable}`}>
-      <main className="stack">
-        <article className="card card--me">
-          <header className="card-head">
-            <h1 className="me-name">
-              <span className="sr-only">{intro.name}</span>
-              <Pen ink={inkName} className="ink ink--write" delay={200} />
-            </h1>
-            <figure className="print">
-              <Image
-                src="/karim-instax.jpg"
-                alt="Portrait of Karim Baba"
-                width={480}
-                height={647}
-                sizes="(min-width: 35rem) 88px, 64px"
-                loading="eager"
-                fetchPriority="high"
-                quality={90}
-              />
-              <Paperclip className="clip" />
-            </figure>
-          </header>
-          <div className="card-body">
-            <p>{intro.lede}</p>
-            <p>
-              {about.statement} {about.statementMore}
-            </p>
-          </div>
-        </article>
+    <div className={`face ${sans.variable} ${code.variable}`}>
+      <Light />
+      <main className="unit">
+        <header className="ident">
+          <figure className="window">
+            <Image
+              src="/work/portrait-tall.jpg"
+              alt="Portrait of Karim Baba"
+              width={600}
+              height={750}
+              sizes="(min-width: 40rem) 104px, 76px"
+              loading="eager"
+              fetchPriority="high"
+              quality={90}
+            />
+          </figure>
+          <h1 className="nameplate">
+            {intro.name.split(" ").map((word, i) => (
+              <span key={word}>
+                {i ? " " : null}
+                {word}
+              </span>
+            ))}
+          </h1>
+          <p className="ident-meta">
+            <span>San Francisco</span>
+            <Clock />
+          </p>
+        </header>
 
-        <CardFile
-          projects={projects}
-          front={
-            <article className="card card--front" aria-labelledby="contact">
-              <h2 className="card-head" id="contact">
-                Contact
-              </h2>
-              <div className="card-body">
-                <p>
-                  Read my <a href="/resume">resume</a>, or email{" "}
-                  <a href={`mailto:${contact.email}`}>{contact.email}</a>.
-                </p>
-                <p>
-                  Find me on{" "}
-                  {socials.map((l, i) => (
-                    <span key={l.href}>
-                      <a href={l.href} target="_blank" rel="noreferrer noopener">
-                        {l.label}
-                      </a>
-                      {i < socials.length - 2 ? ", " : i === socials.length - 2 ? " and " : "."}
-                    </span>
-                  ))}
-                </p>
-              </div>
-              <SignOff>
-                <Pen ink={inkSignature} className="ink ink--sign" delay={350} />
-              </SignOff>
-            </article>
-          }
-        />
+        <section className="about" aria-label="About">
+          <p className="lede">{intro.lede}</p>
+          <p className="statement">
+            {about.statement} {about.statementMore}
+          </p>
+        </section>
+
+        <section className="work" aria-labelledby="work">
+          <h2 id="work" className="vh">
+            Projects
+          </h2>
+          <div className="pocket">
+            <Rack projects={projects} />
+          </div>
+        </section>
+
+        <section className="io pocket" aria-labelledby="contact">
+          <h2 id="contact" className="io-head">
+            Contact
+          </h2>
+          <div className="io-row">
+            <a className="key raised" href="/resume">
+              <Sheet className="key-icon" />
+              Resume
+            </a>
+            <a className="key raised key--lamp" href={`mailto:${contact.email}`}>
+              <i className="lamp" aria-hidden />
+              Email
+            </a>
+            <CopyEmail email={contact.email} />
+          </div>
+          <ul className="io-row io-socials">
+            {socials.map((l) => (
+              <li key={l.href}>
+                <a className="key raised" href={l.href} target="_blank" rel="noreferrer noopener">
+                  {l.label}
+                  <ArrowUpRight className="key-icon" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
     </div>
   );

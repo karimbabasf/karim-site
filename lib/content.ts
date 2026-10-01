@@ -1,6 +1,6 @@
 /**
  * Homepage content. Edit this file to change what the page says;
- * app/page.tsx and components/card-file.tsx only render it.
+ * app/page.tsx and components/instrument/ only render it.
  */
 
 export const intro = {

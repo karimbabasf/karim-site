@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { typed } from "../fonts";
+import { code, sans } from "../fonts";
+import { ArrowLeft, Download } from "@/components/instrument/icons";
+import { Light } from "@/components/instrument/light";
+import "../instrument.css";
 import "./resume.css";
 
 export const metadata: Metadata = {
@@ -10,49 +13,31 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#e9e8e4",
+  themeColor: "#dfe1e2",
   colorScheme: "light",
 };
 
-// The image is rendered from the PDF by scripts/render-resume.sh, so what people
-// read here is exactly what they download.
+// The printed sheet lying on the same aluminium as the homepage. The image is
+// rendered from the PDF by scripts/render-resume.sh, so what people read here is
+// exactly what they download.
 export default function ResumePage() {
   return (
-    <div className={`desk-resume ${typed.variable}`}>
+    <div className={`face ${sans.variable} ${code.variable}`}>
+      <Light />
       <header className="r-bar">
         <div className="r-bar-in">
-          <Link className="r-back" href="/">
-            <svg
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="square"
-              aria-hidden
-              focusable="false"
-            >
-              <path d="M13 8H3.5M7.5 4 3.5 8l4 4" />
-            </svg>
+          <Link className="key key--sm raised" href="/">
+            <ArrowLeft className="key-icon" />
             Karim Baba
           </Link>
-          <a className="r-download" href="/Karim-Baba-Resume.pdf" download>
-            <svg
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="square"
-              aria-hidden
-              focusable="false"
-            >
-              <path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" />
-            </svg>
-            <span>Download PDF</span>
+          <a className="key key--sm raised" href="/Karim-Baba-Resume.pdf" download>
+            <Download className="key-icon" />
+            Download PDF
           </a>
         </div>
       </header>
       <main className="r-page">
-        <h1 className="r-hidden">Resume</h1>
+        <h1 className="vh">Resume</h1>
         {/* On a phone the sheet is too small to read, so a tap opens it full
             size where pinch zoom works. */}
         <a

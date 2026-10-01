@@ -6,7 +6,7 @@ export const contentType = "image/png";
 
 // Home screen icon. iOS rounds the corners itself, so the tile is square.
 export default async function AppleIcon() {
-  const font = await loadFont("Inter Tight", 600, "K");
+  const font = await loadFont("Google Sans Flex", 600, "K", 150);
 
   return new ImageResponse(
     (
@@ -17,13 +17,13 @@ export default async function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#16150f",
-          color: "#f3f1ec",
-          fontFamily: font ? "Inter Tight" : "sans-serif",
-          fontSize: 116,
-          fontWeight: 600,
+          backgroundColor: "#dfe1e2",
+          backgroundImage: "linear-gradient(150deg, #f7f8f8 0%, #dfe1e2 55%, #c4c8cb 100%)",
+          color: "#191b1e",
+          fontFamily: font ? "Engraved" : "sans-serif",
+          fontSize: 104,
           lineHeight: 1,
-          letterSpacing: -3,
+          textShadow: "1px 2px 0 rgba(255,255,255,0.7)",
         }}
       >
         K
@@ -31,7 +31,7 @@ export default async function AppleIcon() {
     ),
     {
       ...size,
-      fonts: font ? [{ name: "Inter Tight", data: font, weight: 600, style: "normal" }] : undefined,
+      fonts: font ? [{ name: "Engraved", data: font, weight: 600, style: "normal" }] : undefined,
     },
   );
 }

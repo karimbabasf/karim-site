@@ -1,121 +1,53 @@
-/* Resume: the printed sheet lying on the same desk as the homepage cards. */
-
-html:has(.desk-resume) {
-  cursor: auto;
-  background: #e9e8e4;
-  color-scheme: light;
-}
-html:has(.desk-resume) body {
-  background: #e9e8e4;
-}
-html:has(.desk-resume) :is(a, button) {
-  cursor: pointer;
-}
-
-.desk-resume {
-  --desk: #e9e8e4;
-  --ink: #16171a;
-  --ink-3: #6b6d73;
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-
-  min-height: 100svh;
-  background:
-    radial-gradient(130% 90% at 22% -10%, rgb(255 255 252 / 0.55), transparent 62%),
-    var(--desk);
-  color: var(--ink);
-  font: 400 15px / 26px var(--font-typed), ui-sans-serif, system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-.desk-resume ::selection {
-  background: rgb(255 226 102 / 0.7);
-  color: var(--ink);
-}
-
-.desk-resume :focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-  border-radius: 3px;
-}
-
-.r-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
+/* Resume: a printed sheet lying on the homepage's aluminium. Tokens, keys and
+   the light come from ../instrument.css. */
 
 .r-bar {
+  position: relative;
+  z-index: 1;
   padding-top: env(safe-area-inset-top);
 }
 
-/* The bar's contents line up with the edges of the sheet below. */
+/* The bar's keys line up with the edges of the sheet below. */
 .r-bar-in {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   max-width: 55rem;
   margin: 0 auto;
-  padding: 12px 16px;
+  padding: 16px 16px 4px;
 }
 
-.r-back,
-.r-download {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  color: var(--ink);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.r-back svg,
-.r-download svg {
-  width: 15px;
-  height: 15px;
-  flex: none;
-}
-
-.r-back svg {
+.r-bar .key-icon {
   transition: translate 300ms var(--ease-out);
 }
-
-/* Typed like the homepage links: underlined in ink, darker on hover. */
-.r-download span {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  text-decoration-color: rgb(22 23 26 / 0.28);
-  transition: text-decoration-color 150ms var(--ease-out);
-}
-
-.r-download:hover span {
-  text-decoration-color: currentColor;
+@media (hover: hover) {
+  .r-bar a:first-child:hover .key-icon {
+    translate: -3px 0;
+  }
 }
 
 .r-page {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 55rem;
   margin: 0 auto;
-  padding: 16px 16px 48px;
+  padding: 16px 16px 56px;
 }
 
+/* Paper on metal: a hairline, a contact shadow, and a long soft fall away
+   from the light. */
 .r-sheet {
   display: block;
   overflow: hidden;
-  border-radius: 2px;
+  border-radius: 3px;
   background: #fff;
   box-shadow:
-    0 0 0 0.5px rgb(30 26 20 / 0.08),
-    0 1px 1px rgb(30 26 20 / 0.05),
-    0 22px 44px -22px rgb(30 26 20 / 0.4);
+    0 0 0 0.5px rgb(var(--shade) / 0.16),
+    calc(var(--sx) * 1px) calc(var(--sy) * 1.5px) 2px rgb(var(--shade) / 0.1),
+    calc(var(--sx) * 12px) calc(var(--sy) * 18px) 44px -16px rgb(var(--shade) / 0.42);
 }
-
 .r-sheet img {
   display: block;
   width: 100%;
@@ -124,14 +56,11 @@ html:has(.desk-resume) :is(a, button) {
 
 .r-hint {
   margin: 16px 0 0;
-  color: var(--ink-3);
+  font: 500 13px / 1.4 var(--font-code), ui-monospace, monospace;
+  color: var(--al-6);
   text-align: center;
 }
-
 @media (hover: hover) {
-  .r-back:hover svg {
-    translate: -3px 0;
-  }
   .r-hint {
     display: none;
   }
@@ -139,16 +68,9 @@ html:has(.desk-resume) :is(a, button) {
 
 @media (min-width: 48rem) {
   .r-bar-in {
-    padding: 16px 32px;
+    padding: 24px 32px 4px;
   }
   .r-page {
-    padding: 40px 32px 80px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .r-back svg,
-  .r-download span {
-    transition: none;
+    padding: 32px 32px 88px;
   }
 }
