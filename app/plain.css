@@ -143,7 +143,9 @@ html:has(.plain) .card {
 .back li > span,
 .back nav a {
   font-family: var(--font-caps), serif;
-  font-weight: 600;
+  font-weight: var(--caps-weight, 600);
+  font-variant-caps: var(--caps-variant, normal);
+  text-transform: var(--caps-case, none);
 }
 
 /* ---------- front: the Bateman layout ---------- */
@@ -296,10 +298,9 @@ html:has(.plain) .card {
 /* ---------- back: about ---------- */
 
 .about p {
-  max-width: 64cqi;
-  margin: 0 0 1.8cqi;
-  font-size: 2.55cqi;
-  line-height: 1.45;
+  margin: 0 0 1.5cqi;
+  font-size: 2.3cqi;
+  line-height: 1.42;
   text-wrap: pretty;
 }
 
@@ -315,9 +316,8 @@ html:has(.plain) .card {
   }
 
   .about p {
-    max-width: none;
-    margin-bottom: 4cqi;
-    font-size: 4.5cqi;
+    margin-bottom: 3.2cqi;
+    font-size: 4.2cqi;
   }
 
   .face {
@@ -397,4 +397,68 @@ html:has(.plain) .card {
   .sheen {
     display: none;
   }
+}
+
+/* ---------- font prototype (?fonts) ---------- */
+
+.desk[data-font="2"] {
+  --font-caps: var(--f-ebg);
+  --font-text: var(--f-ebg);
+  --caps-variant: small-caps;
+}
+
+.desk[data-font="3"] {
+  --font-caps: var(--f-cinzel);
+}
+
+.desk[data-font="4"] {
+  --font-caps: var(--f-marcellus);
+  --caps-weight: 400;
+}
+
+.desk[data-font="5"] {
+  --font-caps: var(--font-geist-sans);
+  --font-text: var(--font-geist-sans);
+  --caps-weight: 500;
+  --caps-case: uppercase;
+}
+
+.desk[data-font="5"] .face {
+  font-size: 0.92em;
+}
+
+.desk[data-font="5"] .title h1 {
+  font-size: 4.4cqi;
+  letter-spacing: 0.16em;
+}
+
+.desk[data-font="5"] .face :is(.title p, .corners, .firm, h2, nav a, li > a) {
+  letter-spacing: 0.14em;
+}
+
+.fonts {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem;
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+}
+
+.fonts button {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid rgb(236 235 230 / 0.2);
+  border-radius: 999px;
+  background: none;
+  color: rgb(236 235 230 / 0.6);
+  font: 500 0.8rem var(--font-geist-sans), sans-serif;
+}
+
+.fonts button[aria-pressed="true"] {
+  border-color: rgb(236 235 230 / 0.8);
+  color: #ecebe6;
 }

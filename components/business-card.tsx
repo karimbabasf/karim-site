@@ -9,6 +9,9 @@ const external = { target: "_blank", rel: "noreferrer noopener" } as const;
 
 type Side = "about" | "work";
 
+// Font prototype, shown only with ?fonts in the URL. Keys 1 to 5 switch it.
+const FONTS = ["Cormorant", "EB Garamond", "Cinzel", "Marcellus", "Geist"];
+
 // The left half of the card opens the about side, the right half the work.
 // The card turns toward the side you pressed, like flipping it by that edge.
 export default function BusinessCard({
@@ -26,6 +29,20 @@ export default function BusinessCard({
   const [shown, setShown] = useState<Side>("work");
   const [half, setHalf] = useState<Side | null>(null);
   const flipped = open !== null;
+  const [font, setFont] = useState(1);
+  const [proto, setProto] = useState(false);
+  useEffect(() => {
+    const q = new URLSearchParams(location.search);
+    if (!q.has("fonts")) return;
+    setProto(true);
+    setFont(Number(q.get("fonts")) || 1);
+    const onKey = (e: KeyboardEvent) => {
+      const n = Number(e.key);
+      if (n >= 1 && n <= FONTS.length) setFont(n);
+    };
+    addEventListener("keydown", onKey);
+    return () => removeEventListener("keydown", onKey);
+  }, []);
   const turn = (side: Side) => {
     setShown(side);
     setOpen(side);
@@ -75,7 +92,25 @@ export default function BusinessCard({
   }, []);
 
   return (
-    <div className="desk" data-half={flipped ? undefined : (half ?? undefined)}>
+    <div
+      className="desk"
+      data-font={font}
+      data-half={flipped ? undefined : (half ?? undefined)}
+    >
+      {proto && (
+        <div className="fonts" role="group" aria-label="Font prototype">
+          {FONTS.map((name, i) => (
+            <button
+              key={name}
+              type="button"
+              aria-pressed={font === i + 1}
+              onClick={() => setFont(i + 1)}
+            >
+              {i + 1} {name}
+            </button>
+          ))}
+        </div>
+      )}
       <div className="stage">
         <div className="tilt" ref={tilt}>
           <div
@@ -119,14 +154,20 @@ export default function BusinessCard({
                 <div className="about">
                   <h2>About</h2>
                   <p>
-                    I build agent systems that handle real money and stop for a person before
-                    anything irreversible.
+                    I got into tech at 13, selling my drawings as NFTs, then reading whitepapers
+                    and writing my own smart contracts. At 16 I left a serious swimming career in
+                    Russia and moved to San Francisco to build my future now, not after university.
                   </p>
                   <p>
-                    On-chain since 2021, building agents since 2025. I design, build and ship
-                    every product myself, from Rust desktop apps to on-chain trading systems.
+                    My first months here went to moving and construction jobs, and I taught
+                    myself in whatever time was left. Then I built automations for those same
+                    companies, which led me to agent infrastructure for blockchains.
                   </p>
-                  <p>Based in San Francisco. Won the Stripe track at Supabase Select 2026.</p>
+                  <p>
+                    Next: hardware and federated learning, so models can learn from private data
+                    that never leaves its owner, and helping Ethereum become the cryptographic
+                    world computer Vitalik describes.
+                  </p>
                 </div>
               ) : (
                 <>

@@ -1,11 +1,15 @@
 import type { Viewport } from "next";
-import { Cormorant_Garamond, Cormorant_SC } from "next/font/google";
+import { Cinzel, Cormorant_Garamond, Cormorant_SC, EB_Garamond, Marcellus_SC } from "next/font/google";
 import BusinessCard, { type CardLink, type CardProject } from "@/components/business-card";
 import "./plain.css";
 
 // The Bateman card: engraved small caps on bone paper.
 const caps = Cormorant_SC({ subsets: ["latin"], weight: ["600"], variable: "--font-caps" });
 const text = Cormorant_Garamond({ subsets: ["latin"], weight: ["500"], variable: "--font-text" });
+// Font prototype (?fonts): the alternates load only when that switcher picks them.
+const ebg = EB_Garamond({ subsets: ["latin"], weight: ["500", "600"], variable: "--f-ebg", preload: false });
+const cinzel = Cinzel({ subsets: ["latin"], weight: ["600"], variable: "--f-cinzel", preload: false });
+const marcellus = Marcellus_SC({ subsets: ["latin"], weight: "400", variable: "--f-marcellus", preload: false });
 
 export const viewport: Viewport = {
   themeColor: "#1b1a18",
@@ -50,7 +54,7 @@ const links: CardLink[] = [
 
 export default function Home() {
   return (
-    <main className={`plain ${caps.variable} ${text.variable}`}>
+    <main className={`plain ${caps.variable} ${text.variable} ${ebg.variable} ${cinzel.variable} ${marcellus.variable}`}>
       <BusinessCard projects={projects} links={links} email="founder@karimbabasf.com" />
     </main>
   );
