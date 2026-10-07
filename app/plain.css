@@ -119,6 +119,9 @@ html:has(.plain) .card {
 }
 
 .face a {
+  /* Taller tap target for thumbs; vertical padding on an inline link does not
+     move the layout. */
+  padding-block: 0.45em;
   color: var(--ink);
   text-decoration: underline 1px rgb(38 37 35 / 0.28);
   text-underline-offset: 0.25em;
@@ -288,6 +291,9 @@ html:has(.plain) .card {
 }
 
 .turns {
+  /* The row is as wide as the card and, on phones, sits where the About and
+     Work labels are; only the button itself takes taps. */
+  pointer-events: none;
   position: absolute;
   top: calc(100% + 1.75rem);
   left: 0;
@@ -346,6 +352,10 @@ html:has(.plain) .card {
 
 .turn.mark .mark-text {
   margin-inline-end: -0.24em;
+}
+
+.turn.mark:not([data-off]) {
+  pointer-events: auto;
 }
 
 .mark[data-off] {
@@ -457,6 +467,8 @@ html:has(.plain) .card {
 /* ---------- phones: a vertical card ---------- */
 
 @media (max-width: 640px) and (orientation: portrait) {
+  /* Short phones shrink the card with the screen height; the max() floors keep
+     the small lines readable when they do. */
   .desk {
     --w: min(88vw, 420px, 78svh / 1.75);
   }
@@ -499,7 +511,7 @@ html:has(.plain) .card {
 
   .about p {
     margin-bottom: 3.2cqi;
-    font-size: 4.2cqi;
+    font-size: max(12px, 4.2cqi);
   }
 
   .face {
@@ -524,7 +536,7 @@ html:has(.plain) .card {
   }
 
   .corners {
-    font-size: 3.35cqi;
+    font-size: max(11px, 3.35cqi);
   }
 
   .face .firm a {
@@ -533,11 +545,11 @@ html:has(.plain) .card {
 
   .firm p {
     margin-top: 1.05cqi;
-    font-size: 3.9cqi;
+    font-size: max(11.5px, 3.9cqi);
   }
 
   .firm .address {
-    font-size: 3.35cqi;
+    font-size: max(11px, 3.35cqi);
   }
 
   .back {
@@ -546,7 +558,7 @@ html:has(.plain) .card {
 
   .back h2 {
     margin-bottom: 5cqi;
-    font-size: 3.8cqi;
+    font-size: max(11px, 3.8cqi);
   }
 
   .back ul {
@@ -564,12 +576,12 @@ html:has(.plain) .card {
   }
 
   .back li p {
-    font-size: 3.9cqi;
+    font-size: max(11.5px, 3.9cqi);
   }
 
   .back nav {
     gap: 2cqi 4.5cqi;
-    font-size: 3.35cqi;
+    font-size: max(11px, 3.35cqi);
   }
 }
 
