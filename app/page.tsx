@@ -50,6 +50,13 @@ const links = [
 export default function Home() {
   return (
     <main className={`plain ${caps.variable} ${text.variable}`}>
+      {/* Roughens the type edges a hair, like ink squeezed into paper fibre. */}
+      <svg width="0" height="0" aria-hidden="true" style={{ position: "absolute" }}>
+        <filter id="ink">
+          <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="2" seed="7" />
+          <feDisplacementMap in="SourceGraphic" scale="1.1" />
+        </filter>
+      </svg>
       <header className="card">
         <h1>Karim BABA</h1>
         <p>Builder</p>
