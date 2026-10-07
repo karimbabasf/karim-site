@@ -9,8 +9,19 @@ const external = { target: "_blank", rel: "noreferrer noopener" } as const;
 
 type Side = "about" | "work";
 
-// Font prototype, shown only with ?fonts in the URL. Keys 1 to 5 switch it.
-const FONTS = ["Cormorant", "EB Garamond", "Cinzel", "Marcellus", "Geist"];
+// Font prototype, shown only with ?fonts in the URL. Keys 1 to 9 and 0 switch it.
+const FONTS = [
+  "Cormorant",
+  "EB Garamond",
+  "Cinzel",
+  "Marcellus",
+  "Geist",
+  "Playfair",
+  "Spectral",
+  "Alegreya",
+  "Bodoni",
+  "Manrope",
+];
 
 // The left half of the card opens the about side, the right half the work.
 // The card turns toward the side you pressed, like flipping it by that edge.
@@ -37,8 +48,8 @@ export default function BusinessCard({
     setProto(true);
     setFont(Number(q.get("fonts")) || 1);
     const onKey = (e: KeyboardEvent) => {
-      const n = Number(e.key);
-      if (n >= 1 && n <= FONTS.length) setFont(n);
+      if (!/^[0-9]$/.test(e.key)) return;
+      setFont(e.key === "0" ? 10 : Number(e.key));
     };
     addEventListener("keydown", onKey);
     return () => removeEventListener("keydown", onKey);
@@ -111,6 +122,7 @@ export default function BusinessCard({
           ))}
         </div>
       )}
+      <div className="table">
       <div className="stage">
         <div className="tilt" ref={tilt}>
           <div
@@ -199,22 +211,25 @@ export default function BusinessCard({
           </div>
         </div>
       </div>
+        {/* Set along the card's edges like book spines: each label sits on the
+            edge the card turns by. */}
+        <button
+          type="button"
+          className="side about"
+          hidden={flipped}
+          onClick={() => turn("about")}
+        >
+          About
+        </button>
+        <button type="button" className="side work" hidden={flipped} onClick={() => turn("work")}>
+          Work
+        </button>
+      </div>
 
       <div className="turns">
-        {flipped ? (
-          <button type="button" className="turn" onClick={() => setOpen(null)}>
-            Turn back
-          </button>
-        ) : (
-          <>
-            <button type="button" className="turn about" onClick={() => turn("about")}>
-              &lsaquo; About
-            </button>
-            <button type="button" className="turn work" onClick={() => turn("work")}>
-              Work &rsaquo;
-            </button>
-          </>
-        )}
+        <button type="button" className="turn" hidden={!flipped} onClick={() => setOpen(null)}>
+          Turn back
+        </button>
       </div>
     </div>
   );

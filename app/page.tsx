@@ -1,5 +1,18 @@
 import type { Viewport } from "next";
-import { Cinzel, Cormorant_Garamond, Cormorant_SC, EB_Garamond, Marcellus_SC } from "next/font/google";
+import {
+  Alegreya,
+  Alegreya_SC,
+  Bodoni_Moda,
+  Cinzel,
+  Cormorant_Garamond,
+  Cormorant_SC,
+  EB_Garamond,
+  Manrope,
+  Marcellus_SC,
+  Playfair_Display_SC,
+  Spectral,
+  Spectral_SC,
+} from "next/font/google";
 import BusinessCard, { type CardLink, type CardProject } from "@/components/business-card";
 import "./plain.css";
 
@@ -10,6 +23,16 @@ const text = Cormorant_Garamond({ subsets: ["latin"], weight: ["500"], variable:
 const ebg = EB_Garamond({ subsets: ["latin"], weight: ["500", "600"], variable: "--f-ebg", preload: false });
 const cinzel = Cinzel({ subsets: ["latin"], weight: ["600"], variable: "--f-cinzel", preload: false });
 const marcellus = Marcellus_SC({ subsets: ["latin"], weight: "400", variable: "--f-marcellus", preload: false });
+const playfair = Playfair_Display_SC({ subsets: ["latin"], weight: "400", variable: "--f-playfair", preload: false });
+const spectralSc = Spectral_SC({ subsets: ["latin"], weight: "500", variable: "--f-spectral-sc", preload: false });
+const spectral = Spectral({ subsets: ["latin"], weight: "400", variable: "--f-spectral", preload: false });
+const alegreyaSc = Alegreya_SC({ subsets: ["latin"], weight: "500", variable: "--f-alegreya-sc", preload: false });
+const alegreya = Alegreya({ subsets: ["latin"], weight: "400", variable: "--f-alegreya", preload: false });
+const bodoni = Bodoni_Moda({ subsets: ["latin"], weight: ["400", "500"], variable: "--f-bodoni", preload: false });
+const manrope = Manrope({ subsets: ["latin"], weight: ["400", "600"], variable: "--f-manrope", preload: false });
+const protoFonts = [ebg, cinzel, marcellus, playfair, spectralSc, spectral, alegreyaSc, alegreya, bodoni, manrope]
+  .map((f) => f.variable)
+  .join(" ");
 
 export const viewport: Viewport = {
   themeColor: "#1b1a18",
@@ -54,7 +77,7 @@ const links: CardLink[] = [
 
 export default function Home() {
   return (
-    <main className={`plain ${caps.variable} ${text.variable} ${ebg.variable} ${cinzel.variable} ${marcellus.variable}`}>
+    <main className={`plain ${caps.variable} ${text.variable} ${protoFonts}`}>
       <BusinessCard projects={projects} links={links} email="founder@karimbabasf.com" />
     </main>
   );

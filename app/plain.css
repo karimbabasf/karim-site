@@ -278,21 +278,84 @@ html:has(.plain) .card {
   transition: color 0.2s ease-out;
 }
 
-.turn:hover,
-.desk[data-half="about"] .turn.about,
-.desk[data-half="work"] .turn.work {
+.turn:hover {
   color: rgb(236 235 230 / 0.9);
 }
 
-/* The two hints sit under the card's left and right edges. */
+.turn[hidden] {
+  display: block;
+  visibility: hidden;
+}
+
 .turns {
   display: flex;
   justify-content: center;
   width: var(--w);
 }
 
-.turns:has(.about) {
-  justify-content: space-between;
+/* ---------- side labels, set like book spines ---------- */
+
+.table {
+  position: relative;
+}
+
+.side {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.75rem 0.5rem;
+  border: 0;
+  background: none;
+  color: rgb(236 235 230 / 0.45);
+  font-family: var(--font-caps), serif;
+  font-weight: var(--caps-weight, 600);
+  font-variant-caps: var(--caps-variant, normal);
+  text-transform: var(--caps-case, none);
+  font-size: 1rem;
+  letter-spacing: 0.32em;
+  writing-mode: vertical-rl;
+  translate: 0 -50%;
+  transition: color 0.2s ease-out, opacity 0.3s ease-out;
+}
+
+.side::before,
+.side::after {
+  content: "";
+  inline-size: 1.75rem;
+  block-size: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+/* Left reads bottom to top, right reads top to bottom. */
+.side.about {
+  right: 100%;
+  margin-right: clamp(0.5rem, 3vw, 2.25rem);
+  rotate: 180deg;
+}
+
+.side.work {
+  left: 100%;
+  margin-left: clamp(0.5rem, 3vw, 2.25rem);
+}
+
+.side:hover,
+.desk[data-half="about"] .side.about,
+.desk[data-half="work"] .side.work {
+  color: rgb(236 235 230 / 0.92);
+}
+
+.side[hidden] {
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.side:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
 }
 
 /* ---------- back: about ---------- */
@@ -313,6 +376,47 @@ html:has(.plain) .card {
 
   .stage {
     aspect-ratio: 2 / 3.5;
+  }
+
+  /* No gutter beside a phone card: the labels sit under its edges. */
+  .side {
+    top: calc(100% + 1.6rem);
+    writing-mode: horizontal-tb;
+    translate: none;
+    rotate: none;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+
+  .side::before,
+  .side::after {
+    display: none;
+  }
+
+  .side.about {
+    right: auto;
+    left: 0;
+    rotate: none;
+  }
+
+  .side.work {
+    left: auto;
+    right: 0;
+  }
+
+  /* The prototype pills join the flow so they never cover the card. */
+  .desk .fonts {
+    position: static;
+    translate: none;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .desk .fonts button {
+    flex: none;
   }
 
   .about p {
@@ -390,7 +494,8 @@ html:has(.plain) .card {
 @media (prefers-reduced-motion: reduce) {
   .card,
   .face a,
-  .turn {
+  .turn,
+  .side {
     transition: none;
   }
 
@@ -461,4 +566,64 @@ html:has(.plain) .card {
 .fonts button[aria-pressed="true"] {
   border-color: rgb(236 235 230 / 0.8);
   color: #ecebe6;
+}
+
+.desk[data-font="6"] {
+  --font-caps: var(--f-playfair);
+  --caps-weight: 400;
+}
+
+.desk[data-font="7"] {
+  --font-caps: var(--f-spectral-sc);
+  --font-text: var(--f-spectral);
+  --caps-weight: 500;
+}
+
+.desk[data-font="7"] .face {
+  font-size: 0.94em;
+}
+
+.desk[data-font="8"] {
+  --font-caps: var(--f-alegreya-sc);
+  --font-text: var(--f-alegreya);
+  --caps-weight: 500;
+}
+
+.desk[data-font="9"] {
+  --font-caps: var(--f-bodoni);
+  --font-text: var(--f-bodoni);
+  --caps-weight: 500;
+  --caps-case: uppercase;
+}
+
+.desk[data-font="9"] .title h1 {
+  font-size: 4.8cqi;
+  letter-spacing: 0.12em;
+}
+
+.desk[data-font="9"] .face :is(.title p, .corners, .firm, h2, nav a, li > a) {
+  letter-spacing: 0.12em;
+}
+
+.desk[data-font="9"] .face {
+  font-size: 0.94em;
+}
+
+.desk[data-font="10"] {
+  --font-caps: var(--f-manrope);
+  --font-text: var(--f-manrope);
+  --caps-case: uppercase;
+}
+
+.desk[data-font="10"] .face {
+  font-size: 0.9em;
+}
+
+.desk[data-font="10"] .title h1 {
+  font-size: 4.2cqi;
+  letter-spacing: 0.18em;
+}
+
+.desk[data-font="10"] .face :is(.title p, .corners, .firm, h2, nav a, li > a) {
+  letter-spacing: 0.15em;
 }
