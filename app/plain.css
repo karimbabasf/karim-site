@@ -40,7 +40,7 @@ html:has(.plain) .card {
 /* ---------- the card as an object ---------- */
 
 .desk {
-  --w: min(90vw, 760px, 80svh * 1.75);
+  --w: min(92vw, 836px, 80svh * 1.75);
 }
 
 .stage {
@@ -119,9 +119,10 @@ html:has(.plain) .card {
 }
 
 .face a {
-  /* Taller tap target for thumbs; vertical padding on an inline link does not
-     move the layout. */
+  /* Taller tap target for thumbs. The negative margin cancels the padding
+     where a link is a flex or grid item, so no layout moves. */
   padding-block: 0.45em;
+  margin-block: -0.45em;
   color: var(--ink);
   text-decoration: underline 1px rgb(38 37 35 / 0.28);
   text-underline-offset: 0.25em;
@@ -280,7 +281,7 @@ html:has(.plain) .card {
   border: 0;
   background: none;
   color: rgb(236 235 230 / 0.5);
-  font: 500 0.72rem var(--font-geist-sans), sans-serif;
+  font: 500 0.8rem var(--font-geist-sans), sans-serif;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   transition: color 0.2s ease-out;
@@ -312,17 +313,17 @@ html:has(.plain) .card {
 .turn.mark {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .side.mark {
-  gap: 0.9rem;
+  gap: 1rem;
 }
 
 .mark::before,
 .mark::after {
   content: "";
-  inline-size: 1.75rem;
+  inline-size: 1.95rem;
   block-size: 1px;
   background: currentColor;
   opacity: 0.45;
@@ -335,7 +336,7 @@ html:has(.plain) .card {
 
 .turn.mark::before,
 .turn.mark::after {
-  inline-size: 1.25rem;
+  inline-size: 1.4rem;
 }
 
 /* The word lives only between the doors: its mask opens from the centre on
@@ -419,12 +420,12 @@ html:has(.plain) .card {
   top: 50%;
   display: flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: 1rem;
   padding: 0.75rem 0.5rem;
   border: 0;
   background: none;
   color: rgb(236 235 230 / 0.45);
-  font: 500 0.72rem var(--font-geist-sans), sans-serif;
+  font: 500 0.8rem var(--font-geist-sans), sans-serif;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   writing-mode: vertical-rl;
@@ -435,13 +436,13 @@ html:has(.plain) .card {
 /* Left reads bottom to top, right reads top to bottom. */
 .side.about {
   right: 100%;
-  margin-right: clamp(0.5rem, 3vw, 1.8rem);
+  margin-right: clamp(0.5rem, 3vw, 2rem);
   rotate: 180deg;
 }
 
 .side.work {
   left: 100%;
-  margin-left: clamp(0.5rem, 3vw, 1.8rem);
+  margin-left: clamp(0.5rem, 3vw, 2rem);
 }
 
 .side:hover,
@@ -470,7 +471,9 @@ html:has(.plain) .card {
   /* Short phones shrink the card with the screen height; the max() floors keep
      the small lines readable when they do. */
   .desk {
-    --w: min(88vw, 420px, 78svh / 1.75);
+    /* Leaves 150px of height for the labels under the card. */
+    --w: min(100vw - 24px, 462px, (100svh - 150px) / 1.75);
+    padding-inline: 12px;
   }
 
   .stage {
