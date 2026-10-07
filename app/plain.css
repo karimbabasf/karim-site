@@ -129,7 +129,6 @@ html:has(.plain) .card {
 .face h2,
 .title p,
 .corners,
-.contact a,
 .back li > a,
 .back li > span,
 .back nav a {
@@ -141,47 +140,14 @@ html:has(.plain) .card {
 
 .front {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
   padding: 5cqi 5.5cqi 4.6cqi;
-}
-
-/* Contact row along the top edge, set as small pressed buttons. */
-.contact {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.4cqi;
-}
-
-.face .contact a {
-  display: grid;
-  place-items: center;
-  padding: 1.1cqi;
-  border: 1px solid rgb(38 37 35 / 0.32);
-  border-radius: 0.4cqi;
-  font-size: 1.7cqi;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  transition: border-color 0.2s ease-out, background-color 0.2s ease-out;
-}
-
-.contact svg {
-  display: block;
-  width: 2.3cqi;
-  height: 2.3cqi;
-  fill: var(--ink);
-  /* Same pressed look as the type: a light lip under the mark. */
-  filter: drop-shadow(0 1px 0 rgb(255 255 255 / 0.85));
-}
-
-.face .contact a:hover {
-  border-color: var(--ink);
-  background-color: rgb(38 37 35 / 0.05);
 }
 
 .title {
   align-self: center;
   text-align: center;
+  margin-top: 4cqi;
 }
 
 .title h1 {
@@ -303,17 +269,8 @@ html:has(.plain) .card {
     padding: 9cqi 7cqi;
   }
 
-  .contact {
-    gap: 2.4cqi;
-  }
-
-  .face .contact a {
-    padding: 2.4cqi;
-  }
-
-  .contact svg {
-    width: 4.8cqi;
-    height: 4.8cqi;
+  .title {
+    margin-top: 10cqi;
   }
 
   .title h1 {
@@ -373,8 +330,7 @@ html:has(.plain) .card {
 @media (prefers-reduced-motion: reduce) {
   .card,
   .face a,
-  .face .contact a,
-  .turn {
+  .face   .turn {
     transition: none;
   }
 
