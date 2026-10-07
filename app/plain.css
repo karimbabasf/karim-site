@@ -105,6 +105,29 @@ html:has(.plain) .card {
   transition: none;
 }
 
+/* Belt and braces for backface-visibility: each face also switches
+   visibility exactly when the card is edge-on, half way through the 0.9s
+   symmetric turn, so a browser that ignores backface-visibility never shows
+   the far side mirrored through the near one. */
+.front,
+.back {
+  transition: visibility 0s linear 0.45s;
+}
+
+.back {
+  visibility: hidden;
+}
+
+.card.is-work .back,
+.card.is-about .back {
+  visibility: visible;
+}
+
+.card.is-work .front,
+.card.is-about .front {
+  visibility: hidden;
+}
+
 .face {
   position: absolute;
   inset: 0;
@@ -608,7 +631,7 @@ html:has(.plain) .card {
     font-size: 6.2cqi;
   }
 
-  .corners a {
+  .face .corners > a {
     justify-self: center;
     font-size: max(11.5px, 3.9cqi);
   }
