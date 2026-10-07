@@ -227,8 +227,7 @@ export default function ResumePage() {
                   <b>Tooling as leverage.</b>{" "}
                   I build the systems that accelerate my own delivery, then apply
                   them: Warden coordinates several coding agents against a single
-                  codebase, which produced 50,000 lines of Phosphor and a mainnet
-                  deployment within three days.
+                  codebase.
                 </li>
                 <li>
                   <b>System design.</b> I settle the rule before the code. An
