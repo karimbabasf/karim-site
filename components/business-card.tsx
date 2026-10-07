@@ -75,6 +75,29 @@ export default function BusinessCard({
     };
   }, []);
 
+  // The hairlines either side of a label close over it like doors. Each line
+  // has to travel to the label's centre, which depends on the word's length,
+  // so measure it once the fonts are in and again on resize.
+  useEffect(() => {
+    const measure = () => {
+      document.querySelectorAll<HTMLElement>(".mark").forEach((m) => {
+        const text = m.querySelector<HTMLElement>(".mark-text");
+        if (!text) return;
+        const cs = getComputedStyle(m);
+        const vertical = cs.writingMode.startsWith("vertical");
+        const len = vertical ? text.offsetHeight : text.offsetWidth;
+        const line = getComputedStyle(m, "::before");
+        const lineLen = parseFloat(vertical ? line.height : line.width) || 0;
+        const gap = parseFloat(cs.columnGap) || parseFloat(cs.rowGap) || 0;
+        m.style.setProperty("--reach", `${(len / 2 + gap + lineLen / 2).toFixed(1)}px`);
+      });
+    };
+    measure();
+    document.fonts?.ready.then(measure);
+    addEventListener("resize", measure);
+    return () => removeEventListener("resize", measure);
+  }, []);
+
   return (
     <div className="desk" data-half={flipped ? undefined : (half ?? undefined)}>
       <div className="table">
@@ -170,25 +193,25 @@ export default function BusinessCard({
             edge the card turns by. */}
         <button
           type="button"
-          className="side about"
+          className="side mark about"
           data-off={flipped || undefined}
           tabIndex={flipped ? -1 : undefined}
           aria-hidden={flipped || undefined}
           onClick={() => turn("about")}
         >
-          About
+          <span className="mark-text">About</span>
         </button>
-        <button type="button" className="side work" data-off={flipped || undefined}
+        <button type="button" className="side mark work" data-off={flipped || undefined}
           tabIndex={flipped ? -1 : undefined}
           aria-hidden={flipped || undefined} onClick={() => turn("work")}>
-          Work
+          <span className="mark-text">Work</span>
         </button>
         {/* Absolutely placed, so showing it never moves the card. */}
         <div className="turns">
-          <button type="button" className="turn" data-off={!flipped || undefined}
+          <button type="button" className="turn mark" data-off={!flipped || undefined}
             tabIndex={flipped ? undefined : -1}
             aria-hidden={!flipped || undefined} onClick={() => setOpen(null)}>
-            Turn back
+            <span className="mark-text">Turn back</span>
           </button>
         </div>
       </div>

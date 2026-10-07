@@ -273,22 +273,11 @@ html:has(.plain) .card {
   font: 500 0.72rem var(--font-geist-sans), sans-serif;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  /* Arrives once the card has nearly landed; see the [hidden] rule for leaving. */
-  transition:
-    color 0.2s ease-out,
-    opacity 0.35s ease-out 0.45s;
+  transition: color 0.2s ease-out;
 }
 
 .turn:hover {
   color: rgb(236 235 230 / 0.9);
-}
-
-/* Leaves fast, before the card turns. Not the hidden attribute: Tailwind
-   forces [hidden] to display: none !important, which kills the fade. */
-.turn[data-off] {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.18s ease-in;
 }
 
 .turns {
@@ -298,6 +287,82 @@ html:has(.plain) .card {
   right: 0;
   display: flex;
   justify-content: center;
+}
+
+/* ---------- marks: a label between two hairlines ----------
+   Leaving, the hairlines slide together and close over the word like doors,
+   then the joined line fades. Arriving, one line appears at the centre, splits
+   open, and the word fades in between. Only transform and opacity move.
+   Off state is data-off, not the hidden attribute: Tailwind forces [hidden]
+   to display: none !important, which would kill all of it. */
+
+.turn.mark {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.side.mark {
+  gap: 0.9rem;
+}
+
+.mark::before,
+.mark::after {
+  content: "";
+  inline-size: 1.75rem;
+  block-size: 1px;
+  background: currentColor;
+  opacity: 0.45;
+  /* Arriving: the line shows at the centre once the card has nearly landed,
+     then opens outward. */
+  transition:
+    opacity 0.2s ease-out 0.42s,
+    translate 0.5s cubic-bezier(0.65, 0, 0.35, 1) 0.52s;
+}
+
+.turn.mark::before,
+.turn.mark::after {
+  inline-size: 1.25rem;
+}
+
+.mark-text {
+  /* Letter-spacing trails the last letter; pull it back so the word centres. */
+  margin-inline-end: -0.3em;
+  transition: opacity 0.35s ease-out 0.84s;
+}
+
+.mark[data-off] {
+  pointer-events: none;
+}
+
+.mark[data-off] .mark-text {
+  opacity: 0;
+  transition: opacity 0.14s ease-in;
+}
+
+/* Leaving: the doors close fast, before the card is edge-on. */
+.mark[data-off]::before,
+.mark[data-off]::after {
+  opacity: 0;
+  transition:
+    translate 0.3s cubic-bezier(0.65, 0, 0.35, 1),
+    opacity 0.16s ease-in 0.28s;
+}
+
+.side.mark[data-off]::before {
+  translate: 0 var(--reach, 0px);
+}
+
+.side.mark[data-off]::after {
+  translate: 0 calc(var(--reach, 0px) * -1);
+}
+
+.turn.mark[data-off]::before {
+  translate: var(--reach, 0px) 0;
+}
+
+.turn.mark[data-off]::after {
+  translate: calc(var(--reach, 0px) * -1) 0;
 }
 
 /* ---------- side labels, set like book spines ---------- */
@@ -321,18 +386,7 @@ html:has(.plain) .card {
   text-transform: uppercase;
   writing-mode: vertical-rl;
   translate: 0 -50%;
-  transition:
-    color 0.2s ease-out,
-    opacity 0.35s ease-out 0.45s;
-}
-
-.side::before,
-.side::after {
-  content: "";
-  inline-size: 1.75rem;
-  block-size: 1px;
-  background: currentColor;
-  opacity: 0.45;
+  transition: color 0.2s ease-out;
 }
 
 /* Left reads bottom to top, right reads top to bottom. */
@@ -351,12 +405,6 @@ html:has(.plain) .card {
 .desk[data-half="about"] .side.about,
 .desk[data-half="work"] .side.work {
   color: rgb(236 235 230 / 0.92);
-}
-
-.side[data-off] {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.18s ease-in;
 }
 
 .side:focus-visible {
@@ -487,7 +535,10 @@ html:has(.plain) .card {
   .card,
   .face a,
   .turn,
-  .side {
+  .side,
+  .mark::before,
+  .mark::after,
+  .mark-text {
     transition: none;
   }
 

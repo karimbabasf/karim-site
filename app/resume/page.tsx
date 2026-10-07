@@ -8,7 +8,7 @@ const caps = Cormorant_SC({ subsets: ["latin"], weight: ["600"], variable: "--fo
 const text = Cormorant_Garamond({ subsets: ["latin"], weight: ["500"], variable: "--font-text" });
 
 export const metadata: Metadata = {
-  title: "Résumé — Karim Baba",
+  title: "Karim Baba, Résumé",
   description: "Preview and download Karim Baba's résumé.",
 };
 
