@@ -9,19 +9,6 @@ const external = { target: "_blank", rel: "noreferrer noopener" } as const;
 
 type Side = "about" | "work";
 
-// Font prototype, shown only with ?fonts in the URL. Keys 1 to 9 and 0 switch it.
-const FONTS = [
-  "Cormorant",
-  "EB Garamond",
-  "Cinzel",
-  "Marcellus",
-  "Geist",
-  "Playfair",
-  "Spectral",
-  "Alegreya",
-  "Bodoni",
-  "Manrope",
-];
 
 // The left half of the card opens the about side, the right half the work.
 // The card turns toward the side you pressed, like flipping it by that edge.
@@ -40,20 +27,6 @@ export default function BusinessCard({
   const [shown, setShown] = useState<Side>("work");
   const [half, setHalf] = useState<Side | null>(null);
   const flipped = open !== null;
-  const [font, setFont] = useState(1);
-  const [proto, setProto] = useState(false);
-  useEffect(() => {
-    const q = new URLSearchParams(location.search);
-    if (!q.has("fonts")) return;
-    setProto(true);
-    setFont(Number(q.get("fonts")) || 1);
-    const onKey = (e: KeyboardEvent) => {
-      if (!/^[0-9]$/.test(e.key)) return;
-      setFont(e.key === "0" ? 10 : Number(e.key));
-    };
-    addEventListener("keydown", onKey);
-    return () => removeEventListener("keydown", onKey);
-  }, []);
   const turn = (side: Side) => {
     setShown(side);
     setOpen(side);
@@ -103,25 +76,7 @@ export default function BusinessCard({
   }, []);
 
   return (
-    <div
-      className="desk"
-      data-font={font}
-      data-half={flipped ? undefined : (half ?? undefined)}
-    >
-      {proto && (
-        <div className="fonts" role="group" aria-label="Font prototype">
-          {FONTS.map((name, i) => (
-            <button
-              key={name}
-              type="button"
-              aria-pressed={font === i + 1}
-              onClick={() => setFont(i + 1)}
-            >
-              {i + 1} {name}
-            </button>
-          ))}
-        </div>
-      )}
+    <div className="desk" data-half={flipped ? undefined : (half ?? undefined)}>
       <div className="table">
       <div className="stage">
         <div className="tilt" ref={tilt}>
@@ -224,13 +179,14 @@ export default function BusinessCard({
         <button type="button" className="side work" hidden={flipped} onClick={() => turn("work")}>
           Work
         </button>
+        {/* Absolutely placed, so showing it never moves the card. */}
+        <div className="turns">
+          <button type="button" className="turn" hidden={!flipped} onClick={() => setOpen(null)}>
+            Turn back
+          </button>
+        </div>
       </div>
 
-      <div className="turns">
-        <button type="button" className="turn" hidden={!flipped} onClick={() => setOpen(null)}>
-          Turn back
-        </button>
-      </div>
     </div>
   );
 }
