@@ -50,6 +50,45 @@ export default function BusinessCard({
   };
   const tilt = useRef<HTMLDivElement>(null);
 
+  // The portrait on the About side opens full size: the photo grows out of
+  // the card print to the centre, uncropping as it goes, and shrinks back.
+  const thumb = useRef<HTMLButtonElement>(null);
+  const viewer = useRef<HTMLDialogElement>(null);
+  const big = useRef<HTMLImageElement>(null);
+  // Where the card print sits inside the full photo (it is a crop of it).
+  const CROP = { x: 0.25, y: 0.37, w: 0.6, h: 0.5 };
+  const still = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fromThumb = () => {
+    const a = thumb.current!.getBoundingClientRect();
+    const b = big.current!.getBoundingClientRect();
+    const s = a.width / (CROP.w * b.width);
+    const tx = a.left - b.left - s * CROP.x * b.width;
+    const ty = a.top - b.top - s * CROP.y * b.height;
+    const clip = `inset(${CROP.y * 100}% ${(1 - CROP.x - CROP.w) * 100}% ${(1 - CROP.y - CROP.h) * 100}% ${CROP.x * 100}%)`;
+    return { transform: `translate(${tx}px, ${ty}px) scale(${s})`, clipPath: clip };
+  };
+  const openPhoto = () => {
+    const d = viewer.current;
+    if (!d || d.open) return;
+    d.showModal();
+    if (still()) return;
+    const ease = "cubic-bezier(0.22, 1, 0.36, 1)";
+    big.current!.animate([fromThumb(), { transform: "none", clipPath: "inset(0 0 0 0)" }], { duration: 560, easing: ease });
+    d.animate([{ backgroundColor: "rgb(14 13 12 / 0)" }, { backgroundColor: "rgb(14 13 12 / 0.94)" }], { duration: 420, easing: "ease-out" });
+  };
+  const closePhoto = () => {
+    const d = viewer.current;
+    if (!d?.open) return;
+    if (still()) return d.close();
+    const ease = "cubic-bezier(0.65, 0, 0.35, 1)";
+    big.current!.animate([{ transform: "none", clipPath: "inset(0 0 0 0)" }, fromThumb()], { duration: 420, easing: ease, fill: "forwards" });
+    const fade = d.animate([{ backgroundColor: "rgb(14 13 12 / 0.94)" }, { backgroundColor: "rgb(14 13 12 / 0)" }], { duration: 420, easing: ease, fill: "forwards" });
+    fade.onfinish = () => {
+      d.close();
+      d.getAnimations({ subtree: true }).forEach((x) => x.cancel());
+    };
+  };
+
   // The card leans toward the pointer. Only transforms change per frame, so
   // the browser moves layers it already painted and never repaints the paper.
   useEffect(() => {
@@ -129,7 +168,7 @@ export default function BusinessCard({
               }
             }}
             onClick={(e) => {
-              if ((e.target as HTMLElement).closest("a")) return;
+              if ((e.target as HTMLElement).closest("a, button")) return;
               if (flipped) return close();
               const r = e.currentTarget.getBoundingClientRect();
               turn(e.clientX < r.left + r.width / 2 ? "about" : "work");
@@ -166,6 +205,15 @@ export default function BusinessCard({
               {shown === "about" ? (
                 <div className="about">
                   <h2>About</h2>
+                  <button
+                    type="button"
+                    className="portrait"
+                    ref={thumb}
+                    onClick={openPhoto}
+                    aria-label="Open the photo of Karim Baba at full size"
+                  >
+                    <img src="/karim-card.webp" width={640} height={800} alt="" decoding="async" />
+                  </button>
                   <p>
                     <span className="lead-in">I got into tech</span> at 13, selling my drawings
                     as NFTs, then reading whitepapers and writing my own smart contracts. At 16 I
@@ -235,6 +283,18 @@ export default function BusinessCard({
         </div>
       </div>
 
+      <dialog
+        ref={viewer}
+        className="lightbox"
+        aria-label="Photo of Karim Baba"
+        onClick={closePhoto}
+        onCancel={(e) => {
+          e.preventDefault();
+          closePhoto();
+        }}
+      >
+        <img ref={big} src="/karim-full.webp" width={1600} height={2400} alt="Karim Baba" />
+      </dialog>
     </div>
   );
 }
