@@ -1,17 +1,18 @@
 import type { Viewport } from "next";
 import { Cormorant_Garamond, Cormorant_SC } from "next/font/google";
+import BusinessCard, { type CardLink, type CardProject } from "@/components/business-card";
 import "./plain.css";
 
 // The Bateman card: engraved small caps on bone paper.
-const caps = Cormorant_SC({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-caps" });
+const caps = Cormorant_SC({ subsets: ["latin"], weight: ["600"], variable: "--font-caps" });
 const text = Cormorant_Garamond({ subsets: ["latin"], weight: ["500"], variable: "--font-text" });
 
 export const viewport: Viewport = {
-  themeColor: "#e9e7e1",
-  colorScheme: "light",
+  themeColor: "#1b1a18",
+  colorScheme: "dark",
 };
 
-const projects = [
+const projects: CardProject[] = [
   {
     name: "Phosphor",
     line: "A crypto wallet your AI agent can operate, but never approve.",
@@ -24,7 +25,7 @@ const projects = [
   },
   {
     name: "Blast",
-    line: "Agents hire agents and Stripe charges only on proof. Won the Stripe track at Supabase Select.",
+    line: "Agents hire agents, paid only on proof. Won the Stripe track at Supabase Select.",
     href: "https://blast-one-rho.vercel.app",
   },
   {
@@ -39,62 +40,18 @@ const projects = [
   },
 ];
 
-const links = [
-  { label: "Email", href: "mailto:founder@karimbabasf.com" },
+const links: CardLink[] = [
   { label: "X", href: "https://x.com/karimbabasf" },
   { label: "GitHub", href: "https://github.com/karimbabasf" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/karim-baba-130547289/" },
+  { label: "Telegram", href: "https://t.me/karimbabasf" },
   { label: "Resume", href: "/resume" },
 ];
 
 export default function Home() {
   return (
     <main className={`plain ${caps.variable} ${text.variable}`}>
-      {/* Roughens the type edges a hair, like ink squeezed into paper fibre. */}
-      <svg width="0" height="0" aria-hidden="true" style={{ position: "absolute" }}>
-        <filter id="ink">
-          <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="2" seed="7" />
-          <feDisplacementMap in="SourceGraphic" scale="1.1" />
-        </filter>
-      </svg>
-      <header className="card">
-        <h1>Karim BABA</h1>
-        <p>Builder</p>
-      </header>
-      <p>
-        Based in San Francisco. I make agent systems that touch money and stop
-        for a person before anything irreversible.
-      </p>
-      <p>On-chain since 2021, building agents since 2025. I design and ship every product myself.</p>
-
-      <h2>Work</h2>
-      <ul>
-        {projects.map((p) => (
-          <li key={p.name}>
-            {p.href ? (
-              <a href={p.href} target="_blank" rel="noreferrer noopener">
-                {p.name}
-              </a>
-            ) : (
-              <span>{p.name}</span>
-            )}
-            <p>{p.line}</p>
-          </li>
-        ))}
-      </ul>
-
-      <h2>Contact</h2>
-      <nav>
-        {links.map((l) => (
-          <a
-            key={l.label}
-            href={l.href}
-            {...(l.href.startsWith("http") ? { target: "_blank", rel: "noreferrer noopener" } : {})}
-          >
-            {l.label}
-          </a>
-        ))}
-      </nav>
+      <BusinessCard projects={projects} links={links} email="founder@karimbabasf.com" />
     </main>
   );
 }
