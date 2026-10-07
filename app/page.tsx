@@ -20,6 +20,7 @@ const projects = [
   {
     name: "Blast",
     line: "Agents hire agents and Stripe charges only on proof. Won the Stripe track at Supabase Select.",
+    href: "https://blast-one-rho.vercel.app",
   },
   {
     name: "SolBid",
