@@ -171,17 +171,23 @@ export default function BusinessCard({
         <button
           type="button"
           className="side about"
-          hidden={flipped}
+          data-off={flipped || undefined}
+          tabIndex={flipped ? -1 : undefined}
+          aria-hidden={flipped || undefined}
           onClick={() => turn("about")}
         >
           About
         </button>
-        <button type="button" className="side work" hidden={flipped} onClick={() => turn("work")}>
+        <button type="button" className="side work" data-off={flipped || undefined}
+          tabIndex={flipped ? -1 : undefined}
+          aria-hidden={flipped || undefined} onClick={() => turn("work")}>
           Work
         </button>
         {/* Absolutely placed, so showing it never moves the card. */}
         <div className="turns">
-          <button type="button" className="turn" hidden={!flipped} onClick={() => setOpen(null)}>
+          <button type="button" className="turn" data-off={!flipped || undefined}
+            tabIndex={flipped ? undefined : -1}
+            aria-hidden={!flipped || undefined} onClick={() => setOpen(null)}>
             Turn back
           </button>
         </div>

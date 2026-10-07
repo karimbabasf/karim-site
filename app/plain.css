@@ -273,16 +273,22 @@ html:has(.plain) .card {
   font: 500 0.72rem var(--font-geist-sans), sans-serif;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  transition: color 0.2s ease-out;
+  /* Arrives once the card has nearly landed; see the [hidden] rule for leaving. */
+  transition:
+    color 0.2s ease-out,
+    opacity 0.35s ease-out 0.45s;
 }
 
 .turn:hover {
   color: rgb(236 235 230 / 0.9);
 }
 
-.turn[hidden] {
-  display: block;
-  visibility: hidden;
+/* Leaves fast, before the card turns. Not the hidden attribute: Tailwind
+   forces [hidden] to display: none !important, which kills the fade. */
+.turn[data-off] {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease-in;
 }
 
 .turns {
@@ -315,7 +321,9 @@ html:has(.plain) .card {
   text-transform: uppercase;
   writing-mode: vertical-rl;
   translate: 0 -50%;
-  transition: color 0.2s ease-out, opacity 0.3s ease-out;
+  transition:
+    color 0.2s ease-out,
+    opacity 0.35s ease-out 0.45s;
 }
 
 .side::before,
@@ -345,10 +353,10 @@ html:has(.plain) .card {
   color: rgb(236 235 230 / 0.92);
 }
 
-.side[hidden] {
-  display: flex;
+.side[data-off] {
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.18s ease-in;
 }
 
 .side:focus-visible {
