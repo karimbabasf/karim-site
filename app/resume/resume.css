@@ -501,6 +501,94 @@ html:has(.resumePage) a {
    This block IS the PDF. Paper is white and the ink is charcoal; the pressed
    type has no text-shadow here, because a shadow prints as a smudge. Sizes are
    in pt and tuned to fit one Letter page at full size, never shrunk to fit. */
+/* ---------- body font prototype (?fonts), screen only ---------- */
+
+.resumePage[data-font="1"] { --proto: var(--font-geist-sans); }
+.resumePage[data-font="2"] { --proto: var(--rf-manrope); }
+.resumePage[data-font="3"] { --proto: var(--rf-inter); }
+.resumePage[data-font="4"] { --proto: var(--rf-dm); }
+.resumePage[data-font="5"] { --proto: var(--rf-jakarta); }
+
+.resumePage[data-font] .resumeDoc {
+  font-family: var(--proto), sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.resumePage[data-font] .resumeDoc :is(.eyebrow, .contact, .role-title, .role-meta, .proj-name, .proj-tag, .repo, .stack, .lead) {
+  font-family: var(--proto), sans-serif;
+  letter-spacing: 0;
+  text-shadow: none;
+}
+
+.resumePage[data-font] .resumeDoc :is(.role-title, .proj-name, .lead) {
+  font-weight: 600;
+}
+
+.resumePage[data-font] .resumeDoc :is(.eyebrow, .contact, .role-meta, .proj-tag, .repo, .stack) {
+  font-weight: 400;
+  color: var(--slate);
+}
+
+.resumePage[data-font] .resumeDoc .sec-head h2 {
+  font-family: var(--proto), sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.resumePage[data-font] .resumeDoc :is(p, li, span:not(.surname)) {
+  text-shadow: none;
+}
+
+.resumePage[data-font] .resumeBar,
+.resumePage[data-font] .resumeBar * {
+  font-family: var(--proto), sans-serif;
+  font-variant-caps: normal;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+.resumeFonts {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 10;
+  display: flex;
+  gap: 0.25rem;
+  max-width: calc(100vw - 1rem);
+  overflow-x: auto;
+  padding: 0.3rem;
+  border-radius: 999px;
+  background: rgb(27 26 24 / 0.85);
+}
+
+.resumeFonts button {
+  flex: none;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgb(236 235 230 / 0.2);
+  border-radius: 999px;
+  background: none;
+  color: rgb(236 235 230 / 0.6);
+  font: 500 0.8rem var(--font-geist-sans), sans-serif;
+  cursor: pointer;
+}
+
+.resumeFonts button[aria-pressed="true"] {
+  border-color: rgb(236 235 230 / 0.8);
+  color: #ecebe6;
+}
+
+@media print {
+  .resumeFonts {
+    display: none;
+  }
+}
+
 @media print {
   @page {
     size: Letter;

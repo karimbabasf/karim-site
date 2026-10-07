@@ -313,11 +313,11 @@ html:has(.plain) .card {
   block-size: 1px;
   background: currentColor;
   opacity: 0.45;
-  /* Arriving: the line shows at the centre once the card has nearly landed,
-     then opens outward. */
+  /* Arriving: a point at the centre draws out into one line, then splits
+     into two doors that open in step with the word. */
   transition:
-    opacity 0.2s ease-out 0.42s,
-    translate 0.5s cubic-bezier(0.65, 0, 0.35, 1) 0.52s;
+    scale 0.26s cubic-bezier(0.33, 1, 0.68, 1) 0.4s,
+    translate 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.62s;
 }
 
 .turn.mark::before,
@@ -325,10 +325,16 @@ html:has(.plain) .card {
   inline-size: 1.25rem;
 }
 
+/* The word lives only between the doors: its mask opens from the centre on
+   the same curve and clock as the lines, and it sharpens as it opens. */
 .mark-text {
   /* Letter-spacing trails the last letter; pull it back so the word centres. */
   margin-inline-end: -0.3em;
-  transition: opacity 0.35s ease-out 0.84s;
+  clip-path: inset(0 0 0 0);
+  transition:
+    clip-path 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.62s,
+    filter 0.55s cubic-bezier(0.33, 1, 0.68, 1) 0.62s,
+    opacity 0.32s ease-out 0.74s;
 }
 
 .mark[data-off] {
@@ -337,32 +343,48 @@ html:has(.plain) .card {
 
 .mark[data-off] .mark-text {
   opacity: 0;
-  transition: opacity 0.14s ease-in;
+  filter: blur(2px);
+  transition:
+    clip-path 0.3s cubic-bezier(0.65, 0, 0.35, 1),
+    filter 0.3s ease-in,
+    opacity 0.17s ease-in;
 }
 
-/* Leaving: the doors close fast, before the card is edge-on. */
+.side.mark[data-off] .mark-text {
+  clip-path: inset(50% 0 50% 0);
+}
+
+.turn.mark[data-off] .mark-text {
+  clip-path: inset(0 50% 0 50%);
+}
+
+/* Leaving: the doors close over the word, then the joined line shrinks to a
+   point, all before the card is edge-on. */
 .mark[data-off]::before,
 .mark[data-off]::after {
-  opacity: 0;
   transition:
     translate 0.3s cubic-bezier(0.65, 0, 0.35, 1),
-    opacity 0.16s ease-in 0.28s;
+    scale 0.22s cubic-bezier(0.32, 0, 0.67, 0) 0.28s;
 }
 
 .side.mark[data-off]::before {
   translate: 0 var(--reach, 0px);
+  scale: 1 0;
 }
 
 .side.mark[data-off]::after {
   translate: 0 calc(var(--reach, 0px) * -1);
+  scale: 1 0;
 }
 
 .turn.mark[data-off]::before {
   translate: var(--reach, 0px) 0;
+  scale: 0 1;
 }
 
 .turn.mark[data-off]::after {
   translate: calc(var(--reach, 0px) * -1) 0;
+  scale: 0 1;
 }
 
 /* ---------- side labels, set like book spines ---------- */
@@ -445,6 +467,11 @@ html:has(.plain) .card {
   .side::before,
   .side::after {
     display: none;
+  }
+
+  /* Labels lie flat here, so the word's mask closes sideways. */
+  .desk .side.mark[data-off] .mark-text {
+    clip-path: inset(0 50% 0 50%);
   }
 
   .side.about {

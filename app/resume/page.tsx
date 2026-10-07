@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Cormorant_SC } from "next/font/google";
+import { Cormorant_Garamond, Cormorant_SC, DM_Sans, Inter, Manrope, Plus_Jakarta_Sans } from "next/font/google";
+import ResumeFonts from "@/components/resume-fonts";
 import ResumeToolbar from "@/components/resume-toolbar";
 import "./resume.css";
 
 // Set like the homepage card: engraved small caps on bone stock.
 const caps = Cormorant_SC({ subsets: ["latin"], weight: ["600"], variable: "--font-caps" });
 const text = Cormorant_Garamond({ subsets: ["latin"], weight: ["500"], variable: "--font-text" });
+// Body font prototype (?fonts). Geist comes from the root layout.
+const manrope = Manrope({ subsets: ["latin"], weight: ["400", "600"], variable: "--rf-manrope", preload: false });
+const inter = Inter({ subsets: ["latin"], weight: ["400", "600"], variable: "--rf-inter", preload: false });
+const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "600"], variable: "--rf-dm", preload: false });
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["400", "600"], variable: "--rf-jakarta", preload: false });
 
 export const metadata: Metadata = {
   title: "Karim Baba, Résumé",
@@ -19,8 +25,11 @@ export const viewport: Viewport = {
 
 export default function ResumePage() {
   return (
-    <div className={`resumePage ${caps.variable} ${text.variable}`}>
+    <div
+      className={`resumePage ${caps.variable} ${text.variable} ${manrope.variable} ${inter.variable} ${dmSans.variable} ${jakarta.variable}`}
+    >
       <ResumeToolbar />
+      <ResumeFonts />
 
       <div className="resumeDesk">
         <div className="resumeDoc">
