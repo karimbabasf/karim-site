@@ -154,13 +154,24 @@ html:has(.plain) .card {
 }
 
 .face .contact a {
-  padding: 0.7cqi 1.6cqi;
+  display: grid;
+  place-items: center;
+  padding: 1.1cqi;
   border: 1px solid rgb(38 37 35 / 0.32);
   border-radius: 0.4cqi;
   font-size: 1.7cqi;
   letter-spacing: 0.1em;
   text-decoration: none;
   transition: border-color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.contact svg {
+  display: block;
+  width: 2.3cqi;
+  height: 2.3cqi;
+  fill: var(--ink);
+  /* Same pressed look as the type: a light lip under the mark. */
+  filter: drop-shadow(0 1px 0 rgb(255 255 255 / 0.85));
 }
 
 .face .contact a:hover {
@@ -297,8 +308,12 @@ html:has(.plain) .card {
   }
 
   .face .contact a {
-    padding: 1.4cqi 3cqi;
-    font-size: 3.4cqi;
+    padding: 2.4cqi;
+  }
+
+  .contact svg {
+    width: 4.8cqi;
+    height: 4.8cqi;
   }
 
   .title h1 {
