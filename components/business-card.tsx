@@ -73,15 +73,22 @@ export default function BusinessCard({
           >
             <section className="face front" inert={flipped} aria-label="Front of card">
               <span className="sheen" aria-hidden />
+              <nav className="contact" aria-label="Contact">
+                {links
+                  .filter((l) => l.href.startsWith("http"))
+                  .map((l) => (
+                    <a key={l.label} href={l.href} {...external}>
+                      {l.label}
+                    </a>
+                  ))}
+              </nav>
               <div className="title">
                 <h1>Karim BABA</h1>
-                <p>Builder</p>
+                <p>Agent Infrastructure Engineer</p>
               </div>
               <div className="corners">
                 <a href={`mailto:${email}`}>{email}</a>
                 <p>
-                  Agent Systems
-                  <br />
                   San Francisco, California
                 </p>
               </div>

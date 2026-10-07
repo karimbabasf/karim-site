@@ -129,6 +129,7 @@ html:has(.plain) .card {
 .face h2,
 .title p,
 .corners,
+.contact a,
 .back li > a,
 .back li > span,
 .back nav a {
@@ -140,14 +141,36 @@ html:has(.plain) .card {
 
 .front {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto 1fr auto;
   padding: 5cqi 5.5cqi 4.6cqi;
+}
+
+/* Contact row along the top edge, set as small pressed buttons. */
+.contact {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.4cqi;
+}
+
+.face .contact a {
+  padding: 0.7cqi 1.6cqi;
+  border: 1px solid rgb(38 37 35 / 0.32);
+  border-radius: 0.4cqi;
+  font-size: 1.7cqi;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: border-color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.face .contact a:hover {
+  border-color: var(--ink);
+  background-color: rgb(38 37 35 / 0.05);
 }
 
 .title {
   align-self: center;
   text-align: center;
-  margin-top: 4cqi;
 }
 
 .title h1 {
@@ -163,8 +186,9 @@ html:has(.plain) .card {
 
 .title p {
   margin: 0.6cqi 0 0;
-  font-size: 3.9cqi;
+  font-size: 3.4cqi;
   letter-spacing: 0.06em;
+  text-wrap: balance;
 }
 
 .corners {
@@ -268,8 +292,13 @@ html:has(.plain) .card {
     padding: 9cqi 7cqi;
   }
 
-  .title {
-    margin-top: 10cqi;
+  .contact {
+    gap: 2.4cqi;
+  }
+
+  .face .contact a {
+    padding: 1.4cqi 3cqi;
+    font-size: 3.4cqi;
   }
 
   .title h1 {
@@ -278,7 +307,7 @@ html:has(.plain) .card {
 
   .title p {
     margin-top: 1.5cqi;
-    font-size: 6.6cqi;
+    font-size: 5.4cqi;
   }
 
   .corners {
@@ -329,6 +358,7 @@ html:has(.plain) .card {
 @media (prefers-reduced-motion: reduce) {
   .card,
   .face a,
+  .face .contact a,
   .turn {
     transition: none;
   }
