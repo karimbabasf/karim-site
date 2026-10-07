@@ -40,8 +40,11 @@ html:has(.plain) .card {
 
 /* ---------- the card as an object ---------- */
 
-.stage {
+.desk {
   --w: min(90vw, 760px, 80svh * 1.75);
+}
+
+.stage {
   width: var(--w);
   aspect-ratio: 3.5 / 2;
   container-type: inline-size;
@@ -64,7 +67,13 @@ html:has(.plain) .card {
   transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.card.is-flipped {
+/* Work turns by the right edge, about by the left. Either way the back
+   (pre-rotated 180deg) lands facing the reader. */
+.card.is-work {
+  transform: rotateY(-180deg);
+}
+
+.card.is-about {
   transform: rotateY(180deg);
 }
 
@@ -267,16 +276,48 @@ html:has(.plain) .card {
   transition: color 0.2s ease-out;
 }
 
-.turn:hover {
+.turn:hover,
+.desk[data-half="about"] .turn.about,
+.desk[data-half="work"] .turn.work {
   color: rgb(236 235 230 / 0.9);
+}
+
+/* The two hints sit under the card's left and right edges. */
+.turns {
+  display: flex;
+  justify-content: center;
+  width: var(--w);
+}
+
+.turns:has(.about) {
+  justify-content: space-between;
+}
+
+/* ---------- back: about ---------- */
+
+.about p {
+  max-width: 64cqi;
+  margin: 0 0 1.8cqi;
+  font-size: 2.55cqi;
+  line-height: 1.45;
+  text-wrap: pretty;
 }
 
 /* ---------- phones: a vertical card ---------- */
 
 @media (max-width: 640px) and (orientation: portrait) {
-  .stage {
+  .desk {
     --w: min(88vw, 420px, 78svh / 1.75);
+  }
+
+  .stage {
     aspect-ratio: 2 / 3.5;
+  }
+
+  .about p {
+    max-width: none;
+    margin-bottom: 4cqi;
+    font-size: 4.5cqi;
   }
 
   .face {
@@ -349,7 +390,7 @@ html:has(.plain) .card {
 @media (prefers-reduced-motion: reduce) {
   .card,
   .face a,
-  .face   .turn {
+  .turn {
     transition: none;
   }
 

@@ -7,7 +7,10 @@ export type CardLink = { label: string; href: string };
 
 const external = { target: "_blank", rel: "noreferrer noopener" } as const;
 
+type Side = "about" | "work";
 
+// The left half of the card opens the about side, the right half the work.
+// The card turns toward the side you pressed, like flipping it by that edge.
 export default function BusinessCard({
   projects,
   links,
@@ -17,7 +20,16 @@ export default function BusinessCard({
   links: CardLink[];
   email: string;
 }) {
-  const [flipped, setFlipped] = useState(false);
+  const [open, setOpen] = useState<Side | null>(null);
+  // What the back shows. It keeps the last side while the card turns home,
+  // so the text never swaps mid-turn.
+  const [shown, setShown] = useState<Side>("work");
+  const [half, setHalf] = useState<Side | null>(null);
+  const flipped = open !== null;
+  const turn = (side: Side) => {
+    setShown(side);
+    setOpen(side);
+  };
   const tilt = useRef<HTMLDivElement>(null);
 
   // The card leans toward the pointer. Only transforms change per frame, so
@@ -63,14 +75,22 @@ export default function BusinessCard({
   }, []);
 
   return (
-    <div className="desk">
+    <div className="desk" data-half={flipped ? undefined : (half ?? undefined)}>
       <div className="stage">
         <div className="tilt" ref={tilt}>
           <div
-            className={`card${flipped ? " is-flipped" : ""}`}
+            className={`card${open ? ` is-${open}` : ""}`}
             onClick={(e) => {
-              if (!(e.target as HTMLElement).closest("a")) setFlipped((f) => !f);
+              if ((e.target as HTMLElement).closest("a")) return;
+              if (flipped) return setOpen(null);
+              const r = e.currentTarget.getBoundingClientRect();
+              turn(e.clientX < r.left + r.width / 2 ? "about" : "work");
             }}
+            onPointerMove={(e) => {
+              const r = e.currentTarget.getBoundingClientRect();
+              setHalf(e.clientX < r.left + r.width / 2 ? "about" : "work");
+            }}
+            onPointerLeave={() => setHalf(null)}
           >
             <section className="face front" inert={flipped} aria-label="Front of card">
               <span className="sheen" aria-hidden />
@@ -95,6 +115,21 @@ export default function BusinessCard({
 
             <section className="face back" inert={!flipped} aria-label="Back of card">
               <span className="sheen" aria-hidden />
+              {shown === "about" ? (
+                <div className="about">
+                  <h2>About</h2>
+                  <p>
+                    I build agent systems that handle real money and stop for a person before
+                    anything irreversible.
+                  </p>
+                  <p>
+                    On-chain since 2021, building agents since 2025. I design, build and ship
+                    every product myself, from Rust desktop apps to on-chain trading systems.
+                  </p>
+                  <p>Based in San Francisco. Won the Stripe track at Supabase Select 2026.</p>
+                </div>
+              ) : (
+                <>
               <h2>Work</h2>
               <ul>
                 {projects.map((p) => (
@@ -110,6 +145,8 @@ export default function BusinessCard({
                   </li>
                 ))}
               </ul>
+                </>
+              )}
               <nav>
                 {links.map((l) => (
                   <a key={l.label} href={l.href} {...(l.href.startsWith("http") ? external : {})}>
@@ -122,9 +159,22 @@ export default function BusinessCard({
         </div>
       </div>
 
-      <button type="button" className="turn" aria-pressed={flipped} onClick={() => setFlipped((f) => !f)}>
-        {flipped ? "Turn back" : "Turn over"}
-      </button>
+      <div className="turns">
+        {flipped ? (
+          <button type="button" className="turn" onClick={() => setOpen(null)}>
+            Turn back
+          </button>
+        ) : (
+          <>
+            <button type="button" className="turn about" onClick={() => turn("about")}>
+              &lsaquo; About
+            </button>
+            <button type="button" className="turn work" onClick={() => turn("work")}>
+              Work &rsaquo;
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 }

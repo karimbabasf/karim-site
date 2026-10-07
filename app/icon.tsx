@@ -4,10 +4,10 @@ import { loadFont } from "../lib/og-font";
 export const size = { width: 64, height: 64 };
 export const contentType = "image/png";
 
-// Generated favicon: the site's lime "K" mark on black. Reads cleanly down to the
-// 16px tab favicon while staying on-brand with the OG card.
+// Generated favicon: a corner of the business card. Bone stock, a charcoal
+// "K" in the card's Cormorant SC, so the tab matches the page.
 export default async function Icon() {
-  const geist = await loadFont("Geist Mono", 700, "K");
+  const caps = await loadFont("Cormorant SC", 600, "K");
 
   return new ImageResponse(
     (
@@ -18,12 +18,14 @@ export default async function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#000000",
-          borderRadius: 14,
-          color: "#a3f04b",
-          fontFamily: geist ? "Geist Mono" : "monospace",
-          fontSize: 46,
-          fontWeight: 700,
+          background: "#ecebe6",
+          borderRadius: 12,
+          color: "#262523",
+          fontFamily: caps ? "Cormorant SC" : "serif",
+          fontSize: 54,
+          fontWeight: 600,
+          lineHeight: 1,
+          paddingBottom: 4,
         }}
       >
         K
@@ -31,8 +33,8 @@ export default async function Icon() {
     ),
     {
       ...size,
-      fonts: geist
-        ? [{ name: "Geist Mono", data: geist, weight: 700, style: "normal" }]
+      fonts: caps
+        ? [{ name: "Cormorant SC", data: caps, weight: 600, style: "normal" }]
         : undefined,
     },
   );
