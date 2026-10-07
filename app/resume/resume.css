@@ -1,6 +1,6 @@
 /*
- * The résumé, set like the homepage card: one sheet of the same bone cotton
- * stock lying on the dark desk, type pressed into it. Everything is scoped to
+ * The résumé: one sheet of the homepage card's bone cotton stock on the
+ * dark desk, set in Geist alone. Everything is scoped to
  * pages that render .resumePage, because globals.css still paints the old dark
  * site (black root, neon cursor and focus ring).
  *
@@ -142,16 +142,16 @@ html:has(.resumePage) a {
 }
 
 .resumeDoc {
-  --slate: #4a4743;
+  --slate: #57534d;
   --faint: #6b6761;
-  --hair: rgb(38 37 35 / 0.22);
+  --hair: rgb(38 37 35 / 0.16);
 
   color: var(--ink);
-  font-family: var(--font-text), serif;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 1.42;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
   font-kerning: normal;
+  font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -161,11 +161,15 @@ html:has(.resumePage) a {
   box-sizing: border-box;
 }
 
+.resumeDoc ::selection {
+  background: rgb(38 37 35 / 0.14);
+}
+
 .resumeDoc .sheet {
   width: 100%;
   max-width: 816px;
   margin: 0 auto;
-  padding: 64px 72px 60px;
+  padding: 64px 72px;
   border-radius: 3px;
   background:
     linear-gradient(160deg, rgb(255 255 255 / 0.22), transparent 45%, rgb(60 52 40 / 0.08)),
@@ -175,169 +179,100 @@ html:has(.resumePage) a {
     0 1px 1px rgb(0 0 0 / 0.35),
     0 12px 24px -6px rgb(0 0 0 / 0.5),
     0 40px 70px -25px rgb(0 0 0 / 0.7);
-  /* Pressed in: a dark lip on the top edge where the stroke dips into the
-     stock, a light lip underneath where the paper rises back up. */
-  text-shadow:
-    0 -0.5px 0 rgb(0 0 0 / 0.35),
-    0 1px 0 rgb(255 255 255 / 0.85),
-    0 0 1px rgb(38 37 35 / 0.25);
+}
+
+.resumeDoc :is(h1, h2, h3, p, ul) {
+  margin: 0;
 }
 
 .resumeDoc a {
   color: inherit;
-  text-decoration: underline 1px rgb(38 37 35 / 0.28);
-  text-underline-offset: 0.3em;
+  text-decoration: underline 1px transparent;
+  text-underline-offset: 0.25em;
   transition: text-decoration-color 0.2s ease-out;
 }
 
 .resumeDoc a:hover {
-  text-decoration-color: var(--ink);
+  text-decoration-color: currentColor;
 }
 
-.resumeDoc .wordmark,
-.resumeDoc .eyebrow,
-.resumeDoc .contact,
-.resumeDoc .sec-head h2,
-.resumeDoc .role-title,
-.resumeDoc .role-meta,
-.resumeDoc .proj-name,
-.resumeDoc .proj-tag,
-.resumeDoc .repo,
-.resumeDoc .stack,
-.resumeDoc .lead {
-  font-family: var(--font-caps), serif;
+/* ---------- header ---------- */
+
+.resumeDoc .name {
+  font-size: 28px;
   font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-/* ---------- header: the card's front ---------- */
-
-.resumeDoc header {
-  text-align: center;
-}
-
-.resumeDoc .wordmark {
-  margin: 0;
-  font-size: 46px;
-  line-height: 1.05;
-  letter-spacing: 0.05em;
-  text-shadow:
-    0 -0.75px 0 rgb(0 0 0 / 0.4),
-    0 1.25px 0 rgb(255 255 255 / 0.9),
-    0 0 1px rgb(38 37 35 / 0.3);
-}
-
-.resumeDoc .surname {
-  text-transform: uppercase;
-}
-
-.resumeDoc .eyebrow {
-  margin: 6px 0 0;
-  font-size: 21px;
-  letter-spacing: 0.06em;
-}
-
-.resumeDoc .dot::before {
-  content: "\00B7";
-  margin: 0 0.55em;
-}
-
-.resumeDoc .contact {
-  margin-top: 18px;
+.resumeDoc .tagline {
+  margin-top: 4px;
   font-size: 15px;
-  letter-spacing: 0.06em;
-  line-height: 1.6;
   color: var(--slate);
 }
 
-/* No resting underline here: the pressed-in text-shadow is painted under a
-   decoration even when its colour is transparent. */
-.resumeDoc .contact a {
-  text-decoration: none;
+.resumeDoc .loc {
+  white-space: nowrap;
 }
 
-.resumeDoc .contact a:hover {
-  text-decoration: underline 1px var(--ink);
+.resumeDoc .loc::before {
+  content: "\00B7";
+  margin: 0 0.45em 0 0.1em;
+  color: var(--faint);
 }
 
-/* Each contact carries two labels: a short one for the screen and the bare URL
-   for paper. Print swaps them. */
+.resumeDoc .contact {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--slate);
+}
+
+/* The divider trails its own item, so a wrapped line starts on a contact and
+   never on a stray dot. */
+.resumeDoc .contact .item {
+  white-space: nowrap;
+}
+
+.resumeDoc .contact .item:not(:last-child)::after {
+  content: "\00B7";
+  margin: 0 0.5em;
+  color: var(--faint);
+}
+
 .resumeDoc .btn-url {
   display: none;
 }
 
-/* The divider trails its own item, so a wrapped line starts on a contact and
-   never on a stray dot; the space in the markup is the only break point. */
-.resumeDoc .contact > *:not(:last-child)::after {
-  content: "\00B7";
-  display: inline-block;
-  margin-left: 0.55em;
-  color: var(--faint);
-}
-
-.resumeDoc .loc,
-.resumeDoc .btn {
-  white-space: nowrap;
-}
-
-.resumeDoc .rule {
-  width: 72px;
-  height: 1px;
-  margin: 26px auto 24px;
-  border: 0;
-  background: var(--hair);
-}
-
 .resumeDoc .summary {
-  margin: 0;
-  font-size: 17.5px;
-  line-height: 1.5;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hair);
   text-wrap: pretty;
 }
 
 /* ---------- sections ---------- */
 
 .resumeDoc section {
-  margin-top: 30px;
+  margin-top: 28px;
 }
 
-/* A letter-spaced small-caps heading centred between two hairlines. */
-.resumeDoc .sec-head {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin: 0 0 14px;
+.resumeDoc h2 {
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--hair);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate);
 }
 
-.resumeDoc .sec-head::before,
-.resumeDoc .sec-head .line {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--hair);
-}
-
-.resumeDoc .sec-head .sq {
-  display: none;
-}
-
-.resumeDoc .sec-head h2 {
-  margin: 0;
-  font-size: 15px;
-  letter-spacing: 0.22em;
-}
-
-/* ---------- experience ---------- */
-
-.resumeDoc .role {
-  margin-bottom: 18px;
-}
-
-.resumeDoc .role:last-child {
-  margin-bottom: 0;
+.resumeDoc .entry + .entry {
+  margin-top: 16px;
 }
 
 /* A title too long to share its line keeps it whole and the meta drops under. */
-.resumeDoc .role-top {
+.resumeDoc .entry-top {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -345,120 +280,80 @@ html:has(.resumePage) a {
   column-gap: 16px;
 }
 
-.resumeDoc .role-meta {
-  margin-left: auto;
-}
-
-.resumeDoc .role-title {
-  margin: 0;
-  font-size: 18px;
-  letter-spacing: 0.03em;
-}
-
-.resumeDoc .role-meta {
-  flex: none;
+.resumeDoc h3 {
   font-size: 14px;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.resumeDoc h3 .sub {
+  font-weight: 400;
+  color: var(--slate);
+}
+
+.resumeDoc h3 .sub::before {
+  content: "\00B7";
+  margin: 0 0.4em 0 0.1em;
+  color: var(--faint);
+}
+
+.resumeDoc .meta {
+  margin-left: auto;
+  font-size: 13px;
   color: var(--faint);
   white-space: nowrap;
 }
 
-.resumeDoc .role-note {
-  margin: 3px 0 6px;
+.resumeDoc .entry > p,
+.resumeDoc .entry > ul {
+  margin-top: 3px;
+  text-wrap: pretty;
+}
+
+.resumeDoc .note {
   color: var(--slate);
 }
 
-.resumeDoc ul.bullets {
-  margin: 0;
+.resumeDoc .stack {
+  font-size: 12.5px;
+  color: var(--faint);
+}
+
+.resumeDoc ul {
   padding: 0;
   list-style: none;
 }
 
-.resumeDoc ul.bullets li {
+.resumeDoc li {
   position: relative;
-  margin-bottom: 4px;
-  padding-left: 18px;
+  padding-left: 14px;
   text-wrap: pretty;
 }
 
-.resumeDoc ul.bullets li:last-child {
-  margin-bottom: 0;
+.resumeDoc li + li {
+  margin-top: 3px;
 }
 
-.resumeDoc ul.bullets li::before {
-  content: "\2022";
+.resumeDoc li::before {
+  content: "";
   position: absolute;
-  left: 2px;
-  color: var(--faint);
+  left: 3px;
+  top: 0.66em;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--faint);
 }
 
-.resumeDoc .lead {
-  letter-spacing: 0.03em;
+.resumeDoc b {
+  font-weight: 600;
 }
 
-.resumeDoc ul.cols li {
-  break-inside: avoid;
-}
-
-/* ---------- projects ---------- */
-
-.resumeDoc .proj {
-  margin-bottom: 16px;
-}
-
-.resumeDoc .proj:last-child {
-  margin-bottom: 0;
-}
-
-.resumeDoc .proj-top {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: 12px;
-}
-
-.resumeDoc .proj-name {
-  margin: 0;
-  font-size: 18px;
-  letter-spacing: 0.03em;
-}
-
-.resumeDoc .proj-name .desc {
-  font-family: var(--font-text), serif;
-  font-weight: 500;
-  font-size: 17px;
-  letter-spacing: 0;
-  color: var(--slate);
-}
-
-.resumeDoc .proj-tag,
-.resumeDoc .repo {
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  color: var(--faint);
-}
-
-.resumeDoc .proj-desc {
-  margin: 2px 0 3px;
-  text-wrap: pretty;
-}
-
-.resumeDoc .stack {
-  margin: 0;
-  font-size: 13.5px;
-  letter-spacing: 0.1em;
-  color: var(--faint);
-}
-
+/* Crypto and Education are short lists: they share a row. */
 @media (min-width: 720px) {
-  .resumeDoc ul.cols {
-    column-count: 2;
-    column-gap: 36px;
-  }
-
-  .resumeDoc ul.cols:has(> li:nth-child(3):last-child) {
-    column-count: 3;
-    column-gap: 28px;
+  .resumeDoc .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
   }
 }
 
@@ -469,41 +364,19 @@ html:has(.resumePage) a {
     padding: 20px 12px 40px;
   }
 
-  .resumeDoc {
-    font-size: 16.5px;
-  }
-
   .resumeDoc .sheet {
-    padding: 40px 22px 36px;
+    padding: 36px 22px;
   }
 
-  .resumeDoc .wordmark {
-    font-size: 38px;
+  .resumeDoc .name {
+    font-size: 26px;
   }
 
-  .resumeDoc .eyebrow {
-    font-size: 17px;
-  }
-
-  .resumeDoc .eyebrow .dot::before {
-    margin: 0 0.4em;
-  }
-
-  .resumeDoc .contact {
-    font-size: 14px;
-  }
-
-  .resumeDoc .summary {
-    font-size: 16.5px;
-  }
-
-  .resumeDoc .role-top {
+  .resumeDoc .entry-top {
     flex-direction: column;
-    gap: 0;
   }
 
-  .resumeDoc .role-meta {
-    margin-top: 1px;
+  .resumeDoc .meta {
     margin-left: 0;
   }
 }
@@ -515,92 +388,14 @@ html:has(.resumePage) a {
 }
 
 /* ---------- Print / PDF ----------
-   This block IS the PDF. Paper is white and the ink is charcoal; the pressed
-   type has no text-shadow here, because a shadow prints as a smudge. Sizes are
+   `public/Karim-Baba-Resume.pdf` is printed straight off this route, so this
+   block IS the PDF's design. Paper is white and the ink is charcoal. Sizes are
    in pt and tuned to fit one Letter page at full size, never shrunk to fit. */
-/* ---------- body font prototype (?fonts), screen only ---------- */
-
-.resumePage[data-font="1"] { --proto: var(--font-geist-sans); }
-.resumePage[data-font="2"] { --proto: var(--rf-manrope); }
-.resumePage[data-font="3"] { --proto: var(--rf-inter); }
-.resumePage[data-font="4"] { --proto: var(--rf-dm); }
-.resumePage[data-font="5"] { --proto: var(--rf-jakarta); }
-
-.resumePage[data-font] .resumeDoc {
-  font-family: var(--proto), sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.resumePage[data-font] .resumeDoc :is(.eyebrow, .contact, .role-title, .role-meta, .proj-name, .proj-tag, .repo, .stack, .lead) {
-  font-family: var(--proto), sans-serif;
-  letter-spacing: 0;
-  text-shadow: none;
-}
-
-.resumePage[data-font] .resumeDoc :is(.role-title, .proj-name, .lead) {
-  font-weight: 600;
-}
-
-.resumePage[data-font] .resumeDoc :is(.eyebrow, .contact, .role-meta, .proj-tag, .repo, .stack) {
-  font-weight: 400;
-  color: var(--slate);
-}
-
-.resumePage[data-font] .resumeDoc .sec-head h2 {
-  font-family: var(--proto), sans-serif;
-  font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.resumePage[data-font] .resumeDoc :is(p, li, span:not(.surname)) {
-  text-shadow: none;
-}
-
-.resumeFonts {
-  position: fixed;
-  bottom: 1rem;
-  left: 50%;
-  translate: -50% 0;
-  z-index: 10;
-  display: flex;
-  gap: 0.25rem;
-  max-width: calc(100vw - 1rem);
-  overflow-x: auto;
-  padding: 0.3rem;
-  border-radius: 999px;
-  background: rgb(27 26 24 / 0.85);
-}
-
-.resumeFonts button {
-  flex: none;
-  padding: 0.4rem 0.75rem;
-  border: 1px solid rgb(236 235 230 / 0.2);
-  border-radius: 999px;
-  background: none;
-  color: rgb(236 235 230 / 0.6);
-  font: 500 0.8rem var(--font-geist-sans), sans-serif;
-  cursor: pointer;
-}
-
-.resumeFonts button[aria-pressed="true"] {
-  border-color: rgb(236 235 230 / 0.8);
-  color: #ecebe6;
-}
-
-@media print {
-  .resumeFonts {
-    display: none;
-  }
-}
 
 @media print {
   @page {
     size: Letter;
-    margin: 0.4in 0.45in;
+    margin: 0.45in 0.55in;
   }
 
   /* The root layout declares `colorScheme: "dark"`, which paints the print
@@ -629,13 +424,13 @@ html:has(.resumePage) a {
   }
 
   .resumeDoc {
-    --ink: #262523;
-    --slate: #45423e;
+    --ink: #1f1e1c;
+    --slate: #4a4743;
     --faint: #5f5b55;
-    --hair: #bdbab3;
+    --hair: #d2cfc9;
 
-    font-size: 9.6pt;
-    line-height: 1.2;
+    font-size: 8.9pt;
+    line-height: 1.32;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -648,23 +443,13 @@ html:has(.resumePage) a {
     box-shadow: none;
   }
 
-  .resumeDoc .sheet,
-  .resumeDoc .wordmark {
-    text-shadow: none;
+  .resumeDoc .name {
+    font-size: 18pt;
   }
 
-  .resumeDoc a {
-    text-decoration: none;
-  }
-
-  .resumeDoc .wordmark {
-    font-size: 22pt;
-    line-height: 1;
-  }
-
-  .resumeDoc .eyebrow {
+  .resumeDoc .tagline {
     margin-top: 2pt;
-    font-size: 10.6pt;
+    font-size: 10pt;
   }
 
   /* Paper carries no hover, so print shows the URL and hides the label. Every
@@ -672,8 +457,6 @@ html:has(.resumePage) a {
   .resumeDoc .contact {
     margin-top: 4pt;
     font-size: 7.6pt;
-    letter-spacing: 0.01em;
-    line-height: 1.4;
   }
 
   .resumeDoc .btn-label {
@@ -684,102 +467,79 @@ html:has(.resumePage) a {
     display: inline;
   }
 
-  .resumeDoc .rule {
-    width: 54pt;
-    margin: 5pt auto 4pt;
-  }
-
   .resumeDoc .summary {
-    font-size: 9.6pt;
-    line-height: 1.22;
+    margin-top: 8pt;
+    padding-top: 7pt;
   }
 
   .resumeDoc section {
-    margin-top: 4pt;
+    margin-top: 10pt;
   }
 
-  .resumeDoc .sec-head {
-    gap: 10pt;
-    margin-bottom: 2pt;
+  .resumeDoc .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20pt;
   }
 
-  .resumeDoc .sec-head h2 {
-    font-size: 8.4pt;
+  .resumeDoc h2 {
+    margin-bottom: 4pt;
+    padding-bottom: 2.5pt;
+    font-size: 7.6pt;
   }
 
-  .resumeDoc .role {
-    margin-bottom: 3pt;
+  .resumeDoc .entry + .entry {
+    margin-top: 6pt;
   }
 
-  .resumeDoc .role-title,
-  .resumeDoc .proj-name {
-    font-size: 10.2pt;
-  }
-
-  .resumeDoc .proj-name .desc {
+  .resumeDoc h3 {
     font-size: 9.6pt;
   }
 
-  .resumeDoc .role-meta,
-  .resumeDoc .proj-tag,
-  .resumeDoc .repo {
-    font-size: 8pt;
+  .resumeDoc .meta {
+    font-size: 8.4pt;
   }
 
-  .resumeDoc .role-note {
-    margin: 1pt 0 2pt;
+  .resumeDoc .entry > p,
+  .resumeDoc .entry > ul {
+    margin-top: 1.5pt;
   }
 
-  .resumeDoc ul.bullets li {
-    margin-bottom: 1pt;
-    padding-left: 10pt;
-  }
-
-  .resumeDoc ul.bullets li::before {
-    left: 1pt;
-  }
-
-  .resumeDoc ul.cols {
-    column-count: 2;
-    column-gap: 22pt;
-  }
-
-  /* Short lists sit one item to a column. */
-  .resumeDoc section:last-child ul.bullets {
-    column-count: 2;
-    column-gap: 22pt;
-  }
-
-  .resumeDoc ul.cols:has(> li:nth-child(3):last-child) {
-    column-count: 3;
-    column-gap: 18pt;
-  }
-
-  .resumeDoc .proj {
-    margin-bottom: 3pt;
-  }
-
-  /* The stack runs on after the description instead of taking its own line:
-     four lines bought back toward the one-page fit. */
-  .resumeDoc .proj-desc,
+  /* The stack runs on after the description instead of taking its own line. */
+  .resumeDoc .entry > p:has(+ .stack),
   .resumeDoc .stack {
     display: inline;
   }
 
-  /* The markup has no space between the two, so this is the line break. */
-  .resumeDoc .proj-desc::after {
+  .resumeDoc .entry > p:has(+ .stack)::after {
     content: " ";
   }
 
   .resumeDoc .stack {
-    margin-left: 0.3em;
-    font-size: 7.6pt;
-    white-space: nowrap;
+    margin-left: 0.4em;
+    font-size: 7.8pt;
   }
 
-  .resumeDoc section,
-  .resumeDoc .role,
-  .resumeDoc .proj {
+  /* text-wrap on .entry > p would win over a plain white-space here. */
+  .resumeDoc .entry > .stack {
+    text-wrap-mode: nowrap;
+  }
+
+  .resumeDoc li + li {
+    margin-top: 1.5pt;
+  }
+
+  .resumeDoc li {
+    padding-left: 10pt;
+  }
+
+  .resumeDoc li::before {
+    left: 2pt;
+    width: 2.5pt;
+    height: 2.5pt;
+  }
+
+  .resumeDoc .entry {
     break-inside: avoid;
   }
 }
