@@ -211,13 +211,9 @@ html:has(.resumePage) a {
   color: var(--slate);
 }
 
-.resumeDoc .loc {
-  white-space: nowrap;
-}
-
-.resumeDoc .loc::before {
+.resumeDoc .tagline .dot::before {
   content: "\00B7";
-  margin: 0 0.45em 0 0.1em;
+  margin: 0 0.5em;
   color: var(--faint);
 }
 
@@ -348,15 +344,6 @@ html:has(.resumePage) a {
   font-weight: 600;
 }
 
-/* Crypto and Education are short lists: they share a row. */
-@media (min-width: 720px) {
-  .resumeDoc .pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 32px;
-  }
-}
-
 /* ---------- phones ---------- */
 
 @media (max-width: 640px) {
@@ -390,12 +377,12 @@ html:has(.resumePage) a {
 /* ---------- Print / PDF ----------
    `public/Karim-Baba-Resume.pdf` is printed straight off this route, so this
    block IS the PDF's design. Paper is white and the ink is charcoal. Sizes are
-   in pt and tuned to fit one Letter page at full size, never shrunk to fit. */
+   in pt; the copy runs to two Letter pages and entries never split. */
 
 @media print {
   @page {
     size: Letter;
-    margin: 0.45in 0.55in;
+    margin: 0.6in 0.7in;
   }
 
   /* The root layout declares `colorScheme: "dark"`, which paints the print
@@ -429,8 +416,8 @@ html:has(.resumePage) a {
     --faint: #5f5b55;
     --hair: #d2cfc9;
 
-    font-size: 8.9pt;
-    line-height: 1.32;
+    font-size: 9.6pt;
+    line-height: 1.45;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -444,7 +431,7 @@ html:has(.resumePage) a {
   }
 
   .resumeDoc .name {
-    font-size: 18pt;
+    font-size: 20pt;
   }
 
   .resumeDoc .tagline {
@@ -455,8 +442,9 @@ html:has(.resumePage) a {
   /* Paper carries no hover, so print shows the URL and hides the label. Every
      link still keeps its live URI in the PDF. */
   .resumeDoc .contact {
-    margin-top: 4pt;
-    font-size: 7.6pt;
+    margin-top: 6pt;
+    font-size: 8.4pt;
+    line-height: 1.6;
   }
 
   .resumeDoc .btn-label {
@@ -468,28 +456,23 @@ html:has(.resumePage) a {
   }
 
   .resumeDoc .summary {
-    margin-top: 8pt;
-    padding-top: 7pt;
+    margin-top: 14pt;
+    padding-top: 12pt;
   }
 
   .resumeDoc section {
-    margin-top: 10pt;
-  }
-
-  .resumeDoc .pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 20pt;
+    margin-top: 18pt;
   }
 
   .resumeDoc h2 {
-    margin-bottom: 4pt;
-    padding-bottom: 2.5pt;
+    margin-bottom: 8pt;
+    padding-bottom: 3pt;
+    break-after: avoid;
     font-size: 7.6pt;
   }
 
   .resumeDoc .entry + .entry {
-    margin-top: 6pt;
+    margin-top: 11pt;
   }
 
   .resumeDoc h3 {
@@ -502,31 +485,15 @@ html:has(.resumePage) a {
 
   .resumeDoc .entry > p,
   .resumeDoc .entry > ul {
-    margin-top: 1.5pt;
-  }
-
-  /* The stack runs on after the description instead of taking its own line. */
-  .resumeDoc .entry > p:has(+ .stack),
-  .resumeDoc .stack {
-    display: inline;
-  }
-
-  .resumeDoc .entry > p:has(+ .stack)::after {
-    content: " ";
+    margin-top: 3pt;
   }
 
   .resumeDoc .stack {
-    margin-left: 0.4em;
-    font-size: 7.8pt;
-  }
-
-  /* text-wrap on .entry > p would win over a plain white-space here. */
-  .resumeDoc .entry > .stack {
-    text-wrap-mode: nowrap;
+    font-size: 8.4pt;
   }
 
   .resumeDoc li + li {
-    margin-top: 1.5pt;
+    margin-top: 3pt;
   }
 
   .resumeDoc li {
@@ -539,7 +506,8 @@ html:has(.resumePage) a {
     height: 2.5pt;
   }
 
-  .resumeDoc .entry {
+  .resumeDoc .entry,
+  .resumeDoc li {
     break-inside: avoid;
   }
 }
