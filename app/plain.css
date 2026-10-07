@@ -279,7 +279,6 @@ html:has(.plain) .card {
   color: rgb(236 235 230 / 0.5);
   font: 500 0.72rem var(--font-geist-sans), sans-serif;
   letter-spacing: 0.24em;
-  text-indent: 0.24em;
   text-transform: uppercase;
   transition: color 0.2s ease-out;
 }
@@ -343,6 +342,10 @@ html:has(.plain) .card {
     clip-path 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.62s,
     filter 0.55s cubic-bezier(0.33, 1, 0.68, 1) 0.62s,
     opacity 0.32s ease-out 0.74s;
+}
+
+.turn.mark .mark-text {
+  margin-inline-end: -0.24em;
 }
 
 .mark[data-off] {
@@ -417,11 +420,6 @@ html:has(.plain) .card {
   writing-mode: vertical-rl;
   translate: 0 -50%;
   transition: color 0.2s ease-out;
-}
-
-/* Swallows the tracking after the last letter, so the word sits centred between its rules. */
-.side::after {
-  margin-inline-start: -0.3em;
 }
 
 /* Left reads bottom to top, right reads top to bottom. */
