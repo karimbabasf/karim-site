@@ -74,15 +74,22 @@ export default function BusinessCard({
           >
             <section className="face front" inert={flipped} aria-label="Front of card">
               <span className="sheen" aria-hidden />
+              <div className="corners">
+                <a href={`mailto:${email}`}>{email}</a>
+                <a href="https://x.com/karimbabasf" {...external}>
+                  @karimbabasf
+                </a>
+              </div>
               <div className="title">
                 <h1>Karim BABA</h1>
                 <p>Founder</p>
               </div>
-              <div className="corners">
-                <a href={`mailto:${email}`}>{email}</a>
-                <p>
-                  San Francisco, California
-                </p>
+              <div className="firm">
+                <a href="https://phosphor.money" {...external}>
+                  Phosphor
+                </a>
+                <p>Agent Infrastructure</p>
+                <p className="address">San Francisco, California</p>
               </div>
             </section>
 
