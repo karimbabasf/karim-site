@@ -1,8 +1,13 @@
 import type { Viewport } from "next";
+import { Cormorant_Garamond, Cormorant_SC } from "next/font/google";
 import "./plain.css";
 
+// The Bateman card: engraved small caps on bone paper.
+const caps = Cormorant_SC({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-caps" });
+const text = Cormorant_Garamond({ subsets: ["latin"], weight: ["500"], variable: "--font-text" });
+
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#e9e7e1",
   colorScheme: "light",
 };
 
@@ -44,10 +49,13 @@ const links = [
 
 export default function Home() {
   return (
-    <main className="plain">
-      <h1>Karim Baba</h1>
+    <main className={`plain ${caps.variable} ${text.variable}`}>
+      <header className="card">
+        <h1>Karim BABA</h1>
+        <p>Builder</p>
+      </header>
       <p>
-        Builder in San Francisco. I make agent systems that touch money and stop
+        Based in San Francisco. I make agent systems that touch money and stop
         for a person before anything irreversible.
       </p>
       <p>On-chain since 2021, building agents since 2025. I design and ship every product myself.</p>

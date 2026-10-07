@@ -1,9 +1,14 @@
-/* The homepage: white ground, black type. globals.css paints the old dark
-   site, so everything here is scoped to pages that render .plain. */
+/* The homepage, set like the Bateman card: bone paper, charcoal ink pressed
+   into it, engraved small caps, everything centred. globals.css paints the
+   old dark site, so all of this is scoped to pages that render .plain. */
 html:has(.plain),
 html:has(.plain) body {
-  background: #fff;
-  color: #000;
+  --paper: #e9e7e1;
+  --ink: #2e2d2b;
+  /* Paper grain: fine fractal noise, multiplied into the bone colour. */
+  background-color: var(--paper);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.34 0 0 0 0 0.32 0 0 0 0.3 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--ink);
   color-scheme: light;
 }
 
@@ -19,27 +24,53 @@ html:has(.plain) a {
 .plain {
   max-width: 34rem;
   margin: 0 auto;
-  padding: clamp(4rem, 14vh, 9rem) 1.25rem 6rem;
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: 1.0625rem;
-  line-height: 1.6;
-  color: #000;
+  padding: 0 1.25rem 7rem;
+  font-family: var(--font-text), serif;
+  font-size: 1.1875rem;
+  line-height: 1.55;
+  text-align: center;
+  color: var(--ink);
+  /* Letterpress: a light lip under each stroke reads as ink pressed into paper. */
+  text-shadow: 0 1px 0 rgb(255 255 255 / 0.55);
+}
+
+.plain .card {
+  min-height: 82svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 2rem;
+}
+
+.plain h1,
+.plain .card p,
+.plain h2,
+.plain li > a,
+.plain li > span,
+.plain nav a {
+  font-family: var(--font-caps), serif;
+  font-weight: 600;
 }
 
 .plain h1 {
-  margin: 0 0 1.5rem;
-  font-size: 1.75rem;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  margin: 0;
+  font-size: clamp(2rem, 7vw, 2.75rem);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+}
+
+.plain .card p {
+  margin: 0;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  letter-spacing: 0.06em;
 }
 
 .plain h2 {
-  margin: 3.5rem 0 1.25rem;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  margin: 4.5rem 0 1.75rem;
+  font-size: 1.125rem;
+  letter-spacing: 0.2em;
 }
 
 .plain p {
@@ -54,12 +85,13 @@ html:has(.plain) a {
 }
 
 .plain li {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.75rem;
 }
 
 .plain li > a,
 .plain li > span {
-  font-weight: 600;
+  font-size: 1.375rem;
+  letter-spacing: 0.06em;
 }
 
 .plain li p {
@@ -67,23 +99,35 @@ html:has(.plain) a {
 }
 
 .plain a {
-  color: #000;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  color: var(--ink);
+  text-decoration: underline 1px rgb(46 45 43 / 0.3);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s ease-out;
 }
 
 .plain a:hover {
-  text-decoration-thickness: 2px;
+  text-decoration-color: var(--ink);
 }
 
 .plain a:focus-visible {
-  outline: 2px solid #000;
-  outline-offset: 3px;
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
 }
 
 .plain nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  justify-content: center;
+  gap: 0.5rem 1.75rem;
+}
+
+.plain nav a {
+  font-size: 1.1875rem;
+  letter-spacing: 0.08em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plain a {
+    transition: none;
+  }
 }
