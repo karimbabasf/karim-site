@@ -259,6 +259,26 @@ html:has(.plain) .card {
   gap: 2cqi;
 }
 
+/* Wide card: the names take one column as wide as the longest, and rows share
+   one height so the names fall on an even pitch whatever the line beside them. */
+@media not all and (max-width: 640px) and (orientation: portrait) {
+  .back ul {
+    flex: 1;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-auto-rows: minmax(min-content, 9cqi);
+    align-content: center;
+    gap: 0;
+  }
+
+  .back li {
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-content: start;
+    gap: 3cqi;
+  }
+}
+
 .back li > a,
 .back li > span {
   font-size: 2.5cqi;
