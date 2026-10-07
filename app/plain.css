@@ -105,6 +105,14 @@ html:has(.plain) .card {
   transform: rotateY(180deg);
 }
 
+/* Only the face toward the reader takes clicks. WebKit hit-tests a turned
+   card against the hidden face too, which swallowed taps on the links. */
+.card.is-work .front,
+.card.is-about .front,
+.card:not(.is-work, .is-about) .back {
+  pointer-events: none;
+}
+
 /* Light catching the stock as the card leans. Sits under the type. */
 .sheen {
   position: absolute;
