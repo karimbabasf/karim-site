@@ -1,0 +1,89 @@
+/* The homepage: white ground, black type. globals.css paints the old dark
+   site, so everything here is scoped to pages that render .plain. */
+html:has(.plain),
+html:has(.plain) body {
+  background: #fff;
+  color: #000;
+  color-scheme: light;
+}
+
+html:has(.plain),
+html:has(.plain) * {
+  cursor: auto;
+}
+
+html:has(.plain) a {
+  cursor: pointer;
+}
+
+.plain {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: clamp(4rem, 14vh, 9rem) 1.25rem 6rem;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: #000;
+}
+
+.plain h1 {
+  margin: 0 0 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.plain h2 {
+  margin: 3.5rem 0 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.plain p {
+  margin: 0 0 1rem;
+  text-wrap: pretty;
+}
+
+.plain ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plain li {
+  margin-bottom: 1.25rem;
+}
+
+.plain li > a,
+.plain li > span {
+  font-weight: 600;
+}
+
+.plain li p {
+  margin: 0.125rem 0 0;
+}
+
+.plain a {
+  color: #000;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.plain a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.plain a:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+}
+
+.plain nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
