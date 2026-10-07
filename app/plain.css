@@ -63,9 +63,12 @@ html:has(.plain) .card {
   transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
 }
 
-/* Symmetric ease: the turn gathers, crosses edge-on at speed, and settles. */
+/* A sine ease peaks at 1.6x the average speed (the old cubic peaked at 5x,
+   about 19 degrees a frame, which read as a low frame rate). The card keeps
+   its own GPU layer so the turn never repaints. */
 .card {
-  transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: transform 0.9s cubic-bezier(0.37, 0, 0.63, 1);
+  will-change: transform;
 }
 
 /* Work turns by the right edge, about by the left. Either way the back
@@ -119,6 +122,7 @@ html:has(.plain) .card {
   inset: -50%;
   background: radial-gradient(circle at 50% 50%, rgb(255 255 255 / 0.28), transparent 38%);
   transform: translate(var(--sx, 0%), var(--sy, 0%));
+  will-change: transform;
   pointer-events: none;
 }
 
@@ -338,8 +342,8 @@ html:has(.plain) .card {
   /* Arriving: a point at the centre draws out into one line, then splits
      into two doors that open in step with the word. */
   transition:
-    scale 0.26s cubic-bezier(0.33, 1, 0.68, 1) 0.4s,
-    translate 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.62s;
+    scale 0.26s cubic-bezier(0.33, 1, 0.68, 1) 0.48s,
+    translate 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.7s;
 }
 
 .turn.mark::before,
@@ -354,9 +358,9 @@ html:has(.plain) .card {
   margin-inline-end: -0.3em;
   clip-path: inset(0 0 0 0);
   transition:
-    clip-path 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.62s,
-    filter 0.55s cubic-bezier(0.33, 1, 0.68, 1) 0.62s,
-    opacity 0.32s ease-out 0.74s;
+    clip-path 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.7s,
+    filter 0.55s cubic-bezier(0.33, 1, 0.68, 1) 0.7s,
+    opacity 0.32s ease-out 0.82s;
 }
 
 .turn.mark .mark-text {
