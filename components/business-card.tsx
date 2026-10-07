@@ -146,17 +146,13 @@ export default function BusinessCard({
                   <p>
                     I got into tech at 13, selling my drawings as NFTs, then reading whitepapers
                     and writing my own smart contracts. At 16 I left a serious swimming career in
-                    Russia and moved to San Francisco to build my future now, not after university.
+                    Russia and moved to San Francisco after realizing that the time to build my
+                    future was NOW.
                   </p>
                   <p>
-                    My first months here went to moving and construction jobs, and I taught
-                    myself in whatever time was left. Then I built automations for those same
-                    companies, which led me to agent infrastructure for blockchains.
-                  </p>
-                  <p>
-                    Next: hardware and federated learning, so models can learn from private data
-                    that never leaves its owner, and helping Ethereum become the cryptographic
-                    world computer Vitalik describes.
+                    Since moving, I have built automation for traditional service companies,
+                    infrastructure for agent adoption, and am now focused on federated learning,
+                    hardware, and helping blockchains evolve.
                   </p>
                 </div>
               ) : (
