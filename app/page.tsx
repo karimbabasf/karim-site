@@ -15,28 +15,23 @@ export const viewport: Viewport = {
 const projects: CardProject[] = [
   {
     name: "Phosphor",
-    line: "A crypto wallet your AI agent can operate, but never approve.",
+    line: "A local Mac application that allows you to swap, trade, and manage your crypto through agents you already pay for.",
     href: "https://phosphor.money",
   },
   {
     name: "Warden",
-    line: "Every coding agent on one screen.",
+    line: "Every local agent instance on one screen.",
     href: "https://github.com/karimbabasf/WARDEN",
   },
   {
     name: "Blast",
-    line: "Agents hire agents, paid only on proof. Won the Stripe track at Supabase Select.",
+    line: "The layer that allows for general agents to hire specialist agents others have built.",
     href: "https://blast-one-rho.vercel.app",
   },
   {
     name: "SolBid",
-    line: "AI agents bid for you in a live auction and pay each other on Solana.",
+    line: "Agentic auction house built on blockchain payment rails.",
     href: "https://github.com/karimbabasf/solbid",
-  },
-  {
-    name: "Vesper Wallet",
-    line: "A chat wallet that no message can talk into moving money.",
-    href: "https://github.com/karimbabasf/vesper-wallet",
   },
 ];
 
