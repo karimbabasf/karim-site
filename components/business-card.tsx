@@ -27,9 +27,26 @@ export default function BusinessCard({
   const [shown, setShown] = useState<Side>("work");
   const [half, setHalf] = useState<Side | null>(null);
   const flipped = open !== null;
+  // Once a turn lands, the card swaps to an identical flat layout. Safari
+  // hit-tests links on a turned 3D face badly; flat, every link is reachable.
+  const [settled, setSettled] = useState(false);
+  const card = useRef<HTMLDivElement>(null);
   const turn = (side: Side) => {
     setShown(side);
     setOpen(side);
+  };
+  const close = () => {
+    const el = card.current;
+    if (settled && el) {
+      // Back to the turned 3D state with no animation, so the turn home
+      // starts from the exact picture already on screen.
+      el.classList.add("no-anim");
+      el.classList.remove("is-settled");
+      void el.offsetWidth;
+      el.classList.remove("no-anim");
+    }
+    setSettled(false);
+    setOpen(null);
   };
   const tilt = useRef<HTMLDivElement>(null);
 
@@ -104,10 +121,16 @@ export default function BusinessCard({
       <div className="stage">
         <div className="tilt" ref={tilt}>
           <div
-            className={`card${open ? ` is-${open}` : ""}`}
+            ref={card}
+            className={`card${open ? ` is-${open}` : ""}${settled ? " is-settled" : ""}`}
+            onTransitionEnd={(e) => {
+              if (e.target === e.currentTarget && e.propertyName === "transform" && open) {
+                setSettled(true);
+              }
+            }}
             onClick={(e) => {
               if ((e.target as HTMLElement).closest("a")) return;
-              if (flipped) return setOpen(null);
+              if (flipped) return close();
               const r = e.currentTarget.getBoundingClientRect();
               turn(e.clientX < r.left + r.width / 2 ? "about" : "work");
             }}
@@ -144,15 +167,15 @@ export default function BusinessCard({
                 <div className="about">
                   <h2>About</h2>
                   <p>
-                    I got into tech at 13, selling my drawings as NFTs, then reading whitepapers
-                    and writing my own smart contracts. At 16 I left a serious swimming career in
-                    Russia and moved to San Francisco after realizing that the time to build my
-                    future was NOW.
+                    <span className="lead-in">I got into tech</span> at 13, selling my drawings
+                    as NFTs, then reading whitepapers and writing my own smart contracts. At 16 I
+                    left a serious swimming career in Russia and moved to San Francisco after
+                    realizing that the time to build my future was NOW.
                   </p>
                   <p>
-                    Since moving, I have built automation for traditional service companies,
-                    infrastructure for agent adoption, and am now focused on federated learning,
-                    hardware, and helping blockchains evolve.
+                    <span className="lead-in">Since moving</span>, I have built automation for
+                    traditional service companies and infrastructure for agent adoption. Now I am
+                    focused on federated learning, hardware, and helping blockchains evolve.
                   </p>
                 </div>
               ) : (
@@ -206,7 +229,7 @@ export default function BusinessCard({
         <div className="turns">
           <button type="button" className="turn mark" data-off={!flipped || undefined}
             tabIndex={flipped ? undefined : -1}
-            aria-hidden={!flipped || undefined} onClick={() => setOpen(null)}>
+            aria-hidden={!flipped || undefined} onClick={close}>
             <span className="mark-text">Turn back</span>
           </button>
         </div>

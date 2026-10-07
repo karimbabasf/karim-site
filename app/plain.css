@@ -5,6 +5,12 @@
    Performance: the paper is a baked 51 KB tile (public/paper.webp), not a
    live SVG filter, and every per-frame change (tilt, sheen, flip) is a
    transform, so nothing repaints while the card moves. */
+@property --ul {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+
 html:has(.plain),
 html:has(.plain) body {
   background: #1b1a18 radial-gradient(ellipse 90% 70% at 50% 42%, #2e2c28, #1b1a18 70%, #121110);
@@ -81,6 +87,24 @@ html:has(.plain) .card {
   transform: rotateY(180deg);
 }
 
+/* Landed: the same picture, laid flat (see business-card.tsx). */
+.card.is-settled {
+  transition: none;
+  transform: none;
+}
+
+.card.is-settled .back {
+  transform: none;
+}
+
+.card.is-settled .front {
+  visibility: hidden;
+}
+
+.card.no-anim {
+  transition: none;
+}
+
 .face {
   position: absolute;
   inset: 0;
@@ -136,13 +160,25 @@ html:has(.plain) .card {
   padding-block: 0.45em;
   margin-block: -0.45em;
   color: var(--ink);
-  text-decoration: underline 1px rgb(38 37 35 / 0.28);
-  text-underline-offset: 0.25em;
-  transition: text-decoration-color 0.2s ease-out;
+  /* The underline is a 1px line drawn behind the text, not a text
+     decoration: Safari paints the letterpress text-shadow over a decoration
+     and wipes it out. It sits just under the baseline, inside the padding. */
+  --ul: rgb(38 37 35 / 0.28);
+  text-decoration: none;
+  background: linear-gradient(var(--ul), var(--ul)) no-repeat 0 calc(100% - 0.46em) / 100% 1px;
+  transition: --ul 0.2s ease-out;
 }
 
 .face a:hover {
-  text-decoration-color: var(--ink);
+  --ul: var(--ink);
+}
+
+/* A link that is a grid or flex item would stretch, and its underline with
+   it; keep each one as wide as its word. */
+.face :is(li, nav, .corners) > a {
+  justify-self: start;
+  align-self: baseline;
+  width: fit-content;
 }
 
 .face a:focus-visible,
@@ -469,6 +505,13 @@ html:has(.plain) .card {
 }
 
 /* ---------- back: about ---------- */
+
+/* Book-style lead-in: the first words of each paragraph in small caps. */
+.about .lead-in {
+  font-family: var(--font-caps), serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
 
 .about p {
   margin: 0 0 1.5cqi;
