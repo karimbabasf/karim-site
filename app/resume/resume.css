@@ -50,23 +50,38 @@ html:has(.resumePage) a {
   border-bottom: 1px solid rgb(236 235 230 / 0.08);
 }
 
+/* Three equal-sided columns, so the title sits on the true centre however
+   wide Back and Download are. */
 .resumeBar-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
-  max-width: 880px;
+  /* The sheet is 816px; with 16px padding the bar's ends line up with its edges. */
+  max-width: 848px;
   margin: 0 auto;
   padding: 10px 16px;
-  font-family: var(--font-caps), serif;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font: 500 11px var(--font-geist-sans), sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.resumeBar-back {
+  justify-self: start;
+}
+
+.resumeBar-title {
+  grid-column: 2;
+}
+
+.resumeBar-download {
+  grid-column: 3;
+  justify-self: end;
 }
 
 .resumeBar-back,
 .resumeBar-title {
   color: rgb(236 235 230 / 0.55);
-  font-size: 15px;
   text-decoration: none;
 }
 
@@ -95,11 +110,7 @@ html:has(.resumePage) a {
     0 1px 1px rgb(0 0 0 / 0.35),
     0 6px 14px -6px rgb(0 0 0 / 0.6);
   color: var(--ink);
-  font-size: 15px;
   text-decoration: none;
-  text-shadow:
-    0 -0.5px 0 rgb(0 0 0 / 0.35),
-    0 1px 0 rgb(255 255 255 / 0.85);
   transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease-out;
 }
 
@@ -114,6 +125,12 @@ html:has(.resumePage) a {
 @media (min-width: 640px) {
   .resumeBar-title {
     display: block;
+  }
+}
+
+@media (max-width: 639px) {
+  .resumeBar-inner {
+    padding-inline: 12px;
   }
 }
 
@@ -541,15 +558,6 @@ html:has(.resumePage) a {
 
 .resumePage[data-font] .resumeDoc :is(p, li, span:not(.surname)) {
   text-shadow: none;
-}
-
-.resumePage[data-font] .resumeBar,
-.resumePage[data-font] .resumeBar * {
-  font-family: var(--proto), sans-serif;
-  font-variant-caps: normal;
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 0.16em;
 }
 
 .resumeFonts {
