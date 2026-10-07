@@ -84,7 +84,7 @@ export default function BusinessCard({
               </nav>
               <div className="title">
                 <h1>Karim BABA</h1>
-                <p>Agent Infrastructure Engineer</p>
+                <p>Founder</p>
               </div>
               <div className="corners">
                 <a href={`mailto:${email}`}>{email}</a>
