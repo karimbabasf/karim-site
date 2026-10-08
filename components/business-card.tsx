@@ -215,7 +215,7 @@ export default function BusinessCard({
                     <img src="/karim-card.webp" width={640} height={800} alt="" decoding="async" />
                   </button>
                   <p>
-                    <span className="lead-in">I got into tech</span> at 13, selling my drawings
+                    <span className="lead-in">My journey in tech</span> began when I was 13, selling my drawings
                     as NFTs, then reading whitepapers and writing my own smart contracts. At 16 I
                     left a serious swimming career in Russia and moved to San Francisco after
                     realizing that the time to build my future was NOW.

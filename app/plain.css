@@ -647,6 +647,43 @@ html:has(.plain) .lightbox * {
   text-wrap: pretty;
 }
 
+/* Wide card: set like the back of a business card. Text in one measured
+   column, the portrait in its own column on the same top line, type on the
+   Work side's scale. */
+@media not all and (max-width: 640px) and (orientation: portrait) {
+  .about {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 21cqi;
+    grid-template-rows: auto auto 1fr;
+    column-gap: 5.4cqi;
+    align-content: start;
+  }
+
+  .about h2 {
+    grid-column: 1 / -1;
+    padding-bottom: 1.6cqi;
+    border-bottom: 1px solid rgb(38 37 35 / 0.18);
+    margin-bottom: 3cqi;
+  }
+
+  .about .portrait {
+    float: none;
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    width: 100%;
+    margin: 0.5cqi 0 0;
+    align-self: start;
+  }
+
+  .about p {
+    grid-column: 1;
+    margin-bottom: 2cqi;
+    font-size: 2.3cqi;
+    line-height: 1.5;
+  }
+}
+
 /* ---------- phones: a vertical card ---------- */
 
 /* Set like a real vertical card: the firm across the top, the name on the
