@@ -27,17 +27,17 @@ const metadataBase = new URL(
 export const metadata: Metadata = {
   metadataBase,
   title: "Karim Baba",
-  description: "Karim Baba, AI-native builder in San Francisco.",
+  description: "Karim Baba, founder building agent infrastructure in San Francisco.",
   openGraph: {
     type: "website",
     title: "Karim Baba",
-    description: "AI-native builder, BD @ 1Claw. Based in San Francisco.",
+    description: "Founder, agent infrastructure. San Francisco, California.",
     siteName: "Karim Baba",
   },
   twitter: {
     card: "summary_large_image",
     title: "Karim Baba",
-    description: "AI-native builder, BD @ 1Claw. Based in San Francisco.",
+    description: "Founder, agent infrastructure. San Francisco, California.",
     creator: "@karimbabasf",
   },
 };
