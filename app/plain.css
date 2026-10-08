@@ -549,88 +549,30 @@ html:has(.plain) .card {
 
 /* ---------- back: about ---------- */
 
-/* The portrait, set into the About side like a small print. It is a button:
-   tapping it opens the full photo. */
-.about {
+/* The portrait, set into the About side like a small print. */
+/* Scoped to the face: the About spine button also carries .about. */
+.back .about {
   display: flow-root;
 }
 
 .about .portrait {
   display: block;
   float: right;
-  width: 24cqi;
+  width: 30cqi;
   margin: 0.4cqi 0 1.5cqi 3.2cqi;
-  padding: 0;
-  border: 0;
-  background: none;
-  transition: translate 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-html:has(.plain) .about .portrait {
-  cursor: zoom-in;
-}
-
-.about .portrait:hover {
-  translate: 0 -1px;
-}
-
-.about .portrait:focus-visible {
-  outline: 1px solid var(--ink);
-  outline-offset: 3px;
 }
 
 .about .portrait img {
   display: block;
-  /* The ratio lives on the image: Safari sizes a button from its content
-     and ignores an aspect-ratio on the button itself. */
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   object-fit: cover;
   border-radius: 0.25cqi;
   box-shadow:
     0 0 0 1px rgb(38 37 35 / 0.12),
     0 1px 2px rgb(0 0 0 / 0.16),
     0 8px 16px -10px rgb(0 0 0 / 0.4);
-}
-
-/* Full-size viewer. */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  max-height: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: rgb(14 13 12 / 0.94);
-  place-items: center;
-  overflow: hidden;
-}
-
-.lightbox[open] {
-  display: grid;
-}
-
-.lightbox::backdrop {
-  background: transparent;
-}
-
-html:has(.plain) .lightbox,
-html:has(.plain) .lightbox * {
-  cursor: zoom-out;
-}
-
-.lightbox img {
-  width: auto;
-  height: auto;
-  max-width: min(92vw, 1600px);
-  max-height: 92svh;
-  border-radius: 4px;
-  box-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.7);
-  transform-origin: 0 0;
 }
 
 /* Book-style lead-in: the first words of each paragraph in small caps. */
@@ -651,10 +593,10 @@ html:has(.plain) .lightbox * {
    column, the portrait in its own column on the same top line, type on the
    Work side's scale. */
 @media not all and (max-width: 640px) and (orientation: portrait) {
-  .about {
+  .back .about {
     flex: 1;
     display: grid;
-    grid-template-columns: 1fr 21cqi;
+    grid-template-columns: 1fr 28cqi;
     grid-template-rows: auto auto 1fr;
     column-gap: 5.4cqi;
     align-content: start;
@@ -801,7 +743,7 @@ html:has(.plain) .lightbox * {
   }
 
   .about .portrait {
-    width: 33cqi;
+    width: 38cqi;
     margin: 1cqi 0 3cqi 4.5cqi;
   }
 
