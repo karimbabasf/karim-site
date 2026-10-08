@@ -1,6 +1,7 @@
 import type { Viewport } from "next";
 import { Cormorant_Garamond, Cormorant_SC } from "next/font/google";
 import BusinessCard, { type CardLink, type CardProject } from "@/components/business-card";
+import { preload } from "react-dom";
 import "./plain.css";
 
 // The Bateman card: engraved small caps on bone paper.
@@ -44,6 +45,8 @@ const links: CardLink[] = [
 ];
 
 export default function Home() {
+  // The card stock is the largest paint, and CSS alone finds it late.
+  preload("/paper.webp", { as: "image", fetchPriority: "high" });
   return (
     <main className={`plain ${caps.variable} ${text.variable}`}>
       <BusinessCard projects={projects} links={links} email="founder@karimbabasf.com" />
