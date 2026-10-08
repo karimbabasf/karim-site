@@ -65,10 +65,6 @@ html:has(.plain) .card {
   transform-style: preserve-3d;
 }
 
-.tilt {
-  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-}
-
 /* A sine ease peaks at 1.6x the average speed (the old cubic peaked at 5x,
    about 19 degrees a frame, which read as a low frame rate). The card keeps
    its own GPU layer so the turn never repaints. */
@@ -106,26 +102,31 @@ html:has(.plain) .card {
 }
 
 /* Belt and braces for backface-visibility: each face also switches
-   visibility exactly when the card is edge-on, half way through the 0.9s
-   symmetric turn, so a browser that ignores backface-visibility never shows
-   the far side mirrored through the near one. */
-.front,
-.back {
-  transition: visibility 0s linear 0.45s;
+   visibility near edge-on, so a browser that ignores backface-visibility
+   never shows the far side mirrored through the near one. The swaps
+   overlap: the arriving face shows at 0.38s, the leaving face hides at
+   0.52s. Swapping both at 0.45s blanked the card for a frame, because the
+   turn runs on the compositor and the visibility swap on the main thread,
+   and the two drift by a frame. */
+.front {
+  transition: visibility 0s linear 0.38s;
 }
 
 .back {
   visibility: hidden;
+  transition: visibility 0s linear 0.52s;
 }
 
 .card.is-work .back,
 .card.is-about .back {
   visibility: visible;
+  transition-delay: 0.38s;
 }
 
 .card.is-work .front,
 .card.is-about .front {
   visibility: hidden;
+  transition-delay: 0.52s;
 }
 
 .face {
@@ -168,7 +169,6 @@ html:has(.plain) .card {
   position: absolute;
   inset: -50%;
   background: radial-gradient(circle at 50% 50%, rgb(255 255 255 / 0.28), transparent 38%);
-  transform: translate(var(--sx, 0%), var(--sy, 0%));
   will-change: transform;
   pointer-events: none;
 }
@@ -409,6 +409,12 @@ html:has(.plain) .card {
 
 .side.mark {
   gap: 1rem;
+}
+
+/* Each label is its own layer: the word's clip and blur repaint every frame
+   of a turn, and without this they repaint the desk and the card with them. */
+.mark {
+  will-change: transform;
 }
 
 .mark::before,

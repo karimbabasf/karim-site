@@ -52,9 +52,12 @@ export default function BusinessCard({
 
   // The card leans toward the pointer. Only transforms change per frame, so
   // the browser moves layers it already painted and never repaints the paper.
+  // They are written straight onto the two elements that move: a custom
+  // property on .tilt would restyle every node inside the card each frame.
   useEffect(() => {
     const el = tilt.current;
     if (!el) return;
+    const sheens = el.querySelectorAll<HTMLElement>(".sheen");
     const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
     const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!fine || still) return;
@@ -64,10 +67,9 @@ export default function BusinessCard({
     const step = () => {
       x += (tx - x) * 0.1;
       y += (ty - y) * 0.1;
-      el.style.setProperty("--rx", `${(-y * 7).toFixed(3)}deg`);
-      el.style.setProperty("--ry", `${(x * 9).toFixed(3)}deg`);
-      el.style.setProperty("--sx", `${(x * 30).toFixed(2)}%`);
-      el.style.setProperty("--sy", `${(y * 30).toFixed(2)}%`);
+      el.style.transform = `rotateX(${(-y * 7).toFixed(3)}deg) rotateY(${(x * 9).toFixed(3)}deg)`;
+      const shift = `translate(${(x * 30).toFixed(2)}%, ${(y * 30).toFixed(2)}%)`;
+      sheens.forEach((s) => (s.style.transform = shift));
       raf = Math.abs(tx - x) + Math.abs(ty - y) > 0.0005 ? requestAnimationFrame(step) : 0;
     };
     const kick = () => {

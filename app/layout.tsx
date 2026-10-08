@@ -7,9 +7,12 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+// Not preloaded: the homepage never sets mono, so it would only compete
+// with the card for first paint. Pages that use it still load it.
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 // Absolute base for OG/Twitter image URLs. On Vercel this resolves to the
