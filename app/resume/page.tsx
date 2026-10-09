@@ -140,7 +140,7 @@ export default function ResumePage() {
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    AI Forward Engineer <span className="sub">GenPulse</span>
+                    Founding Engineer <span className="sub">GenPulse</span>
                   </h3>
                   <span className="meta">San Francisco · 2026</span>
                 </div>
