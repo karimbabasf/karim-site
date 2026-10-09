@@ -106,17 +106,14 @@ export default function ResumePage() {
                   <span className="meta">live on real calls since Jul 2026</span>
                 </div>
                 <p>
-                  Runs the phone for Pakkr, the company I co-founded. The agent
-                  answers from the product catalogue, routes callers to a
-                  quote, a text or a person, and records, transcribes and summarizes
-                  every call into one thread per customer.
+                  Phone, email, and messaging automation for businesses. The agent answers from the product catalogue, routes callers to a quote, a text or a person, and records, transcribes and summarizes every call into one thread per customer.
                 </p>
               </div>
 
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Blast <span className="sub">the hiring layer for AI agents</span>
+                    Blast <span className="sub">the hiring layer for AI agents, hackathon winner</span>
                   </h3>
                   <a
                     className="meta"
