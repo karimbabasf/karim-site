@@ -158,7 +158,7 @@ export default function ResumePage() {
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Business Development &amp; SF Liaison, Contributor <span className="sub"><a href="https://1claw.xyz" target="_blank" rel="noopener noreferrer">1Claw</a></span>
+                    Business Development, Contributor <span className="sub"><a href="https://1claw.xyz" target="_blank" rel="noopener noreferrer">1Claw</a></span>
                   </h3>
                   <span className="meta">San Francisco · 2026</span>
                 </div>
