@@ -157,8 +157,8 @@ export default function ResumePage() {
                     design partners and investor relationships in person.
                   </li>
                   <li>
-                    Lead technical education, explaining key custody, LLM firewall
-                    behavior and cross-chain signing to founders and developers.
+                    Lead technical education on key custody, LLM firewalls and
+                    cross-chain signing for founders and developers.
                   </li>
                 </ul>
               </div>
