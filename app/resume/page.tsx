@@ -137,12 +137,20 @@ export default function ResumePage() {
               <h2>Awards</h2>
               <ul>
                 <li>Winner, Stripe track, Supabase Select hackathon, 2026 (Blast).</li>
-                <li>Built SolBid, agent-to-agent auctions with on-chain payments, at the Solana Agent Hackathon, 2026.</li>
               </ul>
             </section>
 
             <section>
               <h2>Experience</h2>
+
+              <div className="entry">
+                <div className="entry-top">
+                  <h3>
+                    AI Forward Engineer <span className="sub">GenPulse</span>
+                  </h3>
+                  <span className="meta">San Francisco · Since Oct 2026</span>
+                </div>
+              </div>
 
               <div className="entry">
                 <div className="entry-top">
@@ -153,8 +161,7 @@ export default function ResumePage() {
                 </div>
                 <ul>
                   <li>
-                    Own 1Claw's San Francisco presence, sourcing partnerships,
-                    design partners and investor relationships in person.
+                    Represented 1Claw's San Francisco presence, sourcing partnerships, design partners and investor relationships in person.
                   </li>
                   <li>
                     Lead technical education on key custody, LLM firewalls and
@@ -172,14 +179,12 @@ export default function ResumePage() {
                 </div>
                 <ul>
                   <li>
-                    Built a signal-gated lead engine that ranks organizations on
-                    likelihood to buy a batch-transfer product, weighting recurring
-                    payouts such as payroll and grants above one-time events.
+                    Built a lead engine that ranks organizations on how likely they
+                    are to buy a batch-transfer product.
                   </li>
                   <li>
-                    Ran daily content for a verified brand account. Standalone posts
-                    capped near 850 views, so replies under active threads became
-                    the main channel.
+                    Ran daily content for a verified brand account, built around
+                    replies once standalone posts capped near 850 views.
                   </li>
                 </ul>
               </div>
