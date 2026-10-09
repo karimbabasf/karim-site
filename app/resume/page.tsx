@@ -66,7 +66,7 @@ export default function ResumePage() {
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Phosphor <span className="sub">agent-driven DeFi with a human approval gate</span>
+                    Phosphor <span className="sub">a crypto wallet an AI agent can use</span>
                   </h3>
                   <a
                     className="meta"
@@ -78,28 +78,28 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p>
-                  Local desktop app with 52 MCP tools, so an existing AI agent
-                  subscription can run DeFi positions: key custody, a policy engine
-                  that simulates and budget-checks every write, and in-app human
-                  approval. NEAR Intents across 30+ chains plus Hyperliquid
-                  perpetuals, open source and live on mainnet.
+                  Mac app that lets an AI agent like Claude swap, send and trade
+                  crypto through 52 tools, across 30+ chains and Hyperliquid
+                  perpetuals. The agent can only propose a move. Nothing runs until
+                  I approve it in the app, inside spending limits I set. Open source,
+                  live on mainnet.
                 </p>
               </div>
 
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Warden <span className="sub">multi-agent orchestration for AI coding</span>
+                    Warden <span className="sub">every AI coding session on one screen</span>
                   </h3>
                   <a className="meta" href="https://github.com/karimbabasf" target="_blank" rel="noopener noreferrer">
                     GitHub
                   </a>
                 </div>
                 <p>
-                  Parallel AI coding agents collide on a shared codebase. Warden
-                  gives each one isolation, coordinates their work, and puts
-                  sessions, process state, token spend and file activity in a
-                  single live view. 80,000 lines of Rust and TypeScript.
+                  Mac app that reads the local transcripts of every running Claude
+                  Code and Codex session and puts them on one screen: what each one
+                  is doing, its processes, token spend and the files it touched.
+                  Rust and TypeScript.
                 </p>
               </div>
 
