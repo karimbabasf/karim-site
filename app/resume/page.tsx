@@ -142,7 +142,7 @@ export default function ResumePage() {
                   <h3>
                     AI Forward Engineer <span className="sub">GenPulse</span>
                   </h3>
-                  <span className="meta">San Francisco · Since Oct 2026</span>
+                  <span className="meta">San Francisco · 2026</span>
                 </div>
                 <ul>
                   <li>
@@ -160,7 +160,7 @@ export default function ResumePage() {
                   <h3>
                     Business Development &amp; SF Liaison, Contributor <span className="sub"><a href="https://1claw.xyz" target="_blank" rel="noopener noreferrer">1Claw</a></span>
                   </h3>
-                  <span className="meta">San Francisco · Since 2026</span>
+                  <span className="meta">San Francisco · 2026</span>
                 </div>
                 <ul>
                   <li>
@@ -178,7 +178,7 @@ export default function ResumePage() {
                   <h3>
                     SMM / BDR <span className="sub"><a href="https://multisender.app" target="_blank" rel="noopener noreferrer">Multisender.app</a></span>
                   </h3>
-                  <span className="meta">San Francisco · Since Jun 2026</span>
+                  <span className="meta">San Francisco · 2026</span>
                 </div>
                 <ul>
                   <li>
