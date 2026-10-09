@@ -66,7 +66,7 @@ export default function ResumePage() {
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Phosphor <span className="sub">swap, trade and manage crypto with an AI agent</span>
+                    <a href="https://github.com/karimbabasf/phosphor" target="_blank" rel="noopener noreferrer">Phosphor</a> <span className="sub">swap, trade and manage crypto with an AI agent</span>
                   </h3>
                   <a
                     className="meta"
@@ -85,7 +85,7 @@ export default function ResumePage() {
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Warden <span className="sub">every AI coding session on one screen</span>
+                    <a href="https://github.com/karimbabasf/WARDEN" target="_blank" rel="noopener noreferrer">Warden</a> <span className="sub">every AI coding session on one screen</span>
                   </h3>
                   <a className="meta" href="https://github.com/karimbabasf/WARDEN" target="_blank" rel="noopener noreferrer">
                     GitHub
@@ -101,7 +101,7 @@ export default function ResumePage() {
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Switchboard <span className="sub">AI phone line for my moving-supply company</span>
+                    <a href="https://github.com/karimbabasf/switchboard" target="_blank" rel="noopener noreferrer">Switchboard</a> <span className="sub">AI phone line for my moving-supply company</span>
                   </h3>
                   <span className="meta">live on real calls since Jul 2026</span>
                 </div>
@@ -113,7 +113,7 @@ export default function ResumePage() {
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Blast <span className="sub">the hiring layer for AI agents, won the Stripe track at the Supabase Select hackathon</span>
+                    <a href="https://github.com/karimbabasf/Blast" target="_blank" rel="noopener noreferrer">Blast</a> <span className="sub">the hiring layer for AI agents, won the Stripe track at the Supabase Select hackathon</span>
                   </h3>
                   <a
                     className="meta"
