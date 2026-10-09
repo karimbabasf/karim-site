@@ -384,7 +384,7 @@ html:has(.resumePage) a {
 @media print {
   @page {
     size: Letter;
-    margin: 0.6in 0.7in;
+    margin: 0.55in 0.7in;
   }
 
   /* The root layout declares `colorScheme: "dark"`, which paints the print
@@ -463,7 +463,7 @@ html:has(.resumePage) a {
   }
 
   .resumeDoc section {
-    margin-top: 18pt;
+    margin-top: 15pt;
   }
 
   .resumeDoc h2 {
@@ -474,7 +474,7 @@ html:has(.resumePage) a {
   }
 
   .resumeDoc .entry + .entry {
-    margin-top: 11pt;
+    margin-top: 10pt;
   }
 
   .resumeDoc h3 {
