@@ -178,7 +178,7 @@ export default function ResumePage() {
                   <h3>
                     SMM / BDR <span className="sub"><a href="https://multisender.app" target="_blank" rel="noopener noreferrer">Multisender.app</a></span>
                   </h3>
-                  <span className="meta">San Francisco · 5 years, since 2021</span>
+                  <span className="meta">San Francisco · Since Jun 2026</span>
                 </div>
                 <ul>
                   <li>
