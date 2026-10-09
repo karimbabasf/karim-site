@@ -53,10 +53,11 @@ export default function ResumePage() {
             </header>
 
             <p className="summary">
-              Software engineer building agent systems that touch money and stop
-              for a human: orchestration harnesses, key custody and transaction
-              signing, and policy controls that require human approval before an
-              agent executes irreversible actions. On-chain since 2021.
+              Software engineer with three years of experience across agent
+              infrastructure, developer tooling and blockchain systems. I build
+              orchestration harnesses, key custody and transaction signing, and
+              the policy controls that require human approval before an agent
+              executes an irreversible action. On-chain since 2021.
             </p>
 
             <section>
@@ -77,12 +78,11 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p>
-                  Local desktop application exposing 52 MCP tools, so an existing
-                  AI agent subscription can operate DeFi positions: key custody, a
-                  policy engine that simulates and budget-checks every write, and
-                  in-app human approval. Chain-abstracted through NEAR Intents
-                  across 30+ chains, plus Hyperliquid perpetuals. 1,200+ tests,
-                  open source and running on mainnet.
+                  Local desktop app with 52 MCP tools, so an existing AI agent
+                  subscription can run DeFi positions: key custody, a policy engine
+                  that simulates and budget-checks every write, and in-app human
+                  approval. NEAR Intents across 30+ chains plus Hyperliquid
+                  perpetuals, open source and live on mainnet.
                 </p>
               </div>
 
@@ -177,7 +177,7 @@ export default function ResumePage() {
                   <h3>
                     SMM / BDR <span className="sub">Multisender.app</span>
                   </h3>
-                  <span className="meta">San Francisco · Since 2021</span>
+                  <span className="meta">San Francisco · 5 years, since 2021</span>
                 </div>
                 <ul>
                   <li>
@@ -186,8 +186,9 @@ export default function ResumePage() {
                     payouts such as payroll and grants above one-time events.
                   </li>
                   <li>
-                    Ran daily content for a verified brand account, choosing the
-                    surface before the topic.
+                    Ran daily content for a verified brand account. Standalone posts
+                    capped near 850 views, so replies under active threads became
+                    the main channel.
                   </li>
                 </ul>
               </div>
