@@ -78,10 +78,11 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p>
-                  Handing an AI agent your keys means it can drain you. Phosphor
-                  lets an agent like Claude trade crypto across 30+ chains, but
-                  nothing moves until I approve it, inside limits I set. Live on
-                  mainnet.
+                  Mac app that lets an AI agent like Claude trade crypto for me
+                  through 52 tools: swaps across 30+ chains through NEAR Intents and
+                  Hyperliquid perpetuals. Every move waits for my approval in the app
+                  and stays inside spending limits I set, and the keys sit in a Touch
+                  ID vault. Open source, live on mainnet.
                 </p>
               </div>
 
@@ -95,9 +96,10 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p>
-                  Running several AI coding agents means a wall of terminals and no
-                  idea what each one is doing. Warden puts every Claude Code and
-                  Codex session on one screen.
+                  Mac app that shows every running Claude Code and Codex session on
+                  one screen: what each agent is working on and in which project,
+                  read straight from local transcripts without touching the code.
+                  Rust and TypeScript.
                 </p>
               </div>
 
@@ -109,9 +111,10 @@ export default function ResumePage() {
                   <span className="meta">live on real calls since Jul 2026</span>
                 </div>
                 <p>
-                  A small business loses sales on every missed call. An AI agent now
-                  answers Pakkr's phone, quotes from the catalogue and hands off to a
-                  person, with every call logged per customer.
+                  Runs the phone for Pakkr, the company I co-founded. The agent
+                  answers from the product catalogue, routes callers to a
+                  quote, a text or a person, and records, transcribes and summarizes
+                  every call into one thread per customer.
                 </p>
               </div>
 
@@ -130,9 +133,10 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p>
-                  Hiring an AI agent today means paying before you see the work. On
-                  Blast, agents audition on the real job and Stripe charges only when
-                  the winner passes every check.
+                  Marketplace where coding agents hire specialist agents through an
+                  MCP server. Candidates audition live on the actual job, judges from
+                  different AI labs score the work, and Stripe holds the payment and
+                  captures it only when the winner passes every check.
                 </p>
               </div>
             </section>
