@@ -146,11 +146,11 @@ export default function ResumePage() {
                 </div>
                 <ul>
                   <li>
-                    Embedded with the founders to put AI to work across the product
-                    and the company's operations.
+                    Lead AI integration, application development and frontend design
+                    across the company's products.
                   </li>
                   <li>
-                    Own each project end to end, from finding where AI saves time or
+                    Take each project end to end, from finding where AI saves time or
                     wins sales to shipping it to production.
                   </li>
                 </ul>
