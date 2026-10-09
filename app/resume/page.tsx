@@ -78,7 +78,7 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p>
-                  Mac app where an AI agent can swaps, trades and manages my crypto through 52 tools: swaps across 30+ chains, Hyperliquid perpetuals, and every balance and position in one place. Every move waits for my approval inside limits I set, with keys in a Touch ID vault. Open source, live on mainnet.
+                  Mac app where an AI agent can swap, trade and manage my crypto through 52 tools: swaps across 30+ chains, Hyperliquid perpetuals, and every balance and position in one place. Every move waits for my approval inside limits I set, with keys in a Touch ID vault. Open source, live on mainnet.
                 </p>
               </div>
 
