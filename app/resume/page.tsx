@@ -87,7 +87,7 @@ export default function ResumePage() {
                   <h3>
                     Warden <span className="sub">every AI coding session on one screen</span>
                   </h3>
-                  <a className="meta" href="https://github.com/karimbabasf" target="_blank" rel="noopener noreferrer">
+                  <a className="meta" href="https://github.com/karimbabasf/WARDEN" target="_blank" rel="noopener noreferrer">
                     GitHub
                   </a>
                 </div>
@@ -150,8 +150,7 @@ export default function ResumePage() {
                     across the company's products.
                   </li>
                   <li>
-                    Take each project end to end, from finding where AI saves time or
-                    wins sales to shipping it to production.
+                    Took each project end to end, from finding where AI saves time or wins sales to shipping it to production.
                   </li>
                 </ul>
               </div>
@@ -159,7 +158,7 @@ export default function ResumePage() {
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Business Development &amp; SF Liaison, Contributor <span className="sub">1Claw</span>
+                    Business Development &amp; SF Liaison, Contributor <span className="sub"><a href="https://1claw.xyz" target="_blank" rel="noopener noreferrer">1Claw</a></span>
                   </h3>
                   <span className="meta">San Francisco · Since 2026</span>
                 </div>
@@ -177,7 +176,7 @@ export default function ResumePage() {
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    SMM / BDR <span className="sub">Multisender.app</span>
+                    SMM / BDR <span className="sub"><a href="https://multisender.app" target="_blank" rel="noopener noreferrer">Multisender.app</a></span>
                   </h3>
                   <span className="meta">San Francisco · 5 years, since 2021</span>
                 </div>
@@ -195,12 +194,15 @@ export default function ResumePage() {
             </section>
 
             <section>
-              <h2>Skills &amp; Education</h2>
-              <p>
-                TypeScript, Rust, React, Node.js · MCP, multi-agent orchestration ·
-                Postgres, Stripe · EVM, NEAR Intents, Solana
-              </p>
-              <p>Acellus Academy, high school diploma in progress.</p>
+              <h2>Education</h2>
+              <div className="entry">
+                <div className="entry-top">
+                  <h3>
+                    High school diploma <span className="sub"><a href="https://www.acellusacademy.com" target="_blank" rel="noopener noreferrer">Acellus Academy</a></span>
+                  </h3>
+                  <span className="meta">Graduating 2027</span>
+                </div>
+              </div>
             </section>
           </article>
         </div>
