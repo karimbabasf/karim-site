@@ -66,7 +66,7 @@ export default function ResumePage() {
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Phosphor <span className="sub">a crypto wallet an AI agent can use</span>
+                    Phosphor <span className="sub">swap, trade and manage crypto with an AI agent</span>
                   </h3>
                   <a
                     className="meta"
@@ -78,11 +78,11 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p>
-                  Mac app that lets an AI agent like Claude trade crypto for me
-                  through 52 tools: swaps across 30+ chains through NEAR Intents and
-                  Hyperliquid perpetuals. Every move waits for my approval in the app
-                  and stays inside spending limits I set, and the keys sit in a Touch
-                  ID vault. Open source, live on mainnet.
+                  Mac app where an AI agent like Claude swaps, trades and manages my
+                  crypto through 52 tools: swaps across 30+ chains, Hyperliquid
+                  perpetuals, and every balance and position in one place. Every move
+                  waits for my approval inside limits I set, with keys in a Touch ID
+                  vault. Open source, live on mainnet.
                 </p>
               </div>
 
