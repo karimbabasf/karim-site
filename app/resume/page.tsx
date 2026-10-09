@@ -113,7 +113,7 @@ export default function ResumePage() {
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Blast <span className="sub">the hiring layer for AI agents, hackathon winner</span>
+                    Blast <span className="sub">the hiring layer for AI agents, won the Stripe track at the Supabase Select hackathon</span>
                   </h3>
                   <a
                     className="meta"
@@ -133,12 +133,6 @@ export default function ResumePage() {
               </div>
             </section>
 
-            <section>
-              <h2>Awards</h2>
-              <ul>
-                <li>Winner, Stripe track, Supabase Select hackathon, 2026 (Blast).</li>
-              </ul>
-            </section>
 
             <section>
               <h2>Experience</h2>
@@ -150,6 +144,16 @@ export default function ResumePage() {
                   </h3>
                   <span className="meta">San Francisco · Since Oct 2026</span>
                 </div>
+                <ul>
+                  <li>
+                    Embedded with the founders to put AI to work across the product
+                    and the company's operations.
+                  </li>
+                  <li>
+                    Own each project end to end, from finding where AI saves time or
+                    wins sales to shipping it to production.
+                  </li>
+                </ul>
               </div>
 
               <div className="entry">
