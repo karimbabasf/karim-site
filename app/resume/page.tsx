@@ -96,26 +96,23 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p>
-                  Mac app that reads the local transcripts of every running Claude
-                  Code and Codex session and puts them on one screen: what each one
-                  is doing, its processes, token spend and the files it touched.
-                  Rust and TypeScript.
+                  Mac app that reads the local transcripts of every running agent session and organizes them on one screen: what each one is doing, its processes, token spend and the files it touched. Rust and TypeScript.
                 </p>
               </div>
 
               <div className="entry">
                 <div className="entry-top">
                   <h3>
-                    Switchboard <span className="sub">business automation across phone, email and messaging</span>
+                    Switchboard <span className="sub">AI phone line for my moving-supply company</span>
                   </h3>
-                  <span className="meta">handling real customers since 2026</span>
+                  <span className="meta">live on real calls since Jul 2026</span>
                 </div>
                 <p>
-                  Operations automation for a supplies business I co-founded.
-                  Calls, email and text resolve to one contact record, and a voice
-                  agent fields the phone line. Intuit ships no MCP server, so I
-                  built one: ten tools over the live books, six read-only and four
-                  writes, turning approved quotes into QuickBooks invoices.
+                  An AI agent answers the phone for Pakkr, the moving-supply company
+                  I co-founded. It answers questions from the catalogue and sends
+                  callers to a quote, a text or a person. Every call is recorded,
+                  transcribed and summarized into one thread per customer. I also
+                  built the MCP server that connects Claude to our QuickBooks books.
                 </p>
               </div>
 
