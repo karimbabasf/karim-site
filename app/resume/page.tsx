@@ -78,11 +78,7 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p>
-                  Mac app where an AI agent like Claude swaps, trades and manages my
-                  crypto through 52 tools: swaps across 30+ chains, Hyperliquid
-                  perpetuals, and every balance and position in one place. Every move
-                  waits for my approval inside limits I set, with keys in a Touch ID
-                  vault. Open source, live on mainnet.
+                  Mac app where an AI agent can swaps, trades and manages my crypto through 52 tools: swaps across 30+ chains, Hyperliquid perpetuals, and every balance and position in one place. Every move waits for my approval inside limits I set, with keys in a Touch ID vault. Open source, live on mainnet.
                 </p>
               </div>
 
@@ -96,10 +92,9 @@ export default function ResumePage() {
                   </a>
                 </div>
                 <p>
-                  Mac app that shows every running Claude Code and Codex session on
-                  one screen: what each agent is working on and in which project,
-                  read straight from local transcripts without touching the code.
-                  Rust and TypeScript.
+                  Mac app that keeps multi-agent workflows organized: every running
+                  Claude Code and Codex session on one screen, showing what each agent
+                  is doing and in which project, read from local transcripts.
                 </p>
               </div>
 
