@@ -714,102 +714,227 @@ html:has(.plain) .card {
   display: none;
 }
 
-/* Turning the phone ends this query, which is what takes the hint away. */
+/* Turning the phone ends this query, which is what takes the hint away.
+
+   One 4.4s beat, in one direction only, because turning back is not the ask:
+   fade in upright, turn a quarter counter-clockwise, the card inside grows to
+   fill the sideways screen, hold, fade out, reset while nothing shows.
+
+   The phone, heads and card are separate layers that animate transform and
+   opacity only, so the compositor runs them. They share one duration, so the
+   arrow heads stay on the phone's corners and on the tips of the trails. */
 @media (max-width: 640px) and (orientation: portrait) {
   .rotate-hint {
+    --beat: 4.4s;
+    --turn: cubic-bezier(0.7, 0, 0.2, 1);
     display: block;
     position: absolute;
     z-index: 5;
     /* The desk centres the card, so half the card height up from the middle is
        its top edge. The hint sits just above that. */
-    top: calc(50% - var(--w) / 3.5 - 2rem - 3.5rem);
-    left: 50%;
-    transform: translateX(-50%);
+    top: calc(50% - var(--w) / 3.5 - 1.5rem - 4rem);
+    left: calc(50% - 2rem);
+    width: 4rem;
+    height: 4rem;
     pointer-events: none;
-    animation: rotate-hint-in 500ms ease-out backwards;
+    animation: rotate-hint-beat var(--beat) linear infinite;
   }
 
   .rotate-hint svg {
+    position: absolute;
+    inset: 0;
     display: block;
-    width: 3.5rem;
-    height: 3.5rem;
-    stroke: rgb(236 235 230 / 0.5);
-    stroke-width: 1.25;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
 
+  .rotate-hint-phone,
+  .rotate-hint-heads,
+  .rotate-hint-card {
+    will-change: transform;
+  }
+
   .rotate-hint-phone {
-    transform-box: view-box;
-    transform-origin: 50% 50%;
-    animation: rotate-hint-turn 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    stroke: rgb(236 235 230 / 0.66);
+    stroke-width: 1;
+    animation: rotate-hint-turn var(--beat) linear infinite;
   }
 
-  .rotate-hint-arrows {
+  .rotate-hint-phone rect:first-child {
+    fill: rgb(236 235 230 / 0.05);
+  }
+
+  .rotate-hint-phone .rotate-hint-island {
+    fill: rgb(236 235 230 / 0.66);
+    stroke: none;
+  }
+
+  .rotate-hint-phone .rotate-hint-buttons {
+    stroke: rgb(236 235 230 / 0.42);
+    stroke-width: 0.6;
+  }
+
+  /* Built at its sideways size and scaled down, so it stays sharp as it grows. */
+  .rotate-hint-card {
+    position: absolute;
+    top: 41%;
+    left: 34.25%;
+    width: 31.5%;
+    height: 18%;
+    border-radius: 0.125rem;
+    background: rgb(236 235 230 / 0.78);
+    transform: scale(0.603);
+    animation: rotate-hint-fill var(--beat) linear infinite;
+  }
+
+  .rotate-hint-trail path {
+    stroke-width: 1;
+    stroke-dasharray: 0 2;
+    stroke-dashoffset: 2;
     opacity: 0;
-    animation: rotate-hint-arrows 3s linear infinite;
+    animation: rotate-hint-trace var(--beat) linear infinite;
+  }
+
+  .rotate-hint-heads {
+    stroke: rgb(236 235 230 / 0.55);
+    stroke-width: 1;
+    opacity: 0;
+    animation: rotate-hint-heads var(--beat) linear infinite;
   }
 }
 
-@keyframes rotate-hint-in {
-  from {
+@keyframes rotate-hint-beat {
+  0% {
     opacity: 0;
   }
-}
-
-/* Rest, turn with a small bounce, hold, turn back with a bounce, rest. */
-@keyframes rotate-hint-turn {
-  0%,
-  18% {
-    transform: rotate(0deg);
-  }
-  36% {
-    transform: rotate(98deg);
-  }
-  42% {
-    transform: rotate(87deg);
-  }
-  48%,
-  66% {
-    transform: rotate(90deg);
-  }
-  82% {
-    transform: rotate(-7deg);
-  }
-  88% {
-    transform: rotate(2deg);
-  }
-  94%,
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-/* Only for the turn to sideways, which is the move being asked for. */
-@keyframes rotate-hint-arrows {
-  0%,
-  14% {
-    opacity: 0;
-  }
-  20%,
-  36% {
+  9%,
+  80% {
     opacity: 1;
   }
-  46%,
+  89%,
   100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rotate-hint-turn {
+  0%,
+  20% {
+    transform: rotate(0deg);
+    animation-timing-function: var(--turn);
+  }
+  43%,
+  89% {
+    transform: rotate(-90deg);
+    animation-timing-function: linear;
+  }
+  90%,
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Waits for the phone to clear it, or its corners would cross the phone's edge. */
+@keyframes rotate-hint-fill {
+  0%,
+  34% {
+    transform: scale(0.603);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.1, 1);
+  }
+  49%,
+  89% {
+    transform: scale(1);
+    animation-timing-function: linear;
+  }
+  90%,
+  100% {
+    transform: scale(0.603);
+  }
+}
+
+/* The trail grows with the turn on the same curve, then drains into its tip. */
+@keyframes rotate-hint-trace {
+  0%,
+  20% {
+    stroke-dasharray: 0 2;
+    stroke-dashoffset: 2;
+    opacity: 0;
+    animation-timing-function: var(--turn);
+  }
+  24% {
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+  43% {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 2;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  50% {
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+  51% {
+    stroke-dasharray: 0 2;
+    stroke-dashoffset: 1;
+  }
+  52%,
+  100% {
+    stroke-dasharray: 0 2;
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+}
+
+@keyframes rotate-hint-heads {
+  0%,
+  20% {
+    transform: rotate(0deg);
+    opacity: 0;
+    animation-timing-function: var(--turn);
+  }
+  24% {
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+  43%,
+  89% {
+    transform: rotate(-90deg);
+    animation-timing-function: linear;
+  }
+  47% {
+    opacity: 1;
+  }
+  52% {
+    opacity: 0;
+  }
+  90%,
+  100% {
+    transform: rotate(0deg);
     opacity: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .rotate-hint,
-  .rotate-hint-phone {
+  .rotate-hint-phone,
+  .rotate-hint-card {
     animation: none;
   }
 
-  .rotate-hint-arrows {
+  .rotate-hint-trail path {
+    animation: none;
+    stroke-dasharray: none;
+    opacity: 1;
+  }
+
+  .rotate-hint-heads {
     animation: none;
     opacity: 1;
+    transform: rotate(-90deg);
   }
 }
 

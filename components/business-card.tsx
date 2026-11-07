@@ -121,15 +121,29 @@ export default function BusinessCard({
     <div className="desk" data-half={flipped ? undefined : (half ?? undefined)}>
       {/* Upright phones only, until the phone is turned. CSS runs the whole thing. */}
       <div className="rotate-hint" aria-hidden>
-        <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
-          <g className="rotate-hint-arrows">
-            <path d="M27.18 4.59A17 17 0 0 1 36.42 15.6M34.12 13.67 36.42 15.6 37.45 12.78" />
-            <path d="M12.82 35.41A17 17 0 0 1 3.58 24.4M5.88 26.33 3.58 24.4 2.55 27.22" />
-          </g>
-          <g className="rotate-hint-phone">
-            <rect x="14" y="8" width="12" height="24" rx="2.5" />
-            <path d="M18.5 10.75h3" />
-          </g>
+        <svg className="rotate-hint-trail" viewBox="0 0 40 40" fill="none">
+          <defs>
+            <linearGradient id="rotate-hint-fade-a" gradientUnits="userSpaceOnUse" x1="27.08" y1="4.54" x2="4.54" y2="12.92">
+              <stop offset="0" stopColor="#ecebe6" stopOpacity="0" />
+              <stop offset="1" stopColor="#ecebe6" stopOpacity="0.55" />
+            </linearGradient>
+            <linearGradient id="rotate-hint-fade-b" gradientUnits="userSpaceOnUse" x1="12.92" y1="35.46" x2="35.46" y2="27.08">
+              <stop offset="0" stopColor="#ecebe6" stopOpacity="0" />
+              <stop offset="1" stopColor="#ecebe6" stopOpacity="0.55" />
+            </linearGradient>
+          </defs>
+          <path pathLength={1} stroke="url(#rotate-hint-fade-a)" d="M27.08 4.54A17 17 0 0 0 4.54 12.92" />
+          <path pathLength={1} stroke="url(#rotate-hint-fade-b)" d="M12.92 35.46A17 17 0 0 0 35.46 27.08" />
+        </svg>
+        <svg className="rotate-hint-phone" viewBox="0 0 40 40" fill="none">
+          <rect x="14.5" y="8" width="11" height="24" rx="2.6" />
+          <path className="rotate-hint-buttons" d="M26.3 14.2v3.8M13.7 12.8v1.6M13.7 15.6v2.6M13.7 19v2.6" />
+          <rect className="rotate-hint-island" x="18.4" y="9.6" width="3.2" height="1" rx="0.5" />
+        </svg>
+        <div className="rotate-hint-card" />
+        <svg className="rotate-hint-heads" viewBox="0 0 40 40" fill="none">
+          <path d="M29.97 3.74 27.08 4.54 28.37 7.25" />
+          <path d="M10.03 36.26 12.92 35.46 11.63 32.75" />
         </svg>
       </div>
       <div className="table">
