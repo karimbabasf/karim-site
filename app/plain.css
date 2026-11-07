@@ -714,39 +714,46 @@ html:has(.plain) .card {
   display: none;
 }
 
+/* Turning the phone ends this query, which is what takes the hint away. */
 @media (max-width: 640px) and (orientation: portrait) {
   .rotate-hint {
     display: block;
-    position: fixed;
+    position: absolute;
     z-index: 5;
-    top: calc(1rem + env(safe-area-inset-top, 0px));
+    /* The desk centres the card, so half the card height up from the middle is
+       its top edge. The hint sits just above that. */
+    top: calc(50% - var(--w) / 3.5 - 2rem - 3.5rem);
     left: 50%;
     transform: translateX(-50%);
     pointer-events: none;
-    animation: rotate-hint-life 5s linear forwards;
+    animation: rotate-hint-in 500ms ease-out backwards;
   }
 
   .rotate-hint svg {
     display: block;
+    width: 3.5rem;
+    height: 3.5rem;
     stroke: rgb(236 235 230 / 0.5);
     stroke-width: 1.25;
     stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .rotate-hint-phone {
+    transform-box: view-box;
     transform-origin: 50% 50%;
-    animation: rotate-hint-turn 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    animation: rotate-hint-turn 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+
+  .rotate-hint-arrows {
+    opacity: 0;
+    animation: rotate-hint-arrows 3s linear infinite;
   }
 }
 
-@keyframes rotate-hint-life {
-  0% {
+@keyframes rotate-hint-in {
+  from {
     opacity: 0;
-  }
-  8%,
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
   }
 }
 
@@ -778,9 +785,31 @@ html:has(.plain) .card {
   }
 }
 
+/* Only for the turn to sideways, which is the move being asked for. */
+@keyframes rotate-hint-arrows {
+  0%,
+  14% {
+    opacity: 0;
+  }
+  20%,
+  36% {
+    opacity: 1;
+  }
+  46%,
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .rotate-hint svg {
+  .rotate-hint,
+  .rotate-hint-phone {
     animation: none;
+  }
+
+  .rotate-hint-arrows {
+    animation: none;
+    opacity: 1;
   }
 }
 
@@ -802,8 +831,17 @@ html:has(.plain) .card {
    allow. The front has room to set its type larger. */
 @media (orientation: portrait) and (max-width: 640px) {
   .desk {
-    --w: calc(100vw - 72px);
+    --w: calc(100vw - 104px);
+    position: relative;
     padding-inline: 0;
+  }
+
+  .side.about {
+    margin-right: 0.5rem;
+  }
+
+  .side.work {
+    margin-left: 0.5rem;
   }
 
   .plain .front {

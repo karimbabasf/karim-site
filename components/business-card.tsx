@@ -119,11 +119,17 @@ export default function BusinessCard({
 
   return (
     <div className="desk" data-half={flipped ? undefined : (half ?? undefined)}>
-      {/* Portrait phones only, gone after five seconds. CSS runs the whole thing. */}
+      {/* Upright phones only, until the phone is turned. CSS runs the whole thing. */}
       <div className="rotate-hint" aria-hidden>
-        <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
-          <rect x="10" y="4" width="12" height="24" rx="2.5" />
-          <path d="M14.5 6.75h3" />
+        <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+          <g className="rotate-hint-arrows">
+            <path d="M27.18 4.59A17 17 0 0 1 36.42 15.6M34.12 13.67 36.42 15.6 37.45 12.78" />
+            <path d="M12.82 35.41A17 17 0 0 1 3.58 24.4M5.88 26.33 3.58 24.4 2.55 27.22" />
+          </g>
+          <g className="rotate-hint-phone">
+            <rect x="14" y="8" width="12" height="24" rx="2.5" />
+            <path d="M18.5 10.75h3" />
+          </g>
         </svg>
       </div>
       <div className="table">
