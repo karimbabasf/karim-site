@@ -119,6 +119,13 @@ export default function BusinessCard({
 
   return (
     <div className="desk" data-half={flipped ? undefined : (half ?? undefined)}>
+      {/* Portrait phones only, gone after five seconds. CSS runs the whole thing. */}
+      <div className="rotate-hint" aria-hidden>
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+          <rect x="10" y="4" width="12" height="24" rx="2.5" />
+          <path d="M14.5 6.75h3" />
+        </svg>
+      </div>
       <div className="table">
       <div className="stage">
         <div className="tilt" ref={tilt}>
@@ -151,7 +158,7 @@ export default function BusinessCard({
                 </a>
               </div>
               <div className="title">
-                <h1>Karim BABA</h1>
+                <h1>Karim Baba</h1>
                 <p>Founder</p>
               </div>
               <div className="firm">
@@ -178,14 +185,17 @@ export default function BusinessCard({
                     realizing that the time to build my future was NOW.
                   </p>
                   <p>
-                    <span className="lead-in">Since moving</span>, I have built automation for
-                    traditional service companies and infrastructure for agent adoption. Now I am
-                    focused on federated learning, hardware, and helping blockchains evolve.
+                    <span className="lead-in">Since moving</span>, I have shipped fast without
+                    trading away quality: Phosphor went from idea to MVP in 2 days and held money
+                    safely from day one. As Founding Engineer at GenPulse, I lead the team across
+                    AI, apps and design, and we put real products in customers&apos; hands. I build
+                    better and faster than almost anyone I meet. I am the best at what I do, and I get shit
+                    done. <span className="closer">The right way.</span>
                   </p>
                 </div>
               ) : (
                 <>
-              <h2>Work</h2>
+              <h2>Selected works</h2>
               <ul>
                 {projects.map((p) => (
                   <li key={p.name}>
