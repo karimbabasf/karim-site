@@ -785,7 +785,13 @@ html:has(.plain) .card {
     width: 31.5%;
     height: 18%;
     border-radius: 0.125rem;
-    background: rgb(236 235 230 / 0.78);
+    /* Three lines for the name, the title and the footer on the real card. */
+    background:
+      linear-gradient(var(--ink), var(--ink)) 50% 36% / 52% 0.085rem no-repeat,
+      linear-gradient(var(--ink), var(--ink)) 50% 52% / 30% 0.055rem no-repeat,
+      linear-gradient(var(--ink), var(--ink)) 50% 84% / 40% 0.055rem no-repeat,
+      rgb(236 235 230 / 0.78);
+    --ink: rgb(24 23 21 / 0.72);
     transform: scale(0.603);
     animation: rotate-hint-fill var(--beat) linear infinite;
   }
