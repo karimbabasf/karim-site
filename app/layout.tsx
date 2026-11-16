@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   title: "Karim Baba",
   description: "Engineer and founder based in San Francisco. Specialized in blockchains, ML and verifiable privacy.",
   icons: {
-    icon: [{ url: "/favicon.ico", sizes: "32x32" }, { url: "/icon.svg", type: "image/svg+xml" }],
+    icon: [{ url: "/favicon.ico", sizes: "32x32" }, { url: "/icon.png", type: "image/png", sizes: "192x192" }],
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
@@ -37,14 +37,14 @@ export const metadata: Metadata = {
     title: "Karim Baba",
     description: "Engineer and founder based in San Francisco. Specialized in blockchains, ML and verifiable privacy.",
     siteName: "Karim Baba",
-    images: [{ url: "/og.jpg?v=2", width: 1200, height: 630, alt: "Karim Baba, signature" }],
+    images: [{ url: "/og.jpg?v=3", width: 1200, height: 630, alt: "Karim Baba, signature" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Karim Baba",
     description: "Engineer and founder based in San Francisco. Specialized in blockchains, ML and verifiable privacy.",
     creator: "@karimbabasf",
-    images: ["/og.jpg?v=2"],
+    images: ["/og.jpg?v=3"],
   },
 };
 
