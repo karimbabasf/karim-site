@@ -68,12 +68,13 @@
 :lang(th) .intro, :lang(th) .work, :lang(th) .detail { font-family: "Manrope", "Thonburi", "Noto Sans Thai", sans-serif; }
 [dir="rtl"] .detail .back svg { transform: scaleX(-1); }
 html, body { height: 100%; margin: 0; }
+html { background: #020202; }   /* exactly the canvas at zero intensity, so the first WebGL frame lands invisibly */
 body {
   overflow: hidden;
-  /* fallback when WebGL is missing */
-  background: radial-gradient(40% 45% at 50% 40%, #9a9a9a, #0a0a0a 80%);
+  background: #020202;   /* the room is dark from the first paint, before the canvas draws */
 }
 [hidden] { display: none !important; }
+html.nogl body { background: radial-gradient(40% 45% at 50% 40%, #9a9a9a, #0a0a0a 80%); }   /* fallback when WebGL is missing */
 canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 ::selection { background: #e8e8e8; color: #0a0a0a; }
 
@@ -251,7 +252,7 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 (() => {
   const canvas = document.getElementById("c");
   const gl = canvas.getContext("webgl", { antialias: false, premultipliedAlpha: false });
-  if (!gl) { canvas.remove(); document.documentElement.style.setProperty("--i", "1"); return; }   // no WebGL: list only, rows still link
+  if (!gl) { canvas.remove(); document.documentElement.classList.add("nogl"); document.documentElement.style.setProperty("--i", "1"); return; }   // no WebGL: list only, rows still link
 
   // Each pixel integrates light from a finite horizontal strip that faces down.
   // Lambert falloff off the strip's face gives the dark fans past both ends.
