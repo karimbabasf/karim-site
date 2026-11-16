@@ -118,7 +118,7 @@ html.flow .lang, html.flow .intro, html.flow .work, html.flow .detail { position
 .intro h1 {
   margin: 0;
   font-weight: 600;
-  font-size: calc(clamp(34px, 5.2vw, 64px) * var(--k));
+  font-size: calc(clamp(34px, min(5.2vw, 7.11vh), 64px) * var(--k));   /* every desktop size reads min(vw, vh): a short laptop screen scales by height, 1440x900 is unchanged */
   line-height: 1;
   letter-spacing: -0.035em;
   font-optical-sizing: auto;
@@ -129,7 +129,7 @@ html.flow .lang, html.flow .intro, html.flow .work, html.flow .detail { position
   margin: calc(14px * var(--k)) auto 0;
   max-width: 46ch;
   font-weight: 400;
-  font-size: calc(clamp(15px, 1.25vw, 17px) * var(--k));
+  font-size: calc(clamp(15px, min(1.25vw, 1.89vh), 17px) * var(--k));
   line-height: 1.5;
   letter-spacing: -0.005em;
   color: #8f8f8f;
@@ -153,7 +153,7 @@ html.flow .lang, html.flow .intro, html.flow .work, html.flow .detail { position
 }
 .work { display: grid; gap: calc(26px * var(--k)); }
 .work section { display: grid; gap: calc(8px * var(--k)); }
-.work h2 { margin: 0; font-size: calc(clamp(12px, 0.9vw, 13px) * var(--k)); font-weight: 500; letter-spacing: 0; color: rgba(10, 10, 10, 0.74); }   /* the one label per group */
+.work h2 { margin: 0; font-size: calc(clamp(12px, min(0.9vw, 1.44vh), 13px) * var(--k)); font-weight: 500; letter-spacing: 0; color: rgba(10, 10, 10, 0.74); }   /* the one label per group */
 .work ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0; }
 .work a { display: flex; justify-content: space-between; align-items: baseline; gap: calc(24px * var(--k)); color: inherit; text-decoration: none; }
 /* focus the row under the pointer: the others ease to half-strength ink, which reads a step lighter on any part of the lit wall */
@@ -170,7 +170,7 @@ html.flow .lang, html.flow .intro, html.flow .work, html.flow .detail { position
 .detail { top: calc(var(--strip) + var(--g) - 24px * var(--k)); padding-top: calc(24px * var(--k)); width: min(calc(max(55vmin, 30vw) * 0.92), calc(100vw - 32px)); --edge: calc(50% - 54.4% * var(--len));
   display: flex; flex-direction: column; align-items: center; text-align: center; --gap: calc(24px * var(--k)); --tight: calc(8px * var(--k)); }   /* one spacing scale for every page: 24 between blocks, 8 inside one */
 .detail[hidden] { display: none; }
-.detail .id { align-self: center; display: flex; align-items: center; gap: 0.3em; height: 1em; margin-top: 0; font-size: calc(clamp(34px, 5.2vw, 64px) * var(--k)); }   /* fixed 1em row: every mark centres on it and overflows evenly, so the rhythm below never shifts */   /* logo scales with the name */
+.detail .id { align-self: center; display: flex; align-items: center; gap: 0.3em; height: 1em; margin-top: 0; font-size: min(calc(clamp(34px, min(5.2vw, 7.11vh), 64px) * var(--k)), calc(min(calc(max(55vmin, 30vw) * 0.92), calc(100vw - 32px)) / 7.2)); }   /* fixed 1em row: every mark centres on it and overflows evenly, so the rhythm below never shifts */   /* logo scales with the name */
 .detail .logo:empty { display: none; }
 .detail .id.lockup .logo svg { height: 1.05em; }
 .detail .logo[data-id="warden"] svg { height: 1.12em; }
@@ -197,8 +197,8 @@ html.flow .lang, html.flow .intro, html.flow .work, html.flow .detail { position
 .detail .id.lockup h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .detail .logo svg { display: block; height: 0.92em; width: auto; }
 .detail h2 { margin: 0; font-size: 1em; font-weight: 600; letter-spacing: -0.035em; line-height: 1; outline: none; }
-.detail .role { margin: var(--gap) 0 0; line-height: 1.4; font-size: calc(clamp(14px, 1.05vw, 15px) * var(--k)); font-weight: 500; color: #3a3a3a; }
-.detail .desc { margin: var(--tight) 0 0; max-width: 40ch; font-size: calc(clamp(15px, 1.25vw, 17px) * var(--k)); font-weight: 400; line-height: 1.5; letter-spacing: -0.005em; text-wrap: balance; }
+.detail .role { margin: var(--gap) 0 0; line-height: 1.4; font-size: calc(clamp(14px, min(1.05vw, 1.67vh), 15px) * var(--k)); font-weight: 500; color: #3a3a3a; }
+.detail .desc { margin: var(--tight) 0 0; max-width: 40ch; font-size: calc(clamp(15px, min(1.25vw, 1.89vh), 17px) * var(--k)); font-weight: 400; line-height: 1.5; letter-spacing: -0.005em; text-wrap: balance; }
 .detail .desc:empty { display: none; }
 /* one clear button, ink outline only */
 /* mask clips at the border box, so the panel is padded at the top (and lifted the same) to keep tall marks whole */
@@ -224,11 +224,11 @@ html.flow .lang, html.flow .intro, html.flow .work, html.flow .detail { position
 @media (prefers-reduced-motion: reduce) { .detail .go { transition: none; } }
 .detail .go[hidden] { display: none; }
 .detail .go[hidden] { display: none; }
-.detail .meta { margin: var(--gap) 0 0; line-height: 1.4; display: flex; justify-content: center; gap: 0; font-size: calc(clamp(13px, 1vw, 14px) * var(--k)); font-weight: 600; color: #0a0a0a; font-variant-numeric: tabular-nums; }   /* full ink: this row sits low, where the light is dimmer */
+.detail .meta { margin: var(--gap) 0 0; line-height: 1.4; display: flex; justify-content: center; gap: 0; font-size: calc(clamp(13px, min(1vw, 1.56vh), 14px) * var(--k)); font-weight: 600; color: #0a0a0a; font-variant-numeric: tabular-nums; }   /* full ink: this row sits low, where the light is dimmer */
 .detail .meta span:empty { display: none; }
 .detail .meta .where:not(:empty) + .when::before { content: "\00b7"; margin: 0 0.6em; }   /* San Francisco · Oct 2026 to now */
-.work b { font-size: calc(clamp(18px, 1.5vw, 21px) * var(--k)); font-weight: 600; letter-spacing: -0.025em; line-height: 1.25; }
-.work span { font-size: calc(clamp(13px, 1vw, 15px) * var(--k)); white-space: nowrap; }
+.work b { font-size: calc(clamp(18px, min(1.5vw, 2.33vh), 21px) * var(--k)); font-weight: 600; letter-spacing: -0.025em; line-height: 1.25; }
+.work span { font-size: calc(clamp(13px, min(1vw, 1.6vh), 15px) * var(--k)); white-space: nowrap; }
 /* Japanese wraps between phrases (the strings carry <wbr> hints), never inside a word, and never starts a line with ー or a small kana */
 html:lang(ja) { line-break: strict; }
 html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflow-wrap: break-word; }
@@ -471,6 +471,7 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
     }
     return E * step * 0.16;
   };
+  const PHONE_COS = 10;   // a phone is too narrow to show the dark room beside the strip, so its beam throws straight down: the sides stay dark to the foot of the screen
   const LAST_ROW_E = 0.3;   // what the far ends of the lowest row get on a 1440x900 desktop: phones get the same light, so the room stays dark
   const geo = { phone: false, flow: false, W: innerWidth, docH: innerHeight, L: innerWidth * 0.3, mE: innerHeight, cos: 2.2, detailReach: 1.7 };
   let stripPx = innerHeight * 0.4;
@@ -505,12 +506,12 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
       // the strip runs 72% of the width, the dark room shows either side; the reach is solved so the lowest row is lit as it is on desktop
       L = W <= H ? 0.72 * W : Math.min(0.9 * W, wr.width / 0.8);
       const dRow = g - 3 + (last.top + last.height / 2 - wr.top);
-      mE = LAST_ROW_E / lightAt(wr.width / 2 - 4, dRow, L, 4);
+      mE = LAST_ROW_E / lightAt(wr.width / 2 - 4, dRow, L, PHONE_COS);
     } else {
       L = Math.max(0.55 * m, 0.3 * W, 1.1 * wr.width);   // never narrower than the list it lights
       mE = Math.max(m, 900 * k);   // the throw follows the composition, not the window's height
     }
-    Object.assign(geo, { phone, flow: !fits, W, docH, L, mE, cos: phone ? 4 : 2.2, detailReach: 1.7 });
+    Object.assign(geo, { phone, flow: !fits, W, docH, L, mE, cos: phone ? PHONE_COS : 2.2, detailReach: 1.7 });
     if (shown) st.reach = geo.detailReach;
     root.setProperty("--strip", stripPx + "px");
     root.setProperty("--intro-top", (stripPx - g - introH).toFixed(2) + "px");
