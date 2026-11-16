@@ -253,15 +253,15 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
   .intro { left: max(16px, calc(env(safe-area-inset-left, 0px) + 12px)); right: max(16px, calc(env(safe-area-inset-right, 0px) + 12px)); }
   .intro h1 { font-size: clamp(36px, 10vw, 52px); }
   .intro p { margin-top: 12px; font-size: clamp(13.5px, calc((100vw - 34px) / 23.6), 17px); line-height: 1.45; }   /* sized so the longer English line just fits the width: two lines, never a third */
-  .work, .detail { top: calc(var(--strip) + var(--g) - 3px); width: min(calc(72vw - 4px), 440px); --edge: calc(50% - 51% * var(--len)); }   /* the strip runs 72% of the width: the list fills it, the room stays dark either side */
-  .work { gap: 30px; }   /* Experience and Projects read as two groups */
+  .work, .detail { top: calc(var(--strip) + var(--g) - 3px); width: min(70vw, 440px); --edge: calc(50% - 57% * var(--len)); }   /* the strip runs 80% of the width and the list 70%: the text sits inside the light, as on desktop */
+  .work { gap: 24px; }   /* Experience and Projects read as two groups */
   .work section { gap: 0; }
   .work h2 { padding-bottom: 2px; font-size: 13px; line-height: 18px; color: rgba(10, 10, 10, 0.78); }
   .work a { gap: 16px; }
-  .work li a { padding-block: 11px; }
+  .work li a { padding-block: 8px; }
   .work b { flex: none; font-size: 17px; line-height: 22px; }
   .work span { min-width: 0; font-size: 14px; line-height: 20px; white-space: normal; text-align: end; text-wrap: balance; }   /* a long translation wraps under itself instead of running off the row */
-  .detail { top: calc(var(--strip) + var(--g) - 24px); padding-top: 24px; width: min(calc(100vw - 32px), 440px); --edge: calc(50% - 50% * var(--len)); --gap: 22px; }   /* full gutter width, so each line of what I did keeps to one line */
+  .detail { top: calc(var(--strip) + var(--g) - 24px); padding-top: 24px; width: min(calc(100vw - 32px), 440px); --edge: calc(50% - 44% * var(--len)); --gap: 22px; }   /* full gutter width, so each line of what I did keeps to one line */
   .detail .id { font-size: clamp(34px, 9.2vw, 48px); }
   .detail .role { font-size: 15px; }
   .detail .desc { max-width: none; font-size: 15px; text-wrap: pretty; }   /* a sentence that must wrap never leaves one word alone */
@@ -352,6 +352,7 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
     uniform float uStrip;  // strip height from the top of the canvas, device px
     uniform float uL;      // full strip length, device px: JS sizes it from the layout
     uniform float uME;     // reach of the light, device px: JS sizes it so the list stays readable
+    uniform float uN;      // samples along the strip: JS adds more when a long strip would space them wider than the strip stands off the wall
     uniform float uCos;    // how tightly the strip throws downward: a narrow phone gets a tighter beam, so the sides stay dark
     uniform float uReach;  // throw of the light, a touch longer on a detail page
     uniform float uMode;   // 0 draw directly, 1 bake the light into a texture, 2 draw from the baked texture
@@ -379,14 +380,14 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
         float v = unpack(texture2D(uTex, p / uRes).rgb);
         E = v / max(1.0 - v, 1e-6);
       } else {
-      const int N = 96;
-      float dx = (x1 - x0) / float(N);
-      for (int k = 0; k < N; k++) {
-        float t = (float(k) + 0.5) / float(N);
+      float dx = (x1 - x0) / uN;
+      for (int k = 0; k < 192; k++) {
+        if (float(k) >= uN) break;
+        float t = (float(k) + 0.5) / uN;
         float w = smoothstep(0.0, 0.12, t) * smoothstep(1.0, 0.88, t);   // output tapers at the ends, so the corners round off
         vec2 s = vec2(x0 + (float(k) + 0.5) * dx, y0 + h);   // emitter just above the edge
         vec2 v = p - s;
-        float d2 = dot(v, v) + 0.25 * h * h;
+        float d2 = dot(v, v) + max(0.25 * h * h, 0.49 * dx * dx);   // on a long strip the samples spread out: soften each one to their spacing, or they show as beads along the edge
         float c = max(0.0, -v.y) * inversesqrt(d2);   // facing down only
         E += w * pow(c, uCos) / d2;
       }
@@ -437,7 +438,7 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
   gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
 
   const U = n => gl.getUniformLocation(prog, n);
-  const uRes = U("uRes"), uI = U("uI"), uDpr = U("uDpr"), uLen = U("uLen"), uReach = U("uReach"), uStrip = U("uStrip"), uMode = U("uMode"), uL = U("uL"), uME = U("uME"), uCos = U("uCos");
+  const uRes = U("uRes"), uI = U("uI"), uDpr = U("uDpr"), uLen = U("uLen"), uReach = U("uReach"), uStrip = U("uStrip"), uMode = U("uMode"), uL = U("uL"), uME = U("uME"), uCos = U("uCos"), uN = U("uN");
   gl.uniform1i(U("uTex"), 0);
   let fbo = gl.createFramebuffer(), bakedKey = "", bakingKey = "", bandY = 0, bakeDone;
   const baked = new Promise(r => (bakeDone = r));
@@ -461,19 +462,19 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
   const probe = css => { const d = document.createElement("div"); d.style.cssText = "position:fixed;top:0;left:0;width:0;visibility:hidden;pointer-events:none;" + css; document.body.append(d); return d; };
   const svh = probe("height:100svh"), lvh = probe("height:100lvh"), safe = probe("padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px)");
   // the shader's integral per unit of reach, at dx from the strip's centre and d below it (CSS px)
-  const lightAt = (dx, d, L, p) => {
-    const N = 96, h = 5, step = L / N, ss = t => (t = Math.min(1, Math.max(0, t)), t * t * (3 - 2 * t));
+  const lightAt = (dx, d, L, p, N) => {
+    const h = 5, step = L / N, ss = t => (t = Math.min(1, Math.max(0, t)), t * t * (3 - 2 * t));
     let E = 0;
     for (let k = 0; k < N; k++) {
       const t = (k + 0.5) / N, w = ss(t / 0.12) * ss((1 - t) / 0.12);
-      const vx = dx + L / 2 - (k + 0.5) * step, vy = d + h, d2 = vx * vx + vy * vy + 0.25 * h * h;
+      const vx = dx + L / 2 - (k + 0.5) * step, vy = d + h, d2 = vx * vx + vy * vy + Math.max(0.25 * h * h, 0.49 * step * step);
       E += w * Math.pow(vy / Math.sqrt(d2), p) / d2;
     }
     return E * step * 0.16;
   };
   const PHONE_COS = 10;   // a phone is too narrow to show the dark room beside the strip, so its beam throws straight down: the sides stay dark to the foot of the screen
   const LAST_ROW_E = 0.3;   // what the far ends of the lowest row get on a 1440x900 desktop: phones get the same light, so the room stays dark
-  const geo = { phone: false, flow: false, W: innerWidth, docH: innerHeight, L: innerWidth * 0.3, mE: innerHeight, cos: 2.2, detailReach: 1.7 };
+  const geo = { phone: false, flow: false, W: innerWidth, docH: innerHeight, L: innerWidth * 0.3, mE: innerHeight, cos: 2.2, n: 96, detailReach: 1.7 };
   let stripPx = innerHeight * 0.4;
   const layout = () => {
     const W = document.documentElement.clientWidth, H = innerHeight;
@@ -501,17 +502,20 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
     stripPx = Math.round(top + introH + g);
     const det = shown ? detail.getBoundingClientRect().height + stripPx + g - 24 * k : 0;
     const docH = fits ? H : Math.ceil(Math.max(stripPx + below + mb, det + mb, H));
-    let L, mE;
+    let L, mE, cos = 2.2, n = 96;
     if (phone) {
-      // the strip runs 72% of the width, the dark room shows either side; the reach is solved so the lowest row is lit as it is on desktop
-      L = W <= H ? 0.72 * W : Math.min(0.9 * W, wr.width / 0.8);
+      // the strip runs 80% of the width, the list 70% inside it; the reach is solved so the lowest row is lit as it is on desktop
+      L = W <= H ? 0.8 * W : Math.min(0.9 * W, wr.width / 0.8);
       const dRow = g - 3 + (last.top + last.height / 2 - wr.top);
-      mE = LAST_ROW_E / lightAt(wr.width / 2 - 4, dRow, L, PHONE_COS);
+      // the tight beam is for real phone widths; a tall window on a big screen has dark room either side, so it eases back to the desktop throw
+      cos = W <= 480 ? PHONE_COS : W >= 900 ? 2.2 : PHONE_COS + (2.2 - PHONE_COS) * (W - 480) / 420;
+      n = Math.min(128, Math.max(96, Math.ceil(L / 4.5)));   // samples no further apart than the strip stands off the wall, or they show as beads
+      mE = LAST_ROW_E / lightAt(wr.width / 2 - 4, dRow, L, cos, n);
     } else {
       L = Math.max(0.55 * m, 0.3 * W, 1.1 * wr.width);   // never narrower than the list it lights
       mE = Math.max(m, 900 * k);   // the throw follows the composition, not the window's height
     }
-    Object.assign(geo, { phone, flow: !fits, W, docH, L, mE, cos: phone ? PHONE_COS : 2.2, detailReach: 1.7 });
+    Object.assign(geo, { phone, flow: !fits, W, docH, L, mE, cos, n, detailReach: 1.7 });
     if (shown) st.reach = geo.detailReach;
     root.setProperty("--strip", stripPx + "px");
     root.setProperty("--intro-top", (stripPx - g - introH).toFixed(2) + "px");
@@ -533,12 +537,12 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
     gl.uniform1f(uLen, st.len);
     gl.uniform1f(uReach, st.reach);
     gl.uniform1f(uStrip, stripPx * dpr);
-    gl.uniform1f(uL, geo.L * dpr); gl.uniform1f(uCos, geo.cos);
+    gl.uniform1f(uL, geo.L * dpr); gl.uniform1f(uCos, geo.cos); gl.uniform1f(uN, geo.n);
     gl.uniform1f(uME, geo.mE * dpr);
     // The light only changes shape when the strip moves, the reach changes or the window resizes. While it sits
     // still (the 3s fade-in, language swaps) bake it once and redraw from the texture, which is ~100x cheaper.
     if (st.len >= 0.9999 && fbo) {
-      const key = `${w}x${h}|${st.reach}|${stripPx}|${dpr}|${geo.L.toFixed(2)}|${geo.mE.toFixed(1)}|${geo.cos}`;
+      const key = `${w}x${h}|${st.reach}|${stripPx}|${dpr}|${geo.L.toFixed(2)}|${geo.mE.toFixed(1)}|${geo.cos}|${geo.n}`;
       if (key !== bakedKey) {
         if (key !== bakingKey) {
           bakingKey = key; bandY = 0;
@@ -597,7 +601,7 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
     { id: "1claw", start: "2026-08", name: "1Claw", face: "1claw", url: "https://1claw.co", link: "1claw.co", role: "Business development", where: "San Francisco", when: "Aug 2026", desc: "I led advocacy, content and partner outreach.\nFound a security flaw in their open-source MCP server." },
     { id: "multisender", start: "2026-07", name: "Multisender", lockup: true, url: "https://multisender.app", link: "multisender.app", role: "Growth and leads", where: "San Francisco", when: "Jul 2026",
       desc: "Owned social media and content end to end.\nTurned what got traction into an outreach pipeline." },
-    { id: "stealth", name: "Stealth", cipher: true, role: "Classified", where: "San Francisco", when: "2026", desc: "",
+    { id: "stealth", name: "Stealth", cipher: true, role: "Classified", where: "San Francisco", when: "2027", desc: "",
       html: 'Building <span class="redact" style="--n: 7"></span> for <span class="redact" style="--n: 5"></span> <span class="redact" style="--n: 6"></span>.<br>Unlocking <span class="redact" style="--n: 6"></span> <span class="redact" style="--n: 8"></span> for the <span class="redact" style="--n: 5"></span> era.<span class="soon">Coming soon<span class="dots" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span></span>' },
     { id: "phosphor", start: "2026-08", ongoing: true, name: "Phosphor", face: "phosphor", url: "https://phosphor.money", link: "phosphor.money", role: "Founder", where: "San Francisco", when: "Aug 2026 to now",
       desc: "A local, source-available agentic crypto wallet.\nTrade, swap and manage crypto through agents." },
@@ -614,7 +618,7 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
   let lang = "en";
   const pick = (item, k) => (TR[lang]?.items?.[item.id]?.[k]) ?? (k === "where" && item.where && TR[lang] ? TR[lang].where : item[k]);
   const whenOf = item => {
-    if (!item.start) return new Intl.DateTimeFormat(lang, { year: "numeric" }).format(new Date(2026, 5, 1));
+    if (!item.start) return new Intl.DateTimeFormat(lang, { year: "numeric" }).format(new Date(+item.when, 5, 1));
     const [y, m] = item.start.split("-").map(Number);
     const d = new Intl.DateTimeFormat(lang, { month: "short", year: "numeric" }).format(new Date(y, m - 1, 1));
     return item.ongoing ? TR[lang].ongoing.replace("{d}", d) : d;
