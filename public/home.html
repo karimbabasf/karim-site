@@ -37,7 +37,8 @@
 @font-face { font-family: "Bakbak One"; src: url("fonts/bakbak-one-latin.woff2") format("woff2"); font-weight: 400; font-display: swap; }   /* 1Claw's logo face */
 @font-face { font-family: "Geist Mono"; src: url("fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
 @font-face { font-family: "Technor"; src: url("fonts/technor-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }   /* Warden's own UI face */
-:root { color-scheme: dark; --i: 0; --len: 1; --lx: 1; --g: clamp(36px, 6vh, 64px); --strip: 35vh; transition: --lx 170ms cubic-bezier(0.4, 0, 0.2, 1); }
+:root { color-scheme: dark; --i: 0; --len: 1; --lx: 1; --g: clamp(36px, 6vh, 64px); --strip: 35vh; --k: 1; --intro-top: 12vh; --cx-top: 80vh; transition: --lx 170ms cubic-bezier(0.4, 0, 0.2, 1); }
+/* --k scales the whole composition on big screens (1 up to 1440x900); JS sets it with --strip, --g and the group's place */
 @property --lx { syntax: "<number>"; inherits: true; initial-value: 1; }   /* language swap: content dips out, strings change, it comes back */
 .lang { position: fixed; z-index: 3; top: calc(env(safe-area-inset-top, 0px) + 12px); right: calc(env(safe-area-inset-right, 0px) + 12px); opacity: var(--i);
   font-family: "Manrope", "PingFang SC", "Hiragino Sans", "Apple SD Gothic Neo", "Geeza Pro", "Kohinoor Devanagari", "Thonburi", sans-serif; }
@@ -48,6 +49,7 @@
 @media (hover: hover) { .lang-btn:hover { color: #efefef; background-color: rgba(255, 255, 255, 0.06); } }
 .lang-btn[aria-expanded="true"] { color: #efefef; background-color: rgba(255, 255, 255, 0.06); }
 .lang-btn:focus-visible { outline: 1.5px solid #efefef; outline-offset: 1px; }
+.lang-btn, .lang-menu button, .work a, .detail a, .cx a { -webkit-tap-highlight-color: transparent; }
 /* one surface step up from the room, no ring; opens from its top-right corner */
 .lang-menu { position: absolute; top: calc(100% + 6px); right: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px 2px; width: 320px; padding: 6px; border-radius: 14px;
   background: #161616; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35); transform-origin: top right;
@@ -58,6 +60,9 @@
 .lang-menu button[aria-selected="true"] { color: #efefef; font-weight: 600; }
 .lang-menu button svg { width: 14px; height: 14px; flex: none; }
 @media (prefers-reduced-motion: reduce) { .lang-menu, .lang-btn .chev { transition: none; } }
+/* touch: 44px targets; on short screens the menu goes four across so all twenty languages stay on screen */
+@media (pointer: coarse) { .lang-btn { height: 44px; padding: 0 12px; } .lang-menu button { height: 44px; } }
+@media (max-height: 440px), (pointer: coarse) and (max-height: 540px) { .lang-menu { grid-template-columns: repeat(4, minmax(0, 1fr)); width: min(600px, calc(100vw - 24px)); } }
 /* script-specific fallbacks where Manrope has no glyphs */
 :lang(zh-Hans) .intro, :lang(zh-Hans) .work, :lang(zh-Hans) .detail { font-family: "Manrope", "PingFang SC", "Noto Sans SC", sans-serif; }
 :lang(zh-Hant) .intro, :lang(zh-Hant) .work, :lang(zh-Hant) .detail { font-family: "Manrope", "PingFang TC", "Noto Sans TC", sans-serif; }
@@ -77,11 +82,16 @@ body {
 html.nogl body { background: radial-gradient(40% 45% at 50% 40%, #9a9a9a, #0a0a0a 80%); }   /* fallback when WebGL is missing */
 canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 ::selection { background: #e8e8e8; color: #0a0a0a; }
+/* when the group is taller than the window it anchors to the top and the page scrolls: the wall and the light scroll with it */
+html.flow, html.flow body { height: auto; }
+html.flow body { overflow: visible; min-height: var(--doc-h); }
+html.flow canvas { position: absolute; bottom: auto; height: var(--doc-h); }
+html.flow .lang, html.flow .intro, html.flow .work, html.flow .detail { position: absolute; }
 
-/* the strip sits where JS puts it (--strip): 35% down, or lower if the name block needs the room */
+/* the strip sits where JS puts it (--strip): name block, strip and list are placed as one group, its centre at 47% of the height */
 .intro {
   position: fixed; z-index: 1;
-  left: 16px; right: 16px; bottom: calc(100% - var(--strip) + var(--g));
+  left: 16px; right: 16px; top: var(--intro-top);   /* the name block ends a gap (--g) above the strip */
   text-align: center;
   font-family: "Manrope", ui-sans-serif, sans-serif;
   opacity: calc(var(--i) * var(--lx));   /* starts fully black, rises with the light */
@@ -89,7 +99,7 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 .intro h1 {
   margin: 0;
   font-weight: 600;
-  font-size: clamp(34px, 5.2vw, 64px);
+  font-size: calc(clamp(34px, 5.2vw, 64px) * var(--k));
   line-height: 1;
   letter-spacing: -0.035em;
   font-optical-sizing: auto;
@@ -97,10 +107,10 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
   text-wrap: balance;
 }
 .intro p {
-  margin: 14px auto 0;
+  margin: calc(14px * var(--k)) auto 0;
   max-width: 46ch;
   font-weight: 400;
-  font-size: clamp(15px, 1.25vw, 17px);
+  font-size: calc(clamp(15px, 1.25vw, 17px) * var(--k));
   line-height: 1.5;
   letter-spacing: -0.005em;
   color: #8f8f8f;
@@ -111,7 +121,7 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 .work, .detail {
   position: fixed; z-index: 1;
   top: calc(var(--strip) + var(--g) - 3px); left: 50%;   /* ink gap below the strip mirrors the bio's ink gap above it (-3px trims line-box leading) */
-  width: min(max(calc(max(55vmin, 30vw) * 0.78), 400px), calc(100vw - 32px));   /* narrower than the strip (shader L), never tighter than the longest row */
+  width: min(max(calc(max(55vmin, 30vw) * 0.78), calc(400px * var(--k))), calc(100vw - 32px));   /* narrower than the strip (shader L), never tighter than the longest row */
   transform: translateX(-50%);
   font-family: "Manrope", ui-sans-serif, sans-serif;
   color: #0a0a0a;
@@ -122,13 +132,15 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
   -webkit-mask-image: linear-gradient(90deg, transparent calc(var(--edge) - 56px), #000 var(--edge), #000 calc(100% - var(--edge)), transparent calc(100% - var(--edge) + 56px));
           mask-image: linear-gradient(90deg, transparent calc(var(--edge) - 56px), #000 var(--edge), #000 calc(100% - var(--edge)), transparent calc(100% - var(--edge) + 56px));
 }
-.work { display: grid; gap: 26px; }
-.work section { display: grid; gap: 8px; }
-.work h2 { margin: 0; font-size: clamp(12px, 0.9vw, 13px); font-weight: 500; letter-spacing: 0; color: rgba(10, 10, 10, 0.74); }   /* the one label per group */
+.work { display: grid; gap: calc(26px * var(--k)); }
+.work section { display: grid; gap: calc(8px * var(--k)); }
+.work h2 { margin: 0; font-size: calc(clamp(12px, 0.9vw, 13px) * var(--k)); font-weight: 500; letter-spacing: 0; color: rgba(10, 10, 10, 0.74); }   /* the one label per group */
 .work ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0; }
-.work a { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; color: inherit; text-decoration: none; }
+.work a { display: flex; justify-content: space-between; align-items: baseline; gap: calc(24px * var(--k)); color: inherit; text-decoration: none; }
 /* focus the row under the pointer: the others ease to half-strength ink, which reads a step lighter on any part of the lit wall */
-.work li a { padding-block: 3px; transition: color 320ms cubic-bezier(0.4, 0, 0.2, 1) 110ms; }   /* rows tile with no dead gap between them; the 110ms hold stops a flicker when the pointer crosses empty space */
+.work li a { padding-block: calc(3px * var(--k)); transition: color 320ms cubic-bezier(0.4, 0, 0.2, 1) 110ms, opacity 140ms cubic-bezier(0.23, 1, 0.32, 1); }   /* rows tile with no dead gap between them; the 110ms hold stops a flicker when the pointer crosses empty space */
+/* touch has no hover: the row under the finger keeps full ink and the others step back at once, and stay back while the strip closes on it */
+.work.press li a:not(.on) { opacity: 0.55; }
 .work:has(li a:hover) li a, .work:has(li a:focus-visible) li a { transition-duration: 340ms; transition-delay: 0s; }   /* dims in a touch quicker than it wears off */
 @media (hover: hover) { .work:has(li a:hover) li a:not(:hover) { color: rgba(10, 10, 10, 0.6); } }
 .work:has(li a:focus-visible) li a:not(:focus-visible) { color: rgba(10, 10, 10, 0.6); }
@@ -136,10 +148,10 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 .work a:focus-visible, .detail a:focus-visible { outline: 1.5px solid #0a0a0a; outline-offset: 4px; border-radius: 2px; }
 
 /* detail: Back first so leaving is one tap, then the mark and name, the role, one line of what I do */
-.detail { top: calc(var(--strip) + var(--g) - 24px); padding-top: 24px; width: min(calc(max(55vmin, 30vw) * 0.92), calc(100vw - 32px)); --edge: calc(50% - 54.4% * var(--len));
-  display: flex; flex-direction: column; align-items: center; text-align: center; --gap: 24px; --tight: 8px; }   /* one spacing scale for every page: 24 between blocks, 8 inside one */
+.detail { top: calc(var(--strip) + var(--g) - 24px * var(--k)); padding-top: calc(24px * var(--k)); width: min(calc(max(55vmin, 30vw) * 0.92), calc(100vw - 32px)); --edge: calc(50% - 54.4% * var(--len));
+  display: flex; flex-direction: column; align-items: center; text-align: center; --gap: calc(24px * var(--k)); --tight: calc(8px * var(--k)); }   /* one spacing scale for every page: 24 between blocks, 8 inside one */
 .detail[hidden] { display: none; }
-.detail .id { align-self: center; display: flex; align-items: center; gap: 0.3em; height: 1em; margin-top: 0; font-size: clamp(34px, 5.2vw, 64px); }   /* fixed 1em row: every mark centres on it and overflows evenly, so the rhythm below never shifts */   /* logo scales with the name */
+.detail .id { align-self: center; display: flex; align-items: center; gap: 0.3em; height: 1em; margin-top: 0; font-size: calc(clamp(34px, 5.2vw, 64px) * var(--k)); }   /* fixed 1em row: every mark centres on it and overflows evenly, so the rhythm below never shifts */   /* logo scales with the name */
 .detail .logo:empty { display: none; }
 .detail .id.lockup .logo svg { height: 1.05em; }
 .detail .logo[data-id="warden"] svg { height: 1.12em; }
@@ -166,18 +178,18 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 .detail .id.lockup h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .detail .logo svg { display: block; height: 0.92em; width: auto; }
 .detail h2 { margin: 0; font-size: 1em; font-weight: 600; letter-spacing: -0.035em; line-height: 1; outline: none; }
-.detail .role { margin: var(--gap) 0 0; line-height: 1.4; font-size: clamp(14px, 1.05vw, 15px); font-weight: 500; color: #3a3a3a; }
-.detail .desc { margin: var(--tight) 0 0; max-width: 40ch; font-size: clamp(15px, 1.25vw, 17px); font-weight: 400; line-height: 1.5; letter-spacing: -0.005em; text-wrap: balance; }
+.detail .role { margin: var(--gap) 0 0; line-height: 1.4; font-size: calc(clamp(14px, 1.05vw, 15px) * var(--k)); font-weight: 500; color: #3a3a3a; }
+.detail .desc { margin: var(--tight) 0 0; max-width: 40ch; font-size: calc(clamp(15px, 1.25vw, 17px) * var(--k)); font-weight: 400; line-height: 1.5; letter-spacing: -0.005em; text-wrap: balance; }
 .detail .desc:empty { display: none; }
 /* one clear button, ink outline only */
 /* mask clips at the border box, so the panel is padded at the top (and lifted the same) to keep tall marks whole */
 /* Back and the site link as one group, centred as a whole on the page's centre line, a hairline between them */
-.detail .actions { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: var(--gap); font-size: 15px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.4; }
-.detail .actions .rule { width: 1px; height: 14px; background: rgba(10, 10, 10, 0.28); }
+.detail .actions { display: flex; align-items: center; justify-content: center; gap: calc(18px * var(--k)); margin-top: var(--gap); font-size: calc(15px * var(--k)); font-weight: 600; letter-spacing: -0.01em; line-height: 1.4; }
+.detail .actions .rule { width: 1px; height: calc(14px * var(--k)); background: rgba(10, 10, 10, 0.28); }
 .detail .actions:has(.go[hidden]) .rule { display: none; }
-.detail .back { display: inline-flex; align-items: center; gap: 6px; padding: 8px 0; color: #0a0a0a; text-decoration: none; }
-.detail .back svg { width: 14px; height: 14px; }
-.detail .go { padding: 8px 0; color: #0a0a0a; text-decoration: underline; text-decoration-thickness: 1.5px; text-decoration-color: rgba(10, 10, 10, 0.32); text-underline-offset: 5px;
+.detail .back { display: inline-flex; align-items: center; gap: calc(6px * var(--k)); padding: calc(8px * var(--k)) 0; color: #0a0a0a; text-decoration: none; }
+.detail .back svg { width: calc(14px * var(--k)); height: calc(14px * var(--k)); }
+.detail .go { padding: calc(8px * var(--k)) 0; color: #0a0a0a; text-decoration: underline; text-decoration-thickness: 1.5px; text-decoration-color: rgba(10, 10, 10, 0.32); text-underline-offset: 5px;
   transition: text-decoration-color 220ms cubic-bezier(0.23, 1, 0.32, 1); }
 @media (hover: hover) { .detail .go:hover { text-decoration-color: #0a0a0a; } }
 .detail .go:focus-visible { text-decoration-color: #0a0a0a; }
@@ -193,19 +205,69 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) { .detail .go { transition: none; } }
 .detail .go[hidden] { display: none; }
 .detail .go[hidden] { display: none; }
-.detail .meta { margin: var(--gap) 0 0; line-height: 1.4; display: flex; justify-content: center; gap: 0; font-size: clamp(13px, 1vw, 14px); font-weight: 600; color: #0a0a0a; font-variant-numeric: tabular-nums; }   /* full ink: this row sits low, where the light is dimmer */
+.detail .meta { margin: var(--gap) 0 0; line-height: 1.4; display: flex; justify-content: center; gap: 0; font-size: calc(clamp(13px, 1vw, 14px) * var(--k)); font-weight: 600; color: #0a0a0a; font-variant-numeric: tabular-nums; }   /* full ink: this row sits low, where the light is dimmer */
 .detail .meta span:empty { display: none; }
 .detail .meta .where:not(:empty) + .when::before { content: "\00b7"; margin: 0 0.6em; }   /* San Francisco · Oct 2026 to now */
-.work b { font-size: clamp(18px, 1.5vw, 21px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.25; }
-.work span { font-size: clamp(13px, 1vw, 15px); white-space: nowrap; }
+.work b { font-size: calc(clamp(18px, 1.5vw, 21px) * var(--k)); font-weight: 600; letter-spacing: -0.025em; line-height: 1.25; }
+.work span { font-size: calc(clamp(13px, 1vw, 15px) * var(--k)); white-space: nowrap; }
+/* Japanese wraps between phrases (the strings carry <wbr> hints), never inside a word, and never starts a line with ー or a small kana */
+html:lang(ja) { line-break: strict; }
+html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflow-wrap: break-word; }
 
-/* portrait phones: the strip spans 80vw */
-@media (max-aspect-ratio: 1/1) {
-  .work, .detail { top: calc(var(--strip) + var(--g) + 4px); width: calc(80vw - 24px); min-width: min(358px, calc(100vw - 32px)); max-width: 420px; --edge: calc(50% - 56% * var(--len)); }
-  .work { gap: 20px; }
-  .detail { top: calc(var(--strip) + var(--g) - 24px); width: calc(80vw - 8px); max-width: 440px; --edge: calc(50% - 50% * var(--len)); }
-  .work b { font-size: 17px; }
-  .work span { font-size: 12.5px; }
+/* contact, under the name in the dark above the light: mail, four profiles, a hairline, then the resume */
+.cx { font-family: "Manrope", ui-sans-serif, sans-serif; -webkit-font-smoothing: antialiased; }
+.cx svg { display: block; }
+.cx .ic { width: calc(17px * var(--k)); height: calc(17px * var(--k)); }
+.cx :focus-visible { outline: 1.5px solid #efefef; outline-offset: 2px; border-radius: 6px; }
+.cx-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 9px; color: rgba(239, 239, 239, 0.6); transition: color 200ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+.cx-icon:active { background-color: rgba(255, 255, 255, 0.08); }
+.cx-id { display: flex; justify-content: center; align-items: center; gap: calc(4px * var(--k)); margin: calc(16px * var(--k)) auto 0; }
+.cx-id .cx-icon { width: calc(38px * var(--k)); height: calc(38px * var(--k)); color: #8f8f8f; }
+.cx-id .rule { width: 1px; height: calc(14px * var(--k)); margin: 0 calc(10px * var(--k)); background: rgba(239, 239, 239, 0.18); }
+.cx-id .cv { display: inline-flex; align-items: center; height: calc(38px * var(--k)); padding: 0 4px; color: #cfcfcf; font-size: calc(14px * var(--k)); font-weight: 600; letter-spacing: -0.005em; text-decoration: underline; text-decoration-thickness: 1.5px; text-decoration-color: rgba(239, 239, 239, 0.28); text-underline-offset: 5px; transition: text-decoration-color 220ms cubic-bezier(0.23, 1, 0.32, 1), color 220ms cubic-bezier(0.23, 1, 0.32, 1); }
+@media (hover: hover) { .cx-id .cv:hover { color: #efefef; text-decoration-color: #efefef; } .cx-id .cx-icon:hover { color: #efefef; background-color: rgba(255, 255, 255, 0.06); } }
+@media (prefers-reduced-motion: reduce) { .cx * { transition: none !important; } }
+
+/* phones (upright, or sideways and short): the list sits inside the bright core of a strip that runs most of the width.
+   Rows are 44px targets that tile with no gap; contact moves under the list, into the thumb's reach */
+@media (max-aspect-ratio: 1/1), (pointer: coarse) and (max-height: 500px) {
+  .intro { left: max(16px, calc(env(safe-area-inset-left, 0px) + 12px)); right: max(16px, calc(env(safe-area-inset-right, 0px) + 12px)); }
+  .intro h1 { font-size: clamp(36px, 10vw, 52px); }
+  .intro p { margin-top: 12px; font-size: clamp(13.5px, calc((100vw - 34px) / 23.6), 17px); line-height: 1.45; }   /* sized so the longer English line just fits the width: two lines, never a third */
+  .work, .detail { top: calc(var(--strip) + var(--g) - 3px); width: min(80vw, 460px); --edge: calc(50% - 54% * var(--len)); }
+  .work { gap: 14px; }
+  .work section { gap: 0; }
+  .work h2 { padding-bottom: 2px; font-size: 13px; line-height: 18px; color: rgba(10, 10, 10, 0.78); }
+  .work a { gap: 16px; }
+  .work li a { padding-block: 11px; }
+  .work b { flex: none; font-size: 17px; line-height: 22px; }
+  .work span { min-width: 0; font-size: 15px; line-height: 20px; white-space: normal; text-align: end; text-wrap: balance; }   /* a long translation wraps under itself instead of running off the row */
+  .detail { top: calc(var(--strip) + var(--g) - 24px); padding-top: 24px; width: min(88vw, 520px); --edge: calc(50% - 49% * var(--len)); --gap: 22px; }
+  .detail .id { font-size: clamp(34px, 9.2vw, 48px); }
+  .detail .role { font-size: 15px; }
+  .detail .desc { max-width: 32ch; font-size: 16px; }
+  .detail .actions { gap: 6px; margin-top: calc(var(--gap) - 3px); font-size: 16px; }   /* 44px targets; the padding keeps the old rhythm */
+  .detail .back, .detail .go { padding: 11px 12px; }
+  .detail .go.cipher { background-origin: content-box; background-clip: content-box; }
+  .detail .meta { margin-top: calc(var(--gap) - 3px); font-size: 14px; }
+  /* contact hangs under the list, in the light: dark ink, 44px targets, revealed by the strip like the rows */
+  .cx-id { position: absolute; left: 50%; top: calc(var(--cx-top) - var(--intro-top)); margin: 0; gap: 0; transform: translateX(-50%);
+    opacity: min(1, var(--len) * 4); --edge: calc(50% - 58% * var(--len));
+    -webkit-mask-image: linear-gradient(90deg, transparent calc(var(--edge) - 40px), #000 var(--edge), #000 calc(100% - var(--edge)), transparent calc(100% - var(--edge) + 40px));
+            mask-image: linear-gradient(90deg, transparent calc(var(--edge) - 40px), #000 var(--edge), #000 calc(100% - var(--edge)), transparent calc(100% - var(--edge) + 40px)); }
+  .cx-id .cx-icon { width: 44px; height: 44px; color: rgba(10, 10, 10, 0.84); }
+  .cx-id .ic { width: 19px; height: 19px; }
+  .cx-id .rule { margin: 0 8px; background: rgba(10, 10, 10, 0.24); }
+  .cx-id .cv { height: 44px; padding: 0 8px; color: #0a0a0a; font-size: 15px; white-space: nowrap; text-decoration-color: rgba(10, 10, 10, 0.32); }
+  .cx-id .cx-icon:active { background-color: rgba(10, 10, 10, 0.07); }
+  .cx :focus-visible { outline-color: #0a0a0a; }
+}
+/* narrow upright phones: the language button keeps its icon and drops the label, so the name can rise to the top */
+@media (max-aspect-ratio: 1/1) and (max-width: 520px) { .lang-cur { display: none; } }
+/* sideways phones: a centred column under a strip that runs past it */
+@media (min-aspect-ratio: 1001/1000) and (pointer: coarse) and (max-height: 500px) {
+  .work { width: min(440px, 62vw); --edge: calc(50% - 62.5% * var(--len)); }
+  .detail { width: min(480px, 66vw); --edge: calc(50% - 57% * var(--len)); }
 }
 </style>
 </head>
@@ -218,6 +280,15 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 <header class="intro">
   <h1>Karim Baba</h1>
   <p data-k="bio">Engineer and founder based in San Francisco<br>Specialized in blockchains, ML and verifiable privacy</p>
+  <nav class="cx cx-id" aria-label="Contact">
+    <a class="cx-icon" href="mailto:founder@karimbabasf.com" aria-label="Email"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></a>
+    <a class="cx-icon" href="https://x.com/karimbabasf" target="_blank" rel="noopener" aria-label="X"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a class="cx-icon" href="https://github.com/karimbabasf" target="_blank" rel="noopener" aria-label="GitHub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+    <a class="cx-icon" href="https://www.linkedin.com/in/karim-baba-130547289/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="cx-icon" href="https://t.me/karimbabasf" target="_blank" rel="noopener" aria-label="Telegram"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+    <span class="rule" aria-hidden="true"></span>
+    <a class="cv" href="/resume" data-k="resume">Resume</a>
+  </nav>
 </header>
 
 <main class="work">
@@ -262,7 +333,9 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
     uniform float uI;      // intensity 0..1
     uniform float uDpr;
     uniform float uLen;    // strip length 0..1, closes toward the center
-    uniform float uStrip;  // strip height from the top of the screen, device px
+    uniform float uStrip;  // strip height from the top of the canvas, device px
+    uniform float uL;      // full strip length, device px: JS sizes it from the layout
+    uniform float uME;     // reach of the light, device px: JS sizes it so the list stays readable
     uniform float uReach;  // throw of the light, a touch longer on a detail page
     uniform float uMode;   // 0 draw directly, 1 bake the light into a texture, 2 draw from the baked texture
     uniform sampler2D uTex;
@@ -276,10 +349,8 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 
     void main() {
       vec2 p = gl_FragCoord.xy;                       // origin bottom left
-      float m  = min(uRes.x, uRes.y);
-      bool  portrait = uRes.x < uRes.y;
-      float L  = (portrait ? uRes.x * 0.8 : max(m * 0.55, uRes.x * 0.3)) * uLen;  // strip length; wider on phones and wide screens
-      float mE = (portrait ? max(m, 1.3 * uRes.y) : m) * uReach; // reach of the light; longer on phones
+      float L  = uL * uLen;                           // strip length, closing toward the centre
+      float mE = uME * uReach;                        // reach of the light
       float y0 = uRes.y - uStrip;                     // placed by JS under the name block
       float x0 = uRes.x * 0.5 - L * 0.5;
       float x1 = uRes.x * 0.5 + L * 0.5;
@@ -349,7 +420,7 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
   gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
 
   const U = n => gl.getUniformLocation(prog, n);
-  const uRes = U("uRes"), uI = U("uI"), uDpr = U("uDpr"), uLen = U("uLen"), uReach = U("uReach"), uStrip = U("uStrip"), uMode = U("uMode");
+  const uRes = U("uRes"), uI = U("uI"), uDpr = U("uDpr"), uLen = U("uLen"), uReach = U("uReach"), uStrip = U("uStrip"), uMode = U("uMode"), uL = U("uL"), uME = U("uME");
   gl.uniform1i(U("uTex"), 0);
   let fbo = gl.createFramebuffer(), bakedKey = "", bakingKey = "", bandY = 0, bakeDone;
   const baked = new Promise(r => (bakeDone = r));
@@ -366,20 +437,76 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
 
   // one state, drawn once per frame
   const st = { i: 0, len: 1, reach: 1 };
-  const intro = document.querySelector(".intro"), nameEl = intro.querySelector("h1");
+  const intro = document.querySelector(".intro"), work = document.querySelector(".work"), detail = document.querySelector(".detail"), cx = document.querySelector(".cx-id");
+  let shown;   // item on screen, or null for the list
+  // phones: upright, or sideways and short under a finger. The same test as the CSS, so the two never disagree
+  const phoneQ = matchMedia("(max-aspect-ratio: 1/1), (pointer: coarse) and (max-height: 500px)");
+  const probe = css => { const d = document.createElement("div"); d.style.cssText = "position:fixed;top:0;left:0;width:0;visibility:hidden;pointer-events:none;" + css; document.body.append(d); return d; };
+  const svh = probe("height:100svh"), safe = probe("padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px)");
+  // the shader's integral per unit of reach, at dx from the strip's centre and d below it (CSS px)
+  const lightAt = (dx, d, L) => {
+    const N = 96, h = 5, step = L / N, ss = t => (t = Math.min(1, Math.max(0, t)), t * t * (3 - 2 * t));
+    let E = 0;
+    for (let k = 0; k < N; k++) {
+      const t = (k + 0.5) / N, w = ss(t / 0.12) * ss((1 - t) / 0.12);
+      const vx = dx + L / 2 - (k + 0.5) * step, vy = d + h, d2 = vx * vx + vy * vy + 0.25 * h * h;
+      E += w * Math.pow(vy / Math.sqrt(d2), 2.2) / d2;
+    }
+    return E * step * 0.16;
+  };
+  const READABLE = 1;   // light where the far ends of the lowest row sit: a wall of about #848484, 5:1 against the ink
+  const geo = { phone: false, flow: false, W: innerWidth, docH: innerHeight, L: innerWidth * 0.3, mE: innerHeight, detailReach: 1.7 };
   let stripPx = innerHeight * 0.4;
   const layout = () => {
-    // strip a little above where it was (35% vs 40% of the height), never so high the name block runs off the top
-    const g = Math.min(64, Math.max(36, innerHeight * 0.06));
-    const fit = 24 + intro.getBoundingClientRect().height + g;
-    stripPx = Math.round(Math.max(innerHeight * 0.35, fit));
-    document.documentElement.style.setProperty("--strip", stripPx + "px");
+    const W = document.documentElement.clientWidth, H = innerHeight;
+    // the small viewport, so a phone's URL bar showing or hiding never moves the group
+    const fitH = Math.min(H, svh.getBoundingClientRect().height || H);
+    const phone = phoneQ.matches, m = Math.min(W, fitH);
+    // big screens scale the whole composition, a little slower than the room grows
+    const k = phone ? 1 : Math.min(1.6, Math.max(1, Math.pow(Math.min(W / 1440, fitH / 900), 0.8)));
+    const g = phone ? Math.min(40, Math.max(28, fitH * 0.052)) : Math.min(64 * k, Math.max(36, fitH * 0.06));
+    root.setProperty("--k", k.toFixed(4)); root.setProperty("--g", g.toFixed(2) + "px");
+    // measure the list even while a page hides it: the strip stays in one place for both
+    const hid = work.hidden; work.hidden = false;
+    const introH = intro.getBoundingClientRect().height, wr = work.getBoundingClientRect();
+    const last = work.querySelector("section:last-child li:last-child a").getBoundingClientRect();
+    work.hidden = hid;
+    const cr = cx.getBoundingClientRect(), cv = cx.querySelector(".cv").getBoundingClientRect();
+    const cs = getComputedStyle(safe), sT = parseFloat(cs.paddingTop) || 0, sB = parseFloat(cs.paddingBottom) || 0;
+    const mt = Math.max(phone ? 16 : 24, sT + 12), mb = Math.max(phone ? 16 : 24, sB + 12);
+    const cxGap = 12, below = g - 3 + wr.height + (phone ? cxGap + cr.height : 0);   // strip to the foot of the group
+    const groupH = introH + g + below;
+    // one group, its optical centre at 47%. Too tall for the window: anchor it to the top and let the page scroll
+    const fits = groupH <= fitH - mt - mb;
+    const top = fits ? Math.max(mt, Math.min(0.47 * fitH - groupH / 2, fitH - mb - groupH)) : mt;
+    stripPx = Math.round(top + introH + g);
+    const det = shown ? detail.getBoundingClientRect().height + stripPx + g - 24 * k : 0;
+    const docH = fits ? H : Math.ceil(Math.max(stripPx + below + mb, det + mb, H));
+    let L, mE;
+    if (phone) {
+      // the strip runs most of the width; the reach is solved so the far ends of the lowest row, and the resume link under it, read at 5:1
+      L = W <= H ? 0.86 * W : Math.min(0.9 * W, wr.width / 0.8);
+      const dRow = g - 3 + (last.top + last.height / 2 - wr.top), dCv = g - 3 + wr.height + cxGap + cr.height / 2;
+      const mid = cr.left + cr.width / 2, cvFar = Math.max(cv.right - 8 - mid, mid - cv.left - 8);   // the link's far end: its right in LTR, its left in RTL
+      mE = Math.max(READABLE / lightAt(wr.width / 2 - 4, dRow, L), READABLE / lightAt(cvFar, dCv, L));
+    } else {
+      L = Math.max(0.55 * m, 0.3 * W, 1.1 * wr.width);   // never narrower than the list it lights
+      mE = Math.max(m, 900 * k);   // the throw follows the composition, not the window's height
+    }
+    Object.assign(geo, { phone, flow: !fits, W, docH, L, mE, detailReach: phone ? 1 : 1.7 });
+    if (shown) st.reach = geo.detailReach;
+    root.setProperty("--strip", stripPx + "px");
+    root.setProperty("--intro-top", (stripPx - g - introH).toFixed(2) + "px");
+    root.setProperty("--cx-top", (stripPx + below - cr.height).toFixed(2) + "px");
+    root.setProperty("--doc-h", docH + "px");
+    const cl = document.documentElement.classList;
+    if (cl.contains("flow") !== !fits) { cl.toggle("flow", !fits); if (document.documentElement.clientWidth !== W) layout(); }   // a scrollbar that came or went changes the width
   };
   let queued = false;
   const draw = () => {
     queued = false;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const w = Math.round(innerWidth * dpr), h = Math.round(innerHeight * dpr);
+    const w = Math.round(geo.W * dpr), h = Math.round((geo.flow ? geo.docH : innerHeight) * dpr);
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
     gl.viewport(0, 0, w, h);
     gl.uniform2f(uRes, w, h);
@@ -388,10 +515,12 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
     gl.uniform1f(uLen, st.len);
     gl.uniform1f(uReach, st.reach);
     gl.uniform1f(uStrip, stripPx * dpr);
+    gl.uniform1f(uL, geo.L * dpr);
+    gl.uniform1f(uME, geo.mE * dpr);
     // The light only changes shape when the strip moves, the reach changes or the window resizes. While it sits
     // still (the 3s fade-in, language swaps) bake it once and redraw from the texture, which is ~100x cheaper.
     if (st.len >= 0.9999 && fbo) {
-      const key = `${w}x${h}|${st.reach}|${stripPx}|${dpr}`;
+      const key = `${w}x${h}|${st.reach}|${stripPx}|${dpr}|${geo.L.toFixed(2)}|${geo.mE.toFixed(1)}`;
       if (key !== bakedKey) {
         if (key !== bakingKey) {
           bakingKey = key; bandY = 0;
@@ -404,7 +533,7 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
           // while the room is still dark, spread the bake over 16 frames so no single frame blocks the page
           const rows = st.i === 0 ? Math.ceil(h / 16) : h - bandY;
           gl.enable(gl.SCISSOR_TEST); gl.scissor(0, bandY, w, rows);
-          gl.uniform1f(uMode, 1); gl.drawArrays(gl.TRIANGLES, 0, 3);
+          gl.uniform1f(uLen, 1); gl.uniform1f(uMode, 1); gl.drawArrays(gl.TRIANGLES, 0, 3); gl.uniform1f(uLen, st.len);   // baked fully open, never at 0.9999
           gl.disable(gl.SCISSOR_TEST);
           bandY += rows;
           if (bandY >= h) { bakedKey = key; bakeDone(); } else if (!queued) { queued = true; requestAnimationFrame(draw); }
@@ -423,7 +552,12 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
     root.setProperty("--len", st.len.toFixed(4));
     if (!queued) { queued = true; requestAnimationFrame(draw); }
   };
-  addEventListener("resize", () => { layout(); apply(); });
+  // window drags, zoom, rotation and a phone's bars all land here; placement and the baked light follow on the next frame
+  const relayout = () => { layout(); apply(); };
+  addEventListener("resize", relayout);
+  addEventListener("orientationchange", () => requestAnimationFrame(relayout));
+  // a turned phone can report its new safe-area insets after the resize event: watch the probes themselves
+  if (window.ResizeObserver) { const ro = new ResizeObserver(relayout); ro.observe(safe, { box: "border-box" }); ro.observe(svh); }
   layout(); document.fonts?.ready.then(() => { layout(); apply(); });
 
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -454,7 +588,6 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
     { id: "warden", name: "Warden", face: "warden", url: "https://github.com/karimbabasf/WARDEN", link: "View on GitHub", role: "Founder", where: "San Francisco", when: "2026",
       desc: "An agent management app.\nEvery local agent process on one screen." },
   ];
-  const work = document.querySelector(".work"), detail = document.querySelector(".detail");
   const q = sel => detail.querySelector(sel);
   const backEl = q(".back");
   let TR = {}, trLoad = null;
@@ -469,7 +602,21 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
     return item.ongoing ? TR[lang].ongoing.replace("{d}", d) : d;
   };
   const viewOf = () => ITEMS.find(x => x.id === location.hash.slice(1).toLowerCase()) || null;
-  let shown;   // item on screen, or null for the list
+  // each page's brand face, fetched as a finger lands on its row, so the title never swaps face on first open
+  const FACE = { genpulse: '600 1em "DM Sans"', "1claw": '400 1em "Bakbak One"', phosphor: "600 1em Sora", warden: "500 1em Technor", stealth: '500 1em "Geist Mono"' };
+  const faceReady = item => { const f = item && FACE[item.id]; if (!f || !document.fonts) return true; if (document.fonts.check(f)) return true; document.fonts.load(f).catch(() => {}); return false; };
+  // touch has no hover: the row under the finger keeps full ink, the others step back and stay back while the strip closes on it
+  let pressT = 0;
+  const unpress = () => { clearTimeout(pressT); work.classList.remove("press"); work.querySelector("a.on")?.classList.remove("on"); };
+  work.addEventListener("pointerdown", e => {
+    const a = e.target.closest("li a");
+    if (!a || e.pointerType === "mouse") return;
+    faceReady(ITEMS.find(x => "#" + x.id === a.getAttribute("href")));
+    clearTimeout(pressT);
+    pressT = setTimeout(() => { unpress(); a.classList.add("on"); work.classList.add("press"); }, geo.flow ? 70 : 0);   // on a page that scrolls, a beat first so a swipe never flashes
+  });
+  work.addEventListener("pointercancel", unpress);
+  work.addEventListener("pointerup", e => { if (e.pointerType !== "mouse") setTimeout(() => { if (!anim) unpress(); }, 400); });   // no move started: a slide off the row, or a tap on the open page
 
   // an encrypted address: 10 glyphs with a fixed dot. One glyph re-rolls every 110ms; a click riffles every glyph,
   // settling left to right. One rAF loop owns the riffle, so fast repeat clicks just restart it, never stack.
@@ -503,8 +650,8 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
   const render = item => {
     shown = item;
     work.hidden = !!item; detail.hidden = !item;
-    st.reach = item ? 1.7 : 1;   // changed while the strip is shut, so it never pops
-    if (!item) return;
+    st.reach = item ? geo.detailReach : 1;   // changed while the strip is shut, so it never pops
+    if (!item) { unpress(); return layout(); }
     q(".logo").innerHTML = LOGO[item.id] || "";
     q(".logo").dataset.id = item.id;
     q(".id").classList.toggle("lockup", !!item.lockup);
@@ -520,13 +667,14 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
     if (item.url) { go.href = item.url; go.querySelector("span").textContent = pick(item, "link"); }
     q(".where").textContent = item.where ? pick(item, "where") : "";
     q(".when").textContent = lang === "en" ? item.when : whenOf(item);
+    layout();   // a page that runs past a short window lengthens the scroll
   };
 
   // close to a point, swap in the dark, open again. Retargets cleanly if clicked mid-move.
   const CLOSE = 620, HOLD = 140, OPEN = 820, FLOOR = 0;   // shuts fully, a beat of dark, then opens
   let anim = null, target;
   const go = item => {
-    target = item;
+    target = item; faceReady(item);
     if (item === shown && !anim) return;
     if (reduce) { render(item); return apply(); }
     if (anim && anim.phase === "close") return;   // already closing: the new target is picked up at the swap
@@ -541,7 +689,7 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
         if (t >= 1) { anim.phase = "hold"; anim.t = now; render(target); }
       } else if (anim.phase === "hold") {
         st.len = FLOOR;
-        if (now - anim.t >= HOLD) { anim.phase = "open"; anim.t = now; }
+        if (now - anim.t >= HOLD && (faceReady(target) || now - anim.t >= HOLD + 600)) { anim.phase = "open"; anim.t = now; }   // the dark beat waits for the brand face, so it never swaps in view
       } else {
         const t = Math.min(1, (now - anim.t) / OPEN);
         st.len = FLOOR + (1 - FLOOR) * easeInOut(t);
@@ -564,7 +712,7 @@ canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
   q(".go").addEventListener("click", e => { if (shown?.cipher) { e.preventDefault(); riffle(); } });
   q(".go").addEventListener("keydown", e => { if (shown?.cipher && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); riffle(); } });
   // a click anywhere outside the page's box also goes back
-  addEventListener("click", e => { if (shown && !detail.contains(e.target) && !e.target.closest("a, .lang")) leave(); });
+  addEventListener("click", e => { if (shown && !detail.contains(e.target) && !e.target.closest("a, .lang, .cx")) leave(); });
 
   // language: static strings live in [data-k]; English is read from the page itself
   const keyed = [...document.querySelectorAll("[data-k]")];
