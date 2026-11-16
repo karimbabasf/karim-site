@@ -27,18 +27,24 @@ const metadataBase = new URL(
 export const metadata: Metadata = {
   metadataBase,
   title: "Karim Baba",
-  description: "Karim Baba, founder building agent infrastructure in San Francisco.",
+  description: "Engineer and founder based in San Francisco. Specialized in blockchains, ML and verifiable privacy.",
+  icons: {
+    icon: [{ url: "/favicon.ico", sizes: "32x32" }, { url: "/icon.svg", type: "image/svg+xml" }],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
     title: "Karim Baba",
-    description: "Founder, agent infrastructure. San Francisco, California.",
+    description: "Engineer and founder based in San Francisco. Specialized in blockchains, ML and verifiable privacy.",
     siteName: "Karim Baba",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Karim Baba, under a strip of light" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Karim Baba",
-    description: "Founder, agent infrastructure. San Francisco, California.",
+    description: "Engineer and founder based in San Francisco. Specialized in blockchains, ML and verifiable privacy.",
     creator: "@karimbabasf",
+    images: ["/og.jpg"],
   },
 };
 

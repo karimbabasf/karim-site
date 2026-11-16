@@ -7,8 +7,22 @@ const nextConfig: NextConfig = {
     // Next 16 requires an explicit quality allowlist; 90 for the crisp portrait.
     qualities: [75, 90],
   },
+  // The homepage is a hand-built static page (public/home.html: WebGL light, no framework JS).
+  // beforeFiles runs ahead of app/page.tsx, so "/" is served straight from the CDN.
+  async rewrites() {
+    return { beforeFiles: [{ source: "/", destination: "/home.html" }], afterFiles: [], fallback: [] };
+  },
   async headers() {
     return [
+      {
+        source: "/fonts/:file*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
+        // Translations change with the copy; a day of cache, then a quiet revalidate.
+        source: "/i18n.json",
+        headers: [{ key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=86400" }],
+      },
       {
         // The résumé button used to rely only on the anchor's `download`
         // attribute. iOS Safari ignores it and in-app webviews (Instagram,
