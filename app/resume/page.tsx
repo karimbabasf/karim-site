@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { Manrope } from "next/font/google";
 import ResumeToolbar from "@/components/resume-toolbar";
 import "./resume.css";
 
-// One family throughout: Geist, from the root layout.
+// One family throughout: Manrope, as on the home page.
+const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Karim Baba, Résumé",
@@ -10,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1b1a18",
+  themeColor: "#020202",
   colorScheme: "dark",
 };
 
@@ -25,7 +27,7 @@ const LINKS = [
 
 export default function ResumePage() {
   return (
-    <div className="resumePage">
+    <div className={`resumePage ${manrope.variable}`}>
       <ResumeToolbar />
 
       <div className="resumeDesk">
@@ -34,7 +36,7 @@ export default function ResumePage() {
             <header>
               <h1 className="name">Karim Baba</h1>
               <p className="tagline">
-                Software Engineer<span className="dot" />Agent Infrastructure<span className="dot" />Crypto
+                <span className="ph">Software Engineer</span><span className="dot" /> <span className="ph">Agent Infrastructure</span><span className="dot" /> <span className="ph">Crypto</span>
               </p>
               <p className="contact">
                 <span className="item">San Francisco, CA</span>{" "}
