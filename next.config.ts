@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
+
+// The blog answers on blog.karimbabasf.com once BLOG_ON_SUBDOMAIN=1 is set in
+// Vercel and the subdomain is added to this project. Until then it lives at /blog.
+const BLOG_HOST = "blog.karimbabasf.com";
+const onBlogHost = [{ type: "host" as const, value: BLOG_HOST }];
+const blogOnSubdomain = process.env.BLOG_ON_SUBDOMAIN === "1";
 
 const nextConfig: NextConfig = {
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     // Serve modern formats; AVIF first, WebP fallback.
     formats: ["image/avif", "image/webp"],
@@ -10,7 +18,26 @@ const nextConfig: NextConfig = {
   // The homepage is a hand-built static page (public/home.html: WebGL light, no framework JS).
   // beforeFiles runs ahead of app/page.tsx, so "/" is served straight from the CDN.
   async rewrites() {
-    return { beforeFiles: [{ source: "/", destination: "/home.html" }], afterFiles: [], fallback: [] };
+    return {
+      beforeFiles: [
+        // On the blog host, "/" and "/<slug>" serve the /blog routes. Slugs carry no dot,
+        // so assets (/og.jpg, /_next/...) pass through untouched. Rewrites chain, so the
+        // slug rule skips "blog" or "/" would land on /blog/blog.
+        { source: "/", has: onBlogHost, destination: "/blog" },
+        { source: "/feed.xml", has: onBlogHost, destination: "/blog/feed.xml" },
+        { source: "/:slug((?!blog$)[a-z0-9-]+)", has: onBlogHost, destination: "/blog/:slug" },
+        { source: "/", missing: onBlogHost, destination: "/home.html" },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
+  async redirects() {
+    if (!blogOnSubdomain) return [];
+    return [
+      { source: "/blog", missing: onBlogHost, destination: `https://${BLOG_HOST}`, permanent: false },
+      { source: "/blog/:path*", missing: onBlogHost, destination: `https://${BLOG_HOST}/:path*`, permanent: false },
+    ];
   },
   async headers() {
     return [
@@ -45,4 +72,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default createMDX({ extension: /\.mdx?$/ })(nextConfig);

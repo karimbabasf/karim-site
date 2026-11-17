@@ -40,11 +40,15 @@
 :root { color-scheme: dark; --i: 0; --len: 1; --lx: 1; --g: clamp(36px, 6vh, 64px); --strip: 35vh; --k: 1; --intro-top: 12vh; --cx-top: 80vh; transition: --lx 170ms cubic-bezier(0.4, 0, 0.2, 1); }
 /* --k scales the whole composition on big screens (1 up to 1440x900); JS sets it with --strip, --g and the group's place */
 @property --lx { syntax: "<number>"; inherits: true; initial-value: 1; }   /* language swap: content dips out, strings change, it comes back */
-.lang { position: fixed; z-index: 3; top: calc(env(safe-area-inset-top, 0px) + 12px); right: calc(env(safe-area-inset-right, 0px) + 12px); opacity: var(--i);
+.wr { position: fixed; z-index: 3; top: calc(env(safe-area-inset-top, 0px) + 14px * var(--k)); left: calc(env(safe-area-inset-left, 0px) + 14px * var(--k)); opacity: var(--i); display: inline-flex; align-items: center; height: calc(38px * var(--k)); padding: 0 calc(12px * var(--k)); border-radius: calc(10px * var(--k)); color: #cfcfcf; font-family: "Manrope", "PingFang SC", "Hiragino Sans", "Apple SD Gothic Neo", "Geeza Pro", "Kohinoor Devanagari", "Thonburi", sans-serif; font-size: calc(15px * var(--k)); font-weight: 600; text-decoration: none; -webkit-tap-highlight-color: transparent; transition: color 200ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms cubic-bezier(0.23, 1, 0.32, 1); }   /* the blog, top left, across from the language button */
+@media (hover: hover) { .wr:hover { color: #efefef; background-color: rgba(255, 255, 255, 0.06); } }
+.wr:focus-visible { outline: 1.5px solid #efefef; outline-offset: 1px; }
+@media (pointer: coarse) { .wr { height: 44px; padding: 0 12px; } }
+.lang { position: fixed; z-index: 3; top: calc(env(safe-area-inset-top, 0px) + 14px * var(--k)); right: calc(env(safe-area-inset-right, 0px) + 14px * var(--k)); opacity: var(--i);
   font-family: "Manrope", "PingFang SC", "Hiragino Sans", "Apple SD Gothic Neo", "Geeza Pro", "Kohinoor Devanagari", "Thonburi", sans-serif; }
-.lang-btn { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 10px 0 9px; border: 0; border-radius: 9px; background: transparent; color: rgba(239, 239, 239, 0.72); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: color 200ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms cubic-bezier(0.23, 1, 0.32, 1); }
-.lang-btn > svg:first-child { width: 17px; height: 17px; }
-.lang-btn .chev { width: 13px; height: 13px; opacity: 0.6; transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1); }
+.lang-btn { display: inline-flex; align-items: center; gap: calc(7px * var(--k)); height: calc(38px * var(--k)); padding: 0 calc(12px * var(--k)) 0 calc(11px * var(--k)); border: 0; border-radius: calc(10px * var(--k)); background: transparent; color: #cfcfcf; font: inherit; font-size: calc(15px * var(--k)); font-weight: 600; cursor: pointer; transition: color 200ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+.lang-btn > svg:first-child { width: calc(18px * var(--k)); height: calc(18px * var(--k)); }
+.lang-btn .chev { width: calc(14px * var(--k)); height: calc(14px * var(--k)); opacity: 0.6; transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1); }
 .lang-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
 @media (hover: hover) { .lang-btn:hover { color: #efefef; background-color: rgba(255, 255, 255, 0.06); } }
 .lang-btn[aria-expanded="true"] { color: #efefef; background-color: rgba(255, 255, 255, 0.06); }
@@ -288,6 +292,7 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
 </head>
 <body>
 <canvas id="c"></canvas>
+<a class="wr" href="/blog" data-k="writing">Blog</a>
 <div class="lang">
   <button type="button" class="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg><span class="lang-cur">English</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 6.5 8 10l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="lang-scrim" aria-hidden="true"></div>
@@ -613,7 +618,7 @@ html:lang(ja) .intro p, html:lang(ja) .work span { word-break: keep-all; overflo
   const q = sel => detail.querySelector(sel);
   const backEl = q(".back");
   let TR = {}, trLoad = null;
-  const loadTR = () => trLoad ||= fetch("i18n.json?v=9f598443").then(r => r.json()).then(j => (TR = j)).catch(() => { trLoad = null; });   // ?v= is the hash of i18n.json: new strings get a new address, so no cached copy hides them
+  const loadTR = () => trLoad ||= fetch("i18n.json?v=47828ee7").then(r => r.json()).then(j => (TR = j)).catch(() => { trLoad = null; });   // ?v= is the hash of i18n.json: new strings get a new address, so no cached copy hides them
   const NAMES = {"en": "English", "es": "Español", "pt": "Português", "fr": "Français", "de": "Deutsch", "it": "Italiano", "nl": "Nederlands", "pl": "Polski", "tr": "Türkçe", "ru": "Русский", "uk": "Українська", "ar": "العربية", "hi": "हिन्दी", "zh": "简体中文", "zh-Hant": "繁體中文", "ja": "日本語", "ko": "한국어", "vi": "Tiếng Việt", "id": "Bahasa Indonesia", "th": "ไทย"};
   let lang = "en";
   const pick = (item, k) => (TR[lang]?.items?.[item.id]?.[k]) ?? (k === "where" && item.where && TR[lang] ? TR[lang].where : item[k]);
