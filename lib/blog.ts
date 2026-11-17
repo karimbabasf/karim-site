@@ -22,6 +22,8 @@ const onSubdomain = process.env.BLOG_ON_SUBDOMAIN === "1";
 export const blogHref = (slug?: string) => (onSubdomain ? `/${slug ?? ""}` : slug ? `/blog/${slug}` : "/blog");
 export const homeHref = onSubdomain ? "https://karimbabasf.com" : "/";
 export const blogUrl = onSubdomain ? "https://blog.karimbabasf.com" : "https://karimbabasf.com/blog";
+/** A blog link that works from any host: absolute on production (the 404 also serves karimbabasf.com), relative in dev. */
+export const blogLink = (slug?: string) => (onSubdomain ? `https://blog.karimbabasf.com/${slug ?? ""}` : blogHref(slug));
 
 function minutes(source: string) {
   const body = source.replace(/export const meta[\s\S]*?\n};?\n/, "").replace(/<[^>]+>/g, " ");

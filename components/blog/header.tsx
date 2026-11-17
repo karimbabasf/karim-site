@@ -1,4 +1,4 @@
-import { blogHref, homeHref } from "@/lib/blog";
+import { blogLink, homeHref } from "@/lib/blog";
 
 const icons = {
   linkedin: (
@@ -59,7 +59,7 @@ export function Footer() {
   return (
     <footer className="bFoot">
       <span>&copy; {new Date().getFullYear()} Karim Baba</span>
-      <a href={blogHref("feed.xml")}>RSS</a>
+      <a href={blogLink("feed.xml")}>RSS</a>
     </footer>
   );
 }
